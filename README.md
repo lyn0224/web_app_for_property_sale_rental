@@ -20,10 +20,10 @@ Agile board => 	Issue board
     problem space and terminology)
 
 ### Requirements
-1. Administrator - the administrator
-2. User (Renter, Landlord, Buyer, Seller) – Renter and Landlord are specific to rental listings;
-Buyer and Seller are specific to Home Sale listings
-3. Realtor – a real-estate agent who can act on behalf of any type of User 
+    1. Administrator - the administrator
+    2. User (Renter, Landlord, Buyer, Seller) – Renter and Landlord are specific to rental listings;
+    Buyer and Seller are specific to Home Sale listings
+    3. Realtor – a real-estate agent who can act on behalf of any type of User 
 
 ### Usecase(required)
 1. <strong>Register/Login</strong>: 
