@@ -17,7 +17,7 @@ function Header(){
                 <Link to="/manage_rentals" className = "header-link header-link-text">Manage Rantals</Link>
                 <Link to="/advertise" className = "header-link header-link-text">Advertise</Link>
                 <Link to="/help" className = "header-link header-link-text">Help</Link>
-                <Link to="/sign_in" className = "header-link header-link-text">Sign in</Link>
+                <Link to="/sign_in" className = "header-link header-link-text">Sign in/Sign up</Link>
             </div>
             </header>
     )
