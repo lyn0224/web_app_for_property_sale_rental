@@ -55,7 +55,12 @@ Agile board => 	Issue board
     Submit an application for the lease, including credit score, employment
     information - an email sent to the Landlord/landlord’s realtor
 
+#### Wireframe Diagram
+<p>
+    <img src="./app/src/img/wireframe.jpg" width="100%" height="100%" />
+</p>
+
 #### Database Class Diagram
 <p>
-    <img src="./app/src/img/wireframe.jpg" width="220" height="240" />
+    <img src="./app/src/img/DatabaseArchitectureDiagram.png" width="100%" height="100%" />
 </p>
