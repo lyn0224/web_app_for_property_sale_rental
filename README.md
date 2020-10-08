@@ -56,4 +56,4 @@ Agile board => 	Issue board
     information - an email sent to the Landlord/landlord’s realtor
 
 #### Database Class Diagram
-    ![alt text](./app/src/img/wireframe.jpg)
+    ![Image](./app/src/img/wireframe.jpg)
