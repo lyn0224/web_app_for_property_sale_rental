@@ -54,3 +54,6 @@ Agile board => 	Issue board
 8. <strong>Rent (Renter)</strong>: 
     Submit an application for the lease, including credit score, employment
     information - an email sent to the Landlord/landlord’s realtor
+
+#### Database Class Diagram
+    ![alt text](./app/src/img/wireframe.jpg)
