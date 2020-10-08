@@ -56,4 +56,6 @@ Agile board => 	Issue board
     information - an email sent to the Landlord/landlord’s realtor
 
 #### Database Class Diagram
-![alt text](https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/tree/master/app/src/img/wireframe.jpg)
+<p>
+    <img src="./app/src/img/wireframe.jpg" width="220" height="240" />
+</p>
