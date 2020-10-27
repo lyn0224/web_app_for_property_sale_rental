@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom'
-import SaveHome from "../pages/SaveHome"
-import SaveSearch from "../pages/SaveSearch"
-import AccoutSetting from "../pages/AccoutSetting"
 function DropdownMulti({ title, items = [], multiSelect = false}){
     const [open, setOpen] = useState(false);
     const [selection, setSelection] = useState([]);

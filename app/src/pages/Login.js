@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import UserStore from '../stores/UserStore';
-import LoginForm from './LoginForm'
-import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/loading';
-import AccountNav from '../components/AccountNav'
-import AccountSetting from "./AccoutSetting"
-import Home from './Home'
-
+import {Redirect} from "react-router-dom"
+import LoginRender from "../components/Login"
 class Login extends Component {
     async componentDidMount() {
         try{
@@ -44,46 +40,22 @@ class Login extends Component {
           });
           let result = await res.json();
           if(result && result.success){
-            UserStore.isLoggedIn = false;
+            UserStore.isLoggedIn = true;
             UserStore.username = '';
           }
         }catch(e){
           console.log(e);
         }
     }
+
     render() {
-        if(UserStore.loading){
-            return <Loading />
-        }else{
-            //console.log(UserStore.isLoggedIn);
-            if(UserStore.isLoggedIn){
-                return (
-                    <div className="app">
-                        {/* 
-                        <div className="container"> 
-                            Welcome {UserStore.username}
-                            <SubmitButton 
-                            text = {'Log Out'}
-                            disabled={false}
-                            onClick={ () => this.doLogout()}
-                            /> 
-                            <Profile />
-                        </div>
-                        <Redirect to='/' />
-                        */}
-                        <Home />
-                    </div>
-                )
-            }
-        }
-        return (
-            <div className="login">
-                <div className="container">
-                    <AccountNav />
-                    <LoginForm/>
-                </div>
-            </div>
-        )
+
+        const redirect = UserStore.isLoggedIn ? <Redirect to='/'  /> :  <LoginRender/>
+
+        const render_component = UserStore.loading ? <Loading/>: redirect
+        
+        return render_component
+
     }
 }
 export default observer(Login);
