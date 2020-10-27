@@ -32,7 +32,7 @@ class LoginForm extends Component {
 
     doLogin(){
         if(this.state.username==="1" && this.state.password==="1"){
-            console.log("here")
+            // console.log("here")
             UserStore.isLoggedIn = true;
             UserStore.username = this.state.username;
         }

@@ -178,53 +178,56 @@ main{
     background-color: var(--mainBlack);
   }
   
-  /* end of home css */
+/* end of home css */
 
-  .login{
-    height: 500px;
-  }
-  
-  .loginForm {
-    font-size: 16px;
-    height: 500px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    max-width: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 40px;
-  }
-  
-  .inputField {
-    padding-top: 16px;
-  }
-  
-  .input {
-    box-sizing: border-box;
-    outline: none;
-    border: solid 2px #1189de;
-    border-radius: 4px;
-    color: #292929;
-    width: 100%;
-    padding: 12px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 1);
-  }
-  
-  .submitButton {
-    padding-top: 16px;
-  }
-  
-  .btnb {
-    width: 100%;
-    min-width: 280px;
-    color: #565656;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: bold;
-    border: solid 2px #1189de;
-    border-radius: 4px;
-    background: #fff;
-    cursor: pointer;
-  }
+.login{
+height: 500px;
+}
+
+.loginForm {
+font-size: 16px;
+height: 500px;
+box-sizing: border-box;
+width: 100%;
+height: 100%;
+max-width: 400px;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 40px;
+}
+
+.inputField {
+padding-top: 16px;
+}
+
+.input {
+box-sizing: border-box;
+outline: none;
+border: solid 2px #1189de;
+border-radius: 4px;
+color: #292929;
+width: 100%;
+padding: 12px;
+font-size: 14px;
+background: rgba(255, 255, 255, 1);
+}
+
+.submitButton {
+padding-top: 16px;
+}
+
+.btnb {
+width: 100%;
+min-width: 280px;
+color: #565656;
+padding: 12px;
+font-size: 14px;
+font-weight: bold;
+border: solid 2px #1189de;
+border-radius: 4px;
+background: #fff;
+cursor: pointer;
+}
+
+/* end login/signup form */
+/* start dropdown  */

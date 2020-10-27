@@ -5,7 +5,8 @@ import LoginForm from './LoginForm'
 import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/loading';
 import AccountNav from '../components/AccountNav'
-import Profile from "./Profile"
+import AccountSetting from "./AccoutSetting"
+import Home from './Home'
 
 class Login extends Component {
     async componentDidMount() {
@@ -54,19 +55,23 @@ class Login extends Component {
         if(UserStore.loading){
             return <Loading />
         }else{
-            console.log(UserStore.isLoggedIn);
+            //console.log(UserStore.isLoggedIn);
             if(UserStore.isLoggedIn){
                 return (
                     <div className="app">
+                        {/* 
                         <div className="container"> 
-                            {/* Welcome {UserStore.username}
+                            Welcome {UserStore.username}
                             <SubmitButton 
                             text = {'Log Out'}
                             disabled={false}
                             onClick={ () => this.doLogout()}
-                            /> */}
+                            /> 
                             <Profile />
                         </div>
+                        <Redirect to='/' />
+                        */}
+                        <Home />
                     </div>
                 )
             }
