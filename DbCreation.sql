@@ -4,7 +4,7 @@ use CMPE202
 -- ACCOUNT table is to store all users account info
 create table ACCOUNT (
 ID        INT          NOT NULL,
-u_name    VARCHAR(50)
+u_name    VARCHAR(50)   NOT NULL,
 Email     VARCHAR(50)   UNIQUE NOT NULL,
 psswd     VARCHAR(300)   UNIQUE NOT NULL,
 a_type      CHAR          NOT NULL,
