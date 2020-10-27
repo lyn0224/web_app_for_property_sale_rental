@@ -1,11 +1,13 @@
 import React from "react"
 import {Route,Switch} from "react-router-dom"
 import Home from "../pages/Home"
+import HomeList from "../pages/HouseList"
+
 function Routers(){
     return(
         <Switch>
               <Route exact path = "/"><Home/></Route>
-              <Route path = "/buy"></Route>
+              <Route path = "/buy"><HomeList/></Route>
               <Route path = "/rent"></Route>
               <Route path = "/sell"></Route>
               <Route path = "/home_loans"></Route>

@@ -20,7 +20,7 @@ function Header(){
                 <Link to="/sign_in" className = "header-link header-link-text">Sign in</Link>
                 <Link to="/sign_in" className = "header-link header-link-text">Sign up</Link>
             </div>
-            </header>
+        </header>
     )
 }
 
