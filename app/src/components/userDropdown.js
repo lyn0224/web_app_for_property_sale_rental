@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import DropdownMulti from './DropdownMulti'
+import {Link} from "react-router-dom"
 function UserDropdown(props){
     const items = [
         {
@@ -20,7 +21,7 @@ function UserDropdown(props){
         <>
             <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        {props.user}
+                       <Link to ='/profile'> {props.user}</Link>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>

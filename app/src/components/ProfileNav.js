@@ -7,16 +7,16 @@ class ProfileNav extends Component {
         return (
             <div className="AccountNav">
                 <li>
-                    <Link to="/listing"></Link>
+                    <Link to="/profile/listing">Listing</Link>
                 </li>
                 <li>
-                    <Link to="/save_home">Save Home</Link>
+                    <Link to="/profile/save_home">Save Home</Link>
                 </li>
                 <li>
-                    <Link to="/save_search">Save Search</Link>
+                    <Link to="/profile/save_search">Save Search</Link>
                 </li>
                 <li>
-                    <Link to="/account_setting">Account Setting</Link>
+                    <Link to="/profile/account_setting">Account Setting</Link>
                 </li>
             </div>       
         )

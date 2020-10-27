@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProfileNav from '../components/ProfileNav'
+import ProfileNav from '../../components/ProfileNav'
 import { ListGroup } from 'react-bootstrap'
 
 export class AccoutSetting extends Component {
@@ -41,7 +41,6 @@ export class AccoutSetting extends Component {
     render() {
         return (
             <>
-            <ProfileNav/>
             <button onClick={this.handleClick}>
                 {this.state.isToggleOn ? 'ON' : 'OFF'}
             </button>

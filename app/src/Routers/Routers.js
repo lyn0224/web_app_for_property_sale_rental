@@ -3,9 +3,10 @@ import {Route,Switch} from "react-router-dom"
 import Home from "../pages/Home"
 import Login from "../pages/Login"
 import Signup from "../pages/Signup"
-import SaveHome from "../pages/SaveHome"
-import SaveSearch from "../pages/SaveSearch"
-import AccoutSetting from "../pages/AccoutSetting"
+import SaveHome from "../pages/profile/SaveHome"
+import SaveSearch from "../pages/profile/SaveSearch"
+import AccoutSetting from "../pages/profile/AccoutSetting"
+import Profile from "../pages/profile/Profile"
 function Routers(){
     return(
         <Switch>
@@ -24,6 +25,7 @@ function Routers(){
               <Route path = "/save_home"><SaveHome/></Route>
               <Route path = "/save_search"><SaveSearch/></Route>
               <Route path = "/account_setting"><AccoutSetting/></Route>
+              <Route path = "/profile"><Profile/></Route>
           </Switch>
     )
 }

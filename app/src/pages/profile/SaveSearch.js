@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
-import ProfileNav from '../components/ProfileNav'
-export class SaveSearch extends Component {
-    static propTypes = {
+import ProfileNav from '../../components/ProfileNav'
+export function SaveSearch() {
 
-    }
-
-    render() {
         return (
             <>
-            <ProfileNav/>
             <div>
                 This is Save Search page!
             </div>
             </>
         )
-    }
+    
 }
 
 export default SaveSearch
