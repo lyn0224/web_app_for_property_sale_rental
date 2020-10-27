@@ -8,8 +8,6 @@ function LoginContextProvider({children}){
     const [password,setPassword] = useState('');
     const [buttonDisabled,setButtonDisabled] = useState(false);
 
-
-
     function changeUser(object){
         object = object.trim();
         console.log(object);
@@ -60,7 +58,7 @@ function LoginContextProvider({children}){
     return (
         <Context.Provider value = {{username,password,setButtonDisabled, doLogout,changeUser,changePass, resetForm,toggleButton,buttonDisabled}}>
             {children}
-            </Context.Provider>
+        </Context.Provider>
     )
 }
 

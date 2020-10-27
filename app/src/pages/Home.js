@@ -11,9 +11,9 @@ function Home(){
                     <Search/> 
                     <div className="Home-grid-container">
   
-                            <Grid/>
-                            <Grid/>
-                            <Grid/>
+                            <Grid name="first"/>
+                            <Grid name="second"/>
+                            <Grid name="third"/>
                
                     </div>
 

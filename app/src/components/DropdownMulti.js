@@ -7,19 +7,6 @@ function DropdownMulti({ title, items = [], multiSelect = false}){
     function handleOnClick(item){
         if(!selection.some[current => current.id === item.id]){
             setSelection([item]);
-            // switch(item.id){
-            //     case 1:
-            //         <Redirect to='/save_home'/>
-            //         break;
-            //     case 2:
-            //         <Redirect to='/save_search'/>
-            //         break;
-            //     case 3:
-            //         <Redirect to='/account_setting'/>
-            //         break;
-            //     default:
-            //         break;
-            // }
         }
         //     if(!multiSelect){
         //         setSelection([item]);
