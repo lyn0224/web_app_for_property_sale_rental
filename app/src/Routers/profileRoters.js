@@ -9,7 +9,7 @@ function ProfileRouters(){
               <Route path = "/profile/save_home"><SaveHome/></Route>
               <Route path = "/profile/save_search"><SaveSearch/></Route>
               <Route path = "/profile/account_setting"><AccoutSetting/></Route>
-          </Switch>
+        </Switch>
     )
 }
 

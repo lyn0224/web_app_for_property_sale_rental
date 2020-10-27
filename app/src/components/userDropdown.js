@@ -1,7 +1,6 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import DropdownMulti from './DropdownMulti'
-import {Link} from "react-router-dom"
 function UserDropdown(props){
     const items = [
         {
@@ -21,14 +20,13 @@ function UserDropdown(props){
         <>
             <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                       <Link to ='/profile'> {props.user}</Link>
+                        {props.user}
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
-                        <Dropdown.Item href="/save_home">Save Home</Dropdown.Item>
-                        <Dropdown.Item href="/save_search">Save Search</Dropdown.Item>
-                        <Dropdown.Item href="/account_setting">Account Setting</Dropdown.Item>
-                        <Dropdown.Item href="/logout">Sign out</Dropdown.Item>
+                        <Dropdown.Item href="/profile/save_home">Save Home</Dropdown.Item>
+                        <Dropdown.Item href="/profile/save_search">Save Search</Dropdown.Item>
+                        <Dropdown.Item href="/profile/account_setting">Account Setting</Dropdown.Item>
+                        <Dropdown.Item href="/profile/logout">Sign out</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             {/* <DropdownMulti title="Profile" items={items}/>  */}

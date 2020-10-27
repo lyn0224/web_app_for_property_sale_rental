@@ -7,13 +7,17 @@ import SaveHome from "../pages/profile/SaveHome"
 import SaveSearch from "../pages/profile/SaveSearch"
 import AccoutSetting from "../pages/profile/AccoutSetting"
 import Profile from "../pages/profile/Profile"
+import Buy from "../pages/Buy"
+import Sell from "../pages/Sell"
+import Rent from "../pages/Rent"
+
 function Routers(){
     return(
         <Switch>
               <Route exact path = "/"><Home/></Route>
-              <Route path = "/buy"></Route>
-              <Route path = "/rent"></Route>
-              <Route path = "/sell"></Route>
+              <Route path = "/buy"><Buy /></Route>
+              <Route path = "/rent"><Rent /></Route>
+              <Route path = "/sell"><Sell /></Route>
               <Route path = "/home_loans"></Route>
               <Route path = "/agent_finder"></Route>
               <Route path = "/manage_rentals"></Route>
@@ -22,9 +26,6 @@ function Routers(){
               <Route path = "/login"><Login/></Route>
               <Route path = "/sign_up"><Signup/></Route>
               <Route path = "/logout"></Route>
-              <Route path = "/save_home"><SaveHome/></Route>
-              <Route path = "/save_search"><SaveSearch/></Route>
-              <Route path = "/account_setting"><AccoutSetting/></Route>
               <Route path = "/profile"><Profile/></Route>
           </Switch>
     )
