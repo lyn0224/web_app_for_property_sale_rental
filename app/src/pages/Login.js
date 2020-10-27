@@ -40,7 +40,7 @@ class Login extends Component {
           });
           let result = await res.json();
           if(result && result.success){
-            UserStore.isLoggedIn = true;
+            UserStore.isLoggedIn = false;
             UserStore.username = '';
           }
         }catch(e){
