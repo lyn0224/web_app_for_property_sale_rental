@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import ProfileNav from '../../components/ProfileNav'
+import React from 'react'
 export function SaveSearch() {
 
         return (
