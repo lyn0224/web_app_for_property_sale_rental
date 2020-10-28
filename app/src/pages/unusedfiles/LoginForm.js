@@ -3,13 +3,16 @@ import SubmitButton from '../components/SubmitButton';
 import UserStore from '../stores/UserStore';
 import InputFiled from '../components/InputField';
 import {Context} from "../context/LoginContext"
-
+import { Form } from '../components/export';
 
 
 function LoginForm() {
     const [Username_Input, setUsername_Input] = useState('');
     const [Userpass_Input, setUserpass_Input] = useState('');
     const [button_disabled, setButton_disabled] = useState(false);
+    const [error, setError] = useState('');
+
+    const isInvalid = Userpass_Input === '' | Username_Input === '';
     //  function doLogin(){
     //      changePass(Userpass_Input);
     //      changeUser(Username_Input);
@@ -51,6 +54,7 @@ function LoginForm() {
                 })
             });
             let result = await res.json();
+            console.log(result.success);
             if(result && result.success){
                 UserStore.isLoggedIn = true;
                 UserStore.username = result.username;
@@ -65,6 +69,36 @@ function LoginForm() {
     }
         return (
             <div className="loginForm">
+                 {/* <Form>
+                    <Form.Title>Sign In</Form.Title>
+                    {error && <Form.Error>{error}</Form.Error>}
+                    
+                    <Form.Base onSubmit={doLogin} method="POST">
+                        <Form.Input
+                            placeholder="Username"
+                            value={Username_Input}
+                            onChange={({ target }) => setEmailAddress(target.value)}
+                        />
+                        <Form.Input
+                            type="password"
+                            value={password}
+                            autoComplete="off"
+                            placeholder="Password"
+                            onChange={({ target }) => setPassword(target.value)} 
+                        />
+                        <Form.Submit disabled={isInvalid} type="submit">
+                            Sign In
+                        </Form.Submit>
+                        
+                        <Form.Text>
+                            New to Netflix? <Form.Link to="/signup">Sign up now.</Form.Link>
+                        </Form.Text>    
+                        <Form.TextSmall>
+                            This page is protected by Google reCAPTCHA.
+                        </Form.TextSmall>
+                    </Form.Base>
+                </Form> */}
+
                 <InputFiled
                     type='text'
                     placeholder='Username'

@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header"
+import Header from "./containers/header"
 import Routers from "./Routers/Routers"
 import UserStore from './stores/UserStore';
+import {UserInfor} from './context/userInfo'
 function App() {
-  console.log(UserStore.isLoggedIn)
-  const check = UserStore.isLoggedIn
-  console.log(check)
   return (
     <div className="App">
-      
-          <Header isLoggedIn = {check}/>
+      <UserInfor>
+          <Header />
           <Routers/>
+
+       </UserInfor>
     </div>
   );
 }

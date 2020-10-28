@@ -1,10 +1,10 @@
 import React, { Children, Component, useContext } from 'react'
 import Grid from '../../components/Grid_card'
-import {Context} from "../../context/SaveHomeContext"
+// import {Context} from "../../context/SaveHomeContext"
 
 function SaveHome(prop) {
-  const {name} = useContext(Context)
-  console.log(name);
+  // const {name} = useContext(Context)
+  // console.log(name);
   
   const items = [
     {

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
-import DropdownMulti from './DropdownMulti'
 function UserDropdown(props){
     const items = [
         {

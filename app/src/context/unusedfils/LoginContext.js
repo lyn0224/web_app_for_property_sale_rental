@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import UserStore from '../stores/UserStore';
+import UserStore from '../../stores/UserStore';
 
 
 const Context = React.createContext()

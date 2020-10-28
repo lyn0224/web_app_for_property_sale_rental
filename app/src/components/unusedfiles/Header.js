@@ -1,14 +1,13 @@
 import React, { useContext } from "react"
 import {Link} from "react-router-dom"
-import UserStore from '../stores/UserStore';
+import UserStore from '../../stores/UserStore';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UserDropdown from './userDropdown'
-import {Context} from '../context/LoginContext'
-
+import UserDropdown from '../userDropdown'
+import {Context} from '../../context/userInfo'
 function Header(prop){
-    const {username} = useContext(Context)
-    console.log(username);
-    const conditionalSignin = UserStore.isLoggedIn ? <UserDropdown user = {username} className = "header-link header-link-text"/> :<Link to="/login" className = "header-link header-link-text">Sign in</Link>
+    const {name,loggedIn} = useContext(Context)
+    console.log(loggedIn);
+    const conditionalSignin = loggedIn ? <UserDropdown user = {name} className = "header-link header-link-text"/> :<Link to="/login" className = "header-link header-link-text">Sign in</Link>
     
     return(
         <header className ="Header">

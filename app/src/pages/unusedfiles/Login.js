@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import UserStore from '../stores/UserStore';
-import Loading from '../components/loading';
+import UserStore from '../../stores/UserStore';
+import Loading from '../../components/loading';
 import {Redirect} from "react-router-dom"
-import LoginRender from "../components/Login"
+import LoginRender from "../../components/unusedfiles/Login"
 class Login extends Component {
     async componentDidMount() {
         try{
@@ -53,8 +53,13 @@ class Login extends Component {
         const redirect = UserStore.isLoggedIn ? <Redirect to='/'  /> :  <LoginRender/>
 
         const render_component = UserStore.loading ? <Loading/>: redirect
-        
-        return render_component
+        const Button = <button onClick = {()=> this.doLogout()}>logout</button>
+        return(
+            <>
+            {Button}
+           { render_component}
+            </>
+            )
 
     }
 }

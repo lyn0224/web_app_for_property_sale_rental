@@ -3,13 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter as Router} from "react-router-dom"
-import {LoginContextProvider} from "./context/LoginContext"
+import { FirebaseContext } from './context/firebase';
+import {UserInfor} from './context/userInfo'
+const config = {
+    apiKey: "AIzaSyCbYC77vFjtJfxdKAXSyQVV8y1Pz3I0_Io",
+    authDomain: "netflix-bo.firebaseapp.com",
+    databaseURL: "https://netflix-bo.firebaseio.com",
+    projectId: "netflix-bo",
+    storageBucket: "netflix-bo.appspot.com",
+    messagingSenderId: "670830835874",
+    appId: "1:670830835874:web:aab7d06adc071fa568fffb"
+}
+
+const firebase = window.firebase.initializeApp(config);
+
+
 ReactDOM.render(
-  <LoginContextProvider>
-    <Router>
-      <App />
-    </Router>
-  </LoginContextProvider>,
+  <FirebaseContext.Provider value={{ firebase: window.firebase }}>
+      <Router>
+        <App />
+      </Router>
+  </FirebaseContext.Provider>,
   document.getElementById('root')
 );
 
