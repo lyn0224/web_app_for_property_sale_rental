@@ -4,6 +4,7 @@ import UserStore from '../stores/UserStore';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserDropdown from './userDropdown'
 import {Context} from '../context/LoginContext'
+
 function Header(prop){
     const {username} = useContext(Context)
     console.log(username);
