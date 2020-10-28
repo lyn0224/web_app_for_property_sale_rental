@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Form } from '../../components/export';
 import { useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../../context/firebase';
-
+import * as ROUTES from '../../constants/routes'
 function Signup() {
 
     const history = useHistory();
@@ -71,7 +71,7 @@ function Signup() {
                         </Form.Submit>
                         
                         <Form.Text>
-                            Already a user? <Form.Link to="/login">Sign In now.</Form.Link>
+                            Already a user? <Form.Link to={ROUTES.SIGN_IN}>Sign In now.</Form.Link>
                         </Form.Text>
                         <Form.TextSmall>
                             This page is protected by Google reCAPTCHA.

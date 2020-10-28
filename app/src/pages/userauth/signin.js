@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../../context/firebase';
 import { Form } from '../../components/export';
 import {Context} from '../../context/userInfo'
-import {Redirect} from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
+
 function Signin(){
     const [error, setError] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
@@ -72,7 +73,7 @@ function Signin(){
                         </Form.Submit>
                         
                         <Form.Text>
-                            New to ourwebsite? <Form.Link to="/signup">Sign up now.</Form.Link>
+                            New to our website? <Form.Link to={ROUTES.SIGN_UP}>Sign up now.</Form.Link>
                         </Form.Text>    
                         <Form.TextSmall>
                             This page is protected by Google reCAPTCHA.
