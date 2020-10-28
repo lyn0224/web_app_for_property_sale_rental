@@ -7,23 +7,60 @@ import {Context} from "../context/LoginContext"
 
 
 function LoginForm() {
-
-    const {username,changeUser,setButtonDisabled,changePass,buttonDisabled} = useContext(Context)
     const [Username_Input, setUsername_Input] = useState('');
     const [Userpass_Input, setUserpass_Input] = useState('');
+    const [button_disabled, setButton_disabled] = useState(false);
+    //  function doLogin(){
+    //      changePass(Userpass_Input);
+    //      changeUser(Username_Input);
+    //      setButtonDisabled();
+    //      console.log(buttonDisabled);
+    //     if(Username_Input==="1" && Userpass_Input==="1"){
+    //         // console.log("here")
+    //         UserStore.isLoggedIn = true;
+    //         UserStore.username = username;
+    //     }
+    //     else{
+    //         console.log("no user found")
+    //     }
+    // }
+    function resetForm(){
+        setUsername_Input('')
+        setUserpass_Input('')
+        setButton_disabled(false)
 
-     function doLogin(){
-         changePass(Userpass_Input);
-         changeUser(Username_Input);
-         setButtonDisabled();
-         console.log(buttonDisabled);
-        if(Username_Input==="1" && Userpass_Input==="1"){
-            // console.log("here")
-            UserStore.isLoggedIn = true;
-            UserStore.username = username;
+    }
+    async function doLogin(){
+        if(!Username_Input){
+            return;
         }
-        else{
-            console.log("no user found")
+        if(!Userpass_Input){
+            return;
+        }
+        setButton_disabled(true)
+        try{
+            let res = await fetch('/login', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: Username_Input,
+                    password: Userpass_Input
+                })
+            });
+            let result = await res.json();
+            if(result && result.success){
+                UserStore.isLoggedIn = true;
+                UserStore.username = result.username;
+            }else if(result && result.success === false){
+                resetForm();
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+            resetForm();
         }
     }
         return (
@@ -42,7 +79,7 @@ function LoginForm() {
                 />
                 <SubmitButton
                     text='Login'
-                    disabled={buttonDisabled}
+                    disabled={button_disabled}
                     onClick={() => doLogin()}
                 />
             </div>
