@@ -17,6 +17,7 @@ export const RightPanel = styled.div`
     justify-content: center;
     margin:0; padding:0;
     margin-right: 2rem; 
+    
 `
 export const LeftPanel = styled.div`
     display : flex;
@@ -28,6 +29,7 @@ export const Link = styled.div`
     margin : 0 auto; 
     margin-left: 1rem;
     margin-right: 1rem;  
+
 `
 
 export const Text = styled.div`
@@ -52,7 +54,9 @@ export const LogoPosition = styled.div`
 `
 export const Background = styled.section`  `
 
-export const ButtonLink = styled(ReactRouterLink)``
+export const ButtonLink = styled(ReactRouterLink)`
+    
+`
 
 export const Group = styled.div`
 display: flex;
@@ -123,20 +127,3 @@ export const TextLink = styled.p`
             position: fixed;
             flex-direction: column;
         }`
-// .Header{
-//     display: flex;
-//     justify-content: space-evenly;
-//     align-items: center;
-//     padding: 1em 0;
-//     margin-bottom: 0;
-// }
-// .logo-text{
-//     font-weight: 700;
-//     font-size: 3rem;
-//     color: rgb(20, 122, 255);
-// }
-// .header-link-text{
-//     font-weight: 600;
-//     font-size: 1.1rem;
-//     color: black;
-// }

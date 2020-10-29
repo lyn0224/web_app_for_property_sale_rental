@@ -56,8 +56,8 @@ Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
     return <ButtonLink {...restProps}>{children}</ButtonLink>;
 }
 Header.Link = function HeaderLink({ to, children, ...restProps  }){
-    return<Link> 
-            <ReactRouterLink to = {to } {...restProps}>
+    return<Link to = {to } {...restProps}> 
+            <ReactRouterLink  style={{ textDecoration: 'none' }} >
                     <Text>{children}</Text>
                     </ReactRouterLink>
                 </Link> 
