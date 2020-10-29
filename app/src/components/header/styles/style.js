@@ -46,7 +46,9 @@ export const Link = styled.div`
     margin : 0 auto; 
     margin-left: 1rem;
     margin-right: 1rem;  
-
+    &:hover{
+        border-bottom: 1px solid black; 
+    }
 `
 
 export const Text = styled.div`

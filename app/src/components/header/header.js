@@ -26,10 +26,10 @@ Header.Frame = function HeaderFrame({ children, ...restProps }) {
 Header.Logo = function HeaderLogo({ to, children, ...restProps }) {
     return (
         <LogoPosition>
-            <ReactRouterLink to={to}>
+            <ReactRouterLink to={to} style={{ textDecoration: 'none' }}>
                 
                     {/* <Logo {...restProps} /> */}
-                    <LogoText>{children}</LogoText>
+                    <LogoText >{children}</LogoText>
                 
             </ReactRouterLink>
         </LogoPosition>
