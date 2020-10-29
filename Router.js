@@ -5,6 +5,7 @@ class Router{
         this.login(app, db);
         this.logout(app, db);
         this.isLoggedIn(app, db);
+        this.register(app, db);
     }
 
     login(app, db) {
@@ -29,7 +30,7 @@ class Router{
 
                         if(verified) {
                             req.session.userID = data[0].ID;
-                            
+
                             res.json({
                                 success: true,
                                 username: data[0].u_name
@@ -60,11 +61,11 @@ class Router{
     }
 
     logout(app, db) {
-        
+
         app.post('/logout', (req, res) => {
-            
+
             if(req.session.userID) {
-                
+
                 req.session.destroy();
                 res.json({
                     success: true
@@ -80,16 +81,17 @@ class Router{
         })
 
     }
+    //weichao
 
     isLoggedIn(app, db) {
         app.post('/logout', (req, res) => {
-            
+
             if(req.session.userID) {
                 let cols = [req.session.userID];
                 db.query('SELECT * from account WHERE ID = ?', cols, (err, data, fields) => {
-                    
+
                     if(data && data.length === 1){
-                        
+
                         res.json({
                             success: true,
                             username: data[0].u_name
@@ -110,6 +112,31 @@ class Router{
             }
         });
 
+    }
+
+    register (app, db) {
+      app.post('/register', (req, res) => {
+        const { username, email, password, type = 'R'} = req.body;
+
+        db.query(
+          'insert into account(u_name,Email,psswd,a_type) values (?, ?, ?, ?)',
+          [username, email, password, type],
+          (err) => {
+            if(err) {
+              return res.send({
+                success: false,
+                msg: 'register failed',
+                err,
+              }).end();
+            }
+
+            res.send({
+              success: true,
+              msg: 'register success'
+            }).end();
+          }
+        )
+      })
     }
 }
 
