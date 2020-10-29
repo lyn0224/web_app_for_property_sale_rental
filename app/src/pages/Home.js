@@ -5,19 +5,14 @@ import Search from '../containers/search'
 function Home(){
     return(
         <>
-            <main>
-                <div className ="Home">
-                    <Search/> 
-                    <div className="Home-grid-container">
-  
-                            <Grid name="first"/>
-                            <Grid name="second"/>
-                            <Grid name="third"/>
-               
-                    </div>
+            <Search/> 
+            <div className="Home-grid-container">
 
-                </div>
-            </main>
+                    <Grid name="first"/>
+                    <Grid name="second"/>
+                    <Grid name="third"/>
+        
+            </div>
             <Footer/> 
         </>
     )

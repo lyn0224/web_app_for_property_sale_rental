@@ -3,6 +3,7 @@ import { Form } from '../../components/export';
 import { useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../../context/firebase';
 import * as ROUTES from '../../constants/routes'
+import Footer from "../../containers/footer"
 function Signup() {
 
     const history = useHistory();
@@ -78,6 +79,7 @@ function Signup() {
                         </Form.TextSmall>
                     </Form.Base>
                 </Form>
+                <Footer/>
         </>
     )
 }

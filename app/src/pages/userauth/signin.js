@@ -4,6 +4,7 @@ import { FirebaseContext } from '../../context/firebase';
 import { Form } from '../../components/export';
 import {Context} from '../../context/userInfo'
 import * as ROUTES from '../../constants/routes'
+import Footer from "../../containers/footer"
 
 function Signin(){
     const [error, setError] = useState('');
@@ -80,7 +81,7 @@ function Signin(){
                         </Form.TextSmall>
                     </Form.Base>
                 </Form>
-
+            <Footer/>
         </>
     )
 }
