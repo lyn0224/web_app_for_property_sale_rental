@@ -9,7 +9,10 @@ export const Background = styled.section`
     background-color: #464646;
     padding: 4rem 0 ;
     outline: none;
-
+    @media (max-width: 600px){
+        min-height: 400px;
+        
+    }
 `
 export const Search = styled.div`
         width: 40%;
@@ -17,7 +20,10 @@ export const Search = styled.div`
         display: flex;  
         margin-left: auto;
         margin-right: auto;
-        
+        @media (max-width: 600px){
+            width: 80%
+            
+        }
         
 `
 export const SearchIcon = styled.button`
@@ -49,6 +55,10 @@ export const Title = styled.h1`
     font-size: 3rem;
     text-align: center;
     margin-bottom: 4rem;
+    @media (max-width: 600px){
+        font-size: 2rem;
+        
+    }
 `
 export const Subtitle = styled.h3``
 export const Group = styled.div`

@@ -4,12 +4,17 @@ import {Link as ReactRouterLink} from 'react-router-dom'
 export const Container = styled.div`
     display : flex;
     justify-content: space-around;
-    
+    @media (max-width: 600px){
+        flex-direction: column;
+        font-size : 1rem;
+    }
 `
 
 export const Logo = styled.img`
-    text-align: center;
-  
+    @media (max-width: 600px){
+
+        
+    }
 `
 export const RightPanel = styled.div`
     display : flex;
@@ -17,6 +22,12 @@ export const RightPanel = styled.div`
     justify-content: center;
     margin:0; padding:0;
     margin-right: 2rem; 
+    @media (max-width: 600px){
+        flex-direction: column;
+        order: 2;
+        margin:0 auto;
+        margin-bottom:1rem;
+    }
     
 `
 export const LeftPanel = styled.div`
@@ -24,6 +35,12 @@ export const LeftPanel = styled.div`
     align-items: center;
     margin:0; padding:0;
     margin-left: 1rem; 
+    @media (max-width: 600px){
+        flex-direction: column;
+        order: 1;
+        margin:0 auto;
+        
+    }
 `
 export const Link = styled.div`
     margin : 0 auto; 
@@ -38,6 +55,10 @@ export const Text = styled.div`
     font-weight: 600;
     font-size: 1.1rem;
     color: black;
+    @media (max-width: 600px){
+        font-size : 0.75rem;
+        
+    }
    
 `
 export const LogoText = styled.div`
@@ -47,6 +68,10 @@ export const LogoText = styled.div`
     margin:0; 
     padding:0;
     margin-right: 3rem;
+    @media (max-width: 600px){
+        text-align: center;
+        margin-right: 0rem;
+    }
     
 `
 export const LogoPosition = styled.div`

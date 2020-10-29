@@ -1,5 +1,5 @@
 import React from "react"
-import Footer from "../components/Footer"
+import Footer from "../containers/footer"
 import Grid from "../components/Grid_card"
 import Search from '../containers/search'
 function Home(){
