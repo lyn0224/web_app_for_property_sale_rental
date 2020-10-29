@@ -81,7 +81,7 @@ class Router{
         })
 
     }
-    //weichao
+  
 
     isLoggedIn(app, db) {
         app.post('/logout', (req, res) => {
@@ -113,7 +113,7 @@ class Router{
         });
 
     }
-
+//weichao
     register (app, db) {
       app.post('/register', (req, res) => {
         const { username, email, password, type = 'R'} = req.body;
