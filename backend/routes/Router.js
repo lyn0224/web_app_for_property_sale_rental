@@ -123,16 +123,16 @@ class Router{
         let email = req.body.emailAddress;
 
         // const { username, email, password, type = 'R', approved = 'P'} = req.body;
-        console.log(username);
-        console.log(password);
-        console.log(email);
+        // console.log(username);
+        // console.log(password);
+        // console.log(email);
 
         db.query(
           'insert into account(username,Email,psswd,a_type,approved) values (?, ?, ?, ?,?)',
           [username, email, password, 'R','P'],
           (err) => {
             if(err) {
-                console.log(err);
+                // console.log(err);
               return res.send({
                 success: false,
                 msg: 'register failed',
