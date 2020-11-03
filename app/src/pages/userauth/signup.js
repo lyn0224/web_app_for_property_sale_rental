@@ -4,10 +4,11 @@ import { useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../../context/firebase';
 import * as ROUTES from '../../constants/routes'
 import Footer from "../../containers/footer"
+import UserStore from "../../stores/UserStore"
 function Signup() {
 
     const history = useHistory();
-    const { firebase } = useContext(FirebaseContext);
+    // const { firebase } = useContext(FirebaseContext);
     const [firstName, setFirstName] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
@@ -15,32 +16,42 @@ function Signup() {
     
     const isInvalid = firstName === '' || password === '' || emailAddress === '';
     
-    const handleSignup = (event) => {
+    async function handleSignup (event){
         event.preventDefault();
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(emailAddress, password)
-            .then((result) =>
-                result.user
-                .updateProfile({
-                    displayName: firstName,
-                })
-                .then(() => {
-                    setEmailAddress('');
-                    setPassword('');
-                    setError('');
-                    history.push('/');
-                })
-            ).catch((error) => setError(error.message));
-
-    }
-
-    const handleSignout =(event)=> {
-        firebase.auth().signOut().then(function() {
-            // Sign-out successful.
-          }).catch(function(error) {
-            // An error happened.
-          });
+            if(!emailAddress){
+                return;
+            }
+            if(!password){
+                return;
+            }
+            try{
+                let res = await fetch('http://localhost:9000/register', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: firstName,
+                        emailAddress : emailAddress,
+                        password: password,
+                    })
+                });
+                let result = await res.json();
+                console.log(result.success);
+                if(result && result.success){
+                    UserStore.isLoggedIn = true;
+                    UserStore.username = result.username;
+                    console.log(result.username);
+                    console.log("successful signup");
+                }else if(result && result.success === false){
+             
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+      
+            }
     }
     
     return (

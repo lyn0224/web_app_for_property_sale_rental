@@ -5,48 +5,51 @@ import { Form } from '../../components/export';
 import {Context} from '../../context/userInfo'
 import * as ROUTES from '../../constants/routes'
 import Footer from "../../containers/footer"
+import UserStore from "../../stores/UserStore"
 
 function Signin(){
     const [error, setError] = useState('');
-    const [emailAddress, setEmailAddress] = useState('');
+    // const [emailAddress, setEmailAddress] = useState('');
+    const [username, setuUsername] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
-    const {firebase} = useContext(FirebaseContext)
-    const isInvalid = password === '' | emailAddress === '';
+    // const {firebase} = useContext(FirebaseContext)
+    const isInvalid = password === '' | password === '';
     var currentUser ;
     const {loggedIn,setName,setEmail,setPhotoUrl,setEmailVerified,setUid,setLoggedIn} = useContext(Context)
-    const handleSignin = (event) => {
+
+    async function handleSignin(event){
         event.preventDefault();
         
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(emailAddress, password)
-            .then(() => {
-                setEmailAddress('');
-                setPassword('');
-                setError('');
-                history.push('/');
-            })
-            .catch((error) => setError(error.message));
-        currentUser = firebase.auth().currentUser;
-        firebase.auth().onAuthStateChanged(function(currentUser) { //check if the user is logged in
-            if (currentUser) {
-                setName(currentUser.displayName)
-                setEmail(currentUser.email)
-                setPhotoUrl(currentUser.photoURL)
-                setEmailVerified(currentUser.emailVerified)
-                setUid(currentUser.uid)
-                setLoggedIn(true)
-                console.log("currently is loggedin")
-            } else {
-                setName('')
-                setEmail('')
-                setPhotoUrl('')
-                setEmailVerified(false)
-                setUid('')
-                setLoggedIn(false);
-            }
+        if(!username){
+            return;
+        }
+        if(!password){
+            return;
+        }
+        try{
+            let res = await fetch('/login', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
             });
+            let result = await res.json();
+            console.log(result.success);
+            if(result && result.success){
+                UserStore.isLoggedIn = true;
+                UserStore.username = result.username;
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+        }
     }
 
     return (
@@ -58,10 +61,15 @@ function Signin(){
                     
                     <Form.Base onSubmit={handleSignin} method="POST">
                         <Form.Input
+                            placeholder="Username"
+                            value={username}
+                            onChange={({ target }) => setuUsername(target.value)}
+                        />
+                        {/* <Form.Input
                             placeholder="Email address"
                             value={emailAddress}
                             onChange={({ target }) => setEmailAddress(target.value)}
-                        />
+                        /> */}
                         <Form.Input
                             type="password"
                             value={password}
