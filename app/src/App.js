@@ -6,12 +6,13 @@ import UserStore from './stores/UserStore';
 import {UserInfor} from './context/userInfo'
 import { useAuthListener } from './hook/index';
 function App() {
-  const { user } = useAuthListener();
-  console.log(user)
+  // const { user } = useAuthListener();
+  // console.log(user)
   return (
     <div className="App">
       <UserInfor>
-          <Header user = {user} />
+          {/* <Header user = {user} /> */}
+          <Header />
           <Routers/>
 
        </UserInfor>

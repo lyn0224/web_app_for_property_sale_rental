@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Form } from '../../components/export';
 import { useHistory } from 'react-router-dom';
-import { FirebaseContext } from '../../context/firebase';
+// import { FirebaseContext } from '../../context/firebase';
 import * as ROUTES from '../../constants/routes'
 import Footer from "../../containers/footer"
 function Signup() {
 
     const history = useHistory();
-    const { firebase } = useContext(FirebaseContext);
+    // const { firebase } = useContext(FirebaseContext);
     const [firstName, setFirstName] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
@@ -17,30 +17,31 @@ function Signup() {
     
     const handleSignup = (event) => {
         event.preventDefault();
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(emailAddress, password)
-            .then((result) =>
-                result.user
-                .updateProfile({
-                    displayName: firstName,
-                })
-                .then(() => {
-                    setEmailAddress('');
-                    setPassword('');
-                    setError('');
-                    history.push('/');
-                })
-            ).catch((error) => setError(error.message));
+        // firebase
+        //     .auth()
+        //     .createUserWithEmailAndPassword(emailAddress, password)
+        //     .then((result) =>
+        //         result.user
+        //         .updateProfile({
+        //             displayName: firstName,
+        //         })
+        //         .then(() => {
+        //             setEmailAddress('');
+        //             setPassword('');
+        //             setError('');
+        //             history.push('/');
+        //         })
+        //     ).catch((error) => setError(error.message));
+        
 
     }
 
     const handleSignout =(event)=> {
-        firebase.auth().signOut().then(function() {
-            // Sign-out successful.
-          }).catch(function(error) {
-            // An error happened.
-          });
+        // firebase.auth().signOut().then(function() {
+        //     // Sign-out successful.
+        //   }).catch(function(error) {
+        //     // An error happened.
+        //   });
     }
     
     return (
@@ -69,7 +70,7 @@ function Signup() {
                         />
                         <Form.Submit disabled={isInvalid} type="submit">
                             Sign Up
-                        </Form.Submit>
+                    </Form.Submit>
                         
                         <Form.Text>
                             Already a user? <Form.Link to={ROUTES.SIGN_IN}>Sign In now.</Form.Link>
