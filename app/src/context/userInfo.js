@@ -2,17 +2,29 @@ import React, {useState, createContext } from 'react';
 
     const Context = React.createContext()
     function UserInfor({children}){
-        const [name, setName] = useState('');
+        const [username, setUserName] = useState('');
         const [email, setEmail] = useState('');
-        const [photoUrl , setPhotoUrl] = useState('');
-        const [emailVerified , setEmailVerified] = useState(false);
-        const [uid  , setUid] = useState('');
         const [loggedIn  , setLoggedIn] = useState(false);
+        // const [user, setUser] = useState(JSON.parse(localStorage.getItem('authUser')));
+
+        // useEffect(() => {
+        //     const listener = firebase.auth().onAuthStateChanged((authUser) => {
+        //         if (authUser) {
+        //             localStorage.setItem('authUser', JSON.stringify(authUser));
+        //             setUser(authUser);
+        //         } else {
+        //             localStorage.removeItem('authUser');
+        //             setUser(null);
+        //         }
+        //     });
+            
+        //     return () => listener();
+        // }, [loggedIn]);
 
         console.log('this is userinfo')
         console.log(loggedIn)
         return(
-            <Context.Provider value = {{name, setName,email,setEmail,photoUrl,setPhotoUrl,emailVerified,setEmailVerified,uid,setUid,loggedIn  , setLoggedIn}}>
+            <Context.Provider value = {{username, setUserName,email,setEmail,loggedIn  , setLoggedIn}}>
                 {children}
             </Context.Provider>
         )

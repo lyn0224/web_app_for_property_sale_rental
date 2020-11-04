@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Form } from '../../components/export';
-import { useHistory } from 'react-router-dom';
-import { FirebaseContext } from '../../context/firebase';
+import { useHistory,Redirect } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes'
 import Footer from "../../containers/footer"
-import UserStore from "../../stores/UserStore"
+
 function Signup() {
 
     const history = useHistory();
@@ -40,8 +39,7 @@ function Signup() {
                 let result = await res.json();
                 console.log(result.success);
                 if(result && result.success){
-                    UserStore.isLoggedIn = true;
-                    UserStore.username = result.username;
+                    history.push(ROUTES.SIGN_IN);
                     console.log(result.username);
                     console.log("successful signup");
                 }else if(result && result.success === false){

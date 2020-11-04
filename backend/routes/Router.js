@@ -9,14 +9,15 @@ class Router{
     }
 
     login(app, db) {
-        app.get('/login', (req, res) => {
+        app.post('/login', (req, res) => {
             let username = req.body.username;
             let password = req.body.password;
 
             let cols = [username];
-            db.query('SELECT * FROM account WHERE u_name = ?', cols, (err, data, fields) => {
+            db.query('SELECT * FROM account WHERE username = ?', cols, (err, data, fields) => {
 
                 if(err) {
+                    console.log(err);
                     res.json({
                         success: false,
                         msg: 'An error occured, plese try again'
@@ -26,17 +27,23 @@ class Router{
 
                 // Found 1 user with this username
                 if(data && data.length === 1) {
-                    bcrypt.compare(password, data[0].psswd, (bcryptErr, verified) => {
-
+      
+                    bcrypt.compare(password, data[0].psswd, (bcryptErr, verified) => { // Error verfied always return false;
+                        console.log(password);
+                        console.log(data[0].psswd);
+                        console.log(verified);
                         if(verified) {
                             req.session.userID = data[0].ID;
 
                             res.json({
                                 success: true,
-                                username: data[0].u_name
+                                username: data[0].username
                             })
 
                             return;
+                        }
+                         if(bcryptErr){
+                            console.log(bcryptErr);
                         }
 
                         else {

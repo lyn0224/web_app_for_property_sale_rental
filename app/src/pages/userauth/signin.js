@@ -1,6 +1,5 @@
 import React, {useState,useContext}from 'react'
 import { useHistory } from 'react-router-dom';
-import { FirebaseContext } from '../../context/firebase';
 import { Form } from '../../components/export';
 import {Context} from '../../context/userInfo'
 import * as ROUTES from '../../constants/routes'
@@ -16,7 +15,7 @@ function Signin(){
     // const {firebase} = useContext(FirebaseContext)
     const isInvalid = password === '' | password === '';
     var currentUser ;
-    const {loggedIn,setName,setEmail,setPhotoUrl,setEmailVerified,setUid,setLoggedIn} = useContext(Context)
+    const {loggedIn,setName,setEmail,setLoggedIn} = useContext(Context)
 
     async function handleSignin(event){
         event.preventDefault();
@@ -28,7 +27,7 @@ function Signin(){
             return;
         }
         try{
-            let res = await fetch('/login', {
+            let res = await fetch('http://localhost:9000/login', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -42,6 +41,9 @@ function Signin(){
             let result = await res.json();
             console.log(result.success);
             if(result && result.success){
+                setName(result.username);
+                setEmail(result.emailAddress);
+                setLoggedIn(true);
                 UserStore.isLoggedIn = true;
                 UserStore.username = result.username;
             }else if(result && result.success === false){
