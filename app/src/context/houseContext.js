@@ -1,12 +1,12 @@
 import React, {useState, createContext, Component } from 'react';
 import Client from './Contentful';
 
-Client.getEntries({
-    content_type: "beachResortRoom"
-}).then(response => console.log(response.items));
+// Client.getEntries({
+//     content_type: "beachResortRoom"
+// }).then(response => console.log(response.items));
 
-const Context = React.createContext()
-class HouseContext extends Component {
+const HouseContext = React.createContext()
+class HouseProvider extends Component {
     state={
         houses:[],
         sortedRooms: [],
@@ -50,13 +50,45 @@ class HouseContext extends Component {
     componentDidMount(){
         this.getData();
     }
+
+    formatData(items){
+        let tempItems = items.map(item => {
+            let id = item.sys.id;
+            let images = item.fields.images.map(image => image.fields.file.url);
+            let house = {...item.fields, images, id}; //images : images overwrite
+            return house;
+        });
+        return tempItems;
+    }
+
+    getHouse = (id) => {
+        let tempHouses = [...this.state.houses];
+        const house = tempHouses.find(house => house.id === id);
+        return house;
+    }
+
     render() {
         return (
-            <Context.Provider>
+            <HouseContext.Provider  value={{
+                ...this.state, 
+                getHouse: this.getHouse, 
+                handleChange: this.handleChange
+                }}>
                 {this.props.children}
-            </Context.Provider>
+            </HouseContext.Provider>
         )
     }
 }
+const HousesConsumer = HouseContext.Consumer;
 
-export {HouseContext, Context};
+export function withHousesConsumer(Component){
+    return function ConsumerWrapper(props){
+        return (
+        <HousesConsumer>
+            {value => <Component {...props} context={value}/> }
+        </HousesConsumer>
+        );
+    };
+}
+
+export{HouseProvider, HousesConsumer, HouseContext}

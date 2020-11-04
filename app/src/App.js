@@ -4,15 +4,15 @@ import Header from "./containers/header"
 import Routers from "./Routers/Routers"
 import UserStore from './stores/UserStore';
 import {UserInfor} from './context/userInfo'
-import {HouseContext} from './context/houseContext'
+import {HouseProvider} from './context/houseContext'
 function App() {
   return (
     <div className="App">
       <UserInfor>
           <Header />
-          <HouseContext>
+          <HouseProvider>
             <Routers/>
-          </HouseContext>
+          </HouseProvider>
        </UserInfor>
     </div>
   );
