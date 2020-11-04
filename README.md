@@ -1,6 +1,12 @@
 # fa20-cmpe-202-sec-03-team-project-202-team
-Waiting for edit!
 
+## How to start the project
+    Two terminal are needed for the frontend and backend;
+    1. cd in to the app folder, in the terminal type: npm start(start the react project)
+    2  cdd to the backend folder, enter npm start(start the backend)
+    the front end is listed on the port 3000
+    the back end is listed on the port 9000
+    
 Github Project Management:
 
 User story => 	Issue\
