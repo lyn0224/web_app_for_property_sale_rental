@@ -15,7 +15,7 @@ function Signin(){
     // const {firebase} = useContext(FirebaseContext)
     const isInvalid = password === '' | password === '';
     var currentUser ;
-    const {loggedIn,setName,setEmail,setLoggedIn} = useContext(Context)
+    const {loggedIn,setUserName,setEmail,setLoggedIn} = useContext(Context)
 
     async function handleSignin(event){
         event.preventDefault();
@@ -41,7 +41,7 @@ function Signin(){
             let result = await res.json();
             console.log(result.success);
             if(result && result.success){
-                setName(result.username);
+                setUserName(result.username);
                 setEmail(result.emailAddress);
                 setLoggedIn(true);
                 UserStore.isLoggedIn = true;

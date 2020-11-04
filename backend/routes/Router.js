@@ -29,9 +29,9 @@ class Router{
                 if(data && data.length === 1) {
       
                     bcrypt.compare(password, data[0].psswd, (bcryptErr, verified) => { // Error verfied always return false;
-                        console.log(password);
-                        console.log(data[0].psswd);
-                        console.log(verified);
+                        // console.log(password);
+                        // console.log(data[0].psswd);
+                        // console.log(verified);
                         if(verified) {
                             req.session.userID = data[0].ID;
 
@@ -126,12 +126,12 @@ class Router{
 
        
         let username = req.body.username;
-        let password = req.body.password;
+        let password = bcrypt.hashSync(req.body.password, 9);//req.body.password;
         let email = req.body.emailAddress;
 
         // const { username, email, password, type = 'R', approved = 'P'} = req.body;
         // console.log(username);
-        // console.log(password);
+        //console.log(password);
         // console.log(email);
 
         db.query(
