@@ -91,7 +91,7 @@ class Router{
   
 
     isLoggedIn(app, db) {
-        app.post('/logout', (req, res) => {
+        app.post('/isLoggedIn', (req, res) => {
 
             if(req.session.userID) {
                 let cols = [req.session.userID];
