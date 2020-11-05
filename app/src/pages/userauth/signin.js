@@ -1,5 +1,5 @@
 import React, {useState,useContext}from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { Form } from '../../components/export';
 import {Context} from '../../context/userInfo'
 import * as ROUTES from '../../constants/routes'
@@ -14,12 +14,10 @@ function Signin(){
     const history = useHistory();
     // const {firebase} = useContext(FirebaseContext)
     const isInvalid = password === '' | password === '';
-    var currentUser ;
     const {loggedIn,setUserName,setEmail,setLoggedIn} = useContext(Context)
 
     async function handleSignin(event){
         event.preventDefault();
-        
         if(!username){
             return;
         }
@@ -39,7 +37,7 @@ function Signin(){
                 })
             });
             let result = await res.json();
-            console.log(result.success);
+            console.log(result);
             if(result && result.success){
                 setUserName(result.username);
                 setEmail(result.emailAddress);
@@ -53,7 +51,7 @@ function Signin(){
             console.log(e);
         }
     }
-
+    console.log(loggedIn + " from signin");
     return (
         <>
                {/* {loggedIn}  ? <Redirect to='/'  /> :     */}

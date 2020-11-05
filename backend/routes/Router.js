@@ -31,12 +31,12 @@ class Router{
                 if(data && data.length === 1) {
 
                     bcrypt.compare(password, data[0].psswd, (bcryptErr, verified) => { // Error verfied always return false;
-                        // console.log(password);
-                        // console.log(data[0].psswd);
-                        // console.log(verified);
+                       
+                        console.log("backend verfied : " + verified);
+
                         if(verified) {
                             req.session.userID = data[0].ID;
-
+                            console.log("backend req.session.userID : " + req.session.userID);
                             res.json({
                                 success: true,
                                 username: data[0].username
@@ -94,8 +94,9 @@ class Router{
 
     isLoggedIn(app, db) {
         app.post('/isLoggedIn', (req, res) => {
-
+           
             if(req.session.userID) {
+              console.log("backend isloggedin " + req.session.userID)
                 let cols = [req.session.userID];
                 db.query('SELECT * from account WHERE ID = ?', cols, (err, data, fields) => {
 
@@ -103,7 +104,7 @@ class Router{
 
                         res.json({
                             success: true,
-                            username: data[0].u_name
+                            username: data[0].username
                         })
 
                         return true;
@@ -135,7 +136,7 @@ class Router{
         // console.log(username);
         //console.log(password);
         // console.log(email);
-
+       
         db.query(
           'insert into account(username,Email,psswd,a_type,approved) values (?, ?, ?, ?,?)',
           [username, email, password, 'R','P'],
@@ -155,6 +156,7 @@ class Router{
             }).end();
           }
         )
+
       })
     }
 
@@ -163,7 +165,7 @@ class Router{
         const { username } = req.body;
 
         db.query(
-          'select * from account where username=?',
+          'select * from account where username= values(?)',
           [username],
           (err, data) => {
             if(err) {
@@ -187,7 +189,7 @@ class Router{
         const { email } = req.body;
 
         db.query(
-          'select * from account where Email=?',
+          'select * from account where Email =values(?)',
           [email],
           (err, data) => {
             if(err) {

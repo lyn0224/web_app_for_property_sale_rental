@@ -37,7 +37,7 @@ function Signup() {
                     })
                 });
                 let result = await res.json();
-                console.log(result.success);
+                console.log(result);
                 if(result && result.success){
                     history.push(ROUTES.SIGN_IN);
                     console.log(result.username);
