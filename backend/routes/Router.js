@@ -6,6 +6,8 @@ class Router{
         this.logout(app, db);
         this.isLoggedIn(app, db);
         this.register(app, db);
+        this.checkUserName(app, db);
+        this.checkEmail(app, db);
     }
 
     login(app, db) {
@@ -27,7 +29,7 @@ class Router{
 
                 // Found 1 user with this username
                 if(data && data.length === 1) {
-      
+
                     bcrypt.compare(password, data[0].psswd, (bcryptErr, verified) => { // Error verfied always return false;
                         // console.log(password);
                         // console.log(data[0].psswd);
@@ -88,7 +90,7 @@ class Router{
         })
 
     }
-  
+
 
     isLoggedIn(app, db) {
         app.post('/isLoggedIn', (req, res) => {
@@ -124,7 +126,7 @@ class Router{
     register (app, db) {
       app.post('/register', (req, res) => {
 
-       
+
         let username = req.body.username;
         let password = bcrypt.hashSync(req.body.password, 9);//req.body.password;
         let email = req.body.emailAddress;
@@ -150,6 +152,54 @@ class Router{
             res.send({
               success: true,
               msg: 'register success'
+            }).end();
+          }
+        )
+      })
+    }
+
+    checkUserName (app, db) {
+      app.post('/is-username-usable', (req, res) => {
+        const { username } = req.body;
+
+        db.query(
+          'select * from account where username=?',
+          [username],
+          (err, data) => {
+            if(err) {
+              return res.send({
+                success: false,
+                msg: 'database query error! Please contact backend developer',
+                err,
+              }).end();
+            }
+
+            res.send({
+              useAble: data.length === 0
+            }).end();
+          }
+        )
+      })
+    }
+
+    checkEmail (app, db) {
+      app.post('/is-email-usable', (req, res) => {
+        const { email } = req.body;
+
+        db.query(
+          'select * from account where Email=?',
+          [email],
+          (err, data) => {
+            if(err) {
+              return res.send({
+                success: false,
+                msg: 'database query error! Please contact backend developer',
+                err,
+              }).end();
+            }
+
+            res.send({
+              useAble: data.length === 0
             }).end();
           }
         )
