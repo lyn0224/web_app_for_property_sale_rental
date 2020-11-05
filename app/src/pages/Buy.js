@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import HousesContainer from '../components/HousesContainer'
 
 export class Buy extends Component {
     static propTypes = {
@@ -8,9 +8,12 @@ export class Buy extends Component {
 
     render() {
         return (
+            <>
             <div>
                 This is buy page!
             </div>
+            <HousesContainer />
+            </>
         )
     }
 }

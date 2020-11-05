@@ -1,16 +1,19 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import './App.css';
 import Header from "./containers/header"
 import Routers from "./Routers/Routers"
-import {UserInfor} from './context/userInfo'
-
+import {UserInfor,Context} from './context/userInfo'
+import {HouseProvider} from './context/houseContext'
 function App() {
-
+  // const {user} = useContext(Context);
   return (
     <div className="App">
+      
       <UserInfor>
           <Header />
-          <Routers/>
+          <HouseProvider>
+            <Routers/>
+          </HouseProvider>
        </UserInfor>
     </div>
   );
