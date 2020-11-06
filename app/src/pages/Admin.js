@@ -10,7 +10,7 @@ export class Admin extends Component {
     getData = async() => {
         try{
             let res = await fetch('http://localhost:9000/get_user', {
-                method: 'post',
+                method: 'get',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ export class Admin extends Component {
     }
 
     getButtonsUsingMap = (status, id) => {
-        if(status === "N")
+        if(status === "P")
             return <button onClick={()=>this.handleUpdateClick(id)} >Approve</button>
         else
             return <label>Processed</label>;

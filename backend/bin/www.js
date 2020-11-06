@@ -5,8 +5,8 @@ const db = require('../Testing/db');
 const signup = require('../Testing/signup');
 const alluser = require('../Testing/alluser');
 var cors = require("cors");
-const app = express();
 
+const app = express();
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 app.use(cors());
@@ -31,15 +31,21 @@ app.post("/login", function(req, res) {
     temp.register(db, req, res);
   });
 
-app.post("/get_user", function(req, res) {
+app.get("/get_user", function(req, res) {
     console.log("Req Body : ", req.body);
     var temp = new alluser();
     temp.allUser(db, req, res);
   });
 
+  app.post("/update_user", function(req, res) {
+    console.log("Req Body : ", req.body);
+    var temp = new alluser();
+    temp.updateUser(db, req, res);
+  });
+
 // set port, listen for requests
 app.listen(9000, () => {
-  console.log("Server is running on port 3000.");
+  console.log("Server is running on port 9000.");
 });
 
 
