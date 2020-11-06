@@ -32,10 +32,6 @@ export class Admin extends Component {
             console.log(e);
         }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 84e7315bc945c65d9338f8727dd2fddd9a385eae
     componentDidMount(){
         this.getData();
         console.log("first time generate user data");
@@ -46,10 +42,6 @@ export class Admin extends Component {
         console.log("generate user data after change");
     }
 
-<<<<<<< HEAD
-    handleLogoutClick(id){
-        console.log(id);
-=======
     handleLogoutClick = async(user_id) => {
         try{
             let res = await fetch('http://localhost:9000/update_user', {
@@ -77,7 +69,6 @@ export class Admin extends Component {
         }catch(e){
             console.log(e);
         }
->>>>>>> 84e7315bc945c65d9338f8727dd2fddd9a385eae
     }
 
     getButtonsUsingMap = (status, id) => {
