@@ -32,6 +32,7 @@ export class Admin extends Component {
             console.log(e);
         }
     }
+
     componentDidMount(){
         this.getData();
         console.log("first time generate user data");
@@ -42,8 +43,33 @@ export class Admin extends Component {
         console.log("generate user data after change");
     }
 
-    handleLogoutClick(id){
-        console.log(id);
+    handleLogoutClick = async(user_id) => {
+        try{
+            let res = await fetch('http://localhost:9000/update_user', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: user_id,
+                })
+            });
+            let result = await res.json();
+            console.log(result);
+            if(result && result.success){
+                console.log(result);
+                console.log("Get all user after update");
+                let users = result;
+                this.setState({
+                    users
+                });
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+        }
     }
 
     getButtonsUsingMap = (status, id) => {
