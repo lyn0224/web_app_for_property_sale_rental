@@ -5,6 +5,7 @@ const db = require('../Testing/db');
 const signup = require('../Testing/signup');
 const alluser = require('../Testing/alluser');
 var cors = require("cors");
+const app = express();
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());

@@ -19,9 +19,10 @@ export class Admin extends Component {
             let result = await res.json();
             console.log(result);
             if(result && result.success){
-                console.log(result);
-                console.log("Get all user");
-                let users = result;
+                // console.log(result);
+                // console.log("Get all user");
+                let users = result.dataset;
+                // console.log(users);
                 this.setState({
                     users
                 });
@@ -43,6 +44,7 @@ export class Admin extends Component {
     }
 
     handleUpdateClick = async(user_id) => {
+        console.log(user_id);
         try{
             let res = await fetch('http://localhost:9000/update_user', {
                 method: 'post',
@@ -93,12 +95,12 @@ export class Admin extends Component {
             <tbody>
                 {this.state.users.map(user => {
                     return(
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
+                        <tr key={user.ID}>
+                            <td>{user.ID}</td>
                             <td>{user.username}</td>
-                            <td>{user.email}</td>
-                            <td>{user.role}</td>
-                            <td>{this.getButtonsUsingMap(user.status, user.id)}</td>
+                            <td>{user.Email}</td>
+                            <td>{user.a_type}</td>
+                            <td>{this.getButtonsUsingMap(user.approved, user.ID)}</td>
                         </tr>
                     )
                 }
