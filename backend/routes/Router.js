@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 class Router{
     constructor(app, db){
         this.login(app, db);
-        this.logout(app, db);
-        this.isLoggedIn(app, db);
+        // this.logout(app, db);
+        // this.isLoggedIn(app, db);
         this.register(app, db);
         this.checkUserName(app, db);
         this.checkEmail(app, db);
@@ -22,25 +22,39 @@ class Router{
                     console.log(err);
                     res.json({
                         success: false,
-                        msg: 'An error occured, plese try again'
+                        msg: 'Database error, plese try again'
                     })
                     return;
                 }
 
                 // Found 1 user with this username
                 if(data && data.length === 1) {
+                  if(data[0].approved === 'P'){
+                    res.json({
+                      success: false,
+                      msg: 'Your account has not been approved by administrator.'
+                  });
+                  return;
+                  }
 
                     bcrypt.compare(password, data[0].psswd, (bcryptErr, verified) => { // Error verfied always return false;
                        
-                        console.log("backend verfied : " + verified);
+                    console.log("backend verfied : " + verified);
 
                         if(verified) {
-                            req.session.userID = data[0].ID;
-                            console.log("backend req.session.userID : " + req.session.userID);
+                          const user = {
+                            id: data[0].ID,
+                            username: data[0].username,
+                            email: data[0].email,
+                            role: data[0].a_type
+                          }
+
+                        jwt.sign({user: user}, 'cmpe202key',{expiresIN: '2h'}, (err, token) => {
                             res.json({
                                 success: true,
-                                username: data[0].username
+                                token: token
                             })
+                        });
 
                             return;
                         }
@@ -69,60 +83,78 @@ class Router{
         });
     }
 
-    logout(app, db) {
+    // logout(app, db) {
 
-        app.post('/logout', (req, res) => {
+    //     app.post('/logout', (req, res) => {
 
-            if(req.session.userID) {
+    //       const bearerHeader = req.headers['authorization'];
+    //     //Check if bearer is undefined
+    //     if(typeof bearerHeader !== 'undefined'){
+    //         //split at the space
+    //         const bearer = bearerHeader.split(' ');
+    //         //get token from array bearer
+    //         const bearerToken = bearer[1];
+    //         //set the token
+    //         req.token = bearerToken;
+    //         // call next middleware
 
-                req.session.destroy();
-                res.json({
-                    success: true
-                })
+        
+        
+    //       } else {
+    //         // Forbidden
+    //         res.sendStatus(403);
+    //     }
 
-                return true;
-            } else {
-                res.json({
-                    success: false
-                })
-                return false;
-            }
-        })
+    //         if(req.session.userID) {
 
-    }
+    //             req.session.destroy();
+    //             res.json({
+    //                 success: true
+    //             })
+
+    //             return true;
+    //         } else {
+    //             res.json({
+    //                 success: false
+    //             })
+    //             return false;
+    //         }
+    //     })
+
+    // }
 
 
-    isLoggedIn(app, db) {
-        app.post('/isLoggedIn', (req, res) => {
+    // isLoggedIn(app, db) {
+    //     app.post('/isLoggedIn', (req, res) => {
            
-            if(req.session.userID) {
-              console.log("backend isloggedin " + req.session.userID)
-                let cols = [req.session.userID];
-                db.query('SELECT * from account WHERE ID = ?', cols, (err, data, fields) => {
+    //         if(req.session.userID) {
+    //           console.log("backend isloggedin " + req.session.userID)
+    //             let cols = [req.session.userID];
+    //             db.query('SELECT * from account WHERE ID = ?', cols, (err, data, fields) => {
 
-                    if(data && data.length === 1){
+    //                 if(data && data.length === 1){
 
-                        res.json({
-                            success: true,
-                            username: data[0].username
-                        })
+    //                     res.json({
+    //                         success: true,
+    //                         username: data[0].username
+    //                     })
 
-                        return true;
-                    } else {
-                        res.json({
-                            success: false
-                        })
-                    }
+    //                     return true;
+    //                 } else {
+    //                     res.json({
+    //                         success: false
+    //                     })
+    //                 }
 
-                });
-            } else {
-                res.json({
-                    success: false
-                })
-            }
-        });
+    //             });
+    //         } else {
+    //             res.json({
+    //                 success: false
+    //             })
+    //         }
+    //     });
 
-    }
+    // }
 //weichao
     register (app, db) {
       app.post('/register', (req, res) => {
