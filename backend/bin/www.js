@@ -3,9 +3,10 @@ const bodyParser = require("body-parser");
 const login = require('../Testing/login');
 const db = require('../Testing/db');
 const signup = require('../Testing/signup');
-
+var cors = require("cors");
 const app = express();
 
+app.use(cors());
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 
