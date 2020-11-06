@@ -42,7 +42,7 @@ export class Admin extends Component {
         console.log("generate user data after change");
     }
 
-    handleLogoutClick = async(user_id) => {
+    handleUpdateClick = async(user_id) => {
         try{
             let res = await fetch('http://localhost:9000/update_user', {
                 method: 'post',
@@ -73,7 +73,7 @@ export class Admin extends Component {
 
     getButtonsUsingMap = (status, id) => {
         if(status === "N")
-            return <button onClick={()=>this.handleLogoutClick(id)} >Approve</button>
+            return <button onClick={()=>this.handleUpdateClick(id)} >Approve</button>
         else
             return <label>Processed</label>;
     }
