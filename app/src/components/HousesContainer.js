@@ -8,7 +8,6 @@ function HousesContainer({context}){
     console.log(houses);
     return (
         <div>
-            
             <ul className="dd-list">
                 {houses.map(house => (
                     <Grid name={house.name} description={house.slug} key={house.id} id={house.id} img={house.images[0]} price={house.price}/>
