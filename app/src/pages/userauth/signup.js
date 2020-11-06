@@ -22,6 +22,52 @@ function Signup() {
         //console.log(username, emailAddress, password, firstName, lastName, zipcode, phone);
         event.preventDefault();
             try{
+                let res = await fetch('http://localhost:9000/is-email-usable', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: firstName,
+                        emailAddress : emailAddress,
+                        password: password,
+                    })
+                });
+                let result = await res.json();
+               if(result && result.success === false){
+             
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+      
+            }
+
+            try{
+                let res = await fetch('http://localhost:9000/is-username-usable', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: firstName,
+                        emailAddress : emailAddress,
+                        password: password,
+                    })
+                });
+                let result = await res.json();
+              if(result && result.success === false){
+             
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+      
+            }
+
+            try{
                 let res = await fetch('http://localhost:9000/register', {
                     method: 'post',
                     headers: {
@@ -53,6 +99,9 @@ function Signup() {
       
             }
     }
+<<<<<<< HEAD
+
+=======
     
     function handleInputChange(event) {
         const target = event.target;
@@ -85,6 +134,7 @@ function Signup() {
             onChange={({ target }) => setPhone(target.value)}
         />
     </Form.Base> : null;
+>>>>>>> 525d1d217b7838ab9882b2a9f9c596f35258c0b7
     return (
         <>
            <Form>
