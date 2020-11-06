@@ -1,17 +1,17 @@
 # fa20-cmpe-202-sec-03-team-project-202-team
 
-# some npm install command:
-backend:
-    npm i bcrypt
-    npm i body-parser
-    npm i jsonwebtoken
-frontend:
-    npm install react-icons --save
-    npm i google-maps-react
-    npm install react-bootstrap bootstrap
-    npm i contentful
-clean git log:
-    git reset --hard
+# some npm install command:\
+backend:\
+    npm i bcrypt\
+    npm i body-parser\
+    npm i jsonwebtoken\
+frontend:\
+    npm install react-icons --save\
+    npm i google-maps-react\
+    npm install react-bootstrap bootstrap\
+    npm i contentful\
+clean git log:\
+    git reset --hard\
 
 ## How to start the project
     Two terminal are needed for the frontend and backend;
