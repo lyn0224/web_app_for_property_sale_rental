@@ -166,7 +166,7 @@ class Router{
             if(err) {
               return res.send({
                 success: false,
-                msg: 'username no valid',
+                msg: 'database query error! Please contact backend developer',
                 err,
               }).end();
             }
@@ -190,7 +190,7 @@ class Router{
             if(err) {
               return res.send({
                 success: false,
-                msg: 'email no valid',
+                msg: 'database query error! Please contact backend developer',
                 err,
               }).end();
             }

@@ -99,9 +99,6 @@ function Signup() {
       
             }
     }
-<<<<<<< HEAD
-
-=======
     
     function handleInputChange(event) {
         const target = event.target;
@@ -134,7 +131,7 @@ function Signup() {
             onChange={({ target }) => setPhone(target.value)}
         />
     </Form.Base> : null;
->>>>>>> 525d1d217b7838ab9882b2a9f9c596f35258c0b7
+    
     return (
         <>
            <Form>
