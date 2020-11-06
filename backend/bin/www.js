@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const login = require('../Testing/login');
 const db = require('../Testing/db');
 const signup = require('../Testing/signup');
+const alluser = require('../Testing/alluser');
 var cors = require("cors");
 
 // parse requests of content-type: application/json
@@ -27,6 +28,12 @@ app.post("/login", function(req, res) {
     console.log("Req Body : ", req.body);
     var temp = new signup();
     temp.register(db, req, res);
+  });
+
+app.post("/get_user", function(req, res) {
+    console.log("Req Body : ", req.body);
+    var temp = new alluser();
+    temp.allUser(db, req, res);
   });
 
 // set port, listen for requests
