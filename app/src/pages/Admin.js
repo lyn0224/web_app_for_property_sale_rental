@@ -1,31 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import {Table} from "react-bootstrap"
 //npm install react-bootstrap bootstrap
 
-export class Admin extends Component {
-    state={
-        users:[]
-    };
+function Admin() {
 
-    getData = async() => {
+    const [users, setUsers] = useState([]);
+    
+    const getUser = async () => {
         try{
             let res = await fetch('http://localhost:9000/get_user', {
-                method: 'post',
+                method: 'get',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             });
             let result = await res.json();
-            console.log(result);
+            //console.log(result);
             if(result && result.success){
-                // console.log(result);
+                //console.log(result);
                 // console.log("Get all user");
                 let users = result.dataset;
-                // console.log(users);
-                this.setState({
-                    users
-                });
+                setUsers(users);
             }else if(result && result.success === false){
                 alert(result.msg);
             }
@@ -33,18 +29,14 @@ export class Admin extends Component {
             console.log(e);
         }
     }
-    componentDidMount(){
-        this.getData();
-        console.log("first time generate user data");
-    }
 
-    componentWillUnmount() {
-        this.getData();
-        console.log("generate user data after change");
-    }
+    useEffect(() => {
+        getUser();
+        handleUpdateClick();
+    }, []);
 
-    handleUpdateClick = async(user_id) => {
-        console.log(user_id);
+    const handleUpdateClick = async (user_id) =>{
+        //console.log(user_id);
         try{
             let res = await fetch('http://localhost:9000/update_user', {
                 method: 'post',
@@ -57,14 +49,11 @@ export class Admin extends Component {
                 })
             });
             let result = await res.json();
-            console.log(result);
+            //console.log(result);
             if(result && result.success){
                 console.log(result);
                 console.log("Get all user after update");
-                let users = result;
-                this.setState({
-                    users
-                });
+                setUsers(result.dataset);
             }else if(result && result.success === false){
                 alert(result.msg);
             }
@@ -73,15 +62,15 @@ export class Admin extends Component {
         }
     }
 
-    getButtonsUsingMap = (status, id) => {
-        if(status === "N")
-            return <button onClick={()=>this.handleUpdateClick(id)} >Approve</button>
+    function getButtonsUsingMap(status, id){
+        if(status === "P")
+            return <button onClick={()=> handleUpdateClick(id)} >Approve</button>
         else
             return <label>Processed</label>;
     }
-
-    render() {
-        return (
+    
+    return (
+        <>
             <Table striped bordered hover style={{width: "800px", float: "right", marginRight: "100px"}}>
             <thead>
                 <tr>
@@ -93,25 +82,140 @@ export class Admin extends Component {
                 </tr>
             </thead>
             <tbody>
-                {this.state.users.map(user => {
+                {users.map(user => {
                     return(
                         <tr key={user.ID}>
                             <td>{user.ID}</td>
                             <td>{user.username}</td>
                             <td>{user.Email}</td>
                             <td>{user.a_type}</td>
-                            <td>{this.getButtonsUsingMap(user.approved, user.ID)}</td>
+                            <td>{getButtonsUsingMap(user.approved, user.ID)}</td>
                         </tr>
                     )
                 }
                 )}
             </tbody>
             </Table>
-        )
-    }
+        </>
+    )
 }
 
 export default Admin
+
+
+
+// export class Admin extends Component {
+//     state={
+//         users:[]
+//     };
+
+//     getData = async() => {
+//         try{
+//             let res = await fetch('http://localhost:9000/get_user', {
+//                 method: 'get',
+//                 headers: {
+//                     'Accept': 'application/json',
+//                     'Content-Type': 'application/json'
+//                 }
+//             });
+//             let result = await res.json();
+//             console.log(result);
+//             if(result && result.success){
+//                 // console.log(result);
+//                 // console.log("Get all user");
+//                 let users = result.dataset;
+//                 // console.log(users);
+//                 this.setState({
+//                     users
+//                 });
+//             }else if(result && result.success === false){
+//                 alert(result.msg);
+//             }
+//         }catch(e){
+//             console.log(e);
+//         }
+//     }
+//     componentDidMount(){
+//         this.getData();
+//         console.log("first time generate user data");
+//     }
+
+//     componentWillUnmount() {
+//         this.handleUpdateClick();
+//         this.getData();
+//         console.log("generate user data after change");
+//         window.location.reload(false);
+//     }
+
+//     handleUpdateClick = async(user_id) => {
+//         console.log(user_id);
+//         try{
+//             let res = await fetch('http://localhost:9000/update_user', {
+//                 method: 'post',
+//                 headers: {
+//                     'Accept': 'application/json',
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify({
+//                     id: user_id,
+//                 })
+//             });
+//             let result = await res.json();
+//             console.log(result);
+//             if(result && result.success){
+//                 console.log(result);
+//                 console.log("Get all user after update");
+//                 let new_users = result;
+//                 this.setState({
+//                     new_users
+//                 });
+//             }else if(result && result.success === false){
+//                 alert(result.msg);
+//             }
+//         }catch(e){
+//             console.log(e);
+//         }
+//     }
+
+//     getButtonsUsingMap = (status, id) => {
+//         if(status === "P")
+//             return <button onClick={()=>this.handleUpdateClick(id)} >Approve</button>
+//         else
+//             return <label>Processed</label>;
+//     }
+
+//     render() {
+//         return (
+//             <Table striped bordered hover style={{width: "800px", float: "right", marginRight: "100px"}}>
+//             <thead>
+//                 <tr>
+//                 <th>#</th>
+//                 <th>Username</th>
+//                 <th>Email</th>
+//                 <th>Role</th>
+//                 <th>Status</th>
+//                 </tr>
+//             </thead>
+//             <tbody>
+//                 {this.state.users.map(user => {
+//                     return(
+//                         <tr key={user.ID}>
+//                             <td>{user.ID}</td>
+//                             <td>{user.username}</td>
+//                             <td>{user.Email}</td>
+//                             <td>{user.a_type}</td>
+//                             <td>{this.getButtonsUsingMap(user.approved, user.ID)}</td>
+//                         </tr>
+//                     )
+//                 }
+//                 )}
+//             </tbody>
+//             </Table>
+//         )
+//     }
+// }
+
+// export default Admin
 
 
 
