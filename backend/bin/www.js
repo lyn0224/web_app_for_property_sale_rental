@@ -1,8 +1,26 @@
+<<<<<<< HEAD
 const express = require("express");
 const bodyParser = require("body-parser");
 const login = require('../Testing/login');
 const db = require('../Testing/db');
 const signup = require('../Testing/signup');
+=======
+const express = require('express');
+const app = express();
+const path = require('path');
+const mysql = require('mysql');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const Router = require('../routes/Router');
+const bodyParser = require('body-parser')
+const view = require('../app')
+// app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.json());
+
+/**
+ * database connection
+ */
+>>>>>>> 84e7315bc945c65d9338f8727dd2fddd9a385eae
 var cors = require("cors");
 const app = express();
 
@@ -18,6 +36,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to cmpe202" });
 });
 
+<<<<<<< HEAD
 app.post("/login", function(req, res) {
     console.log("Req Body : ", req.body);
     var temp = new login();
@@ -34,6 +53,31 @@ app.post("/login", function(req, res) {
 app.listen(9000, () => {
   console.log("Server is running on port 3000.");
 });
+=======
+const sessionStore = new MySQLStore({
+    expiration: (1825 * 86400 * 1000),
+    endConnectionOnClose: false
+}, db);
+
+app.use(session({
+    key: 'dslfjdslfjsdflksdjfs345',
+    secret: 'sdfjlsdfjalsd4564fjsdl',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie:{
+        maxAge: (1825 * 86400 * 1000),
+        httpOnly: false
+    }
+}));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.json())
+new Router(app, db);
+
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+>>>>>>> 84e7315bc945c65d9338f8727dd2fddd9a385eae
 
 
 
