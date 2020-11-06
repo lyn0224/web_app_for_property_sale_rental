@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Form } from '../../components/export';
-import { useHistory,Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes'
 import Footer from "../../containers/footer"
 
@@ -44,7 +44,7 @@ function Signup() {
                 console.log(result);
                 if(result && result.success){
                     history.push(ROUTES.SIGN_IN);
-                    console.log(result.username);
+
                     console.log("successful signup");
                 }else if(result && result.success === false){
              
