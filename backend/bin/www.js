@@ -30,7 +30,7 @@ app.post("/login", function(req, res) {
   });
 
 // set port, listen for requests
-app.listen(3000, () => {
+app.listen(9000, () => {
   console.log("Server is running on port 3000.");
 });
 
