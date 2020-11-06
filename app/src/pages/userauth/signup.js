@@ -24,6 +24,52 @@ function Signup() {
                 return;
             }
             try{
+                let res = await fetch('http://localhost:9000/is-email-usable', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: firstName,
+                        emailAddress : emailAddress,
+                        password: password,
+                    })
+                });
+                let result = await res.json();
+               if(result && result.success === false){
+             
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+      
+            }
+
+            try{
+                let res = await fetch('http://localhost:9000/is-username-usable', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: firstName,
+                        emailAddress : emailAddress,
+                        password: password,
+                    })
+                });
+                let result = await res.json();
+              if(result && result.success === false){
+             
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+      
+            }
+
+            try{
                 let res = await fetch('http://localhost:9000/register', {
                     method: 'post',
                     headers: {
@@ -51,7 +97,7 @@ function Signup() {
       
             }
     }
-    
+
     return (
         <>
            <Form>

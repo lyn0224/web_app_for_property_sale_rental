@@ -6,6 +6,7 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const Router = require('../routes/Router');
 const bodyParser = require('body-parser')
+const view = require('../app')
 // app.use(express.static(path.join(__dirname, 'build')));
 // app.use(express.json());
 
@@ -57,9 +58,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
 new Router(app, db);
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 app.listen(9000, function(){
   console.log("listing... port: 9000")
