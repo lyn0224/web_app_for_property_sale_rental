@@ -4,7 +4,6 @@ const login = require('../Testing/login');
 const db = require('../Testing/db');
 const signup = require('../Testing/signup');
 const alluser = require('../Testing/alluser');
-const app = express();
 var cors = require("cors");
 
 // parse requests of content-type: application/json
@@ -31,7 +30,7 @@ app.post("/login", function(req, res) {
     temp.register(db, req, res);
   });
 
-  app.post("/get_user", function(req, res) {
+app.post("/get_user", function(req, res) {
     console.log("Req Body : ", req.body);
     var temp = new alluser();
     temp.allUser(db, req, res);
