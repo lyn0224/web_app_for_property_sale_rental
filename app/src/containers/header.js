@@ -7,27 +7,28 @@ import *as ROUTES from '../constants/routes'
 
 
 function HeaderContainer(props){
-    // const conditionalSignin = loggedIn ? <UserDropdown user = {name} className = "header-link header-link-text"/> :<Link to="/login" className = "header-link header-link-text">Sign in</Link>
 
-    const {loggedIn, setLoggedIn} = useContext(Context);
-    // const conditionalSignin = props.user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):
-    //         (<Header.Group>
-    //         <Header.Profile>
-    //             <Header.Link to ={"#"}>{ props.user.username}</Header.Link>
+    const {user,logout} = useContext(Context);
+    const conditionalSignin = user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):
+    
+            (<Header.Group>
+            <Header.Profile>
+            <Header.Link to ={"#"}>{user.username}</Header.Link>
 
-    //             <Header.Dropdown>
-    //                 <Header.Group>
-    //                     <Header.TextLink to ={"#"} >{ props.user.username}</Header.TextLink>
+                <Header.Dropdown>
+                    <Header.Group>
+            <Header.TextLink to ={"#"} >{user.email}</Header.TextLink>
+            <Header.TextLink to ={"#"} >{user.role}</Header.TextLink>
+                    </Header.Group>
+                    <Header.Group>
+                        <Header.TextLink onClick = {()=>logout()}>
+                            Sign out
+                        </Header.TextLink>
+                    </Header.Group>
+                </Header.Dropdown>
+            </Header.Profile>
+        </Header.Group>)
 
-    //                 </Header.Group>
-    //                 <Header.Group>
-    //                     <Header.TextLink onClick={() => setLoggedIn(!loggedIn)}>
-    //                         Sign out
-    //                     </Header.TextLink>
-    //                 </Header.Group>
-    //             </Header.Dropdown>
-    //         </Header.Profile>
-    //     </Header.Group>)
     return(
         <Header>
             <Header.Frame>
@@ -42,7 +43,7 @@ function HeaderContainer(props){
 
                 <Header.RightPanel>
                     <Header.Link to = {ROUTES.HELP}>Help</Header.Link>
-                    <Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>
+                    {conditionalSignin}
                 </Header.RightPanel>
             </Header.Frame>
         </Header>

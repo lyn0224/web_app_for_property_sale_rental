@@ -27,7 +27,7 @@ class loginRouter{
                 if(data && data.length === 1) {
                     console.log(data[0].ID);
 
-                    if(data[0].approved === 'P'){
+                    if(data[0].approved !== 'P'){
                         res.json({
                           success: false,
                           msg: 'Your account has not been approved by administrator.'
@@ -50,6 +50,10 @@ class loginRouter{
                             var token = jwt.sign({user}, 'cmpe202key', {expiresIn: "1h"});
                                 //console.log(token);
                                 res.json({
+                                    id: data[0].ID,
+                                    username: data[0].username,
+                                    email: data[0].Email,
+                                    role: data[0].a_type,
                                     success: true,
                                     token: token
                                 });

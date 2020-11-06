@@ -14,7 +14,7 @@ function Signin(){
     const history = useHistory();
     // const {firebase} = useContext(FirebaseContext)
     const isInvalid = password === '' | password === '';
-    const {loggedIn,setUserName,setEmail,setLoggedIn} = useContext(Context)
+    const {loggedIn,setUserName,setEmail,setLoggedIn,setUser,user} = useContext(Context)
 
     async function handleSignin(event){
         event.preventDefault();
@@ -37,13 +37,14 @@ function Signin(){
                 })
             });
             let result = await res.json();
-            console.log(result);
+           
             if(result && result.success){
-                setUserName(result.username);
-                setEmail(result.emailAddress);
-                setLoggedIn(true);
-                UserStore.isLoggedIn = true;
-                UserStore.username = result.username;
+                if(result && result.token ){
+                    localStorage.setItem('authUser', JSON.stringify(result));
+                    setUser(JSON.parse(localStorage.getItem('authUser')));
+                }
+                console.log(result);
+                console.log("login success");
             }else if(result && result.success === false){
                 alert(result.msg);
             }
@@ -51,10 +52,10 @@ function Signin(){
             console.log(e);
         }
     }
-    console.log(loggedIn + " from signin");
+    console.log(JSON.parse(localStorage.getItem('authUser')));
     return (
         <>
-               {/* {loggedIn}  ? <Redirect to='/'  /> :     */}
+               {/* {user !== null}  ? <Redirect to='/'  /> :     */}
                <Form>
                     <Form.Title>Sign In</Form.Title>
                     {error && <Form.Error>{error}</Form.Error>}

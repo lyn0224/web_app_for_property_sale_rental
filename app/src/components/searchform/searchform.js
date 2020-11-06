@@ -22,7 +22,7 @@ SearchForm.Search = function SearchFormSearch({ searchTerm, setSearchTerm, ...re
 
             />
             <SearchIcon style={{ outline: 'none' }}>
-                    <i class="fas fa-search"></i>
+                    <i className="fas fa-search"></i>
             </SearchIcon>
         </Search>
     )
