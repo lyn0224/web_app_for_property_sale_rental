@@ -1,5 +1,5 @@
 import React, {useState,useContext}from 'react'
-import { Redirect} from 'react-router-dom';
+import { Redirect, useHistory} from 'react-router-dom';
 import { Form } from '../../components/export';
 import {Context} from '../../context/userInfo'
 import * as ROUTES from '../../constants/routes'
@@ -14,7 +14,7 @@ function Signin(){
 
     const isInvalid = password === '' | password === '';
     const {setUser,user} = useContext(Context)
-
+    const history = useHistory();
     async function handleSignin(event){
         event.preventDefault();
         if(!username){
@@ -43,8 +43,9 @@ function Signin(){
                     var decoded = jwt_decode(token);
                     localStorage.setItem('authUser', JSON.stringify(decoded.user));
                     setUser(JSON.parse(localStorage.getItem('authUser')));
+                    history.push(ROUTES.HOME);
                 }
-               
+                
                 console.log("login success");
             }else if(result && result.success === false){
                 alert(result.msg);
@@ -56,7 +57,6 @@ function Signin(){
     { console.log(user)}
     return (
             <>    
-           
                 {/* {user}  ? <Redirect to={ROUTES.HOME} /> :     */}
                     <Form>
                         <Form.Title>Sign In</Form.Title>
