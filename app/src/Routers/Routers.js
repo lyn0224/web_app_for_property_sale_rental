@@ -9,6 +9,7 @@ import Sell from "../pages/Sell"
 import Rent from "../pages/Rent"
 import * as ROUTES from '../constants/routes' 
 import SingleHouse from '../components/SingleHouse'
+import Admin from '../pages/Admin'
 
 function Routers(){
     return(
@@ -19,7 +20,7 @@ function Routers(){
               <Route path = {ROUTES.RENT}><Rent /></Route>
               <Route path = {ROUTES.SELL}><Sell /></Route>
               <Route path = {ROUTES.AGENT_FINDER}></Route>
-              <Route path = {ROUTES.HELP}></Route>
+              <Route path = {ROUTES.HELP}><Admin /></Route>
               <Route path = {ROUTES.SIGN_IN}><Signin/></Route>
               <Route path = {ROUTES.SIGN_UP}><Signup/></Route>
               <Route path = {ROUTES.PROFILE}><Profile/></Route>

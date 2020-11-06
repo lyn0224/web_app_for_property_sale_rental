@@ -121,7 +121,6 @@ function Signup() {
             onChange={({ target }) => setLastName(target.value)}
         />
         <Form.Input
-            
             placeholder="Zip Code :123456"
             value={zipcode}
             onChange={({ target }) => setZipCode(target.value)}
@@ -129,10 +128,10 @@ function Signup() {
         />
         <Form.Input
             type="tel"
-            placeholder="Phone Number:123-456-789"
+            placeholder="Phone Number:123-456-7890"
             value={phone}
             onChange={({ target }) => setPhone(target.value)}
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
         />
     </> : null;
     return (
@@ -168,14 +167,10 @@ function Signup() {
                                 onChange={handleInputChange} />
                             I am landlord or industry professional
                     </Form.Text>
-
-                  
                     {conditionalRealtor}
                     <Form.Submit disabled={isInvalid} type="submit">
                         Sign Up
                     </Form.Submit>
-                    
-                   
                     <Form.Text>
                         Already a user? <Form.Link to={ROUTES.SIGN_IN}>Sign In now.</Form.Link>
                     </Form.Text>
