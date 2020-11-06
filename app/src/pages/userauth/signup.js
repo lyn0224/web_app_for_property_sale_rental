@@ -99,9 +99,6 @@ function Signup() {
       
             }
     }
-<<<<<<< HEAD
-
-=======
     
     function handleInputChange(event) {
         const target = event.target;
@@ -112,7 +109,7 @@ function Signup() {
     firstName === '' || lastName === '' || zipcode === '' || phone === '' || username === '' || password === '' || emailAddress === '';
 
     const conditionalRealtor = realtor ? 
-    <Form.Base>
+    <>
         <Form.Input
             placeholder="First Name"
             value={firstName}
@@ -124,17 +121,20 @@ function Signup() {
             onChange={({ target }) => setLastName(target.value)}
         />
         <Form.Input
-            placeholder="Zip Code"
+            
+            placeholder="Zip Code :123456"
             value={zipcode}
             onChange={({ target }) => setZipCode(target.value)}
+            pattern="[0-9]{5}"
         />
         <Form.Input
-            placeholder="Phone Number"
+            type="tel"
+            placeholder="Phone Number:123-456-789"
             value={phone}
             onChange={({ target }) => setPhone(target.value)}
+            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
         />
-    </Form.Base> : null;
->>>>>>> 525d1d217b7838ab9882b2a9f9c596f35258c0b7
+    </> : null;
     return (
         <>
            <Form>
@@ -148,6 +148,7 @@ function Signup() {
                         onChange={({ target }) => setUsername(target.value)}
                     />
                     <Form.Input
+                        type = "email"
                         placeholder="Email Address"
                         value={emailAddress}
                         onChange={({ target }) => setEmailAddress(target.value)}
@@ -159,18 +160,22 @@ function Signup() {
                         placeholder="Password"
                         onChange={({ target }) => setPassword(target.value)}
                     />
-                    <label>
-                        <input
-                            name="realtor"
-                            type="checkbox"
-                            checked={realtor}
-                            onChange={handleInputChange} />
+                    <Form.Text>
+                        <Form.Input
+                                name="realtor"
+                                type="checkbox"
+                                checked={realtor}
+                                onChange={handleInputChange} />
                             I am landlord or industry professional
-                    </label>
+                    </Form.Text>
+
+                  
                     {conditionalRealtor}
                     <Form.Submit disabled={isInvalid} type="submit">
                         Sign Up
                     </Form.Submit>
+                    
+                   
                     <Form.Text>
                         Already a user? <Form.Link to={ROUTES.SIGN_IN}>Sign In now.</Form.Link>
                     </Form.Text>
