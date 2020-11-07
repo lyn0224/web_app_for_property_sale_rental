@@ -8,7 +8,7 @@ export const Container = styled.div`
     grid-template-rows: repeat(auto-fill, minmax(auto));
     justify-content: center;  
     @media (max-width:1000px){
-        padding: 10%;
+        margin :0;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, minmax(300px,1fr));
         justify-items: center;
@@ -29,10 +29,10 @@ export const Base = styled.div`
         }
 `
 export const CardImg = styled.img`
-        max-width:200px;
-        @media (max-width:1000px){
-            max-width:100px;
-        } 
+        object-fit: cover;
+        width: 100%;
+    
+    
 `
 
 export const CardButton = styled.button`

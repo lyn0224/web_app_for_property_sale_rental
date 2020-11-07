@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
 import HousesContainer from '../components/HousesContainer'
+import Housecards from '../containers/housecards'
+import Map from '../containers/googlemap'
+
 
 export class Buy extends Component {
-    static propTypes = {
-
-    }
 
     render() {
         return (
-            <>
-            <div>
-                This is buy page!
+            <div className = "Pagelayout">
+                <div className = "MapContainer">
+                    <Map/>
+                </div>
+
+                <div className = "HouseContainer">
+                    <Housecards/>
+                </div>
+                   
+             
+                
+                
             </div>
-            <HousesContainer />
-            </>
         )
     }
 }
