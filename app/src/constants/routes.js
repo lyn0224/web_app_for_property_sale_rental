@@ -8,3 +8,6 @@ export const HELP = '/help'
 export const PROFILE = '/profile'
 export const SIGN_UP = '/signup';
 export const SIGN_IN = '/signin';
+export const SAVED_HOME = '/profile/save_home';
+export const SAVED_SEARCH = '/profile/save_search';
+export const ACCOUNT_SETTING = '/profile/account_setting';

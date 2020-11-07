@@ -27,7 +27,7 @@ class loginRouter{
                 if(data && data.length === 1) {
                     console.log(data[0].ID);
 
-                    if(data[0].approved !== 'P'){
+                    if(data[0].approved !== 'Y'){
                         res.json({
                           success: false,
                           msg: 'Your account has not been approved by administrator.'

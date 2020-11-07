@@ -16,15 +16,24 @@ function HeaderContainer(props){
             <Header.Link to ={ROUTES.PROFILE}>{user.username}</Header.Link>
 
                 <Header.Dropdown>
-                    <Header.Group>
-            <Header.TextLink to ={"#"} >{user.email}</Header.TextLink>
-            <Header.TextLink to ={"#"} >{user.role}</Header.TextLink>
-                    </Header.Group>
-                    <Header.Group>
-                        <Header.TextLink onClick = {()=>logout()}>
-                            Sign out
-                        </Header.TextLink>
-                    </Header.Group>
+
+                        <Header.Group>
+                            <Header.TextLink to ={ROUTES.SAVED_HOME}>Saved Home</Header.TextLink>
+                        </Header.Group>
+                        <Header.Group>
+                            <Header.TextLink to ={ROUTES.SAVED_SEARCH}>Saved Search</Header.TextLink>
+                        </Header.Group>
+                        <Header.Group>
+                            <Header.TextLink to ='#'>Listing</Header.TextLink>
+                        </Header.Group>
+                        <Header.Group>
+                            <Header.TextLink to ={ROUTES.ACCOUNT_SETTING}>Account Setting</Header.TextLink>
+                        </Header.Group>
+                        <Header.Group>
+                            <Header.TextLink onClick = {()=>logout()}>
+                                Sign out
+                            </Header.TextLink>
+                        </Header.Group>
                 </Header.Dropdown>
             </Header.Profile>
         </Header.Group>)

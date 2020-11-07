@@ -5,7 +5,7 @@ export const Background = styled.section`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 600px;
+    min-height: 70vh;
     background-color: #464646;
     padding: 4rem 0 ;
     outline: none;

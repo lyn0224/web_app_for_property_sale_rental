@@ -93,7 +93,7 @@ align-items: center;`
 
 
 export const TextLink = styled.p`
-        color: #fff;
+        color: black;
         text-decoration: none;
         margin-right: 30px;
         font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
@@ -110,12 +110,13 @@ export const TextLink = styled.p`
     export const Dropdown = styled.div`
     display: none;
     positon: absolute;
-    background-color: black;
+    background-color: white;
     padding: 10px;
-    width: 100px;
-    top: 32px;
+    width: 200px;
+    top: 48px;
     right: 10px;
-
+    z-index:11;
+    box-shadow: 0px 0px 10px rgb(98, 98, 98);
     ${Group}:last-of-type ${TextLink} {
         cursor: pointer;
     }
@@ -134,7 +135,7 @@ export const TextLink = styled.p`
     }
 
     p {
-        font-size: 12px;
+        font-size: 1rem;
         margin-bottom: 0;
         margin-top: 0;
     }
