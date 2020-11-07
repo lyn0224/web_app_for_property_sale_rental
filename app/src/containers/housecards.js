@@ -2,9 +2,9 @@ import { Housecard } from '../components/export';
 import React,{useState,useContext} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
-import { withHousesConsumer } from '../context/houseContext';
-function Housecards({context}){
-    const {houses} = context;
+import { Context } from '../context/houseContext';
+function Housecards({props}){
+    const {houses} = useContext(Context);
    
     // const [hovered, setHovered] = useState(false)
 
@@ -28,9 +28,8 @@ function Housecards({context}){
     return(
         <Housecard>
             {cards}
-
         </Housecard>
     )
 }
 
-export default withHousesConsumer(Housecards)
+export default Housecards

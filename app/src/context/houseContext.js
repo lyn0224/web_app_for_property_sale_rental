@@ -3,7 +3,7 @@ import Client from './Contentful';
 
 
 
-const HouseContext = React.createContext()
+const Context = React.createContext()
 class HouseProvider extends Component {
     state={
         houses:[],
@@ -67,26 +67,17 @@ class HouseProvider extends Component {
 
     render() {
         return (
-            <HouseContext.Provider  value={{
+            <Context.Provider  value={{
                 ...this.state, 
                 getHouse: this.getHouse, 
                 handleChange: this.handleChange
                 }}>
                 {this.props.children}
-            </HouseContext.Provider>
+            </Context.Provider>
         )
     }
 }
-const HousesConsumer = HouseContext.Consumer;
 
-export function withHousesConsumer(Component){
-    return function ConsumerWrapper(props){
-        return (
-        <HousesConsumer>
-            {value => <Component {...props} context={value}/> }
-        </HousesConsumer>
-        );
-    };
-}
 
-export{HouseProvider, HousesConsumer, HouseContext}
+
+export{HouseProvider, Context}
