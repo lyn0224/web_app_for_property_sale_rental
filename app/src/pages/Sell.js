@@ -1,16 +1,54 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import {Card, Badge, Button, Row, Col} from 'react-bootstrap'
+import img12 from "../img/homeicon.png";
+import { Link } from 'react-router-dom';
+import *as ROUTES from '../constants/routes'
 
 export class Sell extends Component {
-    static propTypes = {
-
-    }
 
     render() {
         return (
-            <div>
-                this is sell page.
+            <>
+            <div style={{paddingTop: "50px"}}>
+                <h1 style={{textAlign: "center"}}>
+                    Sell with confidence <Badge variant="secondary">SELL</Badge>
+                </h1>
+                <h5 style={{textAlign: "center"}}>
+                    Zillow is making it simpler and safer to sell your home and move forward.
+                </h5>
             </div>
+            <div style={{width: "1100px", marginLeft: "auto", marginRight: "auto"}}>
+                <Row>
+                    <Col xs={8}>
+                        <Card>
+                            <Card.Header>Agent</Card.Header>
+                            <Card.Body>
+                                <Card.Title>Work with an agent</Card.Title>
+                                <Card.Img variant="top" src={img12} style={{height: "110px", width: "110px", float: "left"}}/>
+                                <Card.Text style={{width: "565px", float: "right"}}>
+                                Zillow Premier Agents are among the best in the business. Learn how to pick the right one for you.</Card.Text>
+                                <Button variant="outline-primary"><Link to="/agentfinder">Search now</Link></Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card className="text-center">
+                        <Card.Header>Sell</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Sell it yourself</Card.Title>
+                            <Card.Text>
+                            Reach the largest audience of shoppers with a free Zillow listing. Start by learning how to "sell for sale by owner."
+                            </Card.Text>
+                            <Button variant="outline-primary"><Link to={ROUTES.SELL_OWNER}>Create a listing</Link></Button>
+                        </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </div>   
+            <div>
+                
+            </div>
+            </>
         )
     }
 }

@@ -11,6 +11,7 @@ import * as ROUTES from '../constants/routes'
 import SingleHouse from '../components/SingleHouse'
 import Admin from '../pages/Admin'
 import AgentFinder from '../pages/agentFinder';
+import SellByOwner from '../pages/sellByOwner'
 
 function Routers(){
     return(
@@ -25,6 +26,7 @@ function Routers(){
               <Route path = {ROUTES.SIGN_IN}><Signin/></Route>
               <Route path = {ROUTES.SIGN_UP}><Signup/></Route>
               <Route path = {ROUTES.PROFILE}><Profile/></Route>
+              <Route path = {ROUTES.SELL_OWNER}><SellByOwner /></Route>
           </Switch>
     )
 }
