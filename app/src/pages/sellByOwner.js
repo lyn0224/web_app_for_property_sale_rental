@@ -49,22 +49,7 @@ function SellByOwner() {
     
         }
     }
-    
-    // function handleInputChange(event) {
-    //     const target = event.target;
-    //     const value = target.type === 'checkbox' ? target.checked : target.value;
-    //     setRealtor(!realtor);
-    // }
     const isInvalid = propertyType === '' || streetAddress === '' || aptNum === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '';
-
-    // const conditionalRealtor = realtor ? 
-    // <>
-    //     <Form.Input
-    //         placeholder="First Name"
-    //         value={firstName}
-    //         onChange={({ target }) => setFirstName(target.value)}
-    //     />
-    // </> : null;
 
     return (
         <>
