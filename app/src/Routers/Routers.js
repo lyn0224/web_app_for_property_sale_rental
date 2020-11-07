@@ -8,17 +8,16 @@ import Buy from "../pages/Buy"
 import Sell from "../pages/Sell"
 import Rent from "../pages/Rent"
 import * as ROUTES from '../constants/routes' 
-import SingleHouse from '../components/SingleHouse'
 import Admin from '../pages/Admin'
 import AgentFinder from '../pages/agentFinder';
 import SellByOwner from '../pages/sellByOwner'
-
+import HouseDetail from '../pages/houseDetail'
 function Routers(){
     return(
         <Switch>
               <Route exact path = {ROUTES.HOME}><Home/></Route>
-              <Route path = {ROUTES.BUY}><Buy /></Route>
-              <Route exact path="/houses/:id" component={SingleHouse} />
+              <Route exact path = {ROUTES.BUY}><Buy /></Route>
+              <Route exact path={`${ROUTES.BUY}/:id`} ><HouseDetail/></Route>
               <Route path = {ROUTES.RENT}><Rent /></Route>
               <Route path = {ROUTES.SELL}><Sell /></Route>
               <Route path = {ROUTES.AGENT_FINDER}><AgentFinder /></Route>

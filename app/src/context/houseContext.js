@@ -1,9 +1,7 @@
 import React, {useState, createContext, Component } from 'react';
 import Client from './Contentful';
 
-// Client.getEntries({
-//     content_type: "beachResortRoom"
-// }).then(response => console.log(response.items));
+
 
 const HouseContext = React.createContext()
 class HouseProvider extends Component {

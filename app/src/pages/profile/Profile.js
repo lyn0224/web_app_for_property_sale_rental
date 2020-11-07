@@ -6,7 +6,6 @@ function Profile(){
     return(
     <>
         <ProfileNav/>
-
         <ProfileRouters/> 
     </>
     )

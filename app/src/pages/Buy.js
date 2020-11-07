@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import HousesContainer from '../components/HousesContainer'
 import Housecards from '../containers/housecards'
 import Map from '../containers/googlemap'
 
@@ -16,10 +15,7 @@ export class Buy extends Component {
                 <div className = "HouseContainer">
                     <Housecards/>
                 </div>
-                   
-             
-                
-                
+   
             </div>
         )
     }

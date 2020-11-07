@@ -9,8 +9,8 @@ function Housecard({children,...restProps}){
 
 export default Housecard
 
-Housecard.Base = function HousecardBase({children,...restProps}){
-    return <Base {...restProps}>
+Housecard.Base = function HousecardBase({children, ref,...restProps}){
+    return <Base {...restProps} ref = {ref}>
                 {children}
                 </Base>
 }
