@@ -13,7 +13,7 @@ function HeaderContainer(props){
     
             (<Header.Group>
             <Header.Profile>
-            <Header.Link to ={ROUTES.PROFILE}>{user.username}</Header.Link>
+            <Header.Link to ='#'>{user.username}</Header.Link>
 
                 <Header.Dropdown>
 
