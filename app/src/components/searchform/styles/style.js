@@ -61,30 +61,4 @@ export const Title = styled.h1`
     }
 `
 export const Subtitle = styled.h3``
-export const Group = styled.div`
-   
-`
-// .search-container{
-//     background-image: url("../src/img/background.jpg");
-//     background-color: #8a8a8a;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     background-blend-mode: multiply;
-//     height: 70vh;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-// }
-
-// .search-container-searchbar{
-//     width: 50%;
-//     padding: 0.5em;
-//     border-radius: 1em;
-//     font-size: 1.5rem;
-// }
-// .search-container-text{
-//     color: white;
-//     font-size: 3rem;
-//     margin: 2em 0;
-// }${({ src }) => (src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg')
+export const Group = styled.div``
