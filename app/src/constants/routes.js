@@ -3,6 +3,7 @@ export const BUY = '/buy';
 export const RENT = '/rent'
 export const SELL = '/sell'
 export const AGENT_FINDER = '/agentfinder'
+export const SELL_OWNER = '/sellbyowner'
 export const HELP = '/help'
 export const PROFILE = '/profile'
 export const SIGN_UP = '/signup';
