@@ -57,7 +57,7 @@ flooring       VARCHAR(20)    NOT NULL,
 parking         INT           NOT NULL,
 area            INT            NOT NULL,
 year_built      INT           NOT NULL,
-introduction    TEXT          ,
+description    TEXT          ,
 pic_dir       VARCHAR(100)   NOT NULL,
 PRIMARY KEY (S_ID),
 FOREIGN KEY (Owner_ID) REFERENCES ACCOUNT(ID)
