@@ -27,11 +27,11 @@ U_ID       INT          UNIQUE NOT NULL,
 Fname      VARCHAR(50)  NOT NULL,
 Lname      VARCHAR(50)  NOT NULL,
 Email      VARCHAR(50)  UNIQUE NOT NULL,
-phone      CHAR(10)     UNIQUE NOT NULL,
+phone      CHAR(12)     UNIQUE NOT NULL,
 zipcode    CHAR(5)      NOT NULL,
 sales       INT,
 rent        INT,
-sepcialty   CHAR        NOT NULL,
+specialty   CHAR        NOT NULL,
 PRIMARY KEY (U_ID),
 FOREIGN KEY (U_ID) REFERENCES ACCOUNT(ID)
 					ON DELETE CASCADE  ON UPDATE CASCADE);
