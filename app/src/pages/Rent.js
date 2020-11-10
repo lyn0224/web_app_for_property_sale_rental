@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
-
+import Housecards from '../containers/housecards'
+import Map from '../containers/googlemap'
 
 export class Rent extends Component {
-    static propTypes = {
-
-    }
 
     render() {
         return (
-            <div>
-                This is rent page!
+            <div className = "Pagelayout">
+                <div className = "MapContainer">
+                    <Map/>
+                </div>
+
+                <div className = "HouseContainer">
+                    <Housecards/>
+                </div>
+   
             </div>
         )
     }

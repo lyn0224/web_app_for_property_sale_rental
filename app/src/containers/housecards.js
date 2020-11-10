@@ -3,6 +3,7 @@ import React,{useState,useContext} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/houseContext';
+import FilterBar from '../components/FilterBar'
 function Housecards({props}){
     const {houses} = useContext(Context);
    
@@ -26,9 +27,12 @@ function Housecards({props}){
 
     const cards = houses.map(house => singlecard(house))
     return(
+        <>
+        <FilterBar houses={houses} />
         <Housecard>
             {cards}
         </Housecard>
+        </>
     )
 }
 

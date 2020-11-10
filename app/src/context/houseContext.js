@@ -68,7 +68,7 @@ class HouseProvider extends Component {
     render() {
         return (
             <>
-            <div>this.getHouse</div>
+            {/* <div>this.getHouse</div> */}
             <Context.Provider  value={{
                 ...this.state, 
                 getHouse: this.getHouse, 

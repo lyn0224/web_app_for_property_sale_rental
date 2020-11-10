@@ -5,6 +5,8 @@ import { Button, InputGroup, FormControl, Container, Row, Col, Card} from 'react
 import { AiOutlineSearch } from 'react-icons/ai';
 import img12 from "../img/homeicon.png";
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import searchField from '../components/searchField'
+
 const mapStyles = {
   width: '100%',
   height: '100%'
@@ -18,6 +20,8 @@ export class AgentFinder extends Component {
             <div>
                 <Row>
                     <Col className="w-25">
+                    
+                    <searchField placeholder="location" label="Search for location"/>
                     <InputGroup className="mb-3">
                         <FormControl
                         placeholder="Search for home"
