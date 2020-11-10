@@ -42,7 +42,7 @@ function SellByOwner() {
         }).catch(err => {
             console.log(err.msg);
         });
-        console.log(formData);
+        //console.log(formData);
     }
 
     async function handleListing (event){
