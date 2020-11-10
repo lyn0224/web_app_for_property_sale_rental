@@ -31,17 +31,17 @@ function SellByOwner() {
     const createItem= async(newItem) => {
         console.log(newItem);
         console.log('PHOTO:', newItem.image);
-
-        //newItem.image.map(img => setPictures([...pictures, img]));
-        // fetch('/upload', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(newItem.image),
-        // }).then(response => {
-        //     console.log(response);
-        // }).catch(err => {
-        //     console.log(err.msg);
-        // });
+        const formData = new FormData();
+        formData.append('images', newItem.image);
+        fetch('http://localhost:9000/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+        }).then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err.msg);
+        });
     }
 
     async function handleListing (event){
@@ -181,8 +181,9 @@ function SellByOwner() {
                         value={price}
                         onChange={({ target }) => setPrice(target.value)}
                     />
-                    <ItemAdd createItem={createItem} />
-                    <textarea className="sellFormArea"
+                    <ItemAdd maxCount="1" type="Main" createItem={createItem} />
+                    <ItemAdd maxCount="2" type="Other" createItem={createItem} />
+                    <Form.TextArea
                         placeholder="Description"
                         value={description}
                         onChange={({ target }) => setDescription(target.value)}

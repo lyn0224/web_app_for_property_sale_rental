@@ -75,6 +75,16 @@ export const Input = styled.input`
     }
 `;
 
+export const TextArea = styled.textarea`
+    background: #333;
+    border-radius: 4px;
+    border: 0;
+    color: #fff;
+    line-height: 30px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+`;
+
 export const Submit = styled.button`
     background: #e50914;
     border-radius: 4px;
