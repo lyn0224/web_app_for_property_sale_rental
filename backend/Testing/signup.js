@@ -1,81 +1,70 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-class signupRouter{
-   
-        register (db, req, res) {
-            
-      
-      
-              let username = req.body.username;
-              let password = bcrypt.hashSync(req.body.password, 9);//req.body.password;
-              let email = req.body.emailAddress;
+class signupRouter {
 
-              let col1 = [username];
-              let col2 = [email];
-              db.query('SELECT * FROM account WHERE username = ?', col1, (err, checkName) => {
-                console.log(checkName);
-                if(err) {
-                    console.log(err);
-                    res.json({
-                        success: false,
-                        msg: 'Error, please try again'
-                    });
-                    return;
-                }
-
-                if(checkName.length===0){
-                    db.query('SELECT * FROM account WHERE Email = ?', col2, (err, checkEmail) => {
-                        console.log(checkEmail);
-                        if(err) {
-                            console.log(err);
-                            res.json({
-                                success: false,
-                                msg: 'Error, please try again'
-                            });
-                            return;
-                        }
-                        if(checkEmail.length===0){
-                            db.query(
-                                'insert into account(username,Email,psswd,a_type,approved) values (?, ?, ?, ?,?)',
-                                [username, email, password, 'R','P'],
-                                (err) => {
-                                  if(err) {
-                                      // console.log(err);
-                                    return res.send({
-                                      success: false,
-                                      msg: 'register failed',
-                                      err,
-                                    }).end();
-                                  }
-                      
-                                  res.send({
-                                    success: true,
-                                    msg: 'register success'
-                                  }).end();
-                                }
-                              );
-                        } else {
-                            res.json({
-                                success: false,
-                                msg: 'Email already exists, please try another one'
-                            });
-                            return;
-                        }
-                    });
- 
+    async execSQL(db, sql) {
+        console.log('sql :', sql);
+        return new Promise((resolve, reject) => {
+            db.query(sql, (err, rows, fields) => {
+                if (err) {
+                    reject(err)
                 } else {
-                    res.json({
-                        success: false,
-                        msg: 'Username already exists, please try another one'
-                    });
-                    return;
+                    resolve(rows);
                 }
-                
-              });
-              
-      
+            })
+        })
+    }
+
+    async findOne(db, sql) {
+        const list = await this.execSQL(db, sql);
+        return list.length > 0 ? list[0] : null;
+    }
+
+    async register(db, req, res) {
+        let username = req.body.username;
+        let password = bcrypt.hashSync(req.body.password, 9);//req.body.password;
+        let email = req.body.emailAddress;
+        let firstName = req.body.firstName || '';
+        let lastName = req.body.lastName || '';
+        let phone = req.body.phone || '';
+        let zipcode = req.body.zipcode || '';
+        let sales = req.body.sales || 0;
+        let rent = req.body.rent || 0;
+        let specialty = req.body.specialty || '';
+        let sql = `SELECT * FROM ACCOUNT WHERE username = '${username}'`;
+
+        try {
+            let userInfo = await this.findOne(db, sql);
+            if (userInfo) {                //                         judge username is exists
+                res.json({ success: false, msg: 'Username already exists, please try another one' });
+                return;
+            }
+            sql = `SELECT * FROM ACCOUNT WHERE Email ='${email}'`;
+            userInfo = await this.findOne(db, sql);
+            if (userInfo) {                //                         judge email is exists;
+                res.json({ success: false, msg: 'Email already exists, please try another one' });
+                return;
+            }
+          
+            //                                                        save user infomation to account
+            sql = `insert into ACCOUNT(username,Email,psswd,a_type,approved) values ('${username}','${email}', '${password}', 'R','P')`;
+            const data = await this.execSQL(db, sql);
+            const { insertId } = data;
+            console.log('firstName:', firstName);
+            if (firstName) {
+                //                                                    save user other infomation to realtor
+                sql = `insert into REALTOR(U_ID, Fname, Lname, Email, phone, zipcode, sales, rent, specialty) values
+            (${insertId}, '${firstName}', '${lastName}', '${email}', '${phone}', '${zipcode}', '${sales}', '${rent}', '${specialty}') `;
+                await this.execSQL(db, sql); //                           s
+            }
+        
+            res.json({ success: true, msg: 'register success' })
+        } catch (ex) {
            
-          }
+            console.log(ex);
+            res.json({ success: false, msg: 'Error, please try again' })
+        }
+    }
 }
 module.exports = signupRouter;

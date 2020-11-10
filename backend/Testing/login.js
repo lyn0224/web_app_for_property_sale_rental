@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+//const tokenVerifier = require('./tokenVerifier');
 
 class loginRouter{
     // constructor(db, req, res){
@@ -10,7 +11,7 @@ class loginRouter{
          login(db, req, res) {
             let username = req.body.username;
             let password = req.body.password;
-
+            
             let cols = [username];
             db.query('SELECT * FROM account WHERE username = ?', cols, (err, data, fields) => {
 
