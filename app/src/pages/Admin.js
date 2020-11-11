@@ -5,6 +5,7 @@ import {Table} from "react-bootstrap"
 function Admin() {
 
     const [users, setUsers] = useState([]);
+    const [houses, setHouses] = useState([]);
     
     const getUser = async () => {
         try{

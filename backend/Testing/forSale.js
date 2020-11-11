@@ -15,7 +15,7 @@ class forSaleRouter{
                     console.log(err);
                     res.json({
                         success: false,
-                        msg: ''
+                        msg: 'false'
                     })
                     return;
                 }

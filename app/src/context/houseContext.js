@@ -1,8 +1,6 @@
 import React, {useState, createContext, Component } from 'react';
 import Client from './Contentful';
 
-
-
 const Context = React.createContext()
 class HouseProvider extends Component {
     state={

@@ -32,17 +32,31 @@ function SellByOwner() {
         console.log(newItem);
         console.log('PHOTO:', newItem.image);
         const formData = new FormData();
-        formData.append('images', newItem.image);
-        fetch('http://localhost:9000/upload', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: formData
-        }).then(response => {
-            console.log(response);
-        }).catch(err => {
-            console.log(err.msg);
-        });
-        //console.log(formData);
+        formData.append('main', newItem.image[0]);
+        formData.append('others', newItem.image);
+        console.log(formData);
+        console.log("main", formData.get('main'));
+        console.log("others", formData.get('others'));
+        
+        try{
+            let res = await fetch('http://localhost:9000/upload', {
+                method: 'post',
+                body: JSON.stringify({
+                    formData: formData,
+                    main: formData.get('main'),
+                    others: formData.get('others')
+                })
+            });
+            let result = await res.json();
+            //console.log(result);
+            if(result && result.success){
+                console.log(result);
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+        }
     }
 
     async function handleListing (event){

@@ -59,7 +59,7 @@ app.get("/get_user", function(req, res) {
 
   //app.post("/upload", upload.single("main"), uploadController.uploadFiles);
   // for uploading multiple pictures and text fields
-  app.post("/upload", upload.array('main', 10), uploadController.uploadFiles);
+  //app.post("/upload", upload.array('main', 10), uploadController.uploadFiles);
 
   //get house info for Buy page
   app.get("/house", function(req, res) {
@@ -68,13 +68,15 @@ app.get("/get_user", function(req, res) {
     temp.getAllImage(db, req, res);
   });
 
+  app.post("/upload", function(req, res) {
+    console.log("Req Body : ", req.body);
+    console.log("got it");
+    //var temp = new forSale();
+    //temp.getImage(db, req, res);
+  });
 
 
 // set port, listen for requests
 app.listen(9000, () => {
   console.log("Server is running on port 9000.");
 });
-
-
-
-
