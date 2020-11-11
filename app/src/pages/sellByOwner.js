@@ -37,26 +37,37 @@ function SellByOwner() {
         console.log(formData);
         console.log("main", formData.get('main'));
         console.log("others", formData.get('others'));
-        
-        try{
-            let res = await fetch('http://localhost:9000/upload', {
-                method: 'post',
-                body: JSON.stringify({
-                    formData: formData,
-                    main: formData.get('main'),
-                    others: formData.get('others')
-                })
-            });
-            let result = await res.json();
-            //console.log(result);
-            if(result && result.success){
-                console.log(result);
-            }else if(result && result.success === false){
-                alert(result.msg);
-            }
-        }catch(e){
-            console.log(e);
-        }
+        axios
+          .post(
+            'http://localhost:9000/upload',
+            formData
+          )
+          .then(response => {
+            console.log(response);
+            // this.setState({
+            //   tprof_pic: response.data
+            // });
+          })
+          .catch(error => console.log('error ' + error));
+        // try{
+        //     let res = await fetch('http://localhost:9000/upload', {
+        //         method: 'post',
+        //         body: JSON.stringify({
+        //             formData: formData,
+        //             main: formData.get('main'),
+        //             others: formData.get('others')
+        //         })
+        //     });
+        //     let result = await res.json();
+        //     //console.log(result);
+        //     if(result && result.success){
+        //         console.log(result);
+        //     }else if(result && result.success === false){
+        //         alert(result.msg);
+        //     }
+        // }catch(e){
+        //     console.log(e);
+        // }
     }
 
     async function handleListing (event){

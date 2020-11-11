@@ -57,7 +57,7 @@ app.get("/get_user", function(req, res) {
     temp.removeUser(db, req, res);
   });
 
-  //app.post("/upload", upload.single("main"), uploadController.uploadFiles);
+  app.post("/upload", upload.single("main"), uploadController.uploadFiles);
   // for uploading multiple pictures and text fields
   //app.post("/upload", upload.array('main', 10), uploadController.uploadFiles);
 
@@ -67,14 +67,6 @@ app.get("/get_user", function(req, res) {
     var temp = new forSale();
     temp.getAllImage(db, req, res);
   });
-
-  app.post("/upload", function(req, res) {
-    console.log("Req Body : ", req.body);
-    console.log("got it");
-    //var temp = new forSale();
-    //temp.getImage(db, req, res);
-  });
-
 
 // set port, listen for requests
 app.listen(9000, () => {

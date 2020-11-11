@@ -3,7 +3,7 @@ const db = require('../Testing/db');
 const uploadFiles = async (req, res) => {
   try {
     console.log(req.files);
-
+    console.log(req);
     if (req.files == undefined) {
         res.json({
             success: false,
