@@ -7,6 +7,7 @@ const alluser = require('../Testing/alluser');
 const uploadController = require("../Testing/uploadDb");
 const upload = require("../Testing/upload");
 const forSale = require('../Testing/forSale');
+const search = require('../Testing/search');
 var cors = require("cors");
 
 const app = express();
@@ -67,6 +68,17 @@ app.get("/get_user", function(req, res) {
     var temp = new forSale();
     temp.getAllImage(db, req, res);
   });
+
+//main search
+  app.get('/api/search', async function (req, res) {
+    try {
+      const s = new search();
+      const data = await s.begin(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
 
 // set port, listen for requests
 app.listen(9000, () => {
