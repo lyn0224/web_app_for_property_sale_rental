@@ -1,23 +1,12 @@
 import React, { Component } from 'react'
-import Housecards from '../containers/housecards'
-import Map from '../containers/googlemap'
+import BuyLayout from '../containers/buy'
 
-export class Rent extends Component {
+function Rent () {
 
-    render() {
-        return (
-            <div className = "Pagelayout">
-                <div className = "MapContainer">
-                    <Map/>
-                </div>
 
-                <div className = "HouseContainer">
-                    <Housecards/>
-                </div>
-   
-            </div>
-        )
-    }
+    return (
+        <BuyLayout/>  
+    )
+
 }
-
 export default Rent
