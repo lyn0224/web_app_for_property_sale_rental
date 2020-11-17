@@ -15,6 +15,7 @@ import HouseDetail from '../pages/houseDetail'
 function Routers(){
     return(
         <Switch>
+          
               <Route exact path = {ROUTES.HOME}><Home/></Route>
               <Route exact path = {ROUTES.BUY}><Buy /></Route>
               <Route exact path={`${ROUTES.BUY}/:id`} ><HouseDetail/></Route>

@@ -6,7 +6,10 @@ import BuyLayout from '../containers/buy'
 
 
         return (
-            <BuyLayout/>  
+            <>
+            
+            <BuyLayout/>
+            </>  
         )
 
 }

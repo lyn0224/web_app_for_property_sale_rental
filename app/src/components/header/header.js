@@ -81,7 +81,7 @@ export default Header
 
 Header.TextLink = function HeaderTextLink({ to, children, ...restProps  }){
     
-    return <ReactRouterLink to = {to } style={{ textDecoration: 'none' }} >
+    return <ReactRouterLink to = {to} style={{ textDecoration: 'none' }} >
                     <TextLink {...restProps}>
                         {children}
                         </TextLink> 

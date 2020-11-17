@@ -30,7 +30,7 @@ function HeaderContainer(props){
                             <Header.TextLink to ={ROUTES.ACCOUNT_SETTING}>Account Setting</Header.TextLink>
                         </Header.Group>
                         <Header.Group>
-                            <Header.TextLink onClick = {()=>logout()}>
+                            <Header.TextLink to ='#' onClick = {()=>logout()}>
                                 Sign out
                             </Header.TextLink>
                         </Header.Group>
