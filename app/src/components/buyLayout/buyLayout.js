@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Map, List,SecondSection,Search,SearchIcon,SearchInput,FirstSection} from './styles/style';
+import { Container, Map, List,SecondSection,Search,SearchIcon,SearchInput,FirstSection,Footer} from './styles/style';
 function Buy({children, ...restProps}){
     return(
         <Container {...restProps}>
@@ -21,6 +21,13 @@ Buy.SecondSection = function BuySecond({children,...restProps}){
         <SecondSection {...restProps}>
             {children}
             </SecondSection>
+    )
+}
+Buy.Footer = function BuyFooter({children,...restProps}){
+    return(
+        <Footer {...restProps}>
+            {children}
+            </Footer>
     )
 }
 Buy.Map = function BuyMap({children,...restProps}){

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import BuyLayout from '../containers/buy'
+import BuyContainer from '../containers/buyContainer'
 
 function Rent () {
 
 
     return (
-        <BuyLayout/>  
+        <BuyContainer/>  
     )
 
 }

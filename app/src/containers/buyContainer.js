@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import { BuyLayout } from '../components/export';
 import Housecards from './housecards'
 import Map from './googlemap'
@@ -24,6 +24,7 @@ function Buy() {
                 </BuyLayout.List>
 
             </BuyLayout.SecondSection>
+            
         </BuyLayout>
     )
 }

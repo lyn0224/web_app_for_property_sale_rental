@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
         width:100%;
-        height:88.5vh;
-        
+        height: 100%;
         overflow: scroll;
+        overflow-x: hidden;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px,300px));
         grid-template-rows: repeat(auto-fill, minmax(auto));
@@ -13,12 +13,13 @@ export const Container = styled.div`
 `
 export const Base = styled.div`
     max-width: 300px;
+    max-height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align:center;
     border: solid 1px rgb(194, 194, 194);
-    margin: 0.5rem;
+    margin: 1.5rem 1rem;
     *{
         margin:0;
     }
