@@ -1,4 +1,5 @@
 import React from 'react'
+import FilterBar from '../FilterBar';
 import { Container, Map, List,SecondSection,Search,SearchIcon,SearchInput,FirstSection,Footer} from './styles/style';
 function Buy({children, ...restProps}){
     return(
@@ -42,9 +43,9 @@ Buy.List = function BuyList({ children, ...restProps }) {
     return <List {...restProps}>{children}</List>;
 }
 
-Buy.Search = function BuySearch ({ searchTerm, setSearchTerm, ...restProps }){
+Buy.Search = function BuySearch ({ searchTerm, setSearchTerm,find_result, ...restProps }){
     return (
-        <Search>
+        <Search {...restProps }>
             
             <SearchInput
                 value={searchTerm}
@@ -52,7 +53,7 @@ Buy.Search = function BuySearch ({ searchTerm, setSearchTerm, ...restProps }){
                 placeholder="Search houses you want"
 
             />
-            <SearchIcon style={{ outline: 'none' }}>
+            <SearchIcon style={{ outline: 'none' } } onClick = {()=>find_result(searchTerm)}>
                     <i className="fas fa-search"></i>
             </SearchIcon>
         </Search>

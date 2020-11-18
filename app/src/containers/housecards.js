@@ -1,14 +1,13 @@
 import { Housecard } from '../components/export';
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
 import FilterBar from '../components/FilterBar'
 function Housecards({props}){
-    const {houses,isLoading} = useContext(Context);
-   
-    // const [hovered, setHovered] = useState(false)
-    console.log(houses)
+    const {houses,search} = useContext(Context);
+
+    
     function singlecard(obj){
         return (
         <Housecard.Base key = {obj.S_ID} >                          
@@ -24,17 +23,36 @@ function Housecards({props}){
         </Housecard.Base>
         )
     }
-    const cards = houses? houses.map(house=>singlecard(house)):"loading...";
-    return(
-
-        <>
-          
-        <Housecard>
-            {cards}
-            {/* {`${isLoading}`} */}
-        </Housecard>
-        </>
-    )
+    
+    console.log(search);
+    if(houses && !search){
+        const  cards = houses.map(house=>singlecard(house));
+        return(
+            <>
+            <Housecard>
+                {cards}
+            </Housecard>
+            </>
+        )
+    }else if(houses && search){
+        const  cards = search.map(house=>singlecard(house));
+        return(
+            <>
+              
+            <Housecard>
+                {cards}
+            </Housecard>
+            </>
+        )
+    }else{
+        return(
+            <p>
+                loading....
+            </p>
+        )
+    }
+   
+    
 }
 
 export default Housecards
