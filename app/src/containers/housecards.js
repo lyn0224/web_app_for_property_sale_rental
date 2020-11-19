@@ -4,6 +4,7 @@ import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
 import FilterBar from '../components/FilterBar'
+import Loading from "../components/loading"
 function Housecards({props}){
     const {houses,search} = useContext(Context);
 
@@ -13,7 +14,7 @@ function Housecards({props}){
         <Housecard.Base key = {obj.S_ID} >                          
             <Housecard.Link to = {`${ROUTES.BUY}/${obj.S_ID}` }>
                 
-                <Housecard.img src = {DefaultImg} alt ="#"/>
+                <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/>
                 <Housecard.Title>city : {obj.city}</Housecard.Title>
                 <Housecard.Text>street : {obj.street}</Housecard.Text>
                 <Housecard.Text>Price : {obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Text>
@@ -35,20 +36,30 @@ function Housecards({props}){
             </>
         )
     }else if(houses && search){
+        if(search.length === 0 ){
+
+            return(
+                <>
+                
+                <Housecard>
+                    no result
+                </Housecard>
+                </>
+            )
+        }else{
         const  cards = search.map(house=>singlecard(house));
-        return(
-            <>
-              
-            <Housecard>
-                {cards}
-            </Housecard>
-            </>
-        )
+            return(
+                <>
+                
+                <Housecard>
+                    {cards}
+                </Housecard>
+                </>
+            )
+        }
     }else{
         return(
-            <p>
-                loading....
-            </p>
+           <Loading/>
         )
     }
    
