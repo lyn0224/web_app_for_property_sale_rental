@@ -12,7 +12,7 @@ const imageFilter = (req, file, cb) => {
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-      pic_path = 'public/uploads/';
+      pic_path = 'public/forSale/';
       db.query('SELECT MAX(S_ID) AS ID FROM for_sale', (err, data) => {
         if(err) {
           console.log(err);

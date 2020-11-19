@@ -8,12 +8,13 @@ const uploadController = require("../Testing/uploadDb");
 const upload = require("../Testing/upload");
 const forSale = require('../Testing/forSale');
 const search = require('../Testing/search');
+const sendEmail = require("../Testing/sendEmail.js");
 var cors = require("cors");
 
 const app = express();
 //app.set("view engine", "ejs");
 
-app.use("/property_pic", express.static("public/uploads"));
+app.use("/forSale_pic", express.static("public/forSale"));
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 app.use(cors());
@@ -69,6 +70,10 @@ app.get("/get_user", function(req, res) {
     var temp = new forSale();
     temp.getAllImage(db, req, res);
   });
+
+  //send email
+  app.post("/buyRequest", sendEmail);
+
 
 //main search
   app.get('/api/search', async function (req, res) {

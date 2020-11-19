@@ -23,8 +23,8 @@ const uploadFiles = async (req, res) => {
         return;
       }
 
-      if(data[0].ID === null){pic_path = 'http://localhost:9000/property_pic/1';}
-      else{pic_path = 'http://localhost:9000/property_pic/' + (data[0].ID + 1);}
+      if(data[0].ID === null){pic_path = 'http://localhost:9000/forSale_pic/1';}
+      else{pic_path = 'http://localhost:9000/forSale_pic/' + (data[0].ID + 1);}
       
       let fdata = req.body;
       let cols = [fdata.owner, fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, pic_path];
