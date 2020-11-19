@@ -26,13 +26,16 @@ var storage = multer.diskStorage({
           pic_path = pic_path + '1/';
           !fs.existsSync(pic_path) && fs.mkdirSync(pic_path);
           cb(null, pic_path);
+          
           }
         else{
           //console.log(data);
           pic_path = pic_path + (data[0].ID+1) + '/';
           !fs.existsSync(pic_path) && fs.mkdirSync(pic_path);
           cb(null, pic_path);
+          
         }
+
       });
       //console.log(pic_path);
       //cb(null, pic_path);
