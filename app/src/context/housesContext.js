@@ -11,8 +11,13 @@ function HousesProvider({children}) {
     },[])
     function find_result(input){
         console.log(input)
-        const array = houses.filter(house=>house.Owner_ID == input || house.city ==input)
-        setSearch(array)
+        if(!input){
+            setSearch(houses)
+        }else{
+            const array = houses.filter(house=>house.Owner_ID == input || house.city ==input)
+            setSearch(array)
+        }
+        
     }
     console.log(search)
         return (
