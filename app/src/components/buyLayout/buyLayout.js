@@ -1,6 +1,6 @@
 import React from 'react'
 import FilterBar from '../FilterBar';
-import { Container, Map, List,SecondSection,Search,SearchIcon,SearchInput,FirstSection,Footer} from './styles/style';
+import { Container, Map, List,SecondSection,Search,SearchIcon,SearchInput,FirstSection,Footer,Button, ButtonSection, ButtonCircle} from './styles/style';
 function Buy({children, ...restProps}){
     return(
         <Container {...restProps}>
@@ -9,7 +9,6 @@ function Buy({children, ...restProps}){
     )
 }
 
-export default Buy
 Buy.FirstSection = function BuyFirst({children,...restProps}){
     return(
         <FirstSection {...restProps}>
@@ -17,6 +16,7 @@ Buy.FirstSection = function BuyFirst({children,...restProps}){
             </FirstSection>
     )
 }
+
 Buy.SecondSection = function BuySecond({children,...restProps}){
     return(
         <SecondSection {...restProps}>
@@ -39,9 +39,15 @@ Buy.Map = function BuyMap({children,...restProps}){
     )
 
 }
+
+
 Buy.List = function BuyList({ children, ...restProps }) {
     return <List {...restProps}>{children}</List>;
 }
+
+// Buy.Dropdown = function BuyDRopdown({ children, ...restProps }) {
+//     return <Dropdown {...restProps}>{children}</Dropdown>
+// }
 
 Buy.Search = function BuySearch ({ searchTerm, setSearchTerm,find_result, ...restProps }){
     return (
@@ -59,3 +65,18 @@ Buy.Search = function BuySearch ({ searchTerm, setSearchTerm,find_result, ...res
         </Search>
     )
 } 
+
+Buy.ButtonSection = function BuyButton({ children, ...restProps }){
+    return (
+        <>
+        <ButtonSection>
+            <Button>For Sell</Button>
+            <Button>Price</Button>
+            <Button>Beds & Baths</Button>
+            <Button>Houses</Button>
+            <Button style={{backgroundColor: "blue", color:"white"}}>Save Search</Button>
+        </ButtonSection>
+        </>
+    )
+}
+export default Buy

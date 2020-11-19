@@ -108,7 +108,7 @@ export const TextLink = styled.p`
         &:last-of-type {
             margin-right: 0;
         }
-    `;
+    `
 
     export const Dropdown = styled.div`
     display: none;
