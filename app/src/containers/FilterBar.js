@@ -1,43 +1,52 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Context } from '../context/houseContext';
+import { Context } from '../context/housesContext';
 
 //get all unique values
 const getUnique = (items, value) => {
+    console.log("this is items", items)
+    console.log("this is value", value)
     return [...new Set(items.map(item => item[value]))];
 };
 
 export default function FilterBar({ houses }) {
     const context = useContext(Context);
-    console.log(context);
+    // console.log(context);
     const {
         handleChange,
-        type,
-        capacity,
-        price,
-        minPrice,
-        maxPrice,
-        minSize,
-        maxSize,
-        breakfast,
-        pets
+        type
+        // capacity,
+        // price,
+        // minPrice,
+        // maxPrice,
+        // minSize,
+        // maxSize,
+        // breakfast,
+        // pets
     } = context;
 
-    //get unique types
-    let types = getUnique(houses, 'type');
+    // console.log(houses);
 
-    //add all
-    types = ['all', ...types];
+    
+    let types = [];
+    // //get unique types
+    if(houses){
+        console.log("this is inside houses: ", houses)
+        types = getUnique(houses, 'property_type');
+        types = ['all', ...types];
+        types = types.map((item, index) => {
+            // console.log(item)
+            return <option value={item} key={index}>{item}</option>
+        });
+        console.log(types)
+    }
 
-    //map to jsx
-    types = types.map((item, index) => {
-        return <option value={item} key={index}>{item}</option>
-    });
+    // //map to jsx
 
-    let people = getUnique(houses, 'capacity');
-    people = people.map((item, index) => {
-        return <option key={index} value={item}>{item}</option>
-    })
+    // let people = getUnique(houses, 'capacity');
+    // people = people.map((item, index) => {
+    //     return <option key={index} value={item}>{item}</option>
+    // })
 
     return (
         <section className="filter-container">
@@ -56,7 +65,7 @@ export default function FilterBar({ houses }) {
                 </div>
                 {/*end select type */}
                 {/*guest*/}
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="capacity">Guests</label>
                     <select
                         name="capacity"
@@ -66,18 +75,13 @@ export default function FilterBar({ houses }) {
                         onChange={handleChange}>
                         {people}
                     </select>
-                </div>
+                </div> */}
                 {/*end guest*/}
                 {/* house price */}
-                <div className="form-group">
-                    <label htmlFor="price">
-                        house price ${price}
-                    </label>
-                    <input type="range" name="price" min={minPrice} max={maxPrice} id="price" value={price} onChange={handleChange} className="form-control" />
-                </div>
+                /
                 {/* end of house price */}
                 {/* house size */}
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="size">
                         house size
                     </label>
@@ -85,10 +89,10 @@ export default function FilterBar({ houses }) {
                         <input type="number" name="minSize" min={minSize} id="size" value={minSize} onChange={handleChange} className="size-input" />
                         <input type="number" name="maxSize" min={maxSize} id="size" value={maxSize} onChange={handleChange} className="size-input" />
                     </div>
-                </div>
+                </div> */}
                 {/* end of house size */}
                 {/* extras */}
-                <div className="form-group">
+                {/* <div className="form-group">
                     <div className="single-extra">
                         <input type="checkbox" name="breakfast" id="breakfast" checked={breakfast} onChange={handleChange} />
                         <label htmlFor="breakfast">Garage</label>
@@ -97,7 +101,7 @@ export default function FilterBar({ houses }) {
                         <input type="checkbox" name="pets" id="pets" checked={pets} onChange={handleChange} />
                         <label htmlFor="pets">HOA</label>
                     </div>
-                </div>
+                </div> */}
                 {/* end of extras */}
             </form>
         </section>

@@ -8,23 +8,25 @@ function HousesProvider({children}) {
 
     useEffect( ()=>{
         fetch(URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
+        
     },[])
+
     function find_result(input){
         console.log(input)
         const array = houses.filter(house=>house.Owner_ID == input || house.city ==input)
         setSearch(array)
     }
-    console.log(search)
-        return (
-            <>
-            {/* <div>this.getHouse</div> */}
-            <Context.Provider  value={{
-                houses,find_result,search,setSearch
-                }}>
-                {children}
-            </Context.Provider>
-            </>
-        )
+
+    return (
+        <>
+        {/* <div>this.getHouse</div> */}
+        <Context.Provider  value={{
+            houses,find_result,search,setSearch
+            }}>
+            {children}
+        </Context.Provider>
+        </>
+    )
 }
 
 

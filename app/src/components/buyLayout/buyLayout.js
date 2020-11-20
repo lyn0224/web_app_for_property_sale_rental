@@ -1,5 +1,4 @@
 import React from 'react'
-import FilterBar from '../FilterBar';
 import { Container, Map, List,SecondSection,Search,SearchIcon,SearchInput,FirstSection,Footer,Button, ButtonSection, ButtonCircle} from './styles/style';
 function Buy({children, ...restProps}){
     return(

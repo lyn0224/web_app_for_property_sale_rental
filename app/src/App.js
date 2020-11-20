@@ -3,7 +3,6 @@ import './App.css';
 import Header from "./containers/header"
 import Routers from "./Routers/Routers"
 import {UserInfor} from './context/userInfo'
-
 import {HousesProvider} from './context/housesContext'
 function App() {
   return (
@@ -14,6 +13,7 @@ function App() {
           <HousesProvider>
             <Routers/>
           </HousesProvider>
+          
        </UserInfor>
     </div>
   );

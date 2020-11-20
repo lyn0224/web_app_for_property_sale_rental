@@ -3,7 +3,7 @@ import React,{useState,useContext,useEffect} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
-import FilterBar from '../components/FilterBar'
+import FilterBar from './FilterBar'
 import Loading from "../components/loading"
 function Housecards({props}){
     const {houses,search} = useContext(Context);

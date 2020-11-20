@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BuyContainer from '../containers/buyContainer'
+import Footer from "../containers/footer"
 
 
  function Buy () {
@@ -9,6 +10,7 @@ import BuyContainer from '../containers/buyContainer'
             <>
             
             <BuyContainer/>
+            <Footer/>
             </>  
         )
 
