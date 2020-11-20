@@ -53,13 +53,13 @@ export const Link = styled.a`
             text-decoration:none;
         }
 `
-
 export const Favorite = styled.i`
-        position:  absolute;
+        position: absolute;
         color: pink;
         font-size:30px;
         top: 5px;
-        left: 10px;
+        right: 105px;
+        z-index:1;
         cursor: pointer;
         &:hover{
                 opacity:0.7;

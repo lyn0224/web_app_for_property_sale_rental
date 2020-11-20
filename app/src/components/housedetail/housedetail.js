@@ -37,10 +37,10 @@ HouseDetail.img = function HouseDetailImg({src,alt, children,...restProps}){
                 </CardImg>
     )
 }
-HouseDetail.Button = function HouseDetailButton({to,children,...restProps}){
+HouseDetail.Button = function HouseDetailButton({to,toggleDisplay,children,...restProps}){
     return(
             <ReactRouterLink to = {to}>
-                <CardButton {...restProps} style={{ outline: 'none' }}>
+                <CardButton {...restProps} style={{ outline: 'none' }} onClick = {()=>toggleDisplay()}> 
                     {children}
                     </CardButton>
                 </ReactRouterLink>

@@ -41,7 +41,7 @@ Housecard.Favorite = function HousecardFavorite({children, removeFavorite,...res
 }
 Housecard.notFavorite = function HousecardnotFavorite({children,addFavorite,...restProps}){
     return(
-        <Favorite {...restProps} onClick = {()=>addFavorite()}>
+        <Favorite {...restProps} onClick = {()=>addFavorite() }>
             <i class="far fa-heart"></i>
         </Favorite>
     )

@@ -45,31 +45,32 @@ function HousesProvider({children}) {
         
     }
     async function removeFavorite(house){
-        try{
-            let res = await fetch(Remove_URL, {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: user.username,
-                    // houseInfor : house
-                })
-            });
-            let result = await res.json();
-            console.log(result);
-            if(result && result.success){
-                console.log("successful add to favorite");
-            }else if(result && result.success === false){
-                alert(result.msg);
-            }
-        }catch(e){
-            console.log(e);
-        }
+        // try{
+        //     let res = await fetch(Remove_URL, {
+        //         method: 'post',
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             username: user.username,
+        //             // houseInfor : house
+        //         })
+        //     });
+        //     let result = await res.json();
+        //     console.log(result);
+        //     if(result && result.success){
+        //         console.log("successful add to favorite");
+        //     }else if(result && result.success === false){
+        //         alert(result.msg);
+        //     }
+        // }catch(e){
+        //     console.log(e);
+        // }
+        setFavorite(false)
     }
     async function addFavorite(){
-
+        setFavorite(true)
     }
     console.log(search)
         return (
