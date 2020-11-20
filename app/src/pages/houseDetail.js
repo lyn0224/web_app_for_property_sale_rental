@@ -30,12 +30,16 @@ function HouseDetail(props){
             setCheck(false)
         }
     })
-    
+   
 
     if(check) {
+        console.log(house.pic_dir)
         return(
             <Houseinfo>
-                <Houseinfo.img src = {house.pic_dir}/>
+                <Houseinfo.img src = {house.pic_dir[0]}/>
+                <Houseinfo.img src = {house.pic_dir[1]}/>
+                <Houseinfo.img src = {house.pic_dir[2]}/>
+                <Houseinfo.img src = {house.pic_dir[3]}/>
                 <Houseinfo.Title>{house.name}</Houseinfo.Title>
                 <Houseinfo.Text>Owner_ID : {house.Owner_ID}</Houseinfo.Text>
                 <Houseinfo.Text>Realtor_ID : {house.Owner_ID}</Houseinfo.Text>

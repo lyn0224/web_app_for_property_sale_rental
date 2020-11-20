@@ -53,3 +53,9 @@ export const Link = styled.a`
         }
 `
 
+export const Favorite = styled.i`
+        position:  relative;
+        color: pink;
+        left: 0;
+        bottom:0;
+`

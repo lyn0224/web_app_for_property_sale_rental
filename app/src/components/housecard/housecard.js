@@ -1,6 +1,6 @@
 import  React from 'react'
 import{Link as ReactRouterLink} from 'react-router-dom'
-import { Container, CardImg, CardButton, Title, Text,Link,Base} from './styles/style';
+import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite} from './styles/style';
 
 function Housecard({children,...restProps}){
     return <Container {...restProps}>
@@ -27,8 +27,16 @@ Housecard.Link = function HousecardLink({to,children,...restProps}){
 Housecard.img = function HousecardImg({src,alt, children,...restProps}){
     return(
             <CardImg src = {src} alt = {alt} {...restProps}>
+               
                 {children}
                 </CardImg>
+    )
+}
+Housecard.Favorite = function HousecardFavorite({children,...restProps}){
+    return(
+        <Favorite {...restProps}>
+            <i class="fas fa-heart"></i>
+        </Favorite>
     )
 }
 Housecard.Button = function HousecardButton({to,children,...restProps}){

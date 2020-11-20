@@ -10,11 +10,15 @@ function Housecards({props}){
 
     
     function singlecard(obj){
+        // console.log(obj.main_dir)
         return (
+        
         <Housecard.Base key = {obj.S_ID} >                          
             <Housecard.Link to = {`${ROUTES.BUY}/${obj.S_ID}` }>
                 
-                <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/>
+                {/* <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/> */}
+                <Housecard.Favorite/>
+                <Housecard.img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
                 <Housecard.Title>city : {obj.city}</Housecard.Title>
                 <Housecard.Text>street : {obj.street}</Housecard.Text>
                 <Housecard.Text>Price : {obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Text>
