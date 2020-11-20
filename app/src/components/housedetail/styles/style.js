@@ -1,15 +1,27 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-       margin : 3rem;
-       text-align: center;
+       
+       display: flex;
+`
+export const ImageBase = styled.div`
+        text-align: center;
+        width:50%;
+        height: calc(100vh - 90px);
+        overflow:scroll;
+        overflow-x: hidden;
 `
 export const Base = styled.div`
+        text-align: center;
+        width:50%;
+        height: calc(100vh - 90px);
+        overflow:hiden;
         
 `
 export const CardImg = styled.img`
         object-fit: cover;
-        width: 50%;
+        width: 100%;
+        
 
 `
 

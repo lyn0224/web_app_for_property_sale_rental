@@ -31,25 +31,29 @@ function HouseDetail(props){
         }
     })
    
+    const house_imge = check? house.pic_dir.map(image =>(
+        <Houseinfo.img src = {image}/>
+    )): "null";
 
     if(check) {
-        console.log(house.pic_dir)
         return(
             <Houseinfo>
-                <Houseinfo.img src = {house.pic_dir[0]}/>
-                <Houseinfo.img src = {house.pic_dir[1]}/>
-                <Houseinfo.img src = {house.pic_dir[2]}/>
-                <Houseinfo.img src = {house.pic_dir[3]}/>
-                <Houseinfo.Title>{house.name}</Houseinfo.Title>
-                <Houseinfo.Text>Owner_ID : {house.Owner_ID}</Houseinfo.Text>
-                <Houseinfo.Text>Realtor_ID : {house.Owner_ID}</Houseinfo.Text>
-                <Houseinfo.Text>property_type : {house.property_type}</Houseinfo.Text>
-                <Houseinfo.Text>Price : {house.price ? house.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Houseinfo.Text>
-                <Houseinfo.Text>year : {house.year_built}</Houseinfo.Text>
-                <Houseinfo.Text>location : {house.city+" "+house.street+" "+house.street_num+" "+house.state}</Houseinfo.Text>
-                <Houseinfo.Text>zip : {house.zip}</Houseinfo.Text>
-                <Houseinfo.Text>area : {house.area}</Houseinfo.Text>
-                <Houseinfo.Text>parking : {house.parking}</Houseinfo.Text>
+                <Houseinfo.ImageBase>
+                    {house_imge}
+                </Houseinfo.ImageBase>
+                <Houseinfo.Base>
+                    <Houseinfo.Title>{house.name}</Houseinfo.Title>
+                    <Houseinfo.Text>Owner_ID : {house.Owner_ID}</Houseinfo.Text>
+                    <Houseinfo.Text>Realtor_ID : {house.Owner_ID}</Houseinfo.Text>
+                    <Houseinfo.Text>property_type : {house.property_type}</Houseinfo.Text>
+                    <Houseinfo.Text>Price : {house.price ? house.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Houseinfo.Text>
+                    <Houseinfo.Text>year : {house.year_built}</Houseinfo.Text>
+                    <Houseinfo.Text>location : {house.city+" "+house.street+" "+house.street_num+" "+house.state}</Houseinfo.Text>
+                    <Houseinfo.Text>zip : {house.zip}</Houseinfo.Text>
+                    <Houseinfo.Text>area : {house.area}</Houseinfo.Text>
+                    <Houseinfo.Text>parking : {house.parking}</Houseinfo.Text>
+                    <Houseinfo.Button>Application</Houseinfo.Button>
+                </Houseinfo.Base>
             </Houseinfo>
         )
     }

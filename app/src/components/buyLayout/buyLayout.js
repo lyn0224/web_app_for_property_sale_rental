@@ -66,6 +66,8 @@ Buy.Search = function BuySearch ({ searchTerm, setSearchTerm,find_result, ...res
     )
 } 
 
+// did not follow the format
+
 Buy.ButtonSection = function BuyButton({ children, ...restProps }){
     return (
         <>
