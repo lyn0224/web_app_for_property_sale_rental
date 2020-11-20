@@ -6,6 +6,7 @@ backend:\
     npm i body-parser\
     npm i jsonwebtoken\
     npm i multer --save\
+    npm i nodemailer --save\
 frontend:\
     npm install react-icons --save\
     npm i google-maps-react\
