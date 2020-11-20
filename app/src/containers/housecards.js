@@ -4,6 +4,7 @@ import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
 import FilterBar from '../components/FilterBar'
+import Loading from "../components/loading"
 function Housecards({props}){
     const {houses,search} = useContext(Context);
 
@@ -58,9 +59,7 @@ function Housecards({props}){
         }
     }else{
         return(
-            <p>
-                loading....
-            </p>
+           <Loading/>
         )
     }
    

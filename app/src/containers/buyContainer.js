@@ -10,9 +10,22 @@ function Buy() {
         <BuyLayout>
             
             <BuyLayout.FirstSection>
-                <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} >
-                    </BuyLayout.Search>
-            </BuyLayout.FirstSection> 
+                <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} />
+                <BuyLayout.ButtonSection />
+                {/* <BuyLayout.Group>
+                    <BuyLayout.Dropdown>
+                            <BuyLayout.Group>
+                                <BuyLayout.TextLink to ='#'>For Sell</BuyLayout.TextLink>
+                            </BuyLayout.Group>
+                            <BuyLayout.Group>
+                                <BuyLayout.TextLink to ='#'>For Buy</BuyLayout.TextLink>
+                            </BuyLayout.Group>
+                            <BuyLayout.Group>
+                                <BuyLayout.TextLink to ='#'>Sold</BuyLayout.TextLink>
+                            </BuyLayout.Group>
+                    </BuyLayout.Dropdown>
+                </BuyLayout.Group> */}
+            </BuyLayout.FirstSection>
 
             <BuyLayout.SecondSection>
 

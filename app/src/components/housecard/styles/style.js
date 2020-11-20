@@ -19,9 +19,14 @@ export const Base = styled.div`
     align-items: center;
     text-align:center;
     border: solid 1px rgb(194, 194, 194);
+    box-shadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s linear;
     margin: 1.5rem 1rem;
     *{
         margin:0;
+    }
+    &:hover {
+        box-shadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
     }
 `
 export const CardImg = styled.img`
@@ -29,7 +34,6 @@ export const CardImg = styled.img`
         width: 100%;
 
 `
-
 export const CardButton = styled.button`
 
 `

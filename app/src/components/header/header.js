@@ -74,6 +74,7 @@ Header.Profile = function HeaderProfile({ children, ...restProps }) {
         </Profile>
     )
 }
+
 Header.Dropdown = function HeaderDRopdown({ children, ...restProps }) {
     return <Dropdown {...restProps}>{children}</Dropdown>
 }

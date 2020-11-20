@@ -7,6 +7,7 @@ export const Container = styled.div`
 
 
 export const Search = styled.div`
+        float: left;
         width: 200px;
         position: relative;
         display: flex;  
@@ -47,6 +48,91 @@ export const SearchInput = styled.input`
           }
     
 `
+
+export const ButtonSection = styled.div`
+    
+    width: 600px;
+    display:flex;
+    @media (max-width: 1000px){
+        width: 600px
+    }
+
+`
+export const ButtonCircle = styled.circle`
+    width: 10px;      
+    height: 10px;      
+    background-color:red;      
+    border-radius: 50%;      
+    -moz-border-radius: 50%;      
+    -webkit-border-radius: 50%;
+`
+
+export const Button = styled.button`
+    width: 120px;
+    height: 30px;
+    margin: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 3px;
+    border: solid 1px blue;
+    background-color: white;
+    color: blue;
+`
+
+// export const TextLink = styled.p`
+//     color: black;
+//     text-decoration: none;
+//     margin-right: 30px;
+//     font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
+//     cursor: pointer;
+    
+//     &:hover {
+//         font-weight: bold;
+//     }
+//     &:last-of-type {
+//         margin-right: 0;
+//     }
+// `
+
+// export const Group = styled.div`
+// display: flex;
+// align-items: center;
+// `
+
+// export const Dropdown = styled.div`
+//     display: none;
+//     positon: absolute;
+//     background-color: white;
+//     padding: 10px;
+//     width: 200px;
+//     top: 48px;
+//     right: 10px;
+//     z-index:11;
+//     box-shadow: 0px 0px 10px rgb(98, 98, 98);
+//     ${Group}:last-of-type ${TextLink} {
+//         cursor: pointer;
+//     }
+
+//     ${Group} {
+//         margin-bottom: 10px;
+        
+//         &:last-of-type {
+//             margin-bottom: 0;
+//         }
+        
+//     }
+
+//     button {
+//         margin-right: 10px;
+//     }
+
+//     p {
+//         font-size: 1rem;
+//         margin-bottom: 0;
+//         margin-top: 0;
+//     }
+// `
+
+
 export const FirstSection = styled.div`
     padding: 0.5rem 0;
     border-top: 1px solid #cccccc;
