@@ -42,8 +42,12 @@ var storage = multer.diskStorage({
     },
 
     filename: function(req, file, cb) {
+        if(file.fieldname === 'main'){
+          cb(null, 'outside.png');
+        } else{
+          cb(null, file.originalname);
+        }
         
-        cb(null, file.originalname);
     }
 });
 
