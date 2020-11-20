@@ -61,7 +61,7 @@ app.get("/get_user", function(req, res) {
 
   //app.post("/upload", upload.single("main"), uploadController.uploadFiles);
   // for uploading multiple pictures and text fields
-  app.post("/upload", upload.array('main', 10), uploadController.uploadFiles);
+  app.post("/upload", upload.fields([{ name: 'main', maxCount: 1 }, { name: 'other', maxCount: 10 }]), uploadController.uploadFiles);
  // app.post("/upload", upload.array('main', 10));
 
   //get house info for Buy page
