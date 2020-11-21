@@ -36,8 +36,8 @@ class forSaleRouter{
                     data[i].pic_dir = pic_array;
                     data[i].main_dir = pic_folder + "/outside.PNG";
                 }
-                //console.log(data[0].pic_dir)
-                //console.log(data);
+                console.log(data[0].pic_dir)
+                console.log(data);
             
                 res.json({
                     success: true,
