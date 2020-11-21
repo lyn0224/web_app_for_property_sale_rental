@@ -8,7 +8,8 @@ const uploadController = require("../Testing/uploadDb");
 const upload = require("../Testing/upload");
 const forSale = require('../Testing/forSale');
 const search = require('../Testing/search');
-const sendEmail = require("../Testing/sendEmail.js");
+const buyRequest = require("../Testing/BuyRequest");
+const individualUser = require("../Testing/IndividualUser");
 var cors = require("cors");
 
 const app = express();
@@ -59,20 +60,53 @@ app.get("/get_user", function(req, res) {
     temp.removeUser(db, req, res);
   });
 
-  //app.post("/upload", upload.single("main"), uploadController.uploadFiles);
-  // for uploading multiple pictures and text fields
-  app.post("/upload", upload.array('main', 10), uploadController.uploadFiles);
- // app.post("/upload", upload.array('main', 10));
-
   //get house info for Buy page
-  app.get("/house", function(req, res) {
-    console.log("Req Body : ", req.body);
+    app.get("/house", function(req, res) {
+      console.log("Req Body : ", req.body);
+      var temp = new forSale();
+      temp.getAllImage(db, req, res);
+    });
+
+  // list house for sale
+  app.post("/upload", upload.fields([{ name: 'main', maxCount: 1 }, { name: 'other', maxCount: 10 }]), uploadController.uploadFiles);
+
+  // schedule open house
+  app.post("/openHouse", function(req, res){
+    console.log("Req Body: ", req.body);
     var temp = new forSale();
-    temp.getAllImage(db, req, res);
+    temp.openHouse(db, req, res);
   });
 
-  //send email
-  app.post("/buyRequest", sendEmail);
+    // delete listing
+    app.post("/deleteForSale", function(req, res){
+      console.log("Req Body: ", req.body);
+      var temp = new forSale();
+      temp.deleteListing(db, req, res);
+    });
+
+    // update listing
+    // app.post("/updateForSale", function(req, res){
+    //   console.log("Req Body: ", req.body);
+    //   var temp = new forSale();
+    //   temp.updateListing(db, req, res);
+    // });
+
+    //get all the house listed for sale for a particular user based on user ID
+    app.post('/users/:ID/forSaleListing', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new individualUser();
+      temp.forSaleListing(db, req, res);
+    });
+
+    //get all buyer application a particular user based on user ID
+    app.post('/users/:ID/buyerApplication', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new individualUser();
+      temp.buyerApplication(db, req, res);
+    })
+
+  //Buy Request
+  app.post("/buyRequest", buyRequest);
 
 
 //main search

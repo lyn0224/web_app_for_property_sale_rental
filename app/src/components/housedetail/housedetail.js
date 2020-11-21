@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link as ReactRouterLink} from 'react-router-dom'
-import{ Container, CardImg, CardButton, Title, Text,Link,Base} from './styles/style'
+import{ Container, CardImg, CardButton, Title, Text,Link,Base,ImageBase} from './styles/style'
 
 function HouseDetail({children, ...restProp}){
     return <Container {...restProp}>
@@ -16,7 +16,11 @@ HouseDetail.Base = function HouseDetailBase({children, ref,...restProps}){
                 {children}
                 </Base>
 }
-
+HouseDetail.ImageBase = function HouseImageBase({children, ref,...restProps}){
+    return <ImageBase {...restProps} ref = {ref}>
+                {children}
+                </ImageBase>
+}
 HouseDetail.Link = function HouseDetailLink({to,children,...restProps}){
     return (
 
@@ -33,10 +37,10 @@ HouseDetail.img = function HouseDetailImg({src,alt, children,...restProps}){
                 </CardImg>
     )
 }
-HouseDetail.Button = function HouseDetailButton({to,children,...restProps}){
+HouseDetail.Button = function HouseDetailButton({to,toggleDisplay,children,...restProps}){
     return(
             <ReactRouterLink to = {to}>
-                <CardButton {...restProps} style={{ outline: 'none' }}>
+                <CardButton {...restProps} style={{ outline: 'none' }} onClick = {()=>toggleDisplay()}> 
                     {children}
                     </CardButton>
                 </ReactRouterLink>
