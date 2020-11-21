@@ -4,6 +4,8 @@ const uploadFiles = async (req, res) => {
   try {
     console.log("req.files", req.files);
     console.log("req", req);
+    //console.log(req.files);
+    //console.log(req);
     // if (req.files == undefined) {
     //     res.json({
     //         success: false,
@@ -22,14 +24,18 @@ const uploadFiles = async (req, res) => {
         })
         return;
       }
-
+      //console.log("test");
       if(data[0].ID === null){pic_path = 'http://localhost:9000/forSale_pic/1';}
       else{pic_path = 'http://localhost:9000/forSale_pic/' + (data[0].ID + 1);}
+    });
       
       let fdata = req.body;
+
       let cols = [fdata.owner, fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, pic_path];
+      //console.log("here");
       //console.log(cols);
-    db.query('INSERT INTO for_sale (Owner_ID,Realtor_ID,property_type,apt_num,street,city,state,zip,sale_status,price,bedroom,bathroom,livingroom,flooring,parking,area,year_built,description,pic_dir) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', cols, (err) => {
+    
+      db.query('INSERT INTO for_sale (Owner_ID,Realtor_ID,property_type,apt_num,street,city,state,zip,sale_status,price,bedroom,bathroom,livingroom,flooring,parking,area,year_built,description,pic_dir) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', cols, (err) => {
 
         if(err) {
             console.log(err);
@@ -44,11 +50,10 @@ const uploadFiles = async (req, res) => {
             success: true
         });
         return;
-    });
+      });
 
 
-
-    });
+    
     
 
   } catch (error) {
@@ -58,5 +63,5 @@ const uploadFiles = async (req, res) => {
 };
 
 module.exports = {
-  uploadFiles,
+  uploadFiles
 };

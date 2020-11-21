@@ -77,19 +77,19 @@ app.get("/get_user", function(req, res) {
     temp.openHouse(db, req, res);
   });
 
-    // delete listing
+    // delete listed house for sale
     app.post("/deleteForSale", function(req, res){
       console.log("Req Body: ", req.body);
       var temp = new forSale();
       temp.deleteListing(db, req, res);
     });
 
-    // update listing
-    // app.post("/updateForSale", function(req, res){
-    //   console.log("Req Body: ", req.body);
-    //   var temp = new forSale();
-    //   temp.updateListing(db, req, res);
-    // });
+    // update information of the listed house for sale
+    app.post("/updateForSale", function(req, res){
+      console.log("Req Body: ", req.body);
+      var temp = new forSale();
+      temp.updateListing(db, req, res);
+    });
 
     //get all the house listed for sale for a particular user based on user ID
     app.post('/users/:ID/forSaleListing', function (req, res) {
@@ -103,7 +103,21 @@ app.get("/get_user", function(req, res) {
       console.log("Req Body: ", req.body);
       var temp = new individualUser();
       temp.buyerApplication(db, req, res);
-    })
+    });
+
+    // approve buyer application
+    app.post('/approveBuy', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new forSale();
+      temp.approveBuy(db, req, res);
+    });
+
+    // reject buyer application
+    app.post('/rejectBuy', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new forSale();
+      temp.rejectBuy(db, req, res);
+    });
 
   //Buy Request
   app.post("/buyRequest", buyRequest);
