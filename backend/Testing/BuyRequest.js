@@ -1,17 +1,7 @@
 var nodemailer = require('nodemailer');
 const sendEmail = require("../Testing/sendEmail");
 const db = require("./db.js");
-// npm install nodemailer --save
-// let transporter = nodemailer.createTransport({
-//     service: 'yahoo',
-//     host: 'smtp.mail.yahoo.com',
-//     port: 465,
-//     secure: false,
-//     auth: {
-//       user: 'lyn12345yin@yahoo.com',
-//       pass: 'obkshrugxrapkoza'
-//     }
-//   });
+
 
   const buyRequest = (req, res) => {
     //const { userEmail, name, offer} = req.body;
@@ -22,7 +12,7 @@ const db = require("./db.js");
     var offer_price = req.body.offer;
     var offer_status = 'P'; //pending status
     let cols = [property_ID];
-    db.query('SELECT Owner_ID, Realtor_ID from for_sale where S_ID = ?', cols, (err, data) => {
+    db.query('SELECT Owner_ID, Realtor_ID, pic_dir from for_sale where S_ID = ?', cols, (err, data) => {
       if(err) {
         console.log(err);
         res.json({
@@ -32,9 +22,10 @@ const db = require("./db.js");
       }
 
       let owner_ID = data[0].Owner_ID;
+      let main_pic = data[0].pic_dir + "/outside.png";
       //let realtor_ID = data[0].Realtor_ID;
-      let col = [Buyer_ID, property_ID, owner_ID, buyer_name, offer_price, offer_status];
-      db.query('INSERT INTO buyer_application VALUES (?,?,?,?,?,?)', col, (err) =>{
+      let col = [Buyer_ID, property_ID, owner_ID, buyer_name, offer_price, offer_status, main_pic];
+      db.query('INSERT INTO buyer_application VALUES (?,?,?,?,?,?,?)', col, (err) =>{
         if(err) {
             console.log(err);
             res.json({
@@ -66,23 +57,7 @@ const db = require("./db.js");
             req.emailContent = emailContent;
             var temp = new sendEmail();
             temp.sendEmail(req, res);
-            // let message = {
-            //     from: 'lyn12345yin@yahoo.com',
-            //     to: ownerEmail,
-            //     subject: "Buy Request",
-            //     text: emailContent,
-            //   };
-            
-            //   transporter
-            //     .sendMail(message)
-            //     .then(() => {
-            //       //return res
-            //       res.json({
-            //         success: true,
-            //         msg: ''
-            //         });
-            //     })
-            //     .catch((error) => console.error(error));
+
     
     
         });

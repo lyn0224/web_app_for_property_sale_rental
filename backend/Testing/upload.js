@@ -12,7 +12,7 @@ const imageFilter = (req, file, cb) => {
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-      pic_path = 'public/forSale/';
+      f_path = 'public/forSale/';
       db.query('SELECT MAX(S_ID) AS ID FROM for_sale', (err, data) => {
         if(err) {
           console.log(err);
@@ -23,14 +23,16 @@ var storage = multer.diskStorage({
         }
 
         if(data[0].ID === null){
-          pic_path = pic_path + '1/';
+          pic_path = f_path + '1/';
           !fs.existsSync(pic_path) && fs.mkdirSync(pic_path);
           cb(null, pic_path);
           
           }
         else{
           //console.log(data);
-          pic_path = pic_path + (data[0].ID+1) + '/';
+          pic_path = f_path + (data[0].ID+1) + '/';
+          console.log("pic_path: " + pic_path);
+          console.log("file path: " + f_path);
           !fs.existsSync(pic_path) && fs.mkdirSync(pic_path);
           cb(null, pic_path);
           
