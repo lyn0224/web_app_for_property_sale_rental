@@ -6,6 +6,7 @@ export default class ItemAdd extends React.Component {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
+            current: 0,
             image: [],
             imagePreviewUrl: []
         }
@@ -27,15 +28,22 @@ export default class ItemAdd extends React.Component {
 
     handleImageChange(e) {
         e.preventDefault();
-        let reader = new FileReader();
-        let file = e.target.files[0];
-        reader.onloadend = () => {
-            this.setState({
-                image: [...this.state.image, file],
-                imagePreviewUrl: [...this.state.imagePreviewUrl, reader.result]
-            });
+        const maxCount = this.props.maxCount;
+        this.state.current = this.state.image.length;
+        console.log(this.state.current);
+        if(this.state.current < maxCount){
+            let reader = new FileReader();
+            let file = e.target.files[0];
+            reader.onloadend = () => {
+                this.setState({
+                    image: [...this.state.image, file],
+                    imagePreviewUrl: [...this.state.imagePreviewUrl, reader.result]
+                });
+            }
+            reader.readAsDataURL(file)
+        }else{
+            alert(this.state.current + " pictures limit.");
         }
-        reader.readAsDataURL(file)
     }
 
     render() {

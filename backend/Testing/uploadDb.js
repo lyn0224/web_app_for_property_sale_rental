@@ -2,8 +2,6 @@ const db = require('../Testing/db');
 
 const uploadFiles = async (req, res) => {
   try {
-    console.log("req.files", req.files);
-    console.log("req", req);
     //console.log(req.files);
     //console.log(req);
     // if (req.files == undefined) {

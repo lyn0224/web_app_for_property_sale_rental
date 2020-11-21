@@ -28,7 +28,9 @@ function SellByOwner() {
     const [status, setStatus] = useState('');
     const [uploadedPicture, setUploadedPicture] = useState([]);
 
-    const handleListing = async(newItem) => {
+    const createItem= async(newItem) => {
+        console.log(newItem);
+        console.log('PHOTO:', newItem.image);
         const formData = new FormData();
         formData.append('main', newItem.image[0]);
         formData.append('others', newItem.image);
@@ -40,7 +42,7 @@ function SellByOwner() {
         formData.append('city', city);
         formData.append('state', states);
         formData.append('zip', zipCode);
-        formData.append('price',price);
+        formData.append('price', price);
         formData.append('bedroom', bed);
         formData.append('bathroom', bath);
         formData.append('livingroom', living);
@@ -50,9 +52,23 @@ function SellByOwner() {
         formData.append('year', year);
         formData.append('description', description);
         formData.append('status', 'A');
-        // console.log(formData);
-        // console.log("main", formData.get('main'));
-        // console.log("others", formData.get('others'));
+        console.log(formData.get('main'));
+        console.log(formData.get('others'));
+        console.log(formData.get('p_type'));
+        console.log(formData.get('street'));
+        console.log(formData.get('apt_num'));
+        console.log(formData.get('state'));
+        console.log(formData.get('zip'));
+        console.log(formData.get('price'));
+        console.log(formData.get('bedroom'));
+        console.log(formData.get('bathroom'));
+        console.log(formData.get('livingroom'));
+        console.log(formData.get('flooring'));
+        console.log(formData.get('parking'));
+        console.log(formData.get('area'));
+        console.log(formData.get('year'));
+        console.log(formData.get('description'));
+        console.log(formData.get('status'));
         axios
           .post(
             'http://localhost:9000/upload',
@@ -63,49 +79,68 @@ function SellByOwner() {
             setUploadedPicture(response.data);
           })
           .catch(error => console.log('error ' + error));
+        // try{
+        //     let res = await fetch('http://localhost:9000/upload', {
+        //         method: 'post',
+        //         body: JSON.stringify({
+        //             formData: formData,
+        //             main: formData.get('main'),
+        //             others: formData.get('others')
+        //         })
+        //     });
+        //     let result = await res.json();
+        //     //console.log(result);
+        //     if(result && result.success){
+        //         console.log(result);
+        //     }else if(result && result.success === false){
+        //         alert(result.msg);
+        //     }
+        // }catch(e){
+        //     console.log(e);
+        // }
     }
 
-    // async function handleListing (event){
-    //     event.preventDefault();
-    //     try{
-    //         let res = await fetch('http://localhost:9000/upload', {
-    //             method: 'post',
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 propertyType: propertyType,
-    //                 streetAddress : streetAddress,
-    //                 aptNum: aptNum,
-    //                 city: city,
-    //                 zipCode: zipCode,
-    //                 states: states,
-    //                 bed: bed,
-    //                 bath: bath,
-    //                 area: area,
-    //                 living: living,
-    //                 floor: floor,
-    //                 parking: parking,
-    //                 year: year,
-    //                 price: price,
-    //                 pictures: pictures,
-    //                 description: description,
-    //                 uploadedPicture: uploadedPicture
-    //             })
-    //         });
-    //         let result = await res.json();
-    //         console.log(result);
-    //         if(result && result.success){
-    //             console.log("successful post");
-    //         }else if(result && result.success === false){
-    //             alert(result.msg);
-    //         }
-    //     }catch(e){
-    //         console.log(e);
+    async function handleListing (event){
+        event.preventDefault();
+        try{
+            let res = await fetch('http://localhost:9000/upload', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    propertyType: propertyType,
+                    streetAddress : streetAddress,
+                    aptNum: aptNum,
+                    city: city,
+                    zipCode: zipCode,
+                    states: states,
+                    bed: bed,
+                    bath: bath,
+                    area: area,
+                    living: living,
+                    floor: floor,
+                    parking: parking,
+                    year: year,
+                    price: price,
+                    pictures: pictures,
+                    description: description,
+                    uploadedPicture: uploadedPicture
+                })
+            });
+            let result = await res.json();
+            console.log(result);
+            if(result && result.success){
+                console.log("successful post");
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
     
-    //     }
-    // }
+        }
+    }
     const isInvalid = propertyType === '' || streetAddress === '' || aptNum === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '';
 
     return (
@@ -114,7 +149,7 @@ function SellByOwner() {
                 <Form.Title>Post a For Sale by Owner Listing</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
                 
-                <Form.Base onSubmit={handleListing} method="POST">
+                <Form.Base>
                     <Form.Input
                         placeholder="Propert yType"
                         value={propertyType}
@@ -209,10 +244,10 @@ function SellByOwner() {
                         onChange={({ target }) => setDescription(target.value)}
                         style={{height: "300px"}}
                     />
-                    <ItemAdd createItem={handleListing} />
-                    <Form.Submit disabled={isInvalid} type="submit">
+                    <ItemAdd maxCount="6" type="Main" createItem={createItem} />
+                    {/* <Form.Submit disabled={isInvalid} type="submit">
                         Continue
-                    </Form.Submit>
+                    </Form.Submit> */}
                 </Form.Base>
             </Form>
         </>
