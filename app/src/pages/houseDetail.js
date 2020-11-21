@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom'
 import { Context } from '../context/housesContext';
 import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
+import LoadingContainer from '../containers/LoadingContainer'
 function HouseDetail(props){
     const {houses} = useContext(Context);
     const {id} = useParams()
@@ -136,7 +137,7 @@ function HouseDetail(props){
     else
     {return (
         <>
-            <Houseinfo.Text>loading...</Houseinfo.Text>
+            <LoadingContainer/>
         </>
     )}
 }

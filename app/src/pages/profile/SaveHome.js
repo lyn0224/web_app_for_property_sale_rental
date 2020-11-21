@@ -3,7 +3,7 @@ import { Housecard } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import { Context } from '../../context/housesContext';
-import Loading from "../../components/loading"
+import Loading from "../../containers/LoadingContainer"
 
 // import {Context} from "../../context/SaveHomeContext"
 

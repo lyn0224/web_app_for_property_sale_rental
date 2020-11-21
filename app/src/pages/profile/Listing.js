@@ -2,7 +2,7 @@ import React,{useEffect,useContext,useState} from 'react'
 import { Housecard } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
-import Loading from "../../components/loading"
+import Loading from "../../containers/LoadingContainer"
 function Listing() {
     const user = JSON.parse(localStorage.getItem('authUser'))
     const Application_URL = `http://localhost:9000/users/${user.id}/forSaleListing`

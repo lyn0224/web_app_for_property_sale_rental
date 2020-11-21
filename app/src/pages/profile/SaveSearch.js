@@ -1,6 +1,6 @@
 import React,{useEffect,useContext} from 'react'
 import * as ROUTES from '../../constants/routes'
-import Loading from "../../components/loading"
+import Loading from "../../containers/LoadingContainer"
 function SaveSearch() {
 
     
@@ -23,6 +23,7 @@ function SaveSearch() {
              <div>
                 This is Save Search page!
             </div>
+            <Loading/>
             </>
         )
    

@@ -3,7 +3,7 @@ import React,{useContext} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
-import Loading from "../components/loading"
+import Loading from "../containers/LoadingContainer"
 function Housecards({props}){
     const {houses,search,favorite,addFavorite,removeFavorite} = useContext(Context);
     const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite}/>:<Housecard.notFavorite addFavorite={addFavorite}/>
