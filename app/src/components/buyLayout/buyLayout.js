@@ -1,5 +1,4 @@
 import React from 'react'
-import FilterBar from '../FilterBar';
 import { Container, Map, List,SecondSection,Search,SearchIcon,SearchInput,FirstSection,Footer,Button, ButtonSection, ButtonCircle} from './styles/style';
 function Buy({children, ...restProps}){
     return(
@@ -65,6 +64,8 @@ Buy.Search = function BuySearch ({ searchTerm, setSearchTerm,find_result, ...res
         </Search>
     )
 } 
+
+// did not follow the format
 
 Buy.ButtonSection = function BuyButton({ children, ...restProps }){
     return (

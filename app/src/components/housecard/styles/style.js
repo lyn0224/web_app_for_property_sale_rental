@@ -6,14 +6,14 @@ export const Container = styled.div`
         overflow: scroll;
         overflow-x: hidden;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px,300px));
+        grid-template-columns: repeat(auto-fill, minmax(300px,400px));
         grid-template-rows: repeat(auto-fill, minmax(auto));
         justify-content: center;  
         box-shadow: -5px 0px 10px -5px rgb(98, 98, 98);
 `
 export const Base = styled.div`
     max-width: 300px;
-    max-height: 350px;
+    max-height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,11 +40,12 @@ export const CardButton = styled.button`
 
 export const Title = styled.p`
         color:black;
-
+        font-size:1.3rem;
 `
 
 export const Text = styled.p`
         color:black;
+        margin:0;
 `
 
 export const Link = styled.a`
@@ -52,4 +53,23 @@ export const Link = styled.a`
             text-decoration:none;
         }
 `
-
+export const Favorite = styled.i`
+        position: absolute;
+        color: pink;
+        font-size:30px;
+        top: 5px;
+        right: 105px;
+        z-index:1;
+        cursor: pointer;
+        &:hover{
+                opacity:0.7;
+        }
+`
+export const ImageContainer = styled.div`
+        position:relative
+      
+`
+export const TextContainer = styled.div`
+        position:relative
+        display:flex;
+`

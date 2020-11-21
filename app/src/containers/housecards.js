@@ -3,21 +3,35 @@ import React,{useState,useContext,useEffect} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
-import FilterBar from '../components/FilterBar'
+
+
 import Loading from "../components/loading"
 function Housecards({props}){
-    const {houses,search} = useContext(Context);
-
+    const {houses,search,favorite,addFavorite,removeFavorite} = useContext(Context);
+    const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite}/>:<Housecard.notFavorite addFavorite={addFavorite}/>
     
+
     function singlecard(obj){
+        // console.log(obj.main_dir)
         return (
-        <Housecard.Base key = {obj.S_ID} >                          
+        
+        <Housecard.Base key = {obj.S_ID} >  
+            <Housecard.ImageContainer> 
+                {icon}      
+                </Housecard.ImageContainer>                 
             <Housecard.Link to = {`${ROUTES.BUY}/${obj.S_ID}` }>
                 
-                <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/>
-                <Housecard.Title>city : {obj.city}</Housecard.Title>
-                <Housecard.Text>street : {obj.street}</Housecard.Text>
-                <Housecard.Text>Price : {obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Text>
+                {/* <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/> */}
+                <Housecard.ImageContainer>
+                    
+                    
+                    <Housecard.img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
+                </Housecard.ImageContainer>
+                <Housecard.TextContainer>
+                    <Housecard.Title>city : {obj.city}</Housecard.Title>
+                    <Housecard.Text>street : {obj.street}</Housecard.Text>
+                    <Housecard.Text>Price : {obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Text>
+                </Housecard.TextContainer>
 
             </Housecard.Link>
             
@@ -25,7 +39,6 @@ function Housecards({props}){
         )
     }
     
-    console.log(search);
     if(houses && !search){
         const  cards = houses.map(house=>singlecard(house));
         return(

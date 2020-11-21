@@ -1,6 +1,6 @@
 import  React from 'react'
 import{Link as ReactRouterLink} from 'react-router-dom'
-import { Container, CardImg, CardButton, Title, Text,Link,Base} from './styles/style';
+import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer} from './styles/style';
 
 function Housecard({children,...restProps}){
     return <Container {...restProps}>
@@ -27,8 +27,23 @@ Housecard.Link = function HousecardLink({to,children,...restProps}){
 Housecard.img = function HousecardImg({src,alt, children,...restProps}){
     return(
             <CardImg src = {src} alt = {alt} {...restProps}>
+               
                 {children}
                 </CardImg>
+    )
+}
+Housecard.Favorite = function HousecardFavorite({children, removeFavorite,...restProps}){
+    return(
+        <Favorite {...restProps} onClick = {()=>removeFavorite()}>
+            <i class="fas fa-heart" ></i>
+        </Favorite>
+    )
+}
+Housecard.notFavorite = function HousecardnotFavorite({children,addFavorite,...restProps}){
+    return(
+        <Favorite {...restProps} onClick = {()=>addFavorite() }>
+            <i class="far fa-heart"></i>
+        </Favorite>
     )
 }
 Housecard.Button = function HousecardButton({to,children,...restProps}){
@@ -54,5 +69,20 @@ Housecard.Text = function HousecardText({children,...restProps}){
         <Text {...restProps}>
             {children}
         </Text>
+    )
+}
+Housecard.ImageContainer = function HousecardImageContainer({children,...restProps}){
+        return(
+            <ImageContainer {...restProps}>
+                {children}
+            </ImageContainer>
+        )
+}
+
+Housecard.TextContainer = function HousecardTextContainer({children,...restProps}){
+    return(
+        <TextContainer {...restProps}>
+            {children}
+        </TextContainer>
     )
 }

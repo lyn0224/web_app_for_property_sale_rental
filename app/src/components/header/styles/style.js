@@ -6,6 +6,7 @@ export const Container = styled.div`
     height : 90px;
     justify-content: space-around;
     padding: 1rem 0;
+    border-bottom: 1px solid #cccccc;
     @media (max-width: 600px){
         flex-direction: column;
         font-size : 1rem;
