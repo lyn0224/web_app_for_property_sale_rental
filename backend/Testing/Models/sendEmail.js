@@ -20,7 +20,7 @@ let transporter = nodemailer.createTransport({
 //     },
 //   });
 
-  const signup = (req, res) => {
+  const sendEmail = (req, res) => {
     //const { userEmail, name } = req.body;
 
     // then send the email
@@ -65,4 +65,4 @@ let transporter = nodemailer.createTransport({
 //   }
 // });
 
-module.exports = signup;
+module.exports = sendEmail;

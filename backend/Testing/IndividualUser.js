@@ -1,14 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const db = require('../Testing/db');
 //npm install express multer --save
-class forSaleRouter{
+class individualUser{
 
-        getAllImage(db, req, res) {
-            // let username = req.body.username;
-            // let userID = req.body.id;
-
-             //let cols = ['%outside%'];
-            db.query("SELECT * from for_sale WHERE sale_status = 'A'", (err, data) => {
+        forSaleListing(db, req, res) {
+            db.query("SELECT * from for_sale WHERE Owner_ID = ?", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -18,6 +15,7 @@ class forSaleRouter{
                     })
                     return;
                 }
+
                 var i;
                 for(i=0; i<data.length; i++){
                     //data[i].pic_dir = data[i].pic_dir + '/outside.png'
@@ -36,9 +34,6 @@ class forSaleRouter{
                     data[i].pic_dir = pic_array;
                     data[i].main_dir = pic_folder + "/outside.PNG";
                 }
-                console.log(data[0].pic_dir)
-                console.log(data);
-            
                 res.json({
                     success: true,
                     dataset: data
@@ -50,12 +45,12 @@ class forSaleRouter{
         }
 
 
-        updateListing(db, req, res) {
+        buyerApplication(db, req, res) {
             //let fdata = req.body;
             //let cols = [fdata.owner, fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, pic_path];
             let sql = "UPDATE for_sale SET status = 'S' WHERE S_ID = 1";
             //console.log(cols);
-            db.query(sql, (err) => {
+            db.query("SELECT * from buyer_application WHERE owner_ID = ?", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -67,17 +62,17 @@ class forSaleRouter{
                 }
                 //console.log(data);
                 res.json({
-                success: true
+                success: true,
+                dataset: data
                 });
                 return;
             });
 
         }
 
-        deleteListing(db, req, res) {
-            //console.log(cols);
-            let dir = 'public/forSale/' + req.body.S_ID;
-            db.query("DELETE from for_sale WHERE S_ID = ?", [req.body.S_ID], (err) => {
+        favSearch(db, req, res) {
+            
+            db.query("SELECT * from favorite_search WHERE U_ID = ?", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -87,28 +82,20 @@ class forSaleRouter{
                     });
                     return;
                 }
-                // once deleted from database, delete pictures in the forSale folder
-                fs.rmdir(dir, { recursive: true }, (err) => {
-                    if (err) {
-                        throw err;
-                    }
-                    console.log(`${dir} is deleted!`);
-                });
+                //console.log(data);
+                
+
                 res.json({
-                success: true
-                });
-                return;
+                    success: true,
+                    dataset: data
+                    });
+                    return;
             });
 
         }
 
-        openHouse(db, req, res) {
-            let property_ID = req.body.S_ID;
-            let from_date = req.body.from_date;
-            let to_date = req.body.to_date;
-            let cols = [property_ID, from_date, to_date]
-            //console.log(cols);
-            db.query("INSERT INTO open_house VALUES (?,?,?)", cols, (err) => {
+        favHouse(db, req, res) {
+            db.query("SELECT * from favorite_home WHERE U_ID = ?", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -120,12 +107,13 @@ class forSaleRouter{
                 }
                 //console.log(data);
                 res.json({
-                success: true
-                });
-                return;
+                    success: true,
+                    dataset: data
+                    });
+                    return;
             });
 
         }
  
 }
-module.exports = forSaleRouter;
+module.exports = individualUser;

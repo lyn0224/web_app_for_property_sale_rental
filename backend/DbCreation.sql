@@ -54,10 +54,10 @@ bedroom        INT            NOT NULL,
 bathroom       INT            NOT NULL,
 livingroom         INT            NOT NULL,
 flooring       VARCHAR(20)    NOT NULL,
-parking         INT           NOT NULL,
+parking         BOOLEAN    NOT NULL,
 area            INT            NOT NULL,
 year_built      INT           NOT NULL,
-description    TEXT          ,
+introduction    TEXT          ,
 pic_dir       VARCHAR(200)   NOT NULL,
 PRIMARY KEY (S_ID),
 FOREIGN KEY (Owner_ID) REFERENCES ACCOUNT(ID)
@@ -120,15 +120,17 @@ FOREIGN KEY (S_ID) REFERENCES FOR_SALE(S_ID)
 
 create table BUYER_APPLICATION(
 Buyer_ID       INT           NOT NULL,
-property_ID           INT           NOT NULL,
-Fname          VARCHAR(50)   NOT NULL,
-Lname          VARCHAR(50)   NOT NULL,
+property_ID    INT           NOT NULL,
+owner_ID       INT           NOT NULL,
+buyer_name          VARCHAR(100)   NOT NULL,
 offer_price    INT           NOT NULL,
 offer_status   CHAR          NOT NULL,
 PRIMARY KEY (Buyer_ID, property_ID),
 FOREIGN KEY (Buyer_ID) REFERENCES ACCOUNT(ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE,
 FOREIGN KEY (property_ID) REFERENCES FOR_SALE(S_ID)
+					ON UPDATE CASCADE  ON DELETE CASCADE,
+FOREIGN KEY (owner_ID) REFERENCES ACCOUNT(ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE);
 /*
 offer_status 
@@ -142,7 +144,7 @@ create table FOR_RENT (
 R_ID           INT           NOT NULL auto_increment,
 Owner_ID           INT           NOT NULL,
 Realtor_ID     INT,
-property_type  VARCHAR(20)   NOT NULL,
+property_type  VARCHAR(20)     NOT NULL,
 apt_num        INT,
 street         VARCHAR(100)   NOT NULL,
 city           VARCHAR(15)   NOT NULL,
@@ -155,7 +157,7 @@ security_deposit INT          NOT NULL,
 bedroom        INT            NOT NULL,
 bathroom       INT            NOT NULL,
 living         INT            NOT NULL,
-parking        INT             NOT NULL,
+parking        BOOLEAN    NOT NULL,
 flooring       VARCHAR(50)     NOT NULL,
 size_sqft       INT            NOT NULL,
 year_built     INT             NOT NULL,
