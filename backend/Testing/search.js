@@ -5,16 +5,16 @@ class searchRouter {
   get TableName() {
     const sql = `
     (
-      select R_ID,Owner_ID,Realtor_ID,property_type,apt_num,street_num,street,city,state,zip, '' sale_status, 0 price,   available_date,     rate,   lease_term,  security_deposit, bedroom,bathroom,living,    parking,flooring,0 area, size_sqft,   year_built,    ammenities, pic_dir from FOR_RENT
+      select 'r' search_type, R_ID,Owner_ID,Realtor_ID,property_type,apt_num,street_num,street,city,state,zip, '' sale_status, 0 price,   available_date,     rate,   lease_term,  security_deposit, bedroom,bathroom,living,    parking,flooring,0 area, size_sqft,   year_built,    ammenities, pic_dir from FOR_RENT
       union all
-      select S_ID,Owner_ID,Realtor_ID,property_type,apt_num,street_num,street,city,state,zip, sale_status,      price,  '' available_date, 0 rate, 0 lease_term,0 security_deposit, bedroom,bathroom,livingroom,parking,flooring,  area, 0 size_sqft, year_built, '' ammenities, pic_dir from FOR_SALE
+      select 'b' search_type, S_ID,Owner_ID,Realtor_ID,property_type,apt_num,street_num,street,city,state,zip, sale_status,      price,  '' available_date, 0 rate, 0 lease_term,0 security_deposit, bedroom,bathroom,livingroom,parking,flooring,  area, 0 size_sqft, year_built, '' ammenities, pic_dir from FOR_SALE
     )
     `
     return sql;
   }
 
   async execSQL(db, sql) {
-    // console.log('sql:', sql);
+    console.log(`ExecuteSQL: [ ${sql} ]`);
     return new Promise((resolve, reject) => {
       db.query(sql, (err, rows, fields) => {
         if (err) {
@@ -35,7 +35,21 @@ class searchRouter {
     if (!token) {
       return;
     }
-    const tokenInfo = jwt.verify(token, 'cmpe202key');
+    const [isExpired, tokenInfo] = await new Promise((resolve, reject) => {
+      jwt.verify(token, 'cmpe202key', (err, decoded) => {
+        if (err) {
+          resolve([false, null]);
+        } else {
+          resolve([true, decoded.user])
+        }
+      });
+    })
+    if (!isExpired) {
+      return;
+    }
+    const { id } = tokenInfo;
+
+
     console.log(tokenInfo);
     // to do...
   }
@@ -49,16 +63,19 @@ class searchRouter {
    * @memberof searchRouter
    */
   async begin(db, req) {
-    console.log('----------', req.headers.token)
+    // console.log('----------', req.headers.token)
     const token = req.headers.token;
-
-
-    const { keyword, page, size } = req.query;
+    const { keyword = '', page, size, search_type } = req.query;
     // const p = Number(page || 1) || 1;
     // const s = Number(size || 10) || 10;
     // save search keywor to favorite_search table
-    await this.saveSearchKeyword(db, keyword, token);
-    const where = `t.street like '%${keyword}%' or t.city like '%${keyword}%' or t.zip like '%${keyword}%' or t.flooring like '%${keyword}%'`
+
+    this.saveSearchKeyword(db, keyword, token, search_type);
+
+    let where = `(t.street like '%${keyword}%' or t.city like '%${keyword}%' or t.zip like '%${keyword}%' or t.flooring like '%${keyword}%')`
+    if (search_type) {
+      where += ` and t.search_type = '${search_type}'`
+    }
     // let sql = `select * from ${this.TableName} t where ${where} limit ${(p - 1) * s},${s}`
     // const list = await this.execSQL(db, sql);
     // sql = `select count(1) total from ${this.TableName} t where ${where} `;
@@ -71,4 +88,3 @@ class searchRouter {
 }
 
 module.exports = searchRouter;
-  
