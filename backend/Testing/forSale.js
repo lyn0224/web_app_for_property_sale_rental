@@ -2,37 +2,6 @@ const fs = require('fs');
 const path = require('path');
 //npm install express multer --save
 class forSaleRouter{
-        getMainImage(db, req, res) {
-            // let username = req.body.username;
-            // let userID = req.body.id;
-
-             //let cols = ['%outside%'];
-            db.query("SELECT * from for_sale WHERE sale_status = 'A'", (err, data) => {
-
-                if(err) {
-                    console.log(err);
-                    res.json({
-                        success: false,
-                        msg: 'false'
-                    })
-                    return;
-                }
-                var i;
-                for(i=0; i<data.length; i++){
-                    data[i].pic_dir = data[i].pic_dir + '/outside.png'
-                }
-                //console.log(data[0].pic_dir)
-                //console.log(data);
-            
-                res.json({
-                    success: true,
-                    dataset: data
-                });
-                return;
-                
-            });
-
-        }
 
         getAllImage(db, req, res) {
             // let username = req.body.username;
@@ -106,9 +75,40 @@ class forSaleRouter{
         }
 
         deleteListing(db, req, res) {
-            let sql = "DELETE from for_sale WHERE S_ID = 1";
             //console.log(cols);
-            db.query(sql, (err) => {
+            let dir = 'public/forSale/' + req.body.S_ID;
+            db.query("DELETE from for_sale WHERE S_ID = ?", [req.body.S_ID], (err) => {
+
+                if(err) {
+                    console.log(err);
+                    res.json({
+                    success: false,
+                    msg: ''
+                    });
+                    return;
+                }
+                // once deleted from database, delete pictures in the forSale folder
+                fs.rmdir(dir, { recursive: true }, (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                    console.log(`${dir} is deleted!`);
+                });
+                res.json({
+                success: true
+                });
+                return;
+            });
+
+        }
+
+        openHouse(db, req, res) {
+            let property_ID = req.body.S_ID;
+            let from_date = req.body.from_date;
+            let to_date = req.body.to_date;
+            let cols = [property_ID, from_date, to_date]
+            //console.log(cols);
+            db.query("INSERT INTO open_house VALUES (?,?,?)", cols, (err) => {
 
                 if(err) {
                     console.log(err);
