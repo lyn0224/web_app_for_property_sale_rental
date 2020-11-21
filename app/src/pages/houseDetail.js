@@ -12,9 +12,9 @@ function HouseDetail(props){
     const [house,setHouse] = useState()
     const [check,setCheck] = useState(false)
     const [display,setDisplay] = useState("none")
-    const [name,setName]= useState()
-    const [Application_price,setApplication_price]= useState()
-
+    const [name,setName]= useState('')
+    const [Application_price,setApplication_price]= useState('')
+    const user = JSON.parse(localStorage.getItem('authUser'));
     const isInvalid =  name === '' || Application_price === '';
     useEffect(()=>{
         if(houses !== undefined){
@@ -45,10 +45,15 @@ function HouseDetail(props){
         <Houseinfo.img key = {Math.random() } src = {image}/>
     )): "null";
     
-    const Applicaiton_URL = "#"
+    const Applicaiton_URL = "http://localhost:9000/buyRequest"
     async function handleApplication (event){
-        //console.log(username, emailAddress, password, firstName, lastName, zipcode, phone);
+        
         event.preventDefault();
+        if(user){
+            console.log(user.id)
+            console.log(house.S_ID)
+            console.log(name)
+            console.log(Application_price)
             try{
                 let res = await fetch(Applicaiton_URL, {
                     method: 'post',
@@ -57,14 +62,18 @@ function HouseDetail(props){
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
+                        ID : user.id,
+                        S_ID : house.S_ID,
                         name: name,
-                        price : Application_price,
+                        offer : Application_price,
                         // houseinfo:house,
                     })
                 });
                 let result = await res.json();
                 console.log(result);
+                alert(result.msg);
                 if(result && result.success){
+                    alert(result.msg);
                     console.log("successful submited applciation");
                 }else if(result && result.success === false){
              
@@ -74,6 +83,9 @@ function HouseDetail(props){
                 console.log(e);
       
             }
+        }else{
+            alert("you need signin to use this function")
+        }
     }
     if(check) {
         return(
@@ -115,11 +127,9 @@ function HouseDetail(props){
                                  onChange={({ target }) => setApplication_price(target.value)}>
                             </Application.Input>
 
-                            <Application.Submit disabled={!isInvalid}>Submit</Application.Submit>
+                            <Application.Submit disabled={isInvalid} onclick={toggleDisplay}>Submit</Application.Submit>
                         </Application.InputArea>
-                </Application.Base>
-           
-            
+                </Application.Base>  
           </>
         )
     }

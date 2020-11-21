@@ -1,10 +1,8 @@
 import { Housecard } from '../components/export';
-import React,{useState,useContext,useEffect} from 'react'
+import React,{useContext} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
-
-
 import Loading from "../components/loading"
 function Housecards({props}){
     const {houses,search,favorite,addFavorite,removeFavorite} = useContext(Context);
@@ -38,7 +36,8 @@ function Housecards({props}){
         </Housecard.Base>
         )
     }
-    
+    // console.log(houses)
+    // console.log(search)
     if(houses && !search){
         const  cards = houses.map(house=>singlecard(house));
         return(
