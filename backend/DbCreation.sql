@@ -122,7 +122,7 @@ create table BUYER_APPLICATION(
 Buyer_ID       INT           NOT NULL,
 property_ID    INT           NOT NULL,
 owner_ID       INT           NOT NULL,
-name          VARCHAR(100)   NOT NULL,
+buyer_name          VARCHAR(100)   NOT NULL,
 offer_price    INT           NOT NULL,
 offer_status   CHAR          NOT NULL,
 PRIMARY KEY (Buyer_ID, property_ID),
