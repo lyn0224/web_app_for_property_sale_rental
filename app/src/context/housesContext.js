@@ -5,7 +5,10 @@ function HousesProvider({children}) {
     const [houses,setHouses] = useState()
     const [search,setSearch] = useState()
     const [favorite,setFavorite] = useState()
-    const [filter,setFilter] = useState()
+    const [type,setType] = useState()
+    const [bed,setBed] = useState(0)
+    const [bath,setBath] = useState(0)
+    const [parking, setParking] = useState();
     const [minPrice, setMinPrice] = useState("0");
     const [maxPrice, setMaxPrice] = useState("10000000");
     const [minSize, setMinSize] = useState(0);
@@ -16,9 +19,21 @@ function HousesProvider({children}) {
     const Remove_URL = "#";
     const Add_URL = "#"
     const user = JSON.parse(localStorage.getItem('authUser'));
+
+
+
     useEffect( ()=>{
         fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
-
+        if(houses){
+            let minP = Math.min(...houses.map(item => item.price));
+            let maxP = Math.max(...houses.map(item => item.price));
+            let maxS = Math.max(...houses.map(item => item.size));
+            let minS = Math.max(...houses.map(item => item.size));
+            setMinPrice(minP)
+            setMinSize(minS)
+            setMaxPrice(maxP)
+            setMaxSize(maxS)
+        }
         if(user){
             try{
                 fetch(Favorite_URL, {
@@ -40,6 +55,7 @@ function HousesProvider({children}) {
             }
        }
     },[])
+
     function find_result(input){
         console.log(input)
         if(!input){
@@ -48,7 +64,6 @@ function HousesProvider({children}) {
             const array = houses.filter(house=>house.Owner_ID == input || house.city ==input)
             setSearch(array)
         }
-        
     }
 
     function handleChange(event){
@@ -56,40 +71,38 @@ function HousesProvider({children}) {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = event.target.name;
         const id = event.target.id;
-        let tempHouses = [...houses];
         let minPrice = 0;
         let maxPrice = 100000000;
         let bed = 0;
         let bath = 0;
-        
         if(name === "type"){
             if (value !== 'all') {
-                tempHouses = tempHouses.filter(house => house.property_type === value);
+                setType(value);
+                // tempHouses = tempHouses.filter(house => house.property_type === value);
             }
         }
         if(name === "bed"){
             if(bed !== "any"){
-                tempHouses = tempHouses.filter(house=>house.bedroom >= value);
+                setBed(value);
+                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
             }
         }
         if(name === "bath"){
             if(bath !== "any"){
-                tempHouses = tempHouses.filter(house=>house.bedroom >= value);
+                setBath(value);
+                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
             }
         }
         if(name === "minPrice"){
-            if(value >= minPrice){
-                minPrice = value;
+            if(value <= minPrice){
+                setMinPrice(value);
             }
         }
         if(name === "maxPrice"){
-            if(value <= maxPrice){
-                maxPrice = value;
+            if(value >= maxPrice){
+                setMaxPrice(value);
             }
         }
-        console.log(tempHouses);
-        tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
-
         if(name === "minSize"){
             // maxSize = value;
             setMinSize(value);
@@ -98,17 +111,27 @@ function HousesProvider({children}) {
             // maxSize = value;
             setMaxSize(value);
         }
-
-        // console.log("min", minSize)
-        // console.log("max", maxSize)
         if(name === "parking"){
-            console.log(value);
-            tempHouses = tempHouses.filter(house => house.parking === value);
+            // console.log(value);
+            // tempHouses = tempHouses.filter(house => house.parking === value);
+            setParking(value);
         }
 
-        tempHouses = tempHouses.filter(house => house.area >= minSize && house.area <= maxSize);
+        // tempHouses = tempHouses.filter(house => house.area >= minSize && house.area <= maxSize);
+        filterHouses();
+    }
 
-        setSearch(tempHouses)
+    function filterHouses(){
+        let tempHouses = [...houses];
+        tempHouses = tempHouses.filter(house => house.p_type === type);
+        tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
+        tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
+        tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
+        tempHouses = tempHouses.filter(house=>house.size <= maxSize && house.price >= minSize)
+        if(parking){
+            tempHouses = tempHouses.filter(house => house.parking === parking);
+        }
+        setSearch(tempHouses);
     }
 
     async function removeFavorite(house){
