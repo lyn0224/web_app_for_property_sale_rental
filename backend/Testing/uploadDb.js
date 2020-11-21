@@ -2,15 +2,15 @@ const db = require('../Testing/db');
 
 const uploadFiles = async (req, res) => {
   try {
-    console.log(req.files);
-    console.log(req);
-    if (req.files == undefined) {
-        res.json({
-            success: false,
-            msg: "please select a file to upload"
-        });
-        return;
-    }
+    console.log("req.files", req.files);
+    console.log("req", req);
+    // if (req.files == undefined) {
+    //     res.json({
+    //         success: false,
+    //         msg: "please select a file to upload"
+    //     });
+    //     return;
+    // }
 
     
     db.query('SELECT MAX(S_ID) AS ID FROM for_sale', (err, data) => {

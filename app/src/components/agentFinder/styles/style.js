@@ -11,6 +11,7 @@ export const FirstSection = styled.div`
     margin: 0 auto;
     text-align:center;
     margin-bottom: 50px;
+    height: 800px;
     p1{
         line-height: 50px;
         color: green;
