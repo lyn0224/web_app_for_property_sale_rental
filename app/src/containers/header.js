@@ -27,6 +27,9 @@ function HeaderContainer(props){
                             <Header.TextLink to ='#'>Listing</Header.TextLink>
                         </Header.Group>
                         <Header.Group>
+                            <Header.TextLink to ={ROUTES.APPLICATION}>Application</Header.TextLink>
+                        </Header.Group>
+                        <Header.Group>
                             <Header.TextLink to ={ROUTES.ACCOUNT_SETTING}>Account Setting</Header.TextLink>
                         </Header.Group>
                         <Header.Group>

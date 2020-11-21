@@ -54,6 +54,6 @@ Application.TextArea = function ApplicationTextArea({ children, ...restProps }) 
 Application.Close = function ApplicationClose({toggleDisplay, children, ...restProps }) {
     return <Close {...restProps} onClick ={()=>toggleDisplay()}>{children}</Close>
 }
-Application.Submit = function ApplicationSubmit({ children, ...restProps }) {
-    return <Submit {...restProps}>{children}</Submit>
+Application.Submit = function ApplicationSubmit({onclick, children, ...restProps }) {
+    return <Submit {...restProps} onClick = {()=>onclick()}>{children}</Submit>
 }

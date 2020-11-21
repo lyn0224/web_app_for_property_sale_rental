@@ -92,14 +92,14 @@ app.get("/get_user", function(req, res) {
     // });
 
     //get all the house listed for sale for a particular user based on user ID
-    app.get('/users/:ID/forSaleListing', function (req, res) {
+    app.post('/users/:ID/forSaleListing', function (req, res) {
       console.log("Req Body: ", req.body);
       var temp = new individualUser();
       temp.forSaleListing(db, req, res);
     });
 
     //get all buyer application a particular user based on user ID
-    app.get('/users/:ID/buyerApplication', function (req, res) {
+    app.post('/users/:ID/buyerApplication', function (req, res) {
       console.log("Req Body: ", req.body);
       var temp = new individualUser();
       temp.buyerApplication(db, req, res);
