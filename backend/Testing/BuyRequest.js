@@ -1,16 +1,17 @@
 var nodemailer = require('nodemailer');
+const sendEmail = require("../Testing/sendEmail");
 const db = require("./db.js");
 // npm install nodemailer --save
-let transporter = nodemailer.createTransport({
-    service: 'yahoo',
-    host: 'smtp.mail.yahoo.com',
-    port: 465,
-    secure: false,
-    auth: {
-      user: 'lyn12345yin@yahoo.com',
-      pass: 'obkshrugxrapkoza'
-    }
-  });
+// let transporter = nodemailer.createTransport({
+//     service: 'yahoo',
+//     host: 'smtp.mail.yahoo.com',
+//     port: 465,
+//     secure: false,
+//     auth: {
+//       user: 'lyn12345yin@yahoo.com',
+//       pass: 'obkshrugxrapkoza'
+//     }
+//   });
 
   const buyRequest = (req, res) => {
     //const { userEmail, name, offer} = req.body;
@@ -60,21 +61,28 @@ let transporter = nodemailer.createTransport({
             ownerEmail = data[0].Email;
             let emailContent = "Hi " + ownerUsername + ", \n" + buyer_name + " sent you an offer of $" + offer_price + " for property " + property_ID + ".";
             emailContent = emailContent + "\nPlease check your application list to approve/reject."
-            let message = {
-                from: 'lyn12345yin@yahoo.com',
-                to: ownerEmail,
-                subject: "Buy Request",
-                text: emailContent,
-              };
+            req.email = ownerEmail;
+            req.title = "Buy Request";
+            req.emailContent = emailContent;
+            var temp = new sendEmail();
+            temp.sendEmail(req, res);
+            // let message = {
+            //     from: 'lyn12345yin@yahoo.com',
+            //     to: ownerEmail,
+            //     subject: "Buy Request",
+            //     text: emailContent,
+            //   };
             
-              transporter
-                .sendMail(message)
-                .then(() => {
-                  return res
-                    .status(200)
-                    .json({ msg: "you should receive an email from us" });
-                })
-                .catch((error) => console.error(error));
+            //   transporter
+            //     .sendMail(message)
+            //     .then(() => {
+            //       //return res
+            //       res.json({
+            //         success: true,
+            //         msg: ''
+            //         });
+            //     })
+            //     .catch((error) => console.error(error));
     
     
         });

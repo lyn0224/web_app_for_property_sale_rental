@@ -103,7 +103,21 @@ app.get("/get_user", function(req, res) {
       console.log("Req Body: ", req.body);
       var temp = new individualUser();
       temp.buyerApplication(db, req, res);
-    })
+    });
+
+    // approve buyer application
+    app.post('/approveBuy', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new forSale();
+      temp.approveBuy(db, req, res);
+    });
+
+    // reject buyer application
+    app.post('/rejectBuy', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new forSale();
+      temp.rejectBuy(db, req, res);
+    });
 
   //Buy Request
   app.post("/buyRequest", buyRequest);
