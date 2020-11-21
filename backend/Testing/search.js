@@ -31,7 +31,7 @@ class searchRouter {
     return list.length > 0 ? list[0] : null;
   }
 
-  async saveSearchKeyword(db, keyword, token) {
+  async saveSearchKeyword(db, keyword, token, search_type) {
     if (!token) {
       return;
     }
@@ -49,8 +49,22 @@ class searchRouter {
     }
     const { id } = tokenInfo;
 
+    if (!search_type) {
+      return;
+    }
+    // U_ID, search_type
+    const keys = ['U_ID', 'search_type'];
+    const values = [id, `'${search_type}'`];
+
+
+    let sql = `insert into favorite_search (${keys.join(',')})values(${values.join(',')})`
 
     console.log(tokenInfo);
+    try {
+      await this.execSQL(db, sql);
+    } catch (ex) {
+      console.log(ex);
+    }
     // to do...
   }
 

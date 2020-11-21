@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const sendEmail = require("../Testing/sendEmail");
+//const nodemailer = require('nodemailer');
 //npm install express multer --save
 class forSaleRouter{
 
@@ -148,6 +150,111 @@ class forSaleRouter{
                 success: true
                 });
                 return;
+            });
+
+        }
+
+        approveBuy(db, req, res) {
+            //console.log(cols);
+            let buyer_ID = req.body.ID;
+            let property_ID = req.body.S_ID;
+            let buyer_name = req.body.name;
+            let cols = [buyer_ID, property_ID];
+            db.query("UPDATE buyer_application SET offer_status = 'A' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+
+                if(err) {
+                    console.log(err);
+                    res.json({
+                    success: false,
+                    msg: ''
+                    });
+                    return;
+                }
+                // once approved, need to update property's sale_status to sold
+
+                db.query("UPDATE for_sale SET sale_status = 'sold' where S_ID = ?", [property_ID], (err) =>{
+                    if(err) {
+                        console.log(err);
+                        res.json({
+                        success: false,
+                        msg: ''
+                        });
+                        return;
+                    }
+
+                    //send email to the applicant for approval email
+                    db.query("SELECT * from account where ID = ?", buyer_ID, (err, data) => {
+                        if(err) {
+                            console.log(err);
+                            res.json({
+                            success: false,
+                            msg: ''
+                            });
+                            return;
+                        }
+                        req.email = data[0].Email;
+                        req.title = "Buy Application Approved";
+                        req.emailContent = "Hi " + buyer_name + ", \nYour application " + buyer_ID + "-" + property_ID + " has been approved."
+                        //sendEmail;
+                        var temp = new sendEmail();
+                        temp.sendEmail(req, res);
+                        // res.json({
+                        //     success: true,
+                        //     msg: ''
+                        //     });
+
+
+                    });
+
+                    
+
+                });
+                
+            });
+
+        }
+
+        rejectBuy(db, req, res) {
+           
+            let buyer_ID = req.body.ID;
+            let property_ID = req.body.S_ID;
+            let buyer_name = req.body.name;
+            let cols = [buyer_ID, property_ID];
+            db.query("UPDATE buyer_application SET offer_status = 'R' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+
+                if(err) {
+                    console.log(err);
+                    res.json({
+                    success: false,
+                    msg: ''
+                    });
+                    return;
+                }
+                // once rejected, send email to the applicant
+                db.query("SELECT * from account where ID = ?", buyer_ID, (err, data) => {
+                    if(err) {
+                        console.log(err);
+                        res.json({
+                        success: false,
+                        msg: ''
+                        });
+                        return;
+                    }
+                    req.email = data[0].Email;
+                    req.title = "Buy Application Rejected";
+                    req.emailContent = "Hi " + buyer_name + ", \nYour application " + buyer_ID + "-" + property_ID + " has been rejected."
+                    //sendEmail;
+                    var temp = new sendEmail();
+                    temp.sendEmail(req, res);
+                    // res.json({
+                    //     success: true,
+                    //     msg: ''
+                    //     });
+
+
+                });
+
+             
             });
 
         }
