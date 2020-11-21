@@ -50,6 +50,10 @@ function HouseDetail(props){
         
         event.preventDefault();
         if(user){
+            console.log(user.id)
+            console.log(house.S_ID)
+            console.log(name)
+            console.log(Application_price)
             try{
                 let res = await fetch(Applicaiton_URL, {
                     method: 'post',
@@ -59,7 +63,7 @@ function HouseDetail(props){
                     },
                     body: JSON.stringify({
                         ID : user.id,
-                        S_ID : house.SID,
+                        S_ID : house.S_ID,
                         name: name,
                         offer : Application_price,
                         // houseinfo:house,

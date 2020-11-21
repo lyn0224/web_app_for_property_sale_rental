@@ -60,7 +60,7 @@ class individualUser{
                     });
                     return;
                 }
-                //console.log(data);
+                console.log(data);
                 res.json({
                 success: true,
                 dataset: data
