@@ -4,6 +4,7 @@ import SaveHome from "../pages/profile/SaveHome"
 import SaveSearch from "../pages/profile/SaveSearch"
 import AccoutSetting from "../pages/profile/AccoutSetting"
 import Application from "../pages/profile/Application"
+import Listing from "../pages/profile/Listing"
 import * as ROUTES from '../constants/routes'
 function ProfileRouters(){
     return(
@@ -12,6 +13,7 @@ function ProfileRouters(){
               <Route path = {ROUTES.SAVED_SEARCH}><SaveSearch/></Route>
               <Route path = {ROUTES.ACCOUNT_SETTING}><AccoutSetting/></Route>
               <Route path = {ROUTES.APPLICATION}><Application/></Route>
+              <Route path = {ROUTES.LISTING}><Listing/></Route>
         </Switch>
     )
 }
