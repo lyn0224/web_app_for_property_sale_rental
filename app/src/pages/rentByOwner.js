@@ -4,7 +4,7 @@ import {Row} from "react-bootstrap"
 import ItemAdd from "../components/itemAdd"
 import axios from 'axios';
  
-function SellByOwner() {
+function RentByOwner() {
     const [sellID, setSellID] = useState('');
     const [ownerID, setOwnerID] = useState('');
     const [realtorID, setRealtorID] = useState('');
@@ -194,5 +194,5 @@ function SellByOwner() {
     )
 }
 
-export default SellByOwner
+export default RentByOwner
 

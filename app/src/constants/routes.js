@@ -13,3 +13,5 @@ export const SAVED_SEARCH = '/profile/save_search';
 export const ACCOUNT_SETTING = '/profile/account_setting';
 export const APPLICATION = '/profile/application';
 export const LISTING = '/profile/listing';
+export const MANAGERENTALS = '/managerentals';
+export const RENT_OWNER = '/rentbyowner'
