@@ -30,6 +30,7 @@ function SellByOwner() {
         console.log(newItem);
         console.log('PHOTO:', newItem.image);
         const formData = new FormData();
+        formData.append('list_type', "sell");
         formData.append('main', newItem.image[0]);
 
         newItem.image.slice(1).forEach(file=>{
@@ -53,8 +54,8 @@ function SellByOwner() {
         formData.append('area', area);
         formData.append('year', year);
         formData.append('description', description);
-        formData.append('status', 'A');
-        formData.append('list_type', "sell");
+        //formData.append('status', 'A');
+        
         console.log(formData.get('main'));
         console.log(formData.get('others'));
         console.log(formData.get('p_type'));
@@ -71,7 +72,7 @@ function SellByOwner() {
         console.log(formData.get('area'));
         console.log(formData.get('year'));
         console.log(formData.get('description'));
-        console.log(formData.get('status'));
+        //console.log(formData.get('status'));
 
         axios({
             method: "POST",

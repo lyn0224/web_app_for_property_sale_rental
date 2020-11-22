@@ -37,36 +37,37 @@ function RentByOwner() {
         console.log(newItem);
         console.log('PHOTO:', newItem.image);
         const formData = new FormData();
+        formData.append('list_type', "rent");
         formData.append('main', newItem.image[0]);
 
         newItem.image.slice(1).forEach(file=>{
             formData.append("others", file);
         });
 
-        formData.append('owner', 2);
-        formData.append('realtor', 1);
-        formData.append('p_type', propertyType);
+        formData.append('Owner_ID', 2);
+        formData.append('Realtor_ID', 1);
+        formData.append('property_type', propertyType);
         formData.append('apt_num', aptNum);
         formData.append('street', streetAddress);
         formData.append('city', city);
         formData.append('state', states);
         formData.append('zip', zipCode);
-        formData.append('available', available);
+        formData.append('available_date', available);
         formData.append('rate', rate);
-        formData.append('term', term);
-        formData.append('deposite', deposite);
+        formData.append('lease_term', term);
+        formData.append('security_deposit', deposite);
         formData.append('ammenities', ammenities);
-        formData.append('price', price);
+        //formData.append('price', price);
         formData.append('bedroom', bed);
         formData.append('bathroom', bath);
         formData.append('livingroom', living);
         formData.append('flooring', floor);
         formData.append('parking', parking);
         formData.append('area', area);
-        formData.append('year', year);
+        formData.append('year_built', year);
         formData.append('description', description);
-        formData.append('status', 'A');
-        formData.append('list_type', "rent");
+        //formData.append('status', 'A');
+        
         // console.log(formData.get('main'));
         // console.log(formData.get('others'));
         // console.log(formData.get('p_type'));
