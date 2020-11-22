@@ -10,22 +10,6 @@ export default class ItemAdd extends React.Component {
             image: [],
             imagePreviewUrl: []
         }
-        //console.log(this.props);
-        // if(this.props.type === "main"){
-        //     this.state = {
-        //         current: 0,
-        //         count: 1,
-        //         image: [],
-        //         imagePreviewUrl: []
-        //     }
-        // }else{
-        //     this.state = {
-        //         current: 0,
-        //         count: 6,
-        //         image: [],
-        //         imagePreviewUrl: []
-        //     }
-        // }
     }
 
     handleSubmit(e) {
@@ -84,7 +68,7 @@ export default class ItemAdd extends React.Component {
                             </div>
                         </tr>
                         <tr>
-                            <td><button>Add</button></td>
+                            <td><button>Submit</button></td>
                         </tr>
                     </table>
                 </form>

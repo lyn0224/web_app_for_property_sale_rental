@@ -34,9 +34,41 @@ function SellByOwner() {
         const formData = new FormData();
         formData.append('main', newItem.image[0]);
         formData.append('others', newItem.image);
-        console.log(formData);
-        console.log("main", formData.get('main'));
-        console.log("others", formData.get('others'));
+        formData.append('owner', 2);
+        formData.append('realtor', 1);
+        formData.append('p_type', propertyType);
+        formData.append('apt_num', aptNum);
+        formData.append('street', streetAddress);
+        formData.append('city', city);
+        formData.append('state', states);
+        formData.append('zip', zipCode);
+        formData.append('price', price);
+        formData.append('bedroom', bed);
+        formData.append('bathroom', bath);
+        formData.append('livingroom', living);
+        formData.append('flooring', floor);
+        formData.append('parking', parking);
+        formData.append('area', area);
+        formData.append('year', year);
+        formData.append('description', description);
+        formData.append('status', 'A');
+        console.log(formData.get('main'));
+        console.log(formData.get('others'));
+        console.log(formData.get('p_type'));
+        console.log(formData.get('street'));
+        console.log(formData.get('apt_num'));
+        console.log(formData.get('state'));
+        console.log(formData.get('zip'));
+        console.log(formData.get('price'));
+        console.log(formData.get('bedroom'));
+        console.log(formData.get('bathroom'));
+        console.log(formData.get('livingroom'));
+        console.log(formData.get('flooring'));
+        console.log(formData.get('parking'));
+        console.log(formData.get('area'));
+        console.log(formData.get('year'));
+        console.log(formData.get('description'));
+        console.log(formData.get('status'));
         axios
           .post(
             'http://localhost:9000/upload',
@@ -44,9 +76,7 @@ function SellByOwner() {
           )
           .then(response => {
             console.log(response);
-            // this.setState({
-            //   tprof_pic: response.data
-            // });
+            setUploadedPicture(response.data);
           })
           .catch(error => console.log('error ' + error));
         // try{
@@ -95,7 +125,8 @@ function SellByOwner() {
                     year: year,
                     price: price,
                     pictures: pictures,
-                    description: description
+                    description: description,
+                    uploadedPicture: uploadedPicture
                 })
             });
             let result = await res.json();
@@ -118,7 +149,7 @@ function SellByOwner() {
                 <Form.Title>Post a For Sale by Owner Listing</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
                 
-                <Form.Base onSubmit={handleListing} method="POST">
+                <Form.Base>
                     <Form.Input
                         placeholder="Propert yType"
                         value={propertyType}
@@ -207,17 +238,16 @@ function SellByOwner() {
                         value={price}
                         onChange={({ target }) => setPrice(target.value)}
                     />
-                    <ItemAdd maxCount="1" type="Main" createItem={createItem} />
-                    <ItemAdd maxCount="2" type="Other" createItem={createItem} />
                     <Form.TextArea
                         placeholder="Description"
                         value={description}
                         onChange={({ target }) => setDescription(target.value)}
                         style={{height: "300px"}}
                     />
-                    <Form.Submit disabled={isInvalid} type="submit">
+                    <ItemAdd maxCount="6" type="Main" createItem={createItem} />
+                    {/* <Form.Submit disabled={isInvalid} type="submit">
                         Continue
-                    </Form.Submit>
+                    </Form.Submit> */}
                 </Form.Base>
             </Form>
         </>
