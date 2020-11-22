@@ -45,13 +45,13 @@ class FavoriteRouter {
     async homeAdd(db, req) {
       const { U_ID, home_type, properity_id } = req.body;
       if (!U_ID) {
-        throw Error('user id not empty');
+        throw Error('user id need to be filled');
       }
       if (!home_type) {
-        throw Error('home type not empty');
+        throw Error('home type need to be filled');
       }
       if (!properity_id) {
-        throw Error('properity id not empty');
+        throw Error('properity id need to be filled');
       }
       let sql = `insert into favorite_home(U_ID, home_type, properity_id)values(${U_ID}, '${home_type}', ${properity_id})`;
       await this.execSQL(db, sql);
@@ -70,13 +70,13 @@ class FavoriteRouter {
     async homeDelete(db, req, res) {
       const { U_ID, home_type, properity_id } = req.body;
       if (!U_ID) {
-        throw Error('user id not empty');
+        throw Error('user id need to be filled');
       }
       if (!home_type) {
-        throw Error('home type not empty');
+        throw Error('home type need to be filled');
       }
       if (!properity_id) {
-        throw Error('properity id not empty');
+        throw Error('properity id need to be filled');
       }
       let sql = `delete from favorite_home where  U_ID = ${U_ID} and home_type = '${home_type}' and properity_id = ${properity_id}`
       await this.execSQL(db, sql);
@@ -95,13 +95,13 @@ class FavoriteRouter {
     async searchAdd(db, req) {
       const { U_ID, search_type, min_price = 0, max_price = 0, bedroom = 0, bathroom = 0, home_type = '', zip_code = 0 } = req.body;
       if (!U_ID) {
-        throw Error('user id not empty');
+        throw Error('user id need to be filled');
       }
       if (!home_type) {
-        throw Error('home type not empty');
+        throw Error('home type need to be filled');
       }
       if (!search_type) {
-        throw Error('search type not empty');
+        throw Error('search type need to be filled');
       }
       let sql = `insert favorite_search(U_ID, search_type, min_price, max_price, bedroom, bathroom, home_type, zip_code)values(
         ${U_ID}, '${search_type}', ${min_price}, ${max_price}, '${bedroom}', '${bathroom}', '${home_type}', ${zip_code}'
@@ -121,7 +121,7 @@ class FavoriteRouter {
     async searchDelete(db, req) {
       const { id } = req.query;
       if (id) {
-        throw Error('id not empty');
+        throw Error('id need to be filled');
       }
       let sql = `delete from favorite_search where id = ${id}`;
       await this.execSQL(db, sql);
@@ -159,7 +159,7 @@ class FavoriteRouter {
     async searchDetail(db, req) {
       const { id } = req.params;
       if (!id) {
-        throw Error('id not empty');
+        throw Error('id need to be filled');
       }
       let sql = `select * from favorite_search t where t.id = ${id}`;
       const detail = await this.findOne(db, sql);
