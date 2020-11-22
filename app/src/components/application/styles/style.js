@@ -7,7 +7,7 @@ export const Container = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: black;
-    opacity: 0.5;
+    opacity: 0.2;
     top:0px;
 `;
 

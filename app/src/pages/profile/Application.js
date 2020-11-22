@@ -2,6 +2,7 @@ import React,{useEffect, useState,useContext} from 'react'
 import {ApplicationForm} from '../../components/export'
 import defaultimg from "../../img/homeicon.png"
 import Loading from "../../containers/LoadingContainer"
+
 function Application(){
     const user = JSON.parse(localStorage.getItem('authUser'))
     const Application_URL = `http://localhost:9000/users/${user.id}/buyerApplication`
@@ -27,7 +28,12 @@ function Application(){
             }
        
     },[])
-    
+    function Reject(){
+
+    }
+    function Contact(){
+        
+    }
     function ROWS(obj){
      
          

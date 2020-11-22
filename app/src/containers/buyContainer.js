@@ -8,17 +8,19 @@ function Buy() {
     const [searchTerm, setSearchTerm] = useState('');
     const {houses,find_result} = useContext(Context)
 
-    // const conditionalFilterBar = houses ? 
-    //     <FilterBar houses={houses}/> : null;
+    const conditionalFilterBar = houses ? 
+        <FilterBar houses={houses}/> : null;
 
     return (
         <BuyLayout>
             
             <BuyLayout.FirstSection>
                 <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} />
+                    {/* {conditionalFilterBar} */}
             </BuyLayout.FirstSection>
-            <FilterBar houses={houses}/>
-
+            {/* <FilterBar houses={houses}/>
+             */}
+        
             <BuyLayout.SecondSection>
 
                 <BuyLayout.Map>
