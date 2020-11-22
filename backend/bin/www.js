@@ -134,6 +134,70 @@ app.get("/get_user", function(req, res) {
     }
   })
 
+  app.post('/api/favorite/home', async function (req, res) {
+    try {
+      const fav = new favorite();
+      const data = await fav.homeAdd(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
+  app.delete('/api/favorite/home', async function (req, res) {
+    try {
+      const fav = new favorite();
+      const data = await fav.homeDelete(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
+  app.get('/api/favorite/home', async function (req, res) {
+    try {
+      const fav = new favorite();
+      const data = await fav.homeList(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
+  app.get('/api/favorite/search', async function (req, res) {
+    try {
+      const fav = new favorite();
+      const data = await fav.searchList(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
+  app.get('/api/favorite/search/:id', async function (req, res) {
+    try {
+      const fav = new favorite();
+      const data = await fav.searchDetail(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
+  app.post('/api/favorite/search', async function (req, res) {
+    try {
+      const fav = new favorite();
+      const data = await fav.searchAdd(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
+  app.delete('/api/favorite/search', async function (req, res) {
+    try {
+      const fav = new favorite();
+      const data = await fav.searchDelete(db, req);
+      res.json({ success: true, ...data });
+    } catch (ex) {
+      res.json({ success: false, msg: ex.msg || ex.message || ex });
+    }
+  })
+
 // set port, listen for requests
 app.listen(9000, () => {
   console.log("Server is running on port 9000.");
