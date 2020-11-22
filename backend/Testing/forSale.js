@@ -22,7 +22,7 @@ class forSaleRouter{
                 }
 
                 //openhouse
-                db.query("SELECT * from open_house order by S_ID ASC", (err, openHouse) => {
+                db.query("SELECT * from open_house where to_date > CURDATE() order by S_ID ASC", (err, openHouse) => {
                     var i;
                     //console.log("open house");
                     //console.log(openHouse);
@@ -44,11 +44,14 @@ class forSaleRouter{
                         data[i].pic_dir = pic_array;
                         data[i].main_dir = pic_folder + "/outside.PNG";
                         //console.log("test");
+                        console.log("openhouse:", openHouse);
+                        console.log("k:", k);
                         if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
                             data[i].open_house = openHouse[k];
                             k++;
                         }
                     }
+                    console.log("data:", data);
                
                     if(err) {
                         console.log(err);
@@ -186,8 +189,8 @@ class forSaleRouter{
                         return;
                     }
 
-                    //send email to the applicant for approval email
-                    db.query("SELECT * from account where ID = ?", buyer_ID, (err, data) => {
+                    //delete open house for the house
+                    db.query("DELETE from open_house where S_ID = ?", [property_ID], (err) =>{
                         if(err) {
                             console.log(err);
                             res.json({
@@ -196,16 +199,32 @@ class forSaleRouter{
                             });
                             return;
                         }
-                        req.email = data[0].Email;
-                        req.title = "Buy Application Approved";
-                        req.emailContent = "Hi " + buyer_name + ", \nYour application " + buyer_ID + "-" + property_ID + " has been approved."
-                        //sendEmail;
-                        var temp = new sendEmail();
-                        temp.sendEmail(req, res);
-                        // res.json({
-                        //     success: true,
-                        //     msg: ''
-                        //     });
+                    
+                        //send email to the applicant for approval email
+                        db.query("SELECT * from account where ID = ?", buyer_ID, (err, data) => {
+                            if(err) {
+                                console.log(err);
+                                res.json({
+                                success: false,
+                                msg: ''
+                                });
+                                return;
+                            }
+                            req.email = data[0].Email;
+                            req.title = "Buy Application Approved";
+                            req.emailContent = "Hi " + buyer_name + ", \nYour application " + buyer_ID + "-" + property_ID + " has been approved."
+                            //sendEmail;
+                            var temp = new sendEmail();
+                            temp.sendEmail(req, res);
+                            // res.json({
+                            //     success: true,
+                            //     msg: ''
+                            //     });
+                        
+                        
+                        });
+
+                    
 
 
                     });

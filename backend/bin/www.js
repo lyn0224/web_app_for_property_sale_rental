@@ -7,8 +7,10 @@ const alluser = require('../Testing/alluser');
 const uploadController = require("../Testing/uploadDb");
 const upload = require("../Testing/upload");
 const forSale = require('../Testing/forSale');
+const forRent = require('../Testing/forRent');
 const search = require('../Testing/search');
 const buyRequest = require("../Testing/BuyRequest");
+const rentRequest = require("../Testing/RentRequest");
 const individualUser = require("../Testing/IndividualUser");
 var cors = require("cors");
 
@@ -16,6 +18,7 @@ const app = express();
 //app.set("view engine", "ejs");
 
 app.use("/forSale_pic", express.static("public/forSale"));
+app.use("/forRent_pic", express.static("public/forRent"));
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 app.use(cors());
@@ -67,8 +70,15 @@ app.get("/get_user", function(req, res) {
       temp.getAllImage(db, req, res);
     });
 
-  // list house for sale
-  app.post("/upload", upload.fields([{ name: 'main', maxCount: 1 }, { name: 'other', maxCount: 10 }]), uploadController.uploadFiles);
+  //get house info for Rent page
+  app.get("/rent", function(req, res) {
+    console.log("Req Body : ", req.body);
+    var temp = new forRent();
+    temp.getAllImage(db, req, res);
+  });
+
+  // list property for sale OR list property for rent
+  app.post("/upload", upload.fields([{ name: 'main', maxCount: 1 }, { name: 'others', maxCount: 10 }]), uploadController.uploadFiles);
 
   // schedule open house
   app.post("/openHouse", function(req, res){
@@ -105,6 +115,9 @@ app.get("/get_user", function(req, res) {
       temp.buyerApplication(db, req, res);
     });
 
+    //Buy Request
+    app.post("/buyRequest", buyRequest);
+
     // approve buyer application
     app.post('/approveBuy', function (req, res) {
       console.log("Req Body: ", req.body);
@@ -119,8 +132,60 @@ app.get("/get_user", function(req, res) {
       temp.rejectBuy(db, req, res);
     });
 
-  //Buy Request
-  app.post("/buyRequest", buyRequest);
+  
+
+
+    // schedule visit for rental
+    app.post("/visit", function(req, res){
+      console.log("Req Body: ", req.body);
+      var temp = new forRent();
+      temp.visit(db, req, res);
+    });
+
+    // delete listed house for rent
+    app.post("/deleteForRent", function(req, res){
+      console.log("Req Body: ", req.body);
+      var temp = new forRent();
+      temp.deleteListing(db, req, res);
+    });
+
+    // update information of the listed house for rent
+    app.post("/updateForRent", function(req, res){
+      console.log("Req Body: ", req.body);
+      var temp = new forRent();
+      temp.updateListing(db, req, res);
+    });
+
+    //Rent Request
+    app.post("/rentRequest", rentRequest);
+
+    // approve renter application
+    app.post('/approveRent', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new forRent();
+      temp.approveRent(db, req, res);
+    });
+
+    // reject renter application
+    app.post('/rejectRent', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new forRent();
+      temp.rejectRent(db, req, res);
+    });
+
+    //get all the house listed for sale for a particular user based on user ID
+    app.post('/users/:ID/forRentListing', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new individualUser();
+      temp.forRentListing(db, req, res);
+    });
+
+    //get all buyer application a particular user based on user ID
+    app.post('/users/:ID/renterApplication', function (req, res) {
+      console.log("Req Body: ", req.body);
+      var temp = new individualUser();
+      temp.renterApplication(db, req, res);
+    });
 
 
 //main search
