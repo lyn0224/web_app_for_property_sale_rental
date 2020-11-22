@@ -8,6 +8,7 @@ const uploadController = require("../Testing/uploadDb");
 const upload = require("../Testing/upload");
 const forSale = require('../Testing/forSale');
 const search = require('../Testing/search');
+const favorite = require('../Testing/favorite');
 const buyRequest = require("../Testing/BuyRequest");
 const individualUser = require("../Testing/IndividualUser");
 var cors = require("cors");
