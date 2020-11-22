@@ -9,7 +9,7 @@
     margin-bottom: 20px;
 }
 .filter-container {
-  transform: translateY(-175px)
+  padding: 5rem 0;
 }
 .filter-form {
   width: 10vw;

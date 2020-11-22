@@ -5,7 +5,7 @@ import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
 import Loading from "../containers/LoadingContainer"
 function Housecards({props}){
-    const {houses,search,favorite,addFavorite,removeFavorite} = useContext(Context);
+    const {houses,search,favorite,addFavorite,removeFavorite,filterHouses} = useContext(Context);
     const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite}/>:<Housecard.notFavorite addFavorite={addFavorite}/>
     
     console.log(houses)
@@ -48,8 +48,7 @@ function Housecards({props}){
             </>
         )
     }else if(houses && search){
-        if(search.length === 0 ){
-
+        if(search.length === 0){
             return(
                 <>
                 
@@ -58,7 +57,7 @@ function Housecards({props}){
                 </Housecard>
                 </>
             )
-        }else{
+        }else if(search.length !== 0){
         const  cards = search.map(house=>singlecard(house));
             return(
                 <>

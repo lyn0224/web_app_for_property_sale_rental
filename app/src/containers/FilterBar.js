@@ -7,7 +7,7 @@ const getUnique = (items, value) => {
     return [...new Set(items.map(item => item[value]))];
 };
 
-export default function FilterBar({ houses }) {
+export default function FilterBar() {
     const context = useContext(Context);
     // console.log(context);
     const {
@@ -21,9 +21,10 @@ export default function FilterBar({ houses }) {
         minSize,
         maxSize,
         parking,
-        year
+        year,
+        houses
     } = context;
-
+    console.log(houses)
     let types = [];
     let beds = [];
     let baths = [];
@@ -32,6 +33,7 @@ export default function FilterBar({ houses }) {
     let years = []
     // //get unique types
     if(houses){
+        console.log("maxmin",maxSize, minSize);
         types = getUnique(houses, 'property_type');
         types = ['all', ...types];
         types = types.map((item, index) => {

@@ -13,6 +13,7 @@ function HousesProvider({children}) {
     const [maxPrice, setMaxPrice] = useState(10000000);
     const [minSize, setMinSize] = useState(0);
     const [maxSize, setMaxSize] = useState(3000);
+    const [filterHouses, setFilterHouses] = useState()
 
     const Search_URL = 'http://localhost:9000/house';
     const Favorite_URL = 'http://localhost:9000/search';
@@ -24,6 +25,7 @@ function HousesProvider({children}) {
 
     useEffect( ()=>{
         fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
+        filterDate();
         if(user){
             try{
                 fetch(Favorite_URL, {
@@ -44,7 +46,7 @@ function HousesProvider({children}) {
                 console.log(e);
             }
        }
-    },[])
+    },[types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize])
 
 
     function find_result(input){
@@ -57,6 +59,15 @@ function HousesProvider({children}) {
         }
     }
 
+    // function handleSubmit(){
+    //     if(!filterHouses && !search){
+    //         setSearch(houses)
+    //     }else{
+    //         console.log(filterHouses);
+    //         setSearch(filterHouses);
+    //     }
+    // }
+
     function handleChange(event){
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -64,21 +75,27 @@ function HousesProvider({children}) {
 
         if(name === "type"){
             console.log("type", value);
-            setTypes(value);
+            
+            if(value !== "any"){
+                setTypes(value);
+                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
+                console.log(types);
+            }
+            
         }
         if(name === "bed"){
-            // if(bed !== "any"){
-            //     setBed(value);
-            //     //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
-            // }
-            setBed(value);
+            if(value !== "any"){
+                setBed(value);
+                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
+            }
+            // setBed(value);
         }
         if(name === "bath"){
-            // if(bath !== "any"){
-            //     setBath(value);
-            //     //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
-            // }
-            setBath(value);
+            if(value !== "any"){
+                setBath(value);
+                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
+            }
+            // setBath(value);
         }
         if(name === "minPrice"){
             setMinPrice(value);
@@ -94,20 +111,35 @@ function HousesProvider({children}) {
             // maxSize = value;
             setMaxSize(value);
         }
-        // if(name === "parking"){
-        //     setParking(value);
-        // }
-        console.log(types, bath, bed, minPrice, maxPrice, minSize, maxSize, parking);
-        let tempHouses = [...houses];
-        console.log(tempHouses);
-        tempHouses = tempHouses.filter(house => house.property_type === types);
-        tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
-        tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
-        tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
-        tempHouses = tempHouses.filter(house=>house.area <= maxSize && house.area >= minSize)
-        // tempHouses = tempHouses.filter(house => house.parking === parking);
-        console.log(tempHouses);
-        setSearch(tempHouses);
+        if(name === "parking"){
+            if(value){
+                setParking(1);
+            }else{
+                setParking(0);
+            }
+            
+        }
+    }
+
+    function filterDate(){
+        if(houses){
+            console.log(types, bath, bed, minPrice, maxPrice, minSize, maxSize, parking);
+            let tempHouses = [...houses];
+            console.log("before filter",tempHouses);
+            tempHouses = tempHouses.filter(house => house.property_type === types);
+            console.log("after types",tempHouses);
+            tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
+            console.log("after bed",tempHouses);
+            tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
+            console.log("after bath",tempHouses);
+            tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
+            console.log("after prices",tempHouses);
+            tempHouses = tempHouses.filter(house=>house.area <= maxSize && house.area >= minSize)
+            console.log("after size",tempHouses);
+            tempHouses = tempHouses.filter(house => house.parking === parking);
+            console.log("after filter",tempHouses);
+            setSearch(tempHouses);
+        }
     }
 
     async function removeFavorite(house){
@@ -141,7 +173,7 @@ function HousesProvider({children}) {
         return (
             <>
             <Context.Provider  value={{
-                houses,handleChange,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
+                houses, handleChange,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
                 }}>
                 {children}
             </Context.Provider>
