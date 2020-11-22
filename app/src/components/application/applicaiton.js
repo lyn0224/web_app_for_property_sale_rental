@@ -11,7 +11,8 @@ import {
     TextArea, 
     Submit ,
     Close,
-    InputArea
+    InputArea,
+    InputField
 } from './styles/style';
 
 export default function Application({ children, ...restProps }) {
@@ -27,6 +28,9 @@ Application.Title = function ApplicationTitle({ children, ...restProps }) {
 }
 Application.InputArea = function  ApplicationInputArea({ children, ...restProps }) {
     return <InputArea {...restProps}>{children}</InputArea>;
+}
+Application.InputField = function  ApplicationInputField({ children, ...restProps }) {
+    return <InputField {...restProps}>{children}</InputField>;
 }
 Application.Text = function ApplicationText({ children, ...restProps }) {
     return <Text {...restProps}>{children}</Text>;
