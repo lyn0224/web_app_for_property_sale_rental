@@ -9,6 +9,7 @@ const upload = require("../Testing/upload");
 const forSale = require('../Testing/forSale');
 const forRent = require('../Testing/forRent');
 const search = require('../Testing/search');
+const favorite = require('../Testing/favorite');
 const buyRequest = require("../Testing/BuyRequest");
 const rentRequest = require("../Testing/RentRequest");
 const individualUser = require("../Testing/IndividualUser");

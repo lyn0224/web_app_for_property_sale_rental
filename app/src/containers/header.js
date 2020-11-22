@@ -54,6 +54,7 @@ function HeaderContainer(props){
                 <Header.Logo to = {ROUTES.HOME}>Zillow</Header.Logo>
 
                 <Header.RightPanel>
+                    <Header.Link to = {ROUTES.RENTALS}>Manage Rentals</Header.Link>
                     <Header.Link to = {ROUTES.HELP}>Help</Header.Link>
                     {conditionalSignin}
                 </Header.RightPanel>

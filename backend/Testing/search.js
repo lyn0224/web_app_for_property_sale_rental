@@ -35,7 +35,7 @@ class searchRouter {
     if (!token) {
       return;
     }
-    console.log('-11--');
+    // console.log('-11--');
     const [isExpired, tokenInfo] = await new Promise((resolve, reject) => {
       jwt.verify(token, 'cmpe202key', (err, decoded) => {
         if (err) {
@@ -45,11 +45,11 @@ class searchRouter {
         }
       });
     })
-    console.log('-12--');
+    // console.log('-12--');
     if (!isExpired) {
       return;
     }
-    console.log('-13--');
+    // console.log('-13--');
     const { id } = tokenInfo;
 
     if (!search_type) {

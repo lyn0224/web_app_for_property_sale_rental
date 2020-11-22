@@ -12,6 +12,7 @@ import Admin from '../pages/Admin'
 import AgentFinder from '../pages/agentFinder';
 import SellByOwner from '../pages/sellByOwner'
 import HouseDetail from '../pages/houseDetail'
+import Rentals from '../pages/rentals/Rentals'
 function Routers(){
     return(
         <Switch>
@@ -27,6 +28,7 @@ function Routers(){
               <Route path = {ROUTES.SIGN_UP}><Signup/></Route>
               <Route path = {ROUTES.PROFILE}><Profile/></Route>
               <Route path = {ROUTES.SELL_OWNER}><SellByOwner /></Route>
+              <Route path = {ROUTES.RENTALS}><Rentals /></Route>
           </Switch>
     )
 }

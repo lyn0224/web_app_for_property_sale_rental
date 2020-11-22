@@ -1,10 +1,11 @@
-import { Form } from '../components/export';
+import { Form } from '../../components/export';
 import React, { useState, useContext } from 'react';
 import {Row} from "react-bootstrap"
-import ItemAdd from "../components/itemAdd"
+import ItemAdd from "../../components/itemAdd"
 import axios from 'axios';
- 
-function SellByOwner() {
+// import rentNavbar from '../../containers/rentNav'
+
+function RentByOwner() {
     const [sellID, setSellID] = useState('');
     const [ownerID, setOwnerID] = useState('');
     const [realtorID, setRealtorID] = useState('');
@@ -15,6 +16,11 @@ function SellByOwner() {
     const [city, setCity] = useState('');
     const [states, setStates] = useState('');
     const [zipCode, setZipCode] = useState('');
+    const [available, setAvailable] = useState('');
+    const [rate, setRate] = useState('');
+    const [term, setTerm] = useState('');
+    const [deposite, setDeposite] = useState('');
+    const [ammenities, setAmmenities] = useState('');
     const [bed, setBed] = useState('');
     const [bath, setBath] = useState('');
     const [area, setArea] = useState('');
@@ -23,8 +29,9 @@ function SellByOwner() {
     const [parking, setParking] = useState('');
     const [price, setPrice] = useState('');
     const [year, setYear] = useState('');
-    const [pictures, setPictures] = useState([]);
     const [description, setDescription] = useState('');
+
+
  
     const createItem= async(newItem) => {
         console.log(newItem);
@@ -44,6 +51,11 @@ function SellByOwner() {
         formData.append('city', city);
         formData.append('state', states);
         formData.append('zip', zipCode);
+        formData.append('available', available);
+        formData.append('rate', rate);
+        formData.append('term', term);
+        formData.append('deposite', deposite);
+        formData.append('ammenities', ammenities);
         formData.append('price', price);
         formData.append('bedroom', bed);
         formData.append('bathroom', bath);
@@ -54,24 +66,24 @@ function SellByOwner() {
         formData.append('year', year);
         formData.append('description', description);
         formData.append('status', 'A');
-        formData.append('list_type', "sell");
-        console.log(formData.get('main'));
-        console.log(formData.get('others'));
-        console.log(formData.get('p_type'));
-        console.log(formData.get('street'));
-        console.log(formData.get('apt_num'));
-        console.log(formData.get('state'));
-        console.log(formData.get('zip'));
-        console.log(formData.get('price'));
-        console.log(formData.get('bedroom'));
-        console.log(formData.get('bathroom'));
-        console.log(formData.get('livingroom'));
-        console.log(formData.get('flooring'));
-        console.log(formData.get('parking'));
-        console.log(formData.get('area'));
-        console.log(formData.get('year'));
-        console.log(formData.get('description'));
-        console.log(formData.get('status'));
+        formData.append('list_type', "rent");
+        // console.log(formData.get('main'));
+        // console.log(formData.get('others'));
+        // console.log(formData.get('p_type'));
+        // console.log(formData.get('street'));
+        // console.log(formData.get('apt_num'));
+        // console.log(formData.get('state'));
+        // console.log(formData.get('zip'));
+        // console.log(formData.get('price'));
+        // console.log(formData.get('bedroom'));
+        // console.log(formData.get('bathroom'));
+        // console.log(formData.get('livingroom'));
+        // console.log(formData.get('flooring'));
+        // console.log(formData.get('parking'));
+        // console.log(formData.get('area'));
+        // console.log(formData.get('year'));
+        // console.log(formData.get('description'));
+        // console.log(formData.get('status'));
 
         axios({
             method: "POST",
@@ -87,8 +99,9 @@ function SellByOwner() {
 
     return (
         <>
-           <Form style={{backgroundColor: "grey"}}>
-                <Form.Title>Post a For Sale by Owner Listing</Form.Title>
+            {/* <rentNavbar/> */}
+            <Form style={{backgroundColor: "grey"}}>
+                <Form.Title>Post a For Rent by Owner Listing</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
                 <Form.Base>
                     <Form.Input
@@ -131,13 +144,47 @@ function SellByOwner() {
                     </Row>
                     <Row style={{margin: "auto"}}>
                         <Form.Input
-                            placeholder="Bedroom #"
+                            placeholder="Deposite"
+                            value={deposite}
+                            onChange={({ target }) => setDeposite(target.value)}
+                            style={{width: "150px", marginRight: "5px"}}
+                        />
+                        <Form.Input
+                            placeholder="Ammenities"
+                            value={ammenities}
+                            onChange={({ target }) => setAmmenities(target.value)}
+                            style={{width: "150px", marginLeft: "5px"}}
+                        />
+                    </Row>
+                    <Row style={{margin: "auto"}}>
+                        <Form.Input
+                            placeholder="Date"
+                            value={available}
+                            onChange={({ target }) => setAvailable(target.value)}
+                            style={{width: "100px", marginRight: "2.5px"}}
+                        />
+                        <Form.Input
+                            placeholder="Rate %"
+                            value={rate}
+                            onChange={({ target }) => setRate(target.value)}
+                            style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
+                        />
+                        <Form.Input
+                            placeholder="Term"
+                            value={term}
+                            onChange={({ target }) => setTerm(target.value)}
+                            style={{width: "100px", marginLeft: "2.5px"}}
+                        />
+                    </Row>
+                    <Row style={{margin: "auto"}}>
+                        <Form.Input
+                            placeholder="Bed #"
                             value={bed}
                             onChange={({ target }) => setBed(target.value)}
                             style={{width: "100px", marginRight: "2.5px"}}
                         />
                         <Form.Input
-                            placeholder="Bathroom #"
+                            placeholder="Bath #"
                             value={bath}
                             onChange={({ target }) => setBath(target.value)}
                             style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
@@ -195,5 +242,5 @@ function SellByOwner() {
     )
 }
 
-export default SellByOwner
+export default RentByOwner
 
