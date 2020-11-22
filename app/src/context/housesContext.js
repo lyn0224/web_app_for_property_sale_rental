@@ -59,43 +59,18 @@ function HousesProvider({children}) {
         }
     }
 
-    // function handleSubmit(){
-    //     if(!filterHouses && !search){
-    //         setSearch(houses)
-    //     }else{
-    //         console.log(filterHouses);
-    //         setSearch(filterHouses);
-    //     }
-    // }
-
     function handleChange(event){
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = event.target.name;
-
         if(name === "type"){
-            console.log("type", value);
-            
-            if(value !== "any"){
-                setTypes(value);
-                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
-                console.log(types);
-            }
-            
+            setTypes(value);
         }
         if(name === "bed"){
-            if(value !== "any"){
-                setBed(value);
-                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
-            }
-            // setBed(value);
+            setBed(value);
         }
         if(name === "bath"){
-            if(value !== "any"){
-                setBath(value);
-                //tempHouses = tempHouses.filter(house=>house.bedroom >= value);
-            }
-            // setBath(value);
+            setBath(value);
         }
         if(name === "minPrice"){
             setMinPrice(value);
@@ -104,11 +79,9 @@ function HousesProvider({children}) {
             setMaxPrice(value);
         }
         if(name === "minSize"){
-            // maxSize = value;
             setMinSize(value);
         }
         if(name === "maxSize"){
-            // maxSize = value;
             setMaxSize(value);
         }
         if(name === "parking"){
@@ -117,7 +90,6 @@ function HousesProvider({children}) {
             }else{
                 setParking(0);
             }
-            
         }
     }
 
@@ -126,11 +98,17 @@ function HousesProvider({children}) {
             console.log(types, bath, bed, minPrice, maxPrice, minSize, maxSize, parking);
             let tempHouses = [...houses];
             console.log("before filter",tempHouses);
-            tempHouses = tempHouses.filter(house => house.property_type === types);
+            if(types !== "all"){
+                tempHouses = tempHouses.filter(house => house.property_type === types);
+            }
             console.log("after types",tempHouses);
-            tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
+            if(bed !== "any+"){
+                tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
+            }
             console.log("after bed",tempHouses);
-            tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
+            if(bath !== "any+"){
+                tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
+            }
             console.log("after bath",tempHouses);
             tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
             console.log("after prices",tempHouses);

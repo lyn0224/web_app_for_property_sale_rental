@@ -54,6 +54,7 @@ function SellByOwner() {
         formData.append('year', year);
         formData.append('description', description);
         formData.append('status', 'A');
+        formData.append('list_type', "sell");
         console.log(formData.get('main'));
         console.log(formData.get('others'));
         console.log(formData.get('p_type'));

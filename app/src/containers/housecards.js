@@ -8,7 +8,7 @@ function Housecards({props}){
     const {houses,search,favorite,addFavorite,removeFavorite,filterHouses} = useContext(Context);
     const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite}/>:<Housecard.notFavorite addFavorite={addFavorite}/>
     
-    console.log(houses)
+    // console.log(houses)
     function singlecard(obj){
         // console.log(obj.main_dir)
         return (

@@ -24,7 +24,6 @@ export default function FilterBar() {
         year,
         houses
     } = context;
-    console.log(houses)
     let types = [];
     let beds = [];
     let baths = [];
@@ -33,7 +32,6 @@ export default function FilterBar() {
     let years = []
     // //get unique types
     if(houses){
-        console.log("maxmin",maxSize, minSize);
         types = getUnique(houses, 'property_type');
         types = ['all', ...types];
         types = types.map((item, index) => {
