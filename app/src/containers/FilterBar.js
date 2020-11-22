@@ -46,7 +46,6 @@ export default function FilterBar({ houses }) {
 
         baths = getUnique(houses, 'bathroom');
         baths = ['any', ...baths];
-        console.log("baths: ", baths);
         baths = baths.map((item, index) => {
             return <option value={item} key={index}>{item}+</option>
         });

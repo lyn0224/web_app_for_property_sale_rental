@@ -37,7 +37,7 @@ class individualUser{
                         console.log(pic_array);
                         data[i].pic_dir = pic_array;
                         data[i].main_dir = pic_folder + "/outside.PNG";
-                        console.log("test");
+                        //console.log("test");
                         if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
                             data[i].open_house = openHouse[k];
                             k++;
@@ -69,7 +69,7 @@ class individualUser{
         buyerApplication(db, req, res) {
             //let fdata = req.body;
             //let cols = [fdata.owner, fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, pic_path];
-            let sql = "UPDATE for_sale SET status = 'S' WHERE S_ID = 1";
+            //let sql = "UPDATE for_sale SET status = 'S' WHERE S_ID = 1";
             //console.log(cols);
             db.query("SELECT * from buyer_application WHERE owner_ID = ?", [req.body.ID], (err, data) => {
 
@@ -81,7 +81,8 @@ class individualUser{
                     });
                     return;
                 }
-                console.log(data);
+                
+                //console.log(data);
                 res.json({
                 success: true,
                 dataset: data

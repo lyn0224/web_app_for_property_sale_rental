@@ -135,7 +135,6 @@ export const Button = styled.button`
 
 export const FirstSection = styled.div`
     padding: 0.5rem 0;
-    
     border-bottom: 1px solid #cccccc;
     height: 90px;
 `

@@ -122,9 +122,10 @@ create table BUYER_APPLICATION(
 Buyer_ID       INT           NOT NULL,
 property_ID    INT           NOT NULL,
 owner_ID       INT           NOT NULL,
-buyer_name          VARCHAR(100)   NOT NULL,
+name          VARCHAR(100)   NOT NULL,
 offer_price    INT           NOT NULL,
 offer_status   CHAR          NOT NULL,
+main_pic       VARCHAR(200)  NOT NULL,
 PRIMARY KEY (Buyer_ID, property_ID),
 FOREIGN KEY (Buyer_ID) REFERENCES ACCOUNT(ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE,
