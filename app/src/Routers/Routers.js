@@ -12,6 +12,9 @@ import Admin from '../pages/Admin'
 import AgentFinder from '../pages/agentFinder';
 import SellByOwner from '../pages/sellByOwner'
 import HouseDetail from '../pages/houseDetail'
+import ManageRentals from '../pages/manageRentals'
+import RentByOwner from "../pages/rentByOwner"
+
 function Routers(){
     return(
         <Switch>
@@ -27,6 +30,8 @@ function Routers(){
               <Route path = {ROUTES.SIGN_UP}><Signup/></Route>
               <Route path = {ROUTES.PROFILE}><Profile/></Route>
               <Route path = {ROUTES.SELL_OWNER}><SellByOwner /></Route>
+              <Route path = {ROUTES.MANAGERENTALS}><ManageRentals/></Route>
+              <Route path = {ROUTES.RENT_OWNER}><RentByOwner/></Route>
           </Switch>
     )
 }
