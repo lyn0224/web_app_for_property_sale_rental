@@ -5,6 +5,7 @@ backend:\
     npm i bcrypt\
     npm i body-parser\
     npm i jsonwebtoken\
+    npm i nodemon\
     npm i multer --save\
     npm i nodemailer --save\
 frontend:\
