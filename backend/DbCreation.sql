@@ -157,10 +157,10 @@ lease_term     INT            NOT NULL,
 security_deposit INT          NOT NULL,
 bedroom        INT            NOT NULL,
 bathroom       INT            NOT NULL,
-living         INT            NOT NULL,
+livingroom         INT            NOT NULL,
 parking        BOOLEAN    NOT NULL,
 flooring       VARCHAR(50)     NOT NULL,
-size_sqft       INT            NOT NULL,
+area       INT            NOT NULL,
 year_built     INT             NOT NULL,
 ammenities     text,
 description    text,
@@ -176,10 +176,13 @@ lease_term --> interms of months
 
 -- visits arranged for properties listed for rental by property owner                
 create table VISIT (
+visitor_ID      INT            NOT NULL,
 property_ID           INT           NOT NULL,
 start_time      DATETIME      NOT NULL,
 end_time        DATETIME     NOT NULL,
-PRIMARY KEY(property_ID),
+PRIMARY KEY(visitor_ID, property_ID),
+FOREIGN KEY(visitor_ID) REFERENCES account(ID)
+					ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (property_ID) REFERENCES FOR_RENT(R_ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE);
 /*
@@ -189,20 +192,22 @@ app_status --> status of visit application
 create table RENTER_APPLICATION(
 RENTER_ID       INT           NOT NULL,
 property_ID           INT           NOT NULL,
-Fname          VARCHAR(50)   NOT NULL,
-Lname          VARCHAR(50)   NOT NULL,
+owner_ID       INT           NOT NULL,
+renter_name          VARCHAR(50)   NOT NULL,
 credit_score   INT           NOT NULL,
-employement    CHAR          NOT NULL,
 employer       VARCHAR(100),
 annual_salary  INT,
 request_status  CHAR         NOT NULL,
+main_pic       VARCHAR(200)  NOT NULL,
 PRIMARY KEY (Renter_ID, property_ID),
 FOREIGN KEY (Renter_ID) REFERENCES ACCOUNT(ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE,
 FOREIGN KEY (property_ID) REFERENCES FOR_RENT(R_ID)
+					ON UPDATE CASCADE  ON DELETE CASCADE,
+FOREIGN KEY (owner_ID) REFERENCES ACCOUNT(ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE);
 /*
-offer_status 
+request_status 
 	P --> pending
     R --> rejected
     A --> approved
