@@ -101,8 +101,9 @@ function Listing() {
             console.log(result);
             if(result && result.success){
                 console.log("successful delete list");
+                setCheck(!check)
             }else if(result && result.success === false){
-         
+                
                 alert(result.msg);
             }
         }catch(e){
@@ -183,21 +184,6 @@ function Listing() {
     if(Listing){
         const  cards = Listing.map(item=>ListingCard(item));
     
-            // setPropertyType(house.property_type)
-            // setApart_number(house.apt_num)
-            // setStreet(house.street)
-            // setZip(house.zip)
-            // setCity(house.city)
-            // setState(house.state)
-            // setPrice(house.price)
-            // setBedroom(house.bedroom)
-            // setBathroom(house.bathroom)
-            // setLivingroom(house.livingroom)
-            // setParking(house.parking)
-            // setYear(house.year_built)
-            // setArea(house.area)
-            // setPic_dir(house.pic_dir)
-            // setMain_dir(house.main_dir)
         
 
         return(
