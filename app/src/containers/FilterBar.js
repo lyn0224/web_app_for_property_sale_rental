@@ -24,7 +24,7 @@ export default function FilterBar() {
         year,
         houses
     } = context;
-
+    console.log(houses)
     let types = [];
     let beds = [];
     let baths = [];

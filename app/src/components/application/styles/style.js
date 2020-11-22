@@ -7,7 +7,7 @@ export const Container = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: black;
-    opacity: 0.5;
+    opacity: 0.2;
     top:0px;
 `;
 
@@ -33,10 +33,14 @@ export const Base = styled.div`
 
 export const Title = styled.h1`
     color:#3870ff;
-    margin-bottom:1rem;
+    position: relative;
+    margin-left:30%;
 `;
 
-export const Text = styled.h1`
+export const Text = styled.p`
+
+`;
+export const InputField = styled.div`
 
 `;
 
@@ -58,8 +62,11 @@ export const InputArea = styled.form`
     flex-direction:column;
     width:600px;
     margin:0 auto;
-    height: 90%;
+    height: 80%;
     align-items: center;
+    overflow:scroll;
+    overflow-x: hidden;
+    
 `
 export const Input = styled.input`
     background: #ebeced;
@@ -79,12 +86,15 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
-    background: #333;
+    background: #ebeced;
+    border: 1px solid #bababa;
     border-radius: 4px;
-    border: 0;
-    color: #fff;
+    color: black;
     line-height: 30px;
     padding: 5px 20px;
+    outline:none;
+    width:300px;
+    height:150px;
     margin-bottom: 20px;
 `;
 
@@ -100,7 +110,7 @@ export const Submit = styled.button`
     color: white;
     cursor: pointer;
     border:none;
-    bottom: 10%;
+    bottom: 5%;
     &:disabled {
         opacity: 0.5;
     }
