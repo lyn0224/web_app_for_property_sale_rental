@@ -72,13 +72,12 @@ function HouseDetail(props){
                 });
                 let result = await res.json();
                 console.log(result);
-                alert(result.msg);
                 if(result && result.success){
-                    alert(result.msg);
+                    console.log(result.msg);
                     console.log("successful submited applciation");
                 }else if(result && result.success === false){
              
-                    alert(result.msg);
+                    console.log("false"+result.msg);
                 }
             }catch(e){
                 console.log(e);
@@ -88,6 +87,7 @@ function HouseDetail(props){
             alert("you need signin to use this function")
         }
     }
+
     if(check) {
         return(
             <>
@@ -115,8 +115,8 @@ function HouseDetail(props){
             </Application>
             <Application.Base display = {display}>
                         <Application.Close toggleDisplay={toggleDisplay}><i className="far fa-window-close"></i></Application.Close>
-                        <Application.InputArea onSubmit={handleApplication} method="POST">
-                            <Application.Title>Application Form</Application.Title>
+                        <Application.Title>Application Form</Application.Title>
+                        <Application.InputArea onSubmit={handleApplication} method="POST" Scroll ="hidden">
                             <Application.Input  
                                 placeholder="Name"
                                 value={name}

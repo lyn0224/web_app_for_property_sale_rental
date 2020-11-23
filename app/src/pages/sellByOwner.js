@@ -187,9 +187,9 @@ function SellByOwner() {
                         style={{height: "300px"}}
                     />
                     <ItemAdd maxCount="6" type="Main" createItem={createItem} />
-                    {/* <Form.Submit disabled={isInvalid} type="submit">
+                    <Form.Submit disabled={isInvalid} type="submit">
                         Continue
-                    </Form.Submit> */}
+                    </Form.Submit>
                 </Form.Base>
             </Form>
         </>
