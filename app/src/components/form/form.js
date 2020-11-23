@@ -9,7 +9,9 @@ import {
     Link,
     Input,
     TextArea, 
-    Submit 
+    Submit,
+    Select,
+    Option
 } from './styles/style';
 
 export default function Form({ children, ...restProps }) {
@@ -50,4 +52,12 @@ Form.TextArea = function FormTextArea({ children, ...restProps }) {
 
 Form.Submit = function FormSubmit({ children, ...restProps }) {
     return <Submit {...restProps}>{children}</Submit>
+}
+
+Form.Select =function FormSelect({ children, ...restProps }) {
+    return <Select {...restProps}>{children}</Select>
+}
+
+Form.Option = function FormOption({ children, ...restProps }) {
+    return <Option {...restProps}>{children}</Option>;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Form } from './export';
 export default class ItemAdd extends React.Component {
 
     constructor() {
@@ -68,7 +68,9 @@ export default class ItemAdd extends React.Component {
                             </div>
                         </tr>
                         <tr>
-                            <td><button>Submit</button></td>
+                            <Form.Submit type="submit" style={{width:"100%"}}>
+                                Continue
+                            </Form.Submit>
                         </tr>
                     </table>
                 </form>

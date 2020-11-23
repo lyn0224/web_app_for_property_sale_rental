@@ -34,39 +34,61 @@ function RentByOwner() {
 
  
     const createItem= async(newItem) => {
-        console.log(newItem);
-        console.log('PHOTO:', newItem.image);
-        const formData = new FormData();
-        formData.append('list_type', "rent");
-        formData.append('main', newItem.image[0]);
+        handleInvalid();
+        console.log(error);
+        if(error !== ''){
+            console.log(newItem);
+            console.log('PHOTO:', newItem.image);
+            const formData = new FormData();
+            formData.append('list_type', "rent");
+            formData.append('main', newItem.image[0]);
 
-        newItem.image.slice(1).forEach(file=>{
-            formData.append("others", file);
-        });
+            newItem.image.slice(1).forEach(file=>{
+                formData.append("others", file);
+            });
 
-        formData.append('Owner_ID', 2);
-        formData.append('Realtor_ID', 1);
-        formData.append('property_type', propertyType);
-        formData.append('apt_num', aptNum);
-        formData.append('street', streetAddress);
-        formData.append('city', city);
-        formData.append('state', states);
-        formData.append('zip', zipCode);
-        formData.append('available_date', available);
-        formData.append('rate', rate);
-        formData.append('lease_term', term);
-        formData.append('security_deposit', deposite);
-        formData.append('ammenities', ammenities);
-        formData.append('bedroom', bed);
-        formData.append('bathroom', bath);
-        formData.append('livingroom', living);
-        formData.append('flooring', floor);
-        formData.append('parking', parking);
-        formData.append('area', area);
-        formData.append('year_built', year);
-        formData.append('description', description);
-        formData.append('status', 'A');
+            formData.append('Owner_ID', 2);
+            formData.append('Realtor_ID', 1);
+            formData.append('property_type', propertyType);
+            formData.append('apt_num', aptNum);
+            formData.append('street', streetAddress);
+            formData.append('city', city);
+            formData.append('state', states);
+            formData.append('zip', zipCode);
+            formData.append('available_date', available);
+            formData.append('rate', rate);
+            formData.append('lease_term', term);
+            formData.append('security_deposit', deposite);
+            formData.append('ammenities', ammenities);
+            formData.append('bedroom', bed);
+            formData.append('bathroom', bath);
+            formData.append('livingroom', living);
+            formData.append('flooring', floor);
+            formData.append('parking', parking);
+            formData.append('area', area);
+            formData.append('year_built', year);
+            formData.append('description', description);
+            formData.append('status', 'A');
         
+            axios({
+                method: "POST",
+                url: 'http://localhost:9000/upload',
+                data: formData,
+                headers: {
+                  "Content-Type": "multipart/form-data"
+                }
+            });
+        }else{
+            setAptNum('');
+            setArea('');
+            setBath('');
+            setBed('');
+            setCity('');
+            setDescription('');
+            setFloor('');
+            setLiving('');
+            setParking('');
+        }
         // console.log(formData.get('main'));
         // console.log(formData.get('others'));
         // console.log(formData.get('p_type'));
@@ -85,17 +107,62 @@ function RentByOwner() {
         // console.log(formData.get('description'));
         // console.log(formData.get('status'));
 
-        axios({
-            method: "POST",
-            url: 'http://localhost:9000/upload',
-            data: formData,
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
-          });
+        
     }
  
+
+
     const isInvalid = propertyType === '' || streetAddress === '' || aptNum === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '';
+
+    function handleInvalid(){
+        let regxAddress = new RegExp("^([0-9a-zA-Z]+)(,\s*[0-9a-zA-Z]+)*$");
+        let resultAddress = regxAddress.test(streetAddress);
+        if(!resultAddress){
+            setError("inValid input for address")
+        }
+        let regxNum = new RegExp("^[0-9]*$")
+        let resultApt = regxNum.test(aptNum);
+        let resultBed = regxNum.test(bed);
+        let resultBath = regxNum.test(bath);
+        let resultArea = regxNum.test(area);
+        let resultLiving = regxNum.test(living);
+        let resultDeposite = regxNum.test(deposite);
+        let resultRate = regxNum.test(rate);
+        if(!resultApt){
+            setError("inValid input for apt/unit number")
+        }
+        if(!resultBed){
+            setError("inValid input for bed number")
+        }
+        if(!resultBath){
+            setError("inValid input for bath number")
+        }
+        if(!resultArea){
+            setError("inValid input for area number")
+        }
+        if(!resultLiving){
+            setError("inValid input for living number")
+        }
+        if(!resultRate){
+            setError("inValid input for rate")
+        }
+        if(!resultDeposite){
+            setError("inValid input for deposite")
+        }
+        let regxCity = new RegExp("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$");
+        let resultCity = regxCity.test(city);
+        if(!resultCity){
+            setError("inValid input for city")
+        }
+        let regxZip = new RegExp("^\d{5}(?:[-\s]\d{4})?$");
+        let resultZip = regxZip.test(city);
+        if(!resultZip){
+            setError("inValid input for zip code")
+        }
+        if(resultZip && resultCity && resultLiving && resultArea && resultBath && resultBed && resultApt){
+            setError('');
+        }
+    }
 
     return (
         <>
@@ -104,11 +171,20 @@ function RentByOwner() {
                 <Form.Title>Post a For Rent by Owner Listing</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
                 <Form.Base>
-                    <Form.Input
-                        placeholder="Propert yType"
-                        value={propertyType}
-                        onChange={({ target }) => setPropertyType(target.value)}
-                    />
+                    <Form.Select>
+                        <Form.Option
+                            value="Single House"
+                            onChange={({ target }) => setPropertyType(target.value)}
+                            >Single House</Form.Option>
+                        <Form.Option 
+                            value="Townhouse"
+                            onChange={({ target }) => setPropertyType(target.value)}
+                            >Townhouse</Form.Option>
+                        <Form.Option 
+                            value="Apartment"
+                            onChange={({ target }) => setPropertyType(target.value)}
+                            >Apartment</Form.Option>
+                    </Form.Select>
                     <Form.Input
                         placeholder="Street Address"
                         value={streetAddress}
@@ -150,9 +226,9 @@ function RentByOwner() {
                             style={{width: "150px", marginRight: "5px"}}
                         />
                         <Form.Input
-                            placeholder="Ammenities"
-                            value={ammenities}
-                            onChange={({ target }) => setAmmenities(target.value)}
+                            placeholder="Rate %"
+                            value={rate}
+                            onChange={({ target }) => setRate(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
                         />
                     </Row>
@@ -163,10 +239,34 @@ function RentByOwner() {
                             onChange={({ target }) => setAvailable(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
                         />
+                        <Form.Select style={{width: "150px", marginLeft: "6px"}}>
+                                <Form.Option
+                                    value="3"
+                                    onChange={({ target }) => setTerm(target.value)}
+                                    >3 months</Form.Option>
+                                <Form.Option 
+                                    value="6"
+                                    onChange={({ target }) => setTerm(target.value)}
+                                    >6 months
+                                </Form.Option>
+                                <Form.Option 
+                                    value="12"
+                                    onChange={({ target }) => setTerm(target.value)}
+                                    >12 months
+                                </Form.Option>
+                        </Form.Select>
+                    </Row>
+                    <Row style={{margin: "auto"}}>
                         <Form.Input
-                            placeholder="Lease Term"
-                            value={term}
-                            onChange={({ target }) => setTerm(target.value)}
+                            placeholder="Living #"
+                            value={living}
+                            onChange={({ target }) => setYear(target.value)}
+                            style={{width: "150px", marginRight: "5px"}}
+                        />
+                        <Form.Input
+                            placeholder="Year #"
+                            value={year}
+                            onChange={({ target }) => setYear(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
                         />
                     </Row>
@@ -191,36 +291,33 @@ function RentByOwner() {
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
-                        <Form.Input
-                            placeholder="Living #"
-                            value={living}
-                            onChange={({ target }) => setLiving(target.value)}
-                            style={{width: "100px", marginRight: "2.5px"}}
-                        />
-                        <Form.Input
-                            placeholder="Floor #"
-                            value={floor}
-                            onChange={({ target }) => setFloor(target.value)}
-                            style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
-                        />
-                        <Form.Input
-                            placeholder="Parking"
-                            value={parking}
-                            onChange={({ target }) => setParking(target.value)}
-                            style={{width: "100px", marginLeft: "2.5px"}}
-                        />
+                        <Form.Select style={{width: "150px", marginRight: "6px"}}>
+                                <Form.Option
+                                    value="Carpet"
+                                    onChange={({ target }) => setFloor(target.value)}
+                                    >Carpet</Form.Option>
+                                <Form.Option 
+                                    value="Wooden"
+                                    onChange={({ target }) => setFloor(target.value)}
+                                    >Wooden</Form.Option>
+                        </Form.Select>
+                        <Form.Select style={{width: "150px", marginLeft: "6px"}}>
+                                <Form.Option
+                                    value="Open"
+                                    onChange={({ target }) => setFloor(1)}
+                                    >Open</Form.Option>
+                                <Form.Option 
+                                    value="Close"
+                                    onChange={({ target }) => setFloor(0)}
+                                    >Close
+                                </Form.Option>
+                        </Form.Select>
                     </Row>
                     <Form.Input
-                        placeholder="Year #"
-                        value={year}
-                        onChange={({ target }) => setYear(target.value)}
-                    />
-                    <Form.Input
-                        placeholder="Rate %"
-                        value={rate}
-                        onChange={({ target }) => setRate(target.value)}
-
-                    />
+                            placeholder="Ammenities"
+                            value={ammenities}
+                            onChange={({ target }) => setAmmenities(target.value)}
+                        />
                     <Form.TextArea
                         placeholder="Description"
                         value={description}

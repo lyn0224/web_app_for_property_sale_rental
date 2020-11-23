@@ -75,8 +75,6 @@ function Signin(){
                                 autoComplete="off"
                                 placeholder="Password"
                                 onChange={({ target }) => setPassword(target.value)} 
-                            onChange={({ target }) => setPassword(target.value)} 
-                                onChange={({ target }) => setPassword(target.value)} 
                             />
                             <Form.Submit disabled={isInvalid} type="submit">
                                 Sign In

@@ -100,3 +100,31 @@ export const Submit = styled.button`
         opacity: 0.5;
     }
 `;
+
+export const Select = styled.select`
+    position: relative;
+    font-family: Arial;
+    font-size: 16px;
+    height: 55px;
+    background: #333;
+    color:grey;
+    text-shadow:0 1px 0 rgba(0,0,0,0.4);
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+`
+
+export const Option = styled.option`
+    background: #333;
+    border-radius: 4px;
+    border: 0;
+    color: grey;
+    height: 50px;
+    line-height: 50px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    
+    &:last-of-type {
+        margin-bottom: 30px;
+    }
+`;

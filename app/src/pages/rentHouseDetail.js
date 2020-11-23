@@ -147,7 +147,7 @@ function RentHouseDetail(props){
                                  onChange={({ target }) => setIncome(target.value)}>
                             </Application.Input>
 
-                            <Application.Submit disabled={isInvalid} onclick={toggleDisplay}>Submit</Application.Submit>
+                            {/* <Application.Submit disabled={isInvalid} onclick={toggleDisplay}>Submit</Application.Submit> */}
                         </Application.InputArea>
                 </Application.Base>  
           </>
