@@ -26,8 +26,8 @@ Application.Base = function ApplicationBase({ children, ...restProps }) {
 Application.Title = function ApplicationTitle({ children, ...restProps }) {
     return <Title {...restProps}>{children}</Title>;
 }
-Application.InputArea = function  ApplicationInputArea({ children, ...restProps }) {
-    return <InputArea {...restProps}>{children}</InputArea>;
+Application.InputArea = function  ApplicationInputArea({Scroll, children, ...restProps }) {
+    return <InputArea Scroll {...restProps}>{children}</InputArea>;
 }
 Application.InputField = function  ApplicationInputField({ children, ...restProps }) {
     return <InputField {...restProps}>{children}</InputField>;

@@ -39,6 +39,8 @@ export const Text = styled.p`
 `  
 export const ImageContainer = styled.div`
     position:relative;
+    width:300px;
+    margin:1rem;
 `    
 export const Image = styled.img`
     object-fit: cover;

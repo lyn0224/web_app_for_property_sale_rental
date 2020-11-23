@@ -31,7 +31,7 @@ function Listing() {
     const [Description,setDescription] = useState()
     const [Pic_dir,setPic_dir] = useState()
     const [Main_dir,setMain_dir] = useState()
-
+    const [Flooring,setFlooring] = useState()
 
     const isInvalid = PropertyType === ''|| Street === '' || Zip ==='' ||City === ''||City === ''||Price === ''||Bedroom === ''||Parking===''||Description===''; 
     useEffect( ()=>{
@@ -76,6 +76,7 @@ function Listing() {
                 setPic_dir(item.pic_dir)
                 setMain_dir(item.main_dir)
                 setDescription(item.description)
+                setFlooring(item.flooring)
             }})
            
             
@@ -130,16 +131,17 @@ function Listing() {
                         bathroom : Bathroom,
                         bedroom: Bedroom,
                         city : City,
-                        flooring: "carpet",
+                        flooring: Flooring,
                         livingroom : Livingroom,
                         parking : Parking,
                         price : Price,
-                        p_type : "h",
+                        p_type : PropertyType,
                         state : State,
                         street : Street,
-                        year : "2134",
+                        year : Year,
                         zip:Zip,
                         S_ID: ID,
+                        description:Description,
                         status:"A"
                     })
                 });
@@ -198,7 +200,7 @@ function Listing() {
 
                         <Application.Close toggleDisplay={toggleDisplay}><i className="far fa-window-close"></i></Application.Close>
                         <Application.Title>Update Form</Application.Title>
-                        <Application.InputArea onSubmit={handleUpdate} method="POST">
+                        <Application.InputArea onSubmit={handleUpdate} method="POST" Scroll = "scroll">
                         
                             <Application.InputField>
                                 <Application.Text>Property Type</Application.Text>
@@ -284,8 +286,18 @@ function Listing() {
                                     onChange={({ target }) => setLivingroom(target.value)}
                                     />
                             </Application.InputField>
+                            
+                            <Application.InputField>
+                                <Application.Text>Flooring</Application.Text> 
+                                <Application.Input  
+                                    placeholder="Flooring"
+                                    defaultValue ={Flooring}
+                                    onChange={({ target }) => setFlooring(target.value)}
+                                    />
+                             </Application.InputField>    
 
                             <Application.InputField>
+
                                 <Application.Text>Parking</Application.Text> 
                                 <Application.Input  
                                     placeholder="Parking"

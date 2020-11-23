@@ -54,7 +54,7 @@ function SellByOwner() {
         formData.append('area', area);
         formData.append('year', year);
         formData.append('description', description);
-        //formData.append('status', 'A');
+        formData.append('status', 'A');
         
         console.log(formData.get('main'));
         console.log(formData.get('others'));
@@ -187,9 +187,9 @@ function SellByOwner() {
                         style={{height: "300px"}}
                     />
                     <ItemAdd maxCount="6" type="Main" createItem={createItem} />
-                    {/* <Form.Submit disabled={isInvalid} type="submit">
+                    <Form.Submit disabled={isInvalid} type="submit">
                         Continue
-                    </Form.Submit> */}
+                    </Form.Submit>
                 </Form.Base>
             </Form>
         </>

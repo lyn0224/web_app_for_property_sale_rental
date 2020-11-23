@@ -64,7 +64,7 @@ export const InputArea = styled.form`
     margin:0 auto;
     height: 80%;
     align-items: center;
-    overflow:scroll;
+    overflow: ${props => props.Scroll};
     overflow-x: hidden;
     
 `

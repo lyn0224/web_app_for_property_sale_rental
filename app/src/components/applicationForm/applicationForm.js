@@ -17,9 +17,9 @@ ApplicationForm.Base = function ApplicationFormBase({children, ...restProps}){
     )
 }
 
-ApplicationForm.Button = function ApplicationFormButton({id,onclick,name,children, ...restProps}){
+ApplicationForm.Button = function ApplicationFormButton({id,onclick,name, Buyer_ID, children, ...restProps}){
     return(
-        <Button onClick = {()=>onclick(id,name)} {...restProps} >
+        <Button onClick = {()=>onclick(id,name,Buyer_ID)} {...restProps} >
             {children}
         </Button>
     )
