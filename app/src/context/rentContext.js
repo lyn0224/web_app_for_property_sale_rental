@@ -1,8 +1,7 @@
 import React, {useState, createContext, Component, useEffect } from 'react';
 
-const Context = React.createContext()
-function HousesProvider({children}) {
-
+const RentContext = React.createContext()
+function RentProvider({children}) {
     const [houses,setHouses] = useState()
     const [search,setSearch] = useState()
     const [favorite,setFavorite] = useState()
@@ -10,45 +9,47 @@ function HousesProvider({children}) {
     const [bed,setBed] = useState(0)
     const [bath,setBath] = useState(0)
     const [parking, setParking] = useState(0);
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(10000000);
+    const [minRate, setMinRate] = useState(0);
+    const [maxRate, setMaxRate] = useState(10000);
     const [minSize, setMinSize] = useState(0);
     const [maxSize, setMaxSize] = useState(3000);
-    const [flooring, setFoorling] = useState('all')
+    const [available, setAvailable] = useState()
+    const [flooring, setFlooring] = useState('all')
 
-    const Search_URL = 'http://localhost:9000/house';
-    const Favorite_URL = 'http://localhost:9000/search';
-    const Save_URL = 'http://localhost:9000/save_search';
-    const Remove_URL = "#";
-    const Add_URL = "#"
+    const Rent_Search_URL = 'http://localhost:9000/rent';
+    const Rent_Favorite_URL = '#';
+    const Rent_Save_URL = '#';
+    const Rent_Remove_URL = "#";
+    const Rent_Add_URL = "#"
     const user = JSON.parse(localStorage.getItem('authUser'));
 
 
-
+    console.log("i am context")
     useEffect( ()=>{
-        fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
-        filterDate();
-        if(user){
-            try{
-                fetch(Favorite_URL, {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: user.name,
-                    })
-                }).then(res => res.json()).then(result=>{
-                    console.log(result);
-                    let Favorite_List = result.xxx;
-                    setFavorite(Favorite_List);
-                })
-            }catch(e){
-                console.log(e);
-            }
-       }
-    },[types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize])
+        
+        fetch(Rent_Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
+        filterData();
+    //     if(user){
+    //         try{
+    //             fetch(Rent_Favorite_URL, {
+    //                 method: 'post',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Accept': 'application/json'
+    //                 },
+    //                 body: JSON.stringify({
+    //                     username: user.name,
+    //                 })
+    //             }).then(res => res.json()).then(result=>{
+    //                 console.log(result);
+    //                 let Favorite_List = result.xxx;
+    //                 setFavorite(Favorite_List);
+    //             })
+    //         }catch(e){
+    //             console.log(e);
+    //         }
+    //    }
+    },[types, bed, bath, parking, minRate, maxRate, flooring, minSize, maxSize, available])
 
 
     function find_result(input){
@@ -74,11 +75,11 @@ function HousesProvider({children}) {
         if(name === "bath"){
             setBath(value);
         }
-        if(name === "minPrice"){
-            setMinPrice(value);
+        if(name === "minRate"){
+            setMinRate(value);
         }
         if(name === "maxPrice"){
-            setMaxPrice(value);
+            setMaxRate(value);
         }
         if(name === "minSize"){
             setMinSize(value);
@@ -87,8 +88,11 @@ function HousesProvider({children}) {
             setMaxSize(value);
         }
         if(name === "flooring"){
-            setFoorling(value);
+            setFlooring(value);
         }
+        // if(name === "available"){
+        //     setAvailable(value);
+        // }
         if(name === "parking"){
             if(value){
                 setParking(1);
@@ -98,18 +102,15 @@ function HousesProvider({children}) {
         }
     }
 
-    function filterDate(){
+    function filterData(){
         if(houses){
-            console.log(types, bath, bed, minPrice, maxPrice, minSize, maxSize, parking, flooring);
+            console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available);
             let tempHouses = [...houses];
             console.log("before filter",tempHouses);
             if(types !== "all"){
                 tempHouses = tempHouses.filter(house => house.property_type === types);
             }
-            if(flooring !== "all"){
-                tempHouses = tempHouses.filter(house => house.flooring === flooring);
-            }
-            console.log("after flooring",tempHouses);
+            console.log("after types",tempHouses);
             if(bed !== "any+"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
             }
@@ -117,37 +118,43 @@ function HousesProvider({children}) {
             if(bath !== "any+"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
+            if(flooring !== "all"){
+                tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
+            }
             console.log("after bath",tempHouses);
-            tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
+            console.log(minRate, maxRate)
+            tempHouses = tempHouses.filter(house=>house.rate <= maxRate && house.rate >= minRate)
             console.log("after prices",tempHouses);
             tempHouses = tempHouses.filter(house=>house.area <= maxSize && house.area >= minSize)
             console.log("after size",tempHouses);
             tempHouses = tempHouses.filter(house => house.parking === parking);
-            console.log("after filter",tempHouses);
+            console.log("after parking", tempHouses);
+            // tempHouses = tempHouses.filter(house => house.available_date >= available);
+            // console.log("after available",tempHouses);
             setSearch(tempHouses);
         }
     }
 
     async function handleSave(){
-        console.log(types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize);
+        console.log(types, bed, bath, parking, minRate, maxRate, minSize, maxSize);
         // try{
-        //     let res = await fetch(Save_URL, {
+        //     let res = await fetch(Rent_Save_URL, {
         //         method: 'post',
         //         headers: {
         //             'Accept': 'application/json',
         //             'Content-Type': 'application/json'
         //         },
         //         body: JSON.stringify({
-        //             table: table,
         //             types: types,
         //             bed: bed,
         //             bath: bath,
         //             parking: parking,
-        //             flooring: flooring,  
-        //             minPrice: minPrice, 
-        //             maxPrice: maxPrice, 
+        //             minRate: minRate, 
+        //             maxRate: maxRate, 
         //             minSize: minSize, 
-        //             maxSize: maxSize
+        //             maxSize: maxSize,
+        //             flooring: flooring, 
+        //             available: available
         //         })
         //     });
         //     let result = await res.json();
@@ -190,17 +197,18 @@ function HousesProvider({children}) {
     async function addFavorite(){
         setFavorite(true)
     }
-        return (
-            <>
-            <Context.Provider  value={{
-                houses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
-                }}>
-                {children}
-            </Context.Provider>
-            </>
-        )
+    console.log(houses);
+    return (
+        <>
+        <RentContext.Provider  value={{
+            houses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
+            }}>
+            {children}
+        </RentContext.Provider>
+        </>
+    )
 }
 
 
 
-export{HousesProvider, Context}
+export{RentProvider, RentContext}

@@ -9,8 +9,8 @@ import *as ROUTES from '../constants/routes'
 function HeaderContainer(props){
 
     const {user,logout} = useContext(Context);
-    const conditionalSignin = user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):
-    
+    const conditionalRentals = user === null ? null: (<Header.Link to = {ROUTES.RENTALS}>Manage Rentals</Header.Link>);
+    const conditionalSignin = user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):    
             (<Header.Group>
             <Header.Profile>
             <Header.Link to ='#'>{user.username}</Header.Link>
@@ -54,7 +54,7 @@ function HeaderContainer(props){
                 <Header.Logo to = {ROUTES.HOME}>Zillow</Header.Logo>
 
                 <Header.RightPanel>
-                    <Header.Link to = {ROUTES.RENTALS}>Manage Rentals</Header.Link>
+                    {conditionalRentals}
                     <Header.Link to = {ROUTES.HELP}>Help</Header.Link>
                     {conditionalSignin}
                 </Header.RightPanel>

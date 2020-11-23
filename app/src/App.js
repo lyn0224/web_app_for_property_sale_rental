@@ -5,6 +5,8 @@ import Routers from "./Routers/Routers"
 import {UserInfor} from './context/userInfo'
 
 import {HousesProvider} from './context/housesContext'
+import {RentProvider} from './context/rentContext'
+
 function App() {
   return (
     <div className="App">
@@ -12,7 +14,9 @@ function App() {
       <UserInfor>
           <Header />
           <HousesProvider>
-            <Routers/>
+            <RentProvider>
+              <Routers/>
+            </RentProvider>  
           </HousesProvider>
        </UserInfor>
     </div>

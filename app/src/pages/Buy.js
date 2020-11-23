@@ -7,7 +7,6 @@ import BuyContainer from '../containers/buyContainer'
 
         return (
             <>
-            
             <BuyContainer/>
             </>  
         )

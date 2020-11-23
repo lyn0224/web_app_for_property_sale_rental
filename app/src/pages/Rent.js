@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import BuyContainer from '../containers/buyContainer'
-
+import RentContainer from "../containers/rentContainer"
 function Rent () {
 
 
     return (
-        <BuyContainer/>  
+        <RentContainer/>
     )
 
 }

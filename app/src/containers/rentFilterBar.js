@@ -1,14 +1,14 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Context } from '../context/housesContext';
+import { RentContext } from '../context/rentContext';
 
 //get all unique values
 const getUnique = (items, value) => {
     return [...new Set(items.map(item => item[value]))];
 };
 
-export default function FilterBar() {
-    const context = useContext(Context);
+export default function RentFilterBar() {
+    const context = useContext(RentContext);
     // console.log(context);
     const {
         handleChange,
@@ -16,9 +16,10 @@ export default function FilterBar() {
         type,
         bed,
         bath,
-        minPrice,
-        maxPrice,
+        minRate,
+        maxRate,
         flooring,
+        available,
         minSize,
         maxSize,
         parking,
@@ -28,9 +29,10 @@ export default function FilterBar() {
     let types = [];
     let beds = [];
     let baths = [];
-    let prices = [];
+    let rates = [];
     let floorings = [];
-    let years = []
+    let years = [];
+    let availables = [];
     // //get unique types
     if(houses){
         types = getUnique(houses, 'property_type');
@@ -51,20 +53,26 @@ export default function FilterBar() {
             return <option value={item} key={index}>{item}+</option>
         });
 
-        prices = [500000,1000000,1500000,2000000,2500000,3000000,3500000]
-        prices = prices.map((item, index) => {
+        rates = [1000,2000,2500,3000,3500,,4000,5000]
+        rates = rates.map((item, index) => {
             return <option value={item} key={index+1}>{item}</option>
         });
 
         floorings = getUnique(houses, "flooring");
-        floorings = ['any', ...floorings];
+        floorings = ['all', ...floorings];
         floorings = floorings.map((item, index) => {
-            return <option value={item} key={index+1}>{item}</option>
+            return <option value={item} key={index}>{item}</option>
         });
 
         years = getUnique(houses, 'year_built');
         years = ['all', ...years];
         years = years.map((item, index) => {
+            return <option value={item} key={index}>{item}</option>
+        });
+
+        availables = ["in one month", "in three months", "in six months"]
+        availables = ['all', ...availables];
+        availables = availables.map((item, index) => {
             return <option value={item} key={index}>{item}</option>
         });
     }
@@ -126,31 +134,30 @@ export default function FilterBar() {
 
                 {/*minPrice*/}
                 <div className="form-group">
-                    <label htmlFor="minPrice">Min Price</label>
+                    <label htmlFor="minRate">Min Rate</label>
                     <select
-                        name="minPrice"
-                        id="minPrice"
-                        value={minPrice}
+                        name="minRate"
+                        id="minRate"
+                        value={minRate}
                         className="form-control"
                         onChange={handleChange}>
                         <option value={0} key={0}>0</option>
-                        {prices}
+                        {rates}
                     </select>
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="maxPrice">Max Price</label>
+                    <label htmlFor="maxRate">Max Rate</label>
                     <select
-                        name="maxPrice"
-                        id="maxPrice"
-                        value={maxPrice}
+                        name="maxRate"
+                        id="maxRate"
+                        value={maxRate}
                         className="form-control"
                         onChange={handleChange}>
-                        <option value={10000000} key={0}>10000000</option>
-                        {prices}
+                        <option value={10000} key={0}>10000</option>
+                        {rates}
                     </select>
                 </div>
-
                 <div className="form-group">
                     <label htmlFor="flooring">Flooring</label>
                     <select 
@@ -160,6 +167,16 @@ export default function FilterBar() {
                         className="form-control"
                         onChange={handleChange}
                     >{floorings}</select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="available">Available Date</label>
+                    <select 
+                        name="available"
+                        id="available"
+                        value={available}
+                        className="form-control"
+                        onChange={handleChange}
+                    >{availables}</select>
                 </div>
 
                 <div className="form-group">

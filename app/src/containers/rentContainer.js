@@ -1,15 +1,17 @@
 import React,{useState,useContext} from 'react';
 import { BuyLayout } from '../components/export';
-import Housecards from './housecards'
-import { Context } from '../context/housesContext';
+import RentHousecards from './rentHousecard'
+import { RentContext } from '../context/rentContext';
 import Map from './googlemap'
-import FilterBar from './FilterBar'
-function Buy() {
+import RentFilterBar from './rentFilterBar'
+function RentContainer() {
+    
     const [searchTerm, setSearchTerm] = useState('');
-    const {houses,handleSubmit, find_result} = useContext(Context)
-
+    const {houses, find_result} = useContext(RentContext)
+    console.log("this is rent",houses)
     const conditionalFilterBar = houses ? 
-        <FilterBar/> : null;
+        <RentFilterBar/> : null;
+
     return (
         <BuyLayout>
             
@@ -18,14 +20,13 @@ function Buy() {
             </BuyLayout.FirstSection>
             {conditionalFilterBar}
             <BuyLayout.SecondSection>
-
+            
                 <BuyLayout.Map>
                     <Map/>
                 </BuyLayout.Map>
 
                 <BuyLayout.List>
-                
-                    <Housecards/>
+                    <RentHousecards/>
                 </BuyLayout.List>
 
             </BuyLayout.SecondSection>
@@ -34,4 +35,4 @@ function Buy() {
     )
 }
 
-export default Buy
+export default RentContainer

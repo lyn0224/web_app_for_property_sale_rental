@@ -54,7 +54,7 @@ function SellByOwner() {
         formData.append('area', area);
         formData.append('year', year);
         formData.append('description', description);
-        //formData.append('status', 'A');
+        formData.append('status', 'A');
         
         console.log(formData.get('main'));
         console.log(formData.get('others'));
@@ -72,7 +72,7 @@ function SellByOwner() {
         console.log(formData.get('area'));
         console.log(formData.get('year'));
         console.log(formData.get('description'));
-        //console.log(formData.get('status'));
+        console.log(formData.get('status'));
 
         axios({
             method: "POST",

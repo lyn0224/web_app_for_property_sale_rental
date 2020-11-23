@@ -40,6 +40,8 @@ class forRentRouter{
                     data[i].main_dir = pic_folder + "/outside.PNG";
        
                 }
+                console.log(data);
+
                 res.json({
                     success: true,
                     dataset: data

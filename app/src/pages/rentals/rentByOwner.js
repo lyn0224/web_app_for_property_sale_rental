@@ -57,7 +57,6 @@ function RentByOwner() {
         formData.append('lease_term', term);
         formData.append('security_deposit', deposite);
         formData.append('ammenities', ammenities);
-        //formData.append('price', price);
         formData.append('bedroom', bed);
         formData.append('bathroom', bath);
         formData.append('livingroom', living);
@@ -66,7 +65,7 @@ function RentByOwner() {
         formData.append('area', area);
         formData.append('year_built', year);
         formData.append('description', description);
-        //formData.append('status', 'A');
+        formData.append('status', 'A');
         
         // console.log(formData.get('main'));
         // console.log(formData.get('others'));
@@ -159,22 +158,16 @@ function RentByOwner() {
                     </Row>
                     <Row style={{margin: "auto"}}>
                         <Form.Input
-                            placeholder="Date"
+                            placeholder="Available Date"
                             value={available}
                             onChange={({ target }) => setAvailable(target.value)}
-                            style={{width: "100px", marginRight: "2.5px"}}
+                            style={{width: "150px", marginRight: "5px"}}
                         />
                         <Form.Input
-                            placeholder="Rate %"
-                            value={rate}
-                            onChange={({ target }) => setRate(target.value)}
-                            style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
-                        />
-                        <Form.Input
-                            placeholder="Term"
+                            placeholder="Lease Term"
                             value={term}
                             onChange={({ target }) => setTerm(target.value)}
-                            style={{width: "100px", marginLeft: "2.5px"}}
+                            style={{width: "150px", marginLeft: "5px"}}
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
@@ -211,7 +204,7 @@ function RentByOwner() {
                             style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
                         />
                         <Form.Input
-                            placeholder="Parking #"
+                            placeholder="Parking"
                             value={parking}
                             onChange={({ target }) => setParking(target.value)}
                             style={{width: "100px", marginLeft: "2.5px"}}
@@ -223,9 +216,10 @@ function RentByOwner() {
                         onChange={({ target }) => setYear(target.value)}
                     />
                     <Form.Input
-                        placeholder="Price $"
-                        value={price}
-                        onChange={({ target }) => setPrice(target.value)}
+                        placeholder="Rate %"
+                        value={rate}
+                        onChange={({ target }) => setRate(target.value)}
+
                     />
                     <Form.TextArea
                         placeholder="Description"

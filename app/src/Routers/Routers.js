@@ -13,6 +13,7 @@ import AgentFinder from '../pages/agentFinder';
 import SellByOwner from '../pages/sellByOwner'
 import HouseDetail from '../pages/houseDetail'
 import Rentals from '../pages/rentals/Rentals'
+import RentHouseDetail from '../pages/rentHouseDetail'
 function Routers(){
     return(
         <Switch>
@@ -20,6 +21,7 @@ function Routers(){
               <Route exact path = {ROUTES.HOME}><Home/></Route>
               <Route exact path = {ROUTES.BUY}><Buy /></Route>
               <Route exact path={`${ROUTES.BUY}/:id`} ><HouseDetail/></Route>
+              <Route exact path={`${ROUTES.RENT}/:id`} ><RentHouseDetail/></Route>
               <Route path = {ROUTES.RENT}><Rent /></Route>
               <Route path = {ROUTES.SELL}><Sell /></Route>
               <Route path = {ROUTES.AGENT_FINDER}><AgentFinder /></Route>
