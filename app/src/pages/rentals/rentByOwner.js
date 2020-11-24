@@ -1,5 +1,5 @@
 import { Form } from '../../components/export';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {Row} from "react-bootstrap"
 import ItemAdd from "../../components/itemAdd"
 import axios from 'axios';
@@ -10,7 +10,7 @@ function RentByOwner() {
     const [ownerID, setOwnerID] = useState('');
     const [realtorID, setRealtorID] = useState('');
     const [error, setError] = useState('');
-    const [propertyType, setPropertyType] = useState('');
+    const [propertyType, setPropertyType] = useState("Single House");
     const [streetAddress, setStreetAddress] = useState('');
     const [aptNum, setAptNum] = useState('');
     const [city, setCity] = useState('');
@@ -18,77 +18,48 @@ function RentByOwner() {
     const [zipCode, setZipCode] = useState('');
     const [available, setAvailable] = useState('');
     const [rate, setRate] = useState('');
-    const [term, setTerm] = useState('');
+    const [term, setTerm] = useState('3');
     const [deposite, setDeposite] = useState('');
     const [ammenities, setAmmenities] = useState('');
     const [bed, setBed] = useState('');
     const [bath, setBath] = useState('');
     const [area, setArea] = useState('');
     const [living, setLiving] = useState('');
-    const [floor, setFloor] = useState('');
-    const [parking, setParking] = useState('');
+    const [floor, setFloor] = useState("Carpet");
+    const [parking, setParking] = useState(1);
     const [price, setPrice] = useState('');
     const [year, setYear] = useState('');
+    const [mainPictures, setMainPictures] = useState([]);
+    const [otherPictures, setOtherPictures] = useState([]);
     const [description, setDescription] = useState('');
+    const [data,setData] = useState();
 
-
+    const user = JSON.parse(localStorage.getItem('authUser'));
  
-    const createItem= async(newItem) => {
-        handleInvalid();
-        console.log(error);
-        if(error !== ''){
-            console.log(newItem);
-            console.log('PHOTO:', newItem.image);
-            const formData = new FormData();
-            formData.append('list_type', "rent");
-            formData.append('main', newItem.image[0]);
-
-            newItem.image.slice(1).forEach(file=>{
-                formData.append("others", file);
+    useEffect(()=>{
+        console.log("update")
+        if(data){
+            setMainPictures(data.image[0])
+            let array = []
+            data.image.slice(1).forEach(file=>{
+                array.push(file)
             });
-
-            formData.append('Owner_ID', 2);
-            formData.append('Realtor_ID', 1);
-            formData.append('property_type', propertyType);
-            formData.append('apt_num', aptNum);
-            formData.append('street', streetAddress);
-            formData.append('city', city);
-            formData.append('state', states);
-            formData.append('zip', zipCode);
-            formData.append('available_date', available);
-            formData.append('rate', rate);
-            formData.append('lease_term', term);
-            formData.append('security_deposit', deposite);
-            formData.append('ammenities', ammenities);
-            formData.append('bedroom', bed);
-            formData.append('bathroom', bath);
-            formData.append('livingroom', living);
-            formData.append('flooring', floor);
-            formData.append('parking', parking);
-            formData.append('area', area);
-            formData.append('year_built', year);
-            formData.append('description', description);
-            formData.append('status', 'A');
-        
-            axios({
-                method: "POST",
-                url: 'http://localhost:9000/upload',
-                data: formData,
-                headers: {
-                  "Content-Type": "multipart/form-data"
-                }
-            });
-        }else{
-            setAptNum('');
-            setArea('');
-            setBath('');
-            setBed('');
-            setCity('');
-            setDescription('');
-            setFloor('');
-            setLiving('');
-            setParking('');
+            setOtherPictures(array);
         }
+        console.log(propertyType);
+        console.log(floor);
+        console.log(mainPictures);
+        console.log(otherPictures);
+        // setPictures(formData);
+    },[data, floor, propertyType])
+
+    const createItem= async(newItem) => {
+        console.log(error);
+        console.log(newItem);
+        console.log('PHOTO:', newItem.image);
+        setData(newItem);
+    }
+        
         // console.log(formData.get('main'));
         // console.log(formData.get('others'));
         // console.log(formData.get('p_type'));
@@ -107,62 +78,96 @@ function RentByOwner() {
         // console.log(formData.get('description'));
         // console.log(formData.get('status'));
 
-        
-    }
  
+    function handleSubmit(){
+        const formData = new FormData();
+        formData.append('list_type', "rent");
+        formData.append('main', mainPictures);
+        formData.append('others', otherPictures);
 
-
-    const isInvalid = propertyType === '' || streetAddress === '' || aptNum === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '';
-
-    function handleInvalid(){
-        let regxAddress = new RegExp("^([0-9a-zA-Z]+)(,\s*[0-9a-zA-Z]+)*$");
-        let resultAddress = regxAddress.test(streetAddress);
-        if(!resultAddress){
-            setError("inValid input for address")
-        }
-        let regxNum = new RegExp("^[0-9]*$")
-        let resultApt = regxNum.test(aptNum);
-        let resultBed = regxNum.test(bed);
-        let resultBath = regxNum.test(bath);
-        let resultArea = regxNum.test(area);
-        let resultLiving = regxNum.test(living);
-        let resultDeposite = regxNum.test(deposite);
-        let resultRate = regxNum.test(rate);
-        if(!resultApt){
-            setError("inValid input for apt/unit number")
-        }
-        if(!resultBed){
-            setError("inValid input for bed number")
-        }
-        if(!resultBath){
-            setError("inValid input for bath number")
-        }
-        if(!resultArea){
-            setError("inValid input for area number")
-        }
-        if(!resultLiving){
-            setError("inValid input for living number")
-        }
-        if(!resultRate){
-            setError("inValid input for rate")
-        }
-        if(!resultDeposite){
-            setError("inValid input for deposite")
-        }
-        let regxCity = new RegExp("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$");
-        let resultCity = regxCity.test(city);
-        if(!resultCity){
-            setError("inValid input for city")
-        }
-        let regxZip = new RegExp("^\d{5}(?:[-\s]\d{4})?$");
-        let resultZip = regxZip.test(city);
-        if(!resultZip){
-            setError("inValid input for zip code")
-        }
-        if(resultZip && resultCity && resultLiving && resultArea && resultBath && resultBed && resultApt){
-            setError('');
-        }
+        formData.append('Owner_ID', user.id);
+        formData.append('Realtor_ID', 1);
+        formData.append('property_type', propertyType);
+        formData.append('apt_num', aptNum);
+        formData.append('street', streetAddress);
+        formData.append('city', city);
+        formData.append('state', states);
+        formData.append('zip', zipCode);
+        formData.append('available_date', available);
+        formData.append('rate', rate);
+        formData.append('lease_term', term);
+        formData.append('security_deposit', deposite);
+        formData.append('ammenities', ammenities);
+        formData.append('bedroom', bed);
+        formData.append('bathroom', bath);
+        formData.append('livingroom', living);
+        formData.append('flooring', floor);
+        formData.append('parking', parking);
+        formData.append('area', area);
+        formData.append('year_built', year);
+        formData.append('description', description);
+        formData.append('status', 'A');
+    
+        axios({
+            method: "POST",
+            url: 'http://localhost:9000/upload',
+            data: formData,
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
     }
+
+    const isInvalid = mainPictures === '' || otherPictures === '' || available === '' || rate === '' || term === '' || deposite === '' || ammenities === '' || description === '' || propertyType === '' || streetAddress === '' || aptNum === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '' || floor === '' || living === '' || year === '' || parking === '' || states === '';
+    // function handleInvalid(){
+    //     let regxAddress = new RegExp("^([0-9a-zA-Z]+)(,\s*[0-9a-zA-Z]+)*$");
+    //     let resultAddress = regxAddress.test(streetAddress);
+    //     if(!resultAddress){
+    //         setError("inValid input for address")
+    //     }
+    //     let regxNum = new RegExp("^[0-9]*$")
+    //     let resultApt = regxNum.test(aptNum);
+    //     let resultBed = regxNum.test(bed);
+    //     let resultBath = regxNum.test(bath);
+    //     let resultArea = regxNum.test(area);
+    //     let resultLiving = regxNum.test(living);
+    //     let resultDeposite = regxNum.test(deposite);
+    //     let resultRate = regxNum.test(rate);
+    //     if(!resultApt){
+    //         setError("inValid input for apt/unit number")
+    //     }
+    //     if(!resultBed){
+    //         setError("inValid input for bed number")
+    //     }
+    //     if(!resultBath){
+    //         setError("inValid input for bath number")
+    //     }
+    //     if(!resultArea){
+    //         setError("inValid input for area number")
+    //     }
+    //     if(!resultLiving){
+    //         setError("inValid input for living number")
+    //     }
+    //     if(!resultRate){
+    //         setError("inValid input for rate")
+    //     }
+    //     if(!resultDeposite){
+    //         setError("inValid input for deposite")
+    //     }
+    //     let regxCity = new RegExp("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$");
+    //     let resultCity = regxCity.test(city);
+    //     if(!resultCity){
+    //         setError("inValid input for city")
+    //     }
+    //     let regxZip = new RegExp("^\d{5}(?:[-\s]\d{4})?$");
+    //     let resultZip = regxZip.test(city);
+    //     if(!resultZip){
+    //         setError("inValid input for zip code")
+    //     }
+    //     if(resultZip && resultCity && resultLiving && resultArea && resultBath && resultBed && resultApt){
+    //         setError('');
+    //     }
+    // }
 
     return (
         <>
@@ -171,24 +176,23 @@ function RentByOwner() {
                 <Form.Title>Post a For Rent by Owner Listing</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
                 <Form.Base>
-                    <Form.Select>
+                    <Form.Select onChange={({ target }) => setPropertyType(target.value)}>
                         <Form.Option
                             value="Single House"
-                            onChange={({ target }) => setPropertyType(target.value)}
                             >Single House</Form.Option>
                         <Form.Option 
                             value="Townhouse"
-                            onChange={({ target }) => setPropertyType(target.value)}
                             >Townhouse</Form.Option>
                         <Form.Option 
                             value="Apartment"
-                            onChange={({ target }) => setPropertyType(target.value)}
                             >Apartment</Form.Option>
                     </Form.Select>
                     <Form.Input
                         placeholder="Street Address"
                         value={streetAddress}
                         onChange={({ target }) => setStreetAddress(target.value)}
+                        pattern="^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$"
+
                     />
                     <Row style={{margin: "auto"}}>
                         <Form.Input
@@ -196,12 +200,14 @@ function RentByOwner() {
                             value={aptNum}
                             onChange={({ target }) => setAptNum(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
+                            pattern="^[0-9]*$"
                         />
                         <Form.Input
                             placeholder="City"
                             value={city}
                             onChange={({ target }) => setCity(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
+                            pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
@@ -210,12 +216,14 @@ function RentByOwner() {
                             value={zipCode}
                             onChange={({ target }) => setZipCode(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
+                            pattern="[0-9]{5}"
                         />
                         <Form.Input
                             placeholder="State"
                             value={states}
                             onChange={({ target }) => setStates(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
+                            pattern="[A-Z][a-z]+(?: +[A-Z][a-z]+)*"
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
@@ -224,12 +232,14 @@ function RentByOwner() {
                             value={deposite}
                             onChange={({ target }) => setDeposite(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
+                            pattern="^[0-9]*$"
                         />
                         <Form.Input
                             placeholder="Rate %"
                             value={rate}
                             onChange={({ target }) => setRate(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
+                            pattern="^[0-9]*$"
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
@@ -238,20 +248,18 @@ function RentByOwner() {
                             value={available}
                             onChange={({ target }) => setAvailable(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
+                            pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
                         />
-                        <Form.Select style={{width: "150px", marginLeft: "6px"}}>
+                        <Form.Select style={{width: "150px", marginLeft: "6px"}} onChange={({ target }) => setTerm(target.value)}>
                                 <Form.Option
                                     value="3"
-                                    onChange={({ target }) => setTerm(target.value)}
                                     >3 months</Form.Option>
                                 <Form.Option 
                                     value="6"
-                                    onChange={({ target }) => setTerm(target.value)}
                                     >6 months
                                 </Form.Option>
                                 <Form.Option 
                                     value="12"
-                                    onChange={({ target }) => setTerm(target.value)}
                                     >12 months
                                 </Form.Option>
                         </Form.Select>
@@ -262,12 +270,14 @@ function RentByOwner() {
                             value={living}
                             onChange={({ target }) => setYear(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
+                            pattern="^[0-9]*$"
                         />
                         <Form.Input
                             placeholder="Year #"
                             value={year}
                             onChange={({ target }) => setYear(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
+                            pattern="^[0-9]{4}"
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
@@ -276,39 +286,38 @@ function RentByOwner() {
                             value={bed}
                             onChange={({ target }) => setBed(target.value)}
                             style={{width: "100px", marginRight: "2.5px"}}
+                            pattern="^[0-9]*$"
                         />
                         <Form.Input
                             placeholder="Bath #"
                             value={bath}
                             onChange={({ target }) => setBath(target.value)}
                             style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
+                            pattern="^[0-9]*$"
                         />
                         <Form.Input
                             placeholder="Area #"
                             value={area}
                             onChange={({ target }) => setArea(target.value)}
                             style={{width: "100px", marginLeft: "2.5px"}}
+                            pattern="^[0-9]*$"
                         />
                     </Row>
-                    <Row style={{margin: "auto"}}>
+                    <Row style={{margin: "auto"}} onChange={({ target }) => setFloor(target.value)}>
                         <Form.Select style={{width: "150px", marginRight: "6px"}}>
                                 <Form.Option
                                     value="Carpet"
-                                    onChange={({ target }) => setFloor(target.value)}
                                     >Carpet</Form.Option>
                                 <Form.Option 
                                     value="Wooden"
-                                    onChange={({ target }) => setFloor(target.value)}
                                     >Wooden</Form.Option>
                         </Form.Select>
-                        <Form.Select style={{width: "150px", marginLeft: "6px"}}>
+                        <Form.Select style={{width: "150px", marginLeft: "6px"}} onChange={({ target }) => setParking(target.value)}>
                                 <Form.Option
-                                    value="Open"
-                                    onChange={({ target }) => setFloor(1)}
+                                    value="1"
                                     >Open</Form.Option>
                                 <Form.Option 
-                                    value="Close"
-                                    onChange={({ target }) => setFloor(0)}
+                                    value="0"
                                     >Close
                                 </Form.Option>
                         </Form.Select>
@@ -325,9 +334,9 @@ function RentByOwner() {
                         style={{height: "300px"}}
                     />
                     <ItemAdd maxCount="6" type="Main" createItem={createItem} />
-                    {/* <Form.Submit disabled={isInvalid} type="submit">
+                    <Form.Submit disabled={isInvalid} type="submit">
                         Continue
-                    </Form.Submit> */}
+                    </Form.Submit>
                 </Form.Base>
             </Form>
         </>
