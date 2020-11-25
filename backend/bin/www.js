@@ -199,7 +199,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
-
+  // save favorite to database
   app.post('/api/favorite/home', async function (req, res) {
     try {
       const fav = new favorite();
@@ -209,6 +209,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+  // delete favorite from database
   app.delete('/api/favorite/home', async function (req, res) {
     try {
       const fav = new favorite();
@@ -218,6 +219,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+  // get favorite list
   app.get('/api/favorite/home', async function (req, res) {
     try {
       const fav = new favorite();
@@ -227,6 +229,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+  // get favorite search list
   app.get('/api/favorite/search', async function (req, res) {
     try {
       const fav = new favorite();
@@ -236,6 +239,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+  // get favorite search detail by id
   app.get('/api/favorite/search/:id', async function (req, res) {
     try {
       const fav = new favorite();
@@ -245,6 +249,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+  // save favorite search to database
   app.post('/api/favorite/search', async function (req, res) {
     try {
       const fav = new favorite();
@@ -254,6 +259,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+  // delete favorite search by condition
   app.delete('/api/favorite/search', async function (req, res) {
     try {
       const fav = new favorite();
