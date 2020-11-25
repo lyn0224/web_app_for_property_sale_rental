@@ -1,4 +1,6 @@
 class FavoriteRouter {
+
+    // execute sql 
     async execSQL(db, sql) {
       console.log('sql :', sql);
       return new Promise((resolve, reject) => {
@@ -12,10 +14,12 @@ class FavoriteRouter {
       })
     }
   
+    // execute sql get first redord
     async findOne(db, sql) {
       const list = await this.execSQL(db, sql);
       return list.length > 0 ? list[0] : null;
-    }
+    } 
+   
     async beginTran(db) {
       return new Promise((resolve, reject) => {
         db.beginTransaction((err) => {
@@ -29,9 +33,25 @@ class FavoriteRouter {
     }
   
   
+    /**
+     * get favorite home list by uid
+     *
+     * @param {*} db
+     * @param {*} req
+     * @return {*} 
+     * @memberof FavoriteRouter
+     */
     async homeList(db, req) {
-      const { page, size } = req.query;
-      return {};
+      const { id } = req.query;
+      if (!id) {
+        throw Error('user id need to be filled');
+       }
+      let sql = `select fh.*,a.username,a.Email,a.a_type,a.approved from favorite_home fh 
+      left join ACCOUNT a on fh.U_ID = a.ID where fh.U_ID = ${id}`
+  
+      const list = await this.execSQL(db, sql);
+  
+      return { list }
     }
   
     /**
@@ -137,15 +157,16 @@ class FavoriteRouter {
      * @memberof FavoriteRouter
      */
     async searchList(db, req) {
-      const { page = 1, size = 10 } = req;
-      const _page = Number(page) || 1;
-      const _size = Number(size) || 10
-      let sql = `select * from favorite_search t limit ${(_page - 1) * _size},${_size} `;
+    //   const { page = 1, size = 10 } = req;
+    //   const _page = Number(page) || 1;
+    //   const _size = Number(size) || 10
+      let sql = `select * from favorite_search t`;
       const list = await this.execSQL(db, sql);
       sql = `select count(1) total from favorite_search`;
       const totalInfo = await this.findOne(db, sql);
   
-      return { page, size, list, total: totalInfo.total }
+    //  return { page, size, list, total: totalInfo.total }
+    return { list }
     }
   
     /**
