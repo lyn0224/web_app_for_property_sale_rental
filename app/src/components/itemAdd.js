@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from './export';
+
 export default class ItemAdd extends React.Component {
 
     constructor() {
@@ -55,26 +55,13 @@ export default class ItemAdd extends React.Component {
             $imagePreview = null;
         }
         return (
-            <div>
-                <form name="itemAdd" onSubmit={this.handleSubmit}>
-                    {this.props.type} Image
-                    <table style={{width: "300px"}}>
-                        <tr>
-                            <td><input type="file" onChange={(e) => this.handleImageChange(e) } /></td>
-                        </tr>
-                        <tr>
-                            <div>
-                                {$imagePreview}
-                            </div>
-                        </tr>
-                        <tr>
-                            <Form.Submit type="submit" style={{width:"100%"}}>
-                                Continue
-                            </Form.Submit>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+            <form name="itemAdd" onSubmit={this.handleSubmit}>
+                {this.props.type} Image
+                <input type="file" onChange={(e) => this.handleImageChange(e) } />
+                {$imagePreview}
+                <p></p>
+                <button>Add</button>
+            </form>
         );
     }
 }
