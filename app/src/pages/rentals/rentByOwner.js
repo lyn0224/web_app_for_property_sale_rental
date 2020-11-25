@@ -37,21 +37,25 @@ function RentByOwner() {
     const user = JSON.parse(localStorage.getItem('authUser'));
  
     useEffect(()=>{
-        console.log("update")
+        // console.log("update")
+        // console.log("data", data);
         if(data){
+            console.log("i am here");
             setMainPictures(data.image[0])
+            console.log(mainPictures);
             let array = []
             data.image.slice(1).forEach(file=>{
                 array.push(file)
             });
             setOtherPictures(array);
+            console.log(otherPictures);
         }
         console.log(propertyType);
         console.log(floor);
         console.log(mainPictures);
         console.log(otherPictures);
         // setPictures(formData);
-    },[data, floor, propertyType])
+    },[data])
 
     const createItem= async(newItem) => {
         console.log(error);
@@ -60,23 +64,7 @@ function RentByOwner() {
         setData(newItem);
     }
         
-        // console.log(formData.get('main'));
-        // console.log(formData.get('others'));
-        // console.log(formData.get('p_type'));
-        // console.log(formData.get('street'));
-        // console.log(formData.get('apt_num'));
-        // console.log(formData.get('state'));
-        // console.log(formData.get('zip'));
-        // console.log(formData.get('price'));
-        // console.log(formData.get('bedroom'));
-        // console.log(formData.get('bathroom'));
-        // console.log(formData.get('livingroom'));
-        // console.log(formData.get('flooring'));
-        // console.log(formData.get('parking'));
-        // console.log(formData.get('area'));
-        // console.log(formData.get('year'));
-        // console.log(formData.get('description'));
-        // console.log(formData.get('status'));
+        
 
  
     function handleSubmit(){
@@ -108,6 +96,24 @@ function RentByOwner() {
         formData.append('description', description);
         formData.append('status', 'A');
     
+        console.log(formData.get('main'));
+        console.log(formData.get('others'));
+        console.log(formData.get('p_type'));
+        console.log(formData.get('street'));
+        console.log(formData.get('apt_num'));
+        console.log(formData.get('state'));
+        console.log(formData.get('zip'));
+        console.log(formData.get('price'));
+        console.log(formData.get('bedroom'));
+        console.log(formData.get('bathroom'));
+        console.log(formData.get('livingroom'));
+        console.log(formData.get('flooring'));
+        console.log(formData.get('parking'));
+        console.log(formData.get('area'));
+        console.log(formData.get('year'));
+        console.log(formData.get('description'));
+        console.log(formData.get('status'));
+
         axios({
             method: "POST",
             url: 'http://localhost:9000/upload',
@@ -118,7 +124,7 @@ function RentByOwner() {
         });
     }
 
-    const isInvalid = mainPictures === '' || otherPictures === '' || available === '' || rate === '' || term === '' || deposite === '' || ammenities === '' || description === '' || propertyType === '' || streetAddress === '' || aptNum === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '' || floor === '' || living === '' || year === '' || parking === '' || states === '';
+    const isInvalid = mainPictures === '' || otherPictures === '' || available === '' || rate === '' || term === '' || deposite === '' || ammenities === '' || description === '' || propertyType === '' || streetAddress === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '' || floor === '' || living === '' || year === '' || parking === '' || states === '';
     // function handleInvalid(){
     //     let regxAddress = new RegExp("^([0-9a-zA-Z]+)(,\s*[0-9a-zA-Z]+)*$");
     //     let resultAddress = regxAddress.test(streetAddress);
@@ -175,7 +181,7 @@ function RentByOwner() {
             <Form style={{backgroundColor: "grey"}}>
                 <Form.Title>Post a For Rent by Owner Listing</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
-                <Form.Base>
+                <Form.Base onSubmit={handleSubmit}>
                     <Form.Select onChange={({ target }) => setPropertyType(target.value)}>
                         <Form.Option
                             value="Single House"
@@ -223,7 +229,7 @@ function RentByOwner() {
                             value={states}
                             onChange={({ target }) => setStates(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
-                            pattern="[A-Z][a-z]+(?: +[A-Z][a-z]+)*"
+                            //pattern="[A-Z][a-z]+(?: +[A-Z][a-z]+)*"
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
@@ -235,7 +241,7 @@ function RentByOwner() {
                             pattern="^[0-9]*$"
                         />
                         <Form.Input
-                            placeholder="Rate %"
+                            placeholder="Rate"
                             value={rate}
                             onChange={({ target }) => setRate(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
@@ -244,11 +250,11 @@ function RentByOwner() {
                     </Row>
                     <Row style={{margin: "auto"}}>
                         <Form.Input
-                            placeholder="Available Date"
+                            placeholder="2020-01-01"
                             value={available}
                             onChange={({ target }) => setAvailable(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
-                            pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
+                            //pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
                         />
                         <Form.Select style={{width: "150px", marginLeft: "6px"}} onChange={({ target }) => setTerm(target.value)}>
                                 <Form.Option
@@ -268,7 +274,7 @@ function RentByOwner() {
                         <Form.Input
                             placeholder="Living #"
                             value={living}
-                            onChange={({ target }) => setYear(target.value)}
+                            onChange={({ target }) => setLiving(target.value)}
                             style={{width: "150px", marginRight: "5px"}}
                             pattern="^[0-9]*$"
                         />
@@ -334,7 +340,7 @@ function RentByOwner() {
                         style={{height: "300px"}}
                     />
                     <ItemAdd maxCount="6" type="Main" createItem={createItem} />
-                    <Form.Submit disabled={isInvalid} type="submit">
+                    <Form.Submit type="submit" disable={isInvalid}>
                         Continue
                     </Form.Submit>
                 </Form.Base>
