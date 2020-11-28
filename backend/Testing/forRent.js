@@ -10,7 +10,7 @@ class forRentRouter{
             // let userID = req.body.id;
 
              //let cols = ['%outside%'];
-            db.query("SELECT * from for_rent WHERE available_date > CURDATE()", (err, data) => {
+            db.query("SELECT * from FOR_RENT WHERE available_date > CURDATE()", (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -56,7 +56,7 @@ class forRentRouter{
         updateListing(db, req, res) {
             let fdata = req.body;
             let cols = [fdata.Realtor_ID, fdata.property_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.available_date, fdata.rate, fdata.lease_term, fdata.security_deposit, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.parking, fdata.flooring, fdata.area, fdata.year_built, fdata.ammenities, fdata.description, fdata.R_ID];
-            let sql = "UPDATE for_rent SET Realtor_ID = ?, property_type = ?," +
+            let sql = "UPDATE FOR_RENT SET Realtor_ID = ?, property_type = ?," +
                         "apt_num = ?, street = ?, city = ?, state = ?, zip = ?," +
                         "available_date = ?, rate = ?, lease_term = ?, security_deposit = ?, bedroom = ?, bathroom = ?," +
                         "livingroom = ?, parking = ?, flooring = ?, area = ?," +
@@ -85,7 +85,7 @@ class forRentRouter{
             //console.log(cols);
             //console.log("R_ID:",req.body.R_ID);
             let dir = 'public/forRent/' + req.body.R_ID;
-            db.query("DELETE from for_rent WHERE R_ID = ?", [req.body.R_ID], (err) => {
+            db.query("DELETE from FOR_RENT WHERE R_ID = ?", [req.body.R_ID], (err) => {
 
                 if(err) {
                     console.log(err);
@@ -119,7 +119,7 @@ class forRentRouter{
 
             //check if the time slot is occupied
             //console.log(cols);
-            db.query("INSERT INTO visit VALUES (?,?,?,?)", cols, (err) => {
+            db.query("INSERT INTO VISIT VALUES (?,?,?,?)", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -145,7 +145,7 @@ class forRentRouter{
             let renter_name = req.body.renter_name;
 
             let cols = [renter_ID, property_ID];
-            db.query("UPDATE renter_application SET request_status = 'A' where RENTER_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("UPDATE RENTER_APPLICATION SET request_status = 'A' where RENTER_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -157,7 +157,7 @@ class forRentRouter{
                 }
                 // once approved, need to update property's available data to earlier than today
 
-                db.query("UPDATE for_rent SET available_date = (CURDATE() - INTERVAL 1 DAY) where R_ID = ?", [property_ID], (err) =>{
+                db.query("UPDATE FOR_RENT SET available_date = (CURDATE() - INTERVAL 1 DAY) where R_ID = ?", [property_ID], (err) =>{
                     if(err) {
                         console.log(err);
                         res.json({
@@ -168,7 +168,7 @@ class forRentRouter{
                     }
 
                     //delete visit for the house
-                    db.query("DELETE from visit where property_ID = ?", [property_ID], (err) =>{
+                    db.query("DELETE from VISIT where property_ID = ?", [property_ID], (err) =>{
                         if(err) {
                             console.log(err);
                             res.json({
@@ -179,7 +179,7 @@ class forRentRouter{
                         }
                     
                         //send email to the applicant for approval email
-                        db.query("SELECT * from account where ID = ?", renter_ID, (err, data) => {
+                        db.query("SELECT * from ACCOUNT where ID = ?", renter_ID, (err, data) => {
                             if(err) {
                                 console.log(err);
                                 res.json({
@@ -221,7 +221,7 @@ class forRentRouter{
             let property_ID = req.body.property_ID;
             let renter_name = req.body.renter_name;
             let cols = [renter_ID, property_ID];
-            db.query("UPDATE renter_application SET request_status = 'R' where RENTER_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("UPDATE RENTER_APPLICATION SET request_status = 'R' where RENTER_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -232,7 +232,7 @@ class forRentRouter{
                     return;
                 }
                 // once rejected, send email to the applicant
-                db.query("SELECT * from account where ID = ?", [renter_ID], (err, data) => {
+                db.query("SELECT * from ACCOUNT where ID = ?", [renter_ID], (err, data) => {
                     if(err) {
                         console.log(err);
                         res.json({

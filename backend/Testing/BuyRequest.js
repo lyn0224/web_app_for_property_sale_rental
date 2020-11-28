@@ -12,7 +12,7 @@ const db = require("./db.js");
     var offer_price = req.body.offer;
     var offer_status = 'P'; //pending status
     let cols = [property_ID];
-    db.query('SELECT Owner_ID, Realtor_ID, pic_dir from for_sale where S_ID = ?', cols, (err, data) => {
+    db.query('SELECT Owner_ID, Realtor_ID, pic_dir from FOR_SALE where S_ID = ?', cols, (err, data) => {
       if(err) {
         console.log(err);
         res.json({
@@ -25,7 +25,7 @@ const db = require("./db.js");
       let main_pic = data[0].pic_dir + "/outside.png";
       //let realtor_ID = data[0].Realtor_ID;
       let col = [Buyer_ID, property_ID, owner_ID, buyer_name, offer_price, offer_status, main_pic];
-      db.query('INSERT INTO buyer_application VALUES (?,?,?,?,?,?,?)', col, (err) =>{
+      db.query('INSERT INTO BUYER_APPLICATION VALUES (?,?,?,?,?,?,?)', col, (err) =>{
         if(err) {
             console.log(err);
             res.json({

@@ -13,7 +13,7 @@ class loginRouter{
             let password = req.body.password;
             
             let cols = [username];
-            db.query('SELECT * FROM account WHERE username = ?', cols, (err, data, fields) => {
+            db.query('SELECT * FROM ACCOUNT WHERE username = ?', cols, (err, data, fields) => {
 
                 if(err) {
                     console.log(err);

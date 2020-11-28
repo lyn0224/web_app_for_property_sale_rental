@@ -10,7 +10,7 @@ class forSaleRouter{
             // let userID = req.body.id;
 
              //let cols = ['%outside%'];
-            db.query("SELECT * from for_sale WHERE sale_status = 'A'", (err, data) => {
+            db.query("SELECT * from FOR_SALE WHERE sale_status = 'A'", (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -22,7 +22,7 @@ class forSaleRouter{
                 }
 
                 //openhouse
-                db.query("SELECT * from open_house where to_date > CURDATE() order by S_ID ASC", (err, openHouse) => {
+                db.query("SELECT * from OPEN_HOUSE where to_date > CURDATE() order by S_ID ASC", (err, openHouse) => {
                     var i;
                     //console.log("open house");
                     //console.log(openHouse);
@@ -83,7 +83,7 @@ class forSaleRouter{
         updateListing(db, req, res) {
             let fdata = req.body;
             let cols = [fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, fdata.S_ID];
-            let sql = "UPDATE for_sale SET Realtor_ID = ?, property_type = ?," +
+            let sql = "UPDATE FOR_SALE SET Realtor_ID = ?, property_type = ?," +
                         "apt_num = ?, street = ?, city = ?, state = ?, zip = ?," +
                         "sale_status = ?, price = ?, bedroom = ?, bathroom = ?," +
                         "livingroom = ?, flooring = ?, parking = ?, area = ?," +
@@ -111,7 +111,7 @@ class forSaleRouter{
         deleteListing(db, req, res) {
             //console.log(cols);
             let dir = 'public/forSale/' + req.body.S_ID;
-            db.query("DELETE from for_sale WHERE S_ID = ?", [req.body.S_ID], (err) => {
+            db.query("DELETE from FOR_SALE WHERE S_ID = ?", [req.body.S_ID], (err) => {
 
                 if(err) {
                     console.log(err);
@@ -142,7 +142,7 @@ class forSaleRouter{
             let to_date = req.body.to_date;
             let cols = [property_ID, from_date, to_date]
             //console.log(cols);
-            db.query("INSERT INTO open_house VALUES (?,?,?)", cols, (err) => {
+            db.query("INSERT INTO OPEN_HOUSE VALUES (?,?,?)", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -167,7 +167,7 @@ class forSaleRouter{
             let property_ID = req.body.S_ID;
             let buyer_name = req.body.name;
             let cols = [buyer_ID, property_ID];
-            db.query("UPDATE buyer_application SET offer_status = 'A' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("UPDATE BUYER_APPLICATION SET offer_status = 'A' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -179,7 +179,7 @@ class forSaleRouter{
                 }
                 // once approved, need to update property's sale_status to sold
 
-                db.query("UPDATE for_sale SET sale_status = 'sold' where S_ID = ?", [property_ID], (err) =>{
+                db.query("UPDATE FOR_SALE SET sale_status = 'sold' where S_ID = ?", [property_ID], (err) =>{
                     if(err) {
                         console.log(err);
                         res.json({
@@ -190,7 +190,7 @@ class forSaleRouter{
                     }
 
                     //delete open house for the house
-                    db.query("DELETE from open_house where S_ID = ?", [property_ID], (err) =>{
+                    db.query("DELETE from OPEN_HOUSE where S_ID = ?", [property_ID], (err) =>{
                         if(err) {
                             console.log(err);
                             res.json({
@@ -201,7 +201,7 @@ class forSaleRouter{
                         }
                     
                         //send email to the applicant for approval email
-                        db.query("SELECT * from account where ID = ?", buyer_ID, (err, data) => {
+                        db.query("SELECT * from ACCOUNT where ID = ?", buyer_ID, (err, data) => {
                             if(err) {
                                 console.log(err);
                                 res.json({
@@ -243,7 +243,7 @@ class forSaleRouter{
             let property_ID = req.body.S_ID;
             let buyer_name = req.body.name;
             let cols = [buyer_ID, property_ID];
-            db.query("UPDATE buyer_application SET offer_status = 'R' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("UPDATE BUYER_APPLICATION SET offer_status = 'R' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -254,7 +254,7 @@ class forSaleRouter{
                     return;
                 }
                 // once rejected, send email to the applicant
-                db.query("SELECT * from account where ID = ?", buyer_ID, (err, data) => {
+                db.query("SELECT * from ACCOUNT where ID = ?", buyer_ID, (err, data) => {
                     if(err) {
                         console.log(err);
                         res.json({

@@ -5,7 +5,7 @@ const db = require('../Testing/db');
 class individualUser{
 
         forSaleListing(db, req, res) {
-            db.query("SELECT * from for_sale WHERE Owner_ID = ?", [req.body.ID], (err, data) => {
+            db.query("SELECT * from FOR_SALE WHERE Owner_ID = ?", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -16,7 +16,7 @@ class individualUser{
                     return;
                 }
 
-                db.query("SELECT * from open_house order by S_ID ASC", (err, openHouse) => {
+                db.query("SELECT * from OPEN_HOUSE order by S_ID ASC", (err, openHouse) => {
                     var i;
                     console.log("open house");
                     console.log(openHouse);
@@ -71,7 +71,7 @@ class individualUser{
             //let cols = [fdata.owner, fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, pic_path];
             //let sql = "UPDATE for_sale SET status = 'S' WHERE S_ID = 1";
             //console.log(cols);
-            db.query("SELECT * from buyer_application WHERE owner_ID = ? and offer_status = 'P'", [req.body.ID], (err, data) => {
+            db.query("SELECT * from BUYER_APPLICATION WHERE owner_ID = ? and offer_status = 'P'", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -93,7 +93,7 @@ class individualUser{
         }
 
         forRentListing(db, req, res) {
-            db.query("SELECT * from for_rent WHERE Owner_ID = ?", [req.body.ID], (err, data) => {
+            db.query("SELECT * from FOR_RENT WHERE Owner_ID = ?", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -104,7 +104,7 @@ class individualUser{
                     return;
                 }
 
-                db.query("SELECT * from visit order by property_ID ASC, start_time ASC", (err, visit) => {
+                db.query("SELECT * from VISIT order by property_ID ASC, start_time ASC", (err, visit) => {
                     var i;
                     console.log("visit");
                     console.log(visit);
@@ -160,7 +160,7 @@ class individualUser{
             //let cols = [fdata.owner, fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, pic_path];
             //let sql = "UPDATE for_sale SET status = 'S' WHERE S_ID = 1";
             //console.log(cols);
-            db.query("SELECT * from renter_application WHERE owner_ID = ? and request_status = 'P'", [req.body.ID], (err, data) => {
+            db.query("SELECT * from RENTER_APPLICATION WHERE owner_ID = ? and request_status = 'P'", [req.body.ID], (err, data) => {
 
                 if(err) {
                     console.log(err);
