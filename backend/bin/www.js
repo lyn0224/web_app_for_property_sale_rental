@@ -13,6 +13,8 @@ const favorite = require('../Testing/favorite');
 const buyRequest = require("../Testing/BuyRequest");
 const rentRequest = require("../Testing/RentRequest");
 const individualUser = require("../Testing/IndividualUser");
+const realtor = require('../Testing/realtor');  
+
 var cors = require("cors");
 
 const app = express();
@@ -269,6 +271,30 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+
+  // search realtor list by name
+app.get('/api/realtor/name', async function (req, res) {
+  try {
+    const s = new realtor();
+    const { keyword } = req.query;
+    const data = await s.searchByName(db, keyword);
+    res.json({ success: data.list.length > 0 ? true : false, ...data });
+  } catch (ex) {
+    res.json({ success: false, msg: ex.msg || ex.message || ex });
+  }
+})
+
+// search realtor list by name
+app.get('/api/realtor/zip', async function (req, res) {
+  try {
+    const s = new realtor();
+    const { keyword } = req.query;
+    const data = await s.searchByZip(db, keyword);
+    res.json({ success: data.list.length > 0 ? true : false, ...data });
+  } catch (ex) {
+    res.json({ success: false, msg: ex.msg || ex.message || ex });
+  }
+})
 
 // set port, listen for requests
 app.listen(9000, () => {

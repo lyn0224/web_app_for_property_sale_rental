@@ -5,9 +5,9 @@ class searchRouter {
   get TableName() {
     const sql = `
     (
-      select 'r' search_type, R_ID,Owner_ID,Realtor_ID,property_type,apt_num,street_num,street,city,state,zip, '' sale_status, 0 price,   available_date,     rate,   lease_term,  security_deposit, bedroom,bathroom,living,    parking,flooring,0 area, size_sqft,   year_built,    ammenities, pic_dir from FOR_RENT
+      select 'r' search_type, R_ID,Owner_ID,Realtor_ID,property_type,apt_num,'' street_num,street,city,state,zip, '' sale_status, 0 price,   available_date,     rate,   lease_term,  security_deposit, bedroom,bathroom, '' living,    parking,flooring,0 area, '' size_sqft,   year_built,    ammenities, pic_dir from CMPE202.FOR_RENT
       union all
-      select 'b' search_type, S_ID,Owner_ID,Realtor_ID,property_type,apt_num,street_num,street,city,state,zip, sale_status,      price,  '' available_date, 0 rate, 0 lease_term,0 security_deposit, bedroom,bathroom,livingroom,parking,flooring,  area, 0 size_sqft, year_built, '' ammenities, pic_dir from FOR_SALE
+      select 'b' search_type, S_ID,Owner_ID,Realtor_ID,property_type,apt_num,'' street_num,street,city,state,zip, sale_status,      price,  '' available_date, 0 rate, 0 lease_term,0 security_deposit, bedroom,bathroom,'' livingroom,parking,flooring,  area, 0 size_sqft, year_built, '' ammenities, pic_dir from CMPE202.FOR_SALE
     )
     `
     return sql;
@@ -125,12 +125,9 @@ class searchRouter {
       where += ` and t.bathroom <= ${bathroom}`;
     }
 
-    // let sql = `select * from ${this.TableName} t where ${where} limit ${(p - 1) * s},${s}`
-    // const list = await this.execSQL(db, sql);
-    // sql = `select count(1) total from ${this.TableName} t where ${where} `;
-    // const totalInfo = await this.findOne(db, sql);
-    // return { page: p, size: s, total: totalInfo.total || 0, list }
-    let sql = `select * from ${this.TableName} t where ${where} `
+    let tmpView = `select * from ${this.TableName} tt where tt.search_type = '${search_type}'`
+
+    let sql = `select * from (${tmpView})t where ${where} `
     const list = await this.execSQL(db, sql);
     return { list }
   }
