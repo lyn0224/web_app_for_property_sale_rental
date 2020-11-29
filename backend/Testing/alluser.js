@@ -14,7 +14,7 @@ class allUserRouter{
             // console.log(req.headers['authorization']);
 
             // let cols = [username];
-            db.query('SELECT ID, username, Email, a_type, approved FROM account', (err, data, fields) => {
+            db.query('SELECT ID, username, Email, a_type, approved FROM ACCOUNT', (err, data, fields) => {
 
                 if(err) {
                     console.log(err);
@@ -40,7 +40,7 @@ class allUserRouter{
              let userID = req.body.id;
 
              let cols = ['Y', userID];
-            db.query('UPDATE account SET approved = ? where ID = ?', cols, (err) => {
+            db.query('UPDATE ACCOUNT SET approved = ? where ID = ?', cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -51,7 +51,7 @@ class allUserRouter{
                     return;
                 }
             
-                db.query('SELECT ID, username, Email, a_type, approved FROM account', (err, data, fields) => {
+                db.query('SELECT ID, username, Email, a_type, approved FROM ACCOUNT', (err, data, fields) => {
                     if(err) {
                         console.log(err);
                         res.json({
@@ -77,7 +77,7 @@ class allUserRouter{
 
              let cols = [userID];
              //since cascaded, if the user is a realtor, it will be automatically deleted
-            db.query('DELETE FROM account where ID = ?', cols, (err) => {
+            db.query('DELETE FROM ACCOUNT where ID = ?', cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -88,7 +88,7 @@ class allUserRouter{
                     return;
                 }
             
-                db.query('SELECT ID, username, Email, a_type, approved FROM account', (err, data, fields) => {
+                db.query('SELECT ID, username, Email, a_type, approved FROM ACCOUNT', (err, data, fields) => {
                     if(err) {
                         console.log(err);
                         res.json({

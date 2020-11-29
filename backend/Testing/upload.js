@@ -17,10 +17,10 @@ var storage = multer.diskStorage({
       console.log("req.body.list_type", req.body.list_type);
       if(req.body.list_type == 'sell'){
         f_path =  'public/forSale/';
-        sql = 'SELECT MAX(S_ID) AS ID FROM for_sale';
+        sql = 'SELECT MAX(S_ID) AS ID FROM FOR_SALE';
       } else{
         f_path = 'public/forRent/';
-        sql = 'SELECT MAX(R_ID) AS ID FROM for_rent';
+        sql = 'SELECT MAX(R_ID) AS ID FROM FOR_RENT';
       }
       db.query(sql, (err, data) => {
         if(err) {

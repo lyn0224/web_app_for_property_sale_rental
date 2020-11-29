@@ -13,7 +13,7 @@ const db = require("./db.js");
     var renter_name = req.body.renter_name;
     var request_status = 'P'; //pending status
     let cols = [property_ID];
-    db.query('SELECT Owner_ID, Realtor_ID, pic_dir from for_rent where R_ID = ?', cols, (err, data) => {
+    db.query('SELECT Owner_ID, Realtor_ID, pic_dir from FOR_RENT where R_ID = ?', cols, (err, data) => {
       if(err) {
         console.log(err);
         res.json({
@@ -26,7 +26,7 @@ const db = require("./db.js");
       let main_pic = data[0].pic_dir + "/outside.png";
       //let realtor_ID = data[0].Realtor_ID;
       let col = [renter_ID, property_ID, owner_ID, renter_name, credit_score, employer, annual_salary, request_status, main_pic];
-      db.query('INSERT INTO renter_application VALUES (?,?,?,?,?,?,?,?,?)', col, (err) =>{
+      db.query('INSERT INTO RENTER_APPLICATION VALUES (?,?,?,?,?,?,?,?,?)', col, (err) =>{
         if(err) {
             console.log(err);
             res.json({

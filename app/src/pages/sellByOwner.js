@@ -53,7 +53,7 @@ function SellByOwner() {
         setData(newItem);
     }
  
-    const isInvalid = price === '' || mainPictures === '' || otherPictures === '' || propertyType === '' || streetAddress === '' || aptNum === '' || city === '' || states === '' || zipCode === '' || bed === '' || bath === '' || area === '' || year === '' || description === '' || parking === '' || floor === '' || living === '';
+    const isInvalid = price === '' || mainPictures === '' || otherPictures === '' || propertyType === '' || streetAddress === '' || city === '' || states === '' || zipCode === '' || bed === '' || bath === '' || area === '' || year === '' || description === '' || parking === '' || floor === '' || living === '';
 
     async function handleSubmit(){
         const formData = new FormData();
@@ -190,7 +190,7 @@ function SellByOwner() {
                             value={states}
                             onChange={({ target }) => setStates(target.value)}
                             style={{width: "150px", marginLeft: "5px"}}
-                            pattern="[A-Z][a-z]+(?: +[A-Z][a-z]+)*"
+                            //pattern="[A-Z][a-z]"
                         />
                     </Row>
                     <Row style={{margin: "auto"}}>
