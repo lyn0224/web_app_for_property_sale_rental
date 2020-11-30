@@ -89,6 +89,7 @@ function HouseDetail(props){
     }
 
     if(check) {
+        console.log(house)
         return(
             <>
              <Houseinfo>
@@ -96,15 +97,83 @@ function HouseDetail(props){
                         {house_imge}
                     </Houseinfo.ImageBase>
                     <Houseinfo.Base>
-                        <Houseinfo.Title>{house.name}</Houseinfo.Title>
-        
-                        <Houseinfo.Text>property_type : {house.property_type}</Houseinfo.Text>
-                        <Houseinfo.Text>Price : {house.price ? house.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Houseinfo.Text>
-                        <Houseinfo.Text>year : {house.year_built}</Houseinfo.Text>
-                        <Houseinfo.Text>location : {house.city+" "+house.street+" "+house.street_num+" "+house.state}</Houseinfo.Text>
-                        <Houseinfo.Text>zip : {house.zip}</Houseinfo.Text>
-                        <Houseinfo.Text>area : {house.area}</Houseinfo.Text>
-                        <Houseinfo.Text>parking : {house.parking}</Houseinfo.Text>
+                        <Houseinfo.TextControl>
+                        <Houseinfo.Title><p style={{display:"inline", color: "#ff8286"}}> {house.property_type} </p>For Sale</Houseinfo.Title>
+                        
+                        <Houseinfo.Price>
+                            {house.price ? house.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null} 
+                            <Houseinfo.Bath> <Houseinfo.BathInfo> {house.bathroom}</Houseinfo.BathInfo> bds</Houseinfo.Bath>
+                            <Houseinfo.Bath> <Houseinfo.BathInfo> {house.bathroom} </Houseinfo.BathInfo> ba</Houseinfo.Bath>
+                            <Houseinfo.Area> <Houseinfo.BathInfo> {house.area} </Houseinfo.BathInfo> sqft</Houseinfo.Area>
+                        </Houseinfo.Price>
+
+            
+                        <Houseinfo.Text>{house.street+" " + house.city+" "+house.state + " "+ house.zip}</Houseinfo.Text>
+                        </Houseinfo.TextControl>
+                        <Houseinfo.FeatureTitle>Facts and Features</Houseinfo.FeatureTitle>
+                        <Houseinfo.FeatureContainer>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                    <i class="fas fa-home"></i>
+                                </Houseinfo.FeatureIcon>
+                                    Type 
+                                    <Houseinfo.FeatureText >
+                                        {house.property_type?house.property_type:"No Data"}
+                                        </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase>
+                                <Houseinfo.FeatureIcon>
+                                    <i class="far fa-building"></i> 
+                                    </Houseinfo.FeatureIcon>
+                                    Year built
+                                    <Houseinfo.FeatureText>
+                                        {house.year_built?house.year_built:"No Data"}
+                                    </Houseinfo.FeatureText> 
+                                </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                    <i class="fas fa-temperature-high"></i>  
+                                    </Houseinfo.FeatureIcon>
+                                    Cooling
+                                <Houseinfo.FeatureText>
+                                    {house.Cooling?house.Cooling:"No Data"}
+                                </Houseinfo.FeatureText> 
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                    <i class="fas fa-parking"></i>
+                                    </Houseinfo.FeatureIcon>
+                                 Parking 
+                                <Houseinfo.FeatureText>
+                                    {house.parking?house.parking:"No Data"}
+                                    </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                <i class="fas fa-temperature-low"></i>
+                                </Houseinfo.FeatureIcon>
+                                 Heating 
+                                <Houseinfo.FeatureText>
+                                    {house.Heating?house.Heating:"No Data"}
+                                    </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                <i class="fas fa-grip-lines"></i>
+                                </Houseinfo.FeatureIcon>Flooring 
+                                <Houseinfo.FeatureText>
+                                    {house.flooring?house.flooring:"No Data"}
+                                    </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureIcon>
+                                <i class="fas fa-dollar-sign"></i>
+                                </Houseinfo.FeatureIcon> Price/sqft 
+                                <Houseinfo.FeatureText>
+                                    {house.sqft?house.sqft:"No Data"}
+                                </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                        </Houseinfo.FeatureContainer>
                         <Houseinfo.Button to={'#'} toggleDisplay={toggleDisplay}>Application</Houseinfo.Button>
                     </Houseinfo.Base>
                 </Houseinfo>
