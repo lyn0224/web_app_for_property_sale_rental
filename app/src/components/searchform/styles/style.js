@@ -5,9 +5,9 @@ export const Background = styled.section`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 70vh;
+    height: calc(100vh - 90px);
     background-color: #464646;
-    padding: 4rem 0 ;
+    padding: 10rem 0 ;
     outline: none;
     @media (max-width: 600px){
         min-height: 400px;
@@ -28,8 +28,8 @@ export const Search = styled.div`
 `
 export const SearchIcon = styled.button`
         outline: none;
-        width: 40px;
-        height: 50px;
+        width: 50px;
+        height: 80px;
         background:white;
         border: 1px solid white;
         border-radius: 0px 0.75rem 0.75rem 0px;
@@ -41,7 +41,8 @@ export const SearchIcon = styled.button`
 export const SearchInput = styled.input`
         width: 100%;
         border-right: none;
-        padding: 6px;
+        font-size:25px;
+        padding: 15px;
         outline: none;
         border: 4px solid white;
         border-radius: 0.75rem 0rem 0rem 0.75rem;

@@ -46,17 +46,27 @@ function SaveHome(prop) {
   if(houses){
 
       const cards = houses.map(house=> { 
-          const A = favorite.find(index=>house.S_ID === index.properity_id)
-          if(A){
-            const B = houses.find(index=>index.S_ID === A.properity_id)
-            return singlecard(B)
-          }
+          if(favorite){
+                const A = favorite.find(index=>house.S_ID === index.properity_id)
+                if(A){
+                    const B = houses.find(index=>index.S_ID === A.properity_id)
+                    return singlecard(B)
+                }
+            }else{
+                return null;
+            }  
         })
-      return(
+    if(cards[0]!==undefined)
+      {return(
           <>
               {cards}
           </>
-      )
+      )}
+    else{ return(
+            <p>
+                Oops you dont have any favorited home yet
+            </p>
+        )}
   }else{
       return( <Loading/>)
   }

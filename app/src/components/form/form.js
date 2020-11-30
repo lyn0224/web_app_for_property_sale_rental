@@ -43,7 +43,7 @@ Form.Error = function FormError({ children, ...restProps }) {
 }
 
 Form.Input = function FormInput({ children, ...restProps }) {
-    return <Input {...restProps}>{children}</Input>;
+    return <Input {...restProps} >{children}</Input>;
 }
 
 Form.TextArea = function FormTextArea({ children, ...restProps }) {

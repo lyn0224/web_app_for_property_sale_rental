@@ -115,13 +115,16 @@ function Signup() {
                         placeholder="Password"
                         onChange={({ target }) => setPassword(target.value)}
                     />
+                    
                     <Form.Text>
+                     
                         <Form.Input
                                 name="realtor"
                                 type="checkbox"
                                 checked={realtor}
-                                onChange={handleInputChange} />
-                            I am landlord or industry professional
+                                onChange={handleInputChange}  />
+                           I am landlord or industry professional
+                         
                     </Form.Text>
                     {conditionalRealtor}
                     <Form.Submit disabled={isInvalid} type="submit">
