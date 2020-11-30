@@ -88,6 +88,10 @@ bedroom        INT,
 bathroom       INT,
 home_type      CHAR,
 zip_code       INT,
+year_built     VARCHAR(4),
+flooring       VARCHAR(10),
+house_size     VARCHAR(10),
+parking        boolean,
 FOREIGN KEY (U_ID) REFERENCES ACCOUNT(ID)
 					ON DELETE CASCADE  ON UPDATE CASCADE);
 /*
