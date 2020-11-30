@@ -15,15 +15,12 @@ function RentContainer() {
     return (
         <BuyLayout>
             
-            <BuyLayout.FirstSection>
-                <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} />
-            </BuyLayout.FirstSection>
-            {conditionalFilterBar}
-            <BuyLayout.SecondSection>
+      
             
-                <BuyLayout.Map>
-                    <Map/>
-                </BuyLayout.Map>
+            <BuyLayout.SecondSection>
+            {conditionalFilterBar}
+ 
+          
 
                 <BuyLayout.List>
                     <RentHousecards/>

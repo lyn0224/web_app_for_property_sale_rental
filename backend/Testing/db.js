@@ -2,13 +2,14 @@ const mysql = require('mysql');
 
 //Database
 const db = mysql.createConnection({
-    host: 'cmpe202db.chnvttzxfbpw.us-west-1.rds.amazonaws.com',
+    host: 'localhost',
     user: 'root',
     password: '123456789',
     // password: 'password',
     database: 'CMPE202',
     // insecureAuth : true
 });
+// cmpe202db.chnvttzxfbpw.us-west-1.rds.amazonaws.com
 
 db.connect(function(err) {
     if(err){

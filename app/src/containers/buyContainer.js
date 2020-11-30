@@ -13,16 +13,13 @@ function Buy() {
     return (
         <BuyLayout>
             
-            <BuyLayout.FirstSection>
-                <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} />
+            {/* <BuyLayout.FirstSection>
+                
             </BuyLayout.FirstSection>
-            {conditionalFilterBar}
+            */}
             <BuyLayout.SecondSection>
-
-                <BuyLayout.Map>
-                    <Map/>
-                </BuyLayout.Map>
-
+                    {conditionalFilterBar}
+   
                 <BuyLayout.List>
                 
                     <Housecards/>

@@ -1,7 +1,6 @@
-import React from 'react';
-import { useContext } from 'react';
 import { Context } from '../context/housesContext';
-
+import React,{useState,useContext} from 'react';
+import { BuyLayout } from '../components/export';
 //get all unique values
 const getUnique = (items, value) => {
     return [...new Set(items.map(item => item[value]))];
@@ -10,6 +9,8 @@ const getUnique = (items, value) => {
 export default function FilterBar() {
     const context = useContext(Context);
     // console.log(context);
+    const [searchTerm, setSearchTerm] = useState('');
+    const {} = useContext(Context)
     const {
         handleChange,
         handleSave,
@@ -23,7 +24,9 @@ export default function FilterBar() {
         maxSize,
         parking,
         year,
-        houses
+        houses,
+        handleSubmit, 
+        find_result
     } = context;
     let types = [];
     let beds = [];
@@ -73,6 +76,8 @@ export default function FilterBar() {
 
     return (
         <section className="filter-container">
+     
+            <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} />
             <form className="filter-form">
                 {/*select type */}
                 <div className="form-group">

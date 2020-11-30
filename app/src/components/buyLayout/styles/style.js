@@ -140,7 +140,7 @@ export const FirstSection = styled.div`
 `
 export const SecondSection = styled.div`
     display: flex;
-    height: calc(100vh - 180px);
+    height: calc(100vh - 90px);
     @media (max-width:1000px){
 
         flex-direction: column;
