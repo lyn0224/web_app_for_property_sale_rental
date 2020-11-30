@@ -9,6 +9,7 @@ export const Container = styled.div`
     background: black;
     @media (max-width: 1000px) {
         padding: 70px 30px;
+        height: 800px;
     }
 `;
 

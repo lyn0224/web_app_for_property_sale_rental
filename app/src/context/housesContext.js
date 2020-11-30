@@ -4,6 +4,7 @@ const Context = React.createContext()
 function HousesProvider({children}) {
 
     const [houses,setHouses] = useState()
+    const [Favorite_Home,setFavorite_Home] = useState()
     const [search,setSearch] = useState()
     const [favorite,setFavorite] = useState()
     const [types,setTypes] = useState("all")
@@ -19,8 +20,8 @@ function HousesProvider({children}) {
     const Search_URL = 'http://localhost:9000/house';
     const Favorite_URL = 'http://localhost:9000/search';
     const Save_URL = 'http://localhost:9000/save_search';
-    const Remove_URL = "#";
-    const Add_URL = "#"
+    const Favorite_Home_URL = "http://localhost:9000/api/favorite/home";
+
     const user = JSON.parse(localStorage.getItem('authUser'));
 
 
@@ -30,18 +31,10 @@ function HousesProvider({children}) {
         filterDate();
         if(user){
             try{
-                fetch(Favorite_URL, {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: user.name,
-                    })
-                }).then(res => res.json()).then(result=>{
+                console.log("favorite");
+                fetch(`http://localhost:9000/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
                     console.log(result);
-                    let Favorite_List = result.xxx;
+                    let Favorite_List = result.list;
                     setFavorite(Favorite_List);
                 })
             }catch(e){
@@ -163,32 +156,78 @@ function HousesProvider({children}) {
     }
 
     async function removeFavorite(house){
-        // try{
-        //     let res = await fetch(Remove_URL, {
-        //         method: 'post',
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             username: user.username,
-        //             // houseInfor : house
-        //         })
-        //     });
-        //     let result = await res.json();
-        //     console.log(result);
-        //     if(result && result.success){
-        //         console.log("successful add to favorite");
-        //     }else if(result && result.success === false){
-        //         alert(result.msg);
-        //     }
-        // }catch(e){
-        //     console.log(e);
-        // }
-        setFavorite(false)
+        console.log(house)
+        try{
+            let res = await fetch(Favorite_Home_URL, {
+                method: 'delete',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    U_ID: user.id,
+                    home_type :"h", 
+                    properity_id:house.S_ID,
+                })
+            });
+            let result = await res.json();
+            console.log(result);
+            if(result && result.success){
+                console.log("successful delete from favorite");
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+        }
+        // const update = favorite.filter()
+        try{
+            console.log("favorite");
+            fetch(`http://localhost:9000/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+                console.log(result);
+                let Favorite_List = result.list;
+                setFavorite(Favorite_List);
+            })
+        }catch(e){
+            console.log(e);
+        }
     }
-    async function addFavorite(){
-        setFavorite(true)
+    async function addFavorite(house){
+        console.log(user)
+        try{
+            let res = await fetch(Favorite_Home_URL, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    U_ID: user.id,
+                    home_type :"h", 
+                    properity_id:house.S_ID,
+                })
+            });
+            let result = await res.json();
+            console.log(result);
+            if(result && result.success){
+                console.log("successful add to favorite");
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+        }
+        try{
+            console.log("favorite");
+            fetch(`http://localhost:9000/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+                console.log(result);
+                let Favorite_List = result.list;
+                setFavorite(Favorite_List);
+            })
+        }catch(e){
+            console.log(e);
+        }
+ 
     }
         return (
             <>

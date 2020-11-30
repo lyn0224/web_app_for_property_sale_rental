@@ -1,6 +1,6 @@
 import  React from 'react'
 import{Link as ReactRouterLink} from 'react-router-dom'
-import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer} from './styles/style';
+import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price} from './styles/style';
 
 function Housecard({children,...restProps}){
     return <Container {...restProps}>
@@ -14,7 +14,11 @@ Housecard.Base = function HousecardBase({children, ref,...restProps}){
                 {children}
                 </Base>
 }
-
+Housecard.Content = function HousecardContent({children,...restProps}){
+    return <Content {...restProps}>
+                {children}
+                </Content>
+}
 Housecard.Link = function HousecardLink({to,children,...restProps}){
     return (
 
@@ -32,16 +36,17 @@ Housecard.img = function HousecardImg({src,alt, children,...restProps}){
                 </CardImg>
     )
 }
-Housecard.Favorite = function HousecardFavorite({children, removeFavorite,...restProps}){
+Housecard.Favorite = function HousecardFavorite({house,children, removeFavorite,...restProps}){
     return(
-        <Favorite {...restProps} onClick = {()=>removeFavorite()}>
-            <i class="fas fa-heart" ></i>
+        
+        <Favorite {...restProps} onClick = {()=>removeFavorite(house)}>
+            <i className="fas fa-heart" ></i>
         </Favorite>
     )
 }
-Housecard.notFavorite = function HousecardnotFavorite({children,addFavorite,...restProps}){
+Housecard.notFavorite = function HousecardnotFavorite({house,children,addFavorite,...restProps}){
     return(
-        <Favorite {...restProps} onClick = {()=>addFavorite() }>
+        <Favorite {...restProps} onClick = {()=>addFavorite(house) }>
             <i className="far fa-heart"></i>
         </Favorite>
     )
@@ -84,5 +89,28 @@ Housecard.TextContainer = function HousecardTextContainer({children,...restProps
         <TextContainer {...restProps}>
             {children}
         </TextContainer>
+    )
+}
+Housecard.TextControl = function HousecardTextControl({children,...restProps}){
+    return(
+        <TextControl {...restProps}>
+            {children}
+        </TextControl>
+    )
+}
+
+
+Housecard.NormalText = function HousecardNormalText({children,...restProps}){
+    return(
+        <NormalText {...restProps}>
+            {children}
+        </NormalText>
+    )
+}
+Housecard.Price = function HousecardPrice({children,...restProps}){
+    return(
+        <Price {...restProps}>
+            {children}
+        </Price>
     )
 }
