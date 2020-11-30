@@ -84,19 +84,19 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
-    background: #333;
+    background: #d4d4d4;
     border-radius: 4px;
     border: 0;
-    color: #fff;
+    color: black;
     line-height: 30px;
     padding: 5px 20px;
     margin-bottom: 20px;
 `;
 
 export const Submit = styled.button`
-    background: #e50914;
+    background: #d4d4d4;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     margin: 0 0 12px;
     padding: 16px;
@@ -111,10 +111,9 @@ export const Submit = styled.button`
 
 export const Select = styled.select`
     position: relative;
-    font-family: Arial;
     font-size: 16px;
     height: 55px;
-    background: #333;
+    background: #d4d4d4;
     color:grey;
     text-shadow:0 1px 0 rgba(0,0,0,0.4);
     padding: 5px 20px;
@@ -126,7 +125,7 @@ export const Option = styled.option`
     background: #333;
     border-radius: 4px;
     border: 0;
-    color: grey;
+    color: black;
     height: 50px;
     line-height: 50px;
     padding: 5px 20px;

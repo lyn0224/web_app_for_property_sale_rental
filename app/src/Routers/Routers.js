@@ -10,6 +10,7 @@ import Rent from "../pages/Rent"
 import * as ROUTES from '../constants/routes' 
 import Admin from '../pages/Admin'
 import AgentFinder from '../pages/agentFinder';
+import Realtor from '../pages/realtor/realtors'
 import SellByOwner from '../pages/sellByOwner'
 import HouseDetail from '../pages/houseDetail'
 import Rentals from '../pages/rentals/Rentals'
@@ -24,7 +25,7 @@ function Routers(){
               <Route exact path={`${ROUTES.RENT}/:id`} ><RentHouseDetail/></Route>
               <Route path = {ROUTES.RENT}><Rent /></Route>
               <Route path = {ROUTES.SELL}><Sell /></Route>
-              <Route path = {ROUTES.AGENT_FINDER}><AgentFinder /></Route>
+              <Route path = {ROUTES.AGENT_FINDER}><Realtor /></Route>
               <Route path = {ROUTES.HELP}><Admin /></Route>
               <Route path = {ROUTES.SIGN_IN}><Signin/></Route>
               <Route path = {ROUTES.SIGN_UP}><Signup/></Route>

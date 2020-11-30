@@ -6,7 +6,7 @@ import {UserInfor} from './context/userInfo'
 
 import {HousesProvider} from './context/housesContext'
 import {RentProvider} from './context/rentContext'
-
+import {RealtorProvider} from './context/realtorContext'
 function App() {
   return (
     <div className="App">
@@ -15,7 +15,9 @@ function App() {
           <Header />
           <HousesProvider>
             <RentProvider>
-              <Routers/>
+              <RealtorProvider>
+                <Routers/>
+              </RealtorProvider>
             </RentProvider>  
           </HousesProvider>
        </UserInfor>

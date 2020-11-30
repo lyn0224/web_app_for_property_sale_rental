@@ -35,13 +35,14 @@ function FooterContainer() {
                     <Footer.Link href="#">Cookie Preferences</Footer.Link>
                     <Footer.Link href="#">Legal Notices</Footer.Link>
                 </Footer.Column>
-
-                <Footer.Column >
+            </Footer.Row>
+            <Footer.Row>
+                
                     <Footer.Link href="mailto:bo.an.563641292@gmail.com" ><i className="far fa-envelope"></i></Footer.Link>
                     <Footer.Link href="https://facebook.com"><i className="fab fa-facebook"></i></Footer.Link>
                     <Footer.Link href="https://twitter.com" ><i className="fab fa-twitter"></i></Footer.Link>
                     <Footer.Link href="https://github.com"  ><i className="fab fa-github"></i></Footer.Link>
-                </Footer.Column>
+                
             </Footer.Row>
             <Footer.Break />
             <Footer.Text>Rent </Footer.Text>

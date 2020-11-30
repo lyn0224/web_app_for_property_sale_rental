@@ -12,7 +12,7 @@ export default class ItemAdd extends React.Component {
             imagePreviewUrl: []
         }
     }
-
+    
     handleSubmit(e) {
         e.preventDefault();
         
@@ -31,6 +31,7 @@ export default class ItemAdd extends React.Component {
         e.preventDefault();
         const maxCount = this.props.maxCount;
         this.state.current = this.state.image.length;
+        this.state.current += 1;
         console.log(this.state.current);
         if(this.state.current < maxCount){
             let reader = new FileReader();
@@ -51,10 +52,12 @@ export default class ItemAdd extends React.Component {
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (imagePreviewUrl.map(imgUrl => <img src={imgUrl} style={{height: "100px", width: "100px"}}/>));
+            $imagePreview = (imagePreviewUrl.map(imgUrl => <img src={imgUrl} style={{height: "200px", width: "200px"}}/>));
         } else {
             $imagePreview = null;
         }
+        const isInvalid = this.state.current === 0;
+        console.log(isInvalid)
         return (
             <Form style={{backgroundColor: "grey"}}>
                 <Form.Title>Add picture For Sale by Owner Listing</Form.Title>
@@ -62,14 +65,21 @@ export default class ItemAdd extends React.Component {
                     Add image for your listing, the first image will be the primary picture.
                     <p></p>
                     <table>
+                        <tbody>
                         <tr>
                             <td>
                                 <input type="file" onChange={(e) => this.handleImageChange(e) } />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 {$imagePreview}
                             </td>
                         </tr>
+                        </tbody>
                     </table>
-                    <Form.Submit type="submit">
+                    <p></p>
+                    <Form.Submit type="submit" disabled={isInvalid}>
                     Add
                     </Form.Submit>
                 </Form.Base>

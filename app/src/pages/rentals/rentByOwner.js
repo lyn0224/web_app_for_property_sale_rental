@@ -33,27 +33,16 @@ function RentByOwner() {
     const [otherPictures, setOtherPictures] = useState([]);
     const [description, setDescription] = useState('');
     const [data,setData] = useState();
+    const [info,setInfo] = useState(false);
 
     const user = JSON.parse(localStorage.getItem('authUser'));
  
     useEffect(()=>{
-        // console.log("update")
-        // console.log("data", data);
         if(data){
             console.log("i am here");
-            setMainPictures(data.image[0])
-            console.log(mainPictures);
-            let array = []
-            data.image.slice(1).forEach(file=>{
-                array.push(file)
-            });
-            setOtherPictures(array);
-            console.log(otherPictures);
         }
-        console.log(propertyType);
-        console.log(floor);
-        console.log(mainPictures);
-        console.log(otherPictures);
+        console.log("effect main", mainPictures);
+        console.log("effect other", otherPictures);
         // setPictures(formData);
     },[data])
 
@@ -61,13 +50,21 @@ function RentByOwner() {
         console.log(error);
         console.log(newItem);
         console.log('PHOTO:', newItem.image);
+        setMainPictures(newItem.image[0])
+        let array = []
+        newItem.image.slice(1).forEach(file=>{
+            array.push(file)
+        });
+        console.log("this is array", array);
+        setOtherPictures(array);
         setData(newItem);
+        setInfo(true);
     }
-        
-        
-
- 
+    
     function handleSubmit(){
+        console.log("main", mainPictures);
+        console.log("other", otherPictures);
+
         const formData = new FormData();
         formData.append('list_type', "rent");
         formData.append('main', mainPictures);
@@ -175,8 +172,9 @@ function RentByOwner() {
     //     }
     // }
 
-    return (
-        <>
+    if(info){
+        return (
+            <>
             {/* <rentNavbar/> */}
             <Form style={{backgroundColor: "grey"}}>
                 <Form.Title>Post a For Rent by Owner Listing</Form.Title>
@@ -197,8 +195,7 @@ function RentByOwner() {
                         placeholder="Street Address"
                         value={streetAddress}
                         onChange={({ target }) => setStreetAddress(target.value)}
-                        pattern="^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$"
-
+                        pattern="^[A-Za-z-0-99999999"
                     />
                     <Row style={{margin: "auto"}}>
                         <Form.Input
@@ -339,14 +336,18 @@ function RentByOwner() {
                         onChange={({ target }) => setDescription(target.value)}
                         style={{height: "300px"}}
                     />
-                    <ItemAdd maxCount="6" type="Main" createItem={createItem} />
                     <Form.Submit type="submit" disable={isInvalid}>
                         Continue
                     </Form.Submit>
                 </Form.Base>
             </Form>
-        </>
-    )
+            </>
+        )
+    }else{
+        return(
+            <ItemAdd maxCount="6" type="Main" key="1" createItem={createItem} />
+        )
+    }
 }
 
 export default RentByOwner

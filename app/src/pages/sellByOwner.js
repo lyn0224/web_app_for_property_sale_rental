@@ -161,7 +161,7 @@ function SellByOwner() {
                             placeholder="Street Address"
                             value={streetAddress}
                             onChange={({ target }) => setStreetAddress(target.value)}
-                            pattern="^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$"
+                            pattern="^[A-Za-z-0-99999999"
                         />
                         <Row style={{margin: "auto"}}>
                             <Form.Input

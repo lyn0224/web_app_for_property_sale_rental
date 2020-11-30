@@ -14,7 +14,10 @@ export default SearchForm
 SearchForm.Search = function SearchFormSearch({ searchTerm, setSearchTerm, ...restProps }){
     return (
         <Search>
-            
+            <select>
+                <option>buy</option>
+                <option>rent</option>
+            </select>
             <SearchInput
                 value={searchTerm}
                 onChange={({ target }) => setSearchTerm(target.value)}
