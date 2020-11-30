@@ -8,15 +8,12 @@ export const Container = styled.div`
 
 export const Search = styled.div`
         float: left;
-        width: 200px;
+        width: 300px;
         position: relative;
         display: flex;  
         border: 1px solid #a8a8a8;
         border-radius: 10px;
-        margin: 1rem;
-        @media (max-width: 600px){
-            width: 100px
-        }
+        margin: 1rem 2rem;
         
 `
 export const SearchIcon = styled.button`

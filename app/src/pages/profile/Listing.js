@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import {ListingForm,Application } from '../../components/export';
+import {ListingForm,Application,Profile } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import Loading from "../../containers/LoadingContainer"
@@ -183,13 +183,10 @@ function Listing() {
         )
     }
 
-    if(Listing){
+    if(Listing&&Listing.length){
         const  cards = Listing.map(item=>ListingCard(item));
-    
-        
-
         return(
-            <>
+            <Profile>
             <ListingForm>
                 {cards}
                 </ListingForm>
@@ -337,10 +334,17 @@ function Listing() {
                         </Application.InputArea>
                 </Application.Base>     
            
-            </>
+                </Profile>
         )
     }else{
-        return( <Loading/>)
+        return(
+            <Profile>
+                <Profile.Text>
+                    Oops you have not list any house yet!
+                </Profile.Text>
+            </Profile> 
+        // <Loading/>
+        )
     }
    
 }

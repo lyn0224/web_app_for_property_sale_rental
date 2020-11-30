@@ -1,8 +1,7 @@
 import React,{useEffect, useState,useContext} from 'react'
-import {ApplicationForm} from '../../components/export'
+import {ApplicationForm,Profile} from '../../components/export'
 import defaultimg from "../../img/homeicon.png"
 import Loading from "../../containers/LoadingContainer"
-
 function Application(){
     const user = JSON.parse(localStorage.getItem('authUser'))
     const Application_URL = `http://localhost:9000/users/${user.id}/buyerApplication`
@@ -97,20 +96,27 @@ function Application(){
 
     
 
-    if(Applications)
+    if(Applications&&Applications.length>0)
    { 
     const applicants = Applications.map(applicant=>ROWS(applicant))
 
     return(
-    <>
-    <ApplicationForm>
-        {applicants}
-        </ApplicationForm>
+        <Profile>
+            <ApplicationForm>
+                {applicants}
+                </ApplicationForm>
     
-    </>
+        </Profile>
     )}
     else{
-        return <Loading/>
+        return(
+            <Profile>
+                <Profile.Text>
+                    Oops you have not list any Application yet!
+                </Profile.Text>
+            </Profile>
+            // <Loading/>
+            )
     }
 }
 

@@ -1,5 +1,5 @@
 import React,{useEffect,useContext} from 'react'
-import { Housecard } from '../../components/export';
+import { Housecard,Profile } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import { Context } from '../../context/housesContext';
@@ -8,15 +8,18 @@ import Loading from "../../containers/LoadingContainer"
 // import {Context} from "../../context/SaveHomeContext"
 
 function SaveHome(prop) {
-  const {houses,favorite} = useContext(Context);
+  const {houses,favorite,removeFavorite} = useContext(Context);
     
   function singlecard(obj){
       // console.log(obj.main_dir)
+      const icon = <Housecard.Favorite removeFavorite ={removeFavorite} house = {obj}/> 
       return (
         <Housecard.Base key = {obj.S_ID} >  
-              
+              <Housecard.ImageContainer> 
+                {icon}
+                </Housecard.ImageContainer> 
         <Housecard.Link to = {`${ROUTES.BUY}/${obj.S_ID}` }>
-            
+           
             {/* <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/> */}
             <Housecard.Content>
             <Housecard.ImageContainer>
@@ -58,14 +61,19 @@ function SaveHome(prop) {
         })
     if(cards[0]!==undefined)
       {return(
-          <>
-              {cards}
-          </>
+          <Profile>
+              <Profile.CardsContainer>
+                {cards}
+              </Profile.CardsContainer>
+          </Profile>
       )}
     else{ return(
-            <p>
+            <Profile>
+                <Profile.Text>
                 Oops you dont have any favorited home yet
-            </p>
+              </Profile.Text>
+             
+            </Profile>
         )}
   }else{
       return( <Loading/>)

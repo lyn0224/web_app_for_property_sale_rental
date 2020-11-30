@@ -26,6 +26,15 @@ export const CardImg = styled.img`
 `
 
 export const CardButton = styled.button`
+        background: #e50914;
+        border-radius: 4px;
+        font-size: 15px;
+        font-weight: bold;
+        margin: 0 0 12px;
+        padding: 0.75rem 1rem;
+        border: 0;
+        color: white;
+        cursor: pointer;
 
 `
 

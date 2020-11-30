@@ -94,7 +94,7 @@ export const TextArea = styled.textarea`
 `;
 
 export const Submit = styled.button`
-    background: #d4d4d4;
+    background: #e50914;
     border-radius: 4px;
     font-size: 15px;
     font-weight: bold;

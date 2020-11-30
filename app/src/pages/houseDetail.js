@@ -97,8 +97,7 @@ function HouseDetail(props){
                     </Houseinfo.ImageBase>
                     <Houseinfo.Base>
                         <Houseinfo.Title>{house.name}</Houseinfo.Title>
-                        <Houseinfo.Text>Owner_ID : {house.Owner_ID}</Houseinfo.Text>
-                        <Houseinfo.Text>Realtor_ID : {house.Owner_ID}</Houseinfo.Text>
+        
                         <Houseinfo.Text>property_type : {house.property_type}</Houseinfo.Text>
                         <Houseinfo.Text>Price : {house.price ? house.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Houseinfo.Text>
                         <Houseinfo.Text>year : {house.year_built}</Houseinfo.Text>

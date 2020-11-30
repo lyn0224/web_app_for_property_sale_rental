@@ -29,7 +29,7 @@ export const Search = styled.div`
 export const SearchIcon = styled.button`
         outline: none;
         width: 50px;
-        height: 80px;
+        height: 60px;
         background:white;
         border: 1px solid white;
         border-radius: 0px 0.75rem 0.75rem 0px;
@@ -41,8 +41,8 @@ export const SearchIcon = styled.button`
 export const SearchInput = styled.input`
         width: 100%;
         border-right: none;
-        font-size:25px;
-        padding: 15px;
+        font-size:20px;
+        padding-left: 15px;
         outline: none;
         border: 4px solid white;
         border-radius: 0.75rem 0rem 0rem 0.75rem;
