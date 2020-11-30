@@ -109,9 +109,9 @@ class searchRouter {
     this.saveSearchKeyword(db, keyword, token, search_type, min_price, max_price, bedroom, bathroom);
 
     let where = `(t.street like '%${keyword}%' or t.city like '%${keyword}%' or t.zip like '%${keyword}%' or t.flooring like '%${keyword}%')`
-    if (search_type) {
-      where += ` and t.search_type = '${search_type}'`
-    }
+    // if (search_type) {
+    //   where += ` and t.search_type = '${search_type}'`
+    // }
     if (min_price) {
       where += ` and t.price>= ${min_price}`;
     }
@@ -125,7 +125,11 @@ class searchRouter {
       where += ` and t.bathroom <= ${bathroom}`;
     }
 
-    let tmpView = `select * from ${this.TableName} tt where tt.search_type = '${search_type}'`
+    // let tmpView = `select * from ${this.TableName} tt where tt.search_type = '${search_type}'`
+    let tmpView = `select * from ${this.TableName} tt `;
+    if (search_type) {
+      tmpView += ` where tt.search_type = '${search_type}'`;
+    }
 
     let sql = `select * from (${tmpView})t where ${where} `
     const list = await this.execSQL(db, sql);
@@ -134,4 +138,3 @@ class searchRouter {
 }
 
 module.exports = searchRouter;
-
