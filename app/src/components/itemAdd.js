@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form } from '../components/export';
 
 export default class ItemAdd extends React.Component {
 
@@ -55,13 +56,24 @@ export default class ItemAdd extends React.Component {
             $imagePreview = null;
         }
         return (
-            <form name="itemAdd" onSubmit={this.handleSubmit}>
-                {this.props.type} Image
-                <input type="file" onChange={(e) => this.handleImageChange(e) } />
-                {$imagePreview}
-                <p></p>
-                <button>Add</button>
-            </form>
+            <Form style={{backgroundColor: "grey"}}>
+                <Form.Title>Add picture For Sale by Owner Listing</Form.Title>
+                <Form.Base name="itemAdd" onSubmit={this.handleSubmit}>
+                    Add image for your listing, the first image will be the primary picture.
+                    <p></p>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="file" onChange={(e) => this.handleImageChange(e) } />
+                                {$imagePreview}
+                            </td>
+                        </tr>
+                    </table>
+                    <Form.Submit type="submit">
+                    Add
+                    </Form.Submit>
+                </Form.Base>
+            </Form>
         );
     }
 }

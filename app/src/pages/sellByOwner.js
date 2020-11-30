@@ -27,6 +27,7 @@ function SellByOwner() {
     const [otherPictures, setOtherPictures] = useState([]);
     const [description, setDescription] = useState('');
     const [data,setData] = useState();
+    const [info,setInfo] = useState(false);
  
     const user = JSON.parse(localStorage.getItem('authUser'));
     useEffect(()=>{
@@ -51,6 +52,7 @@ function SellByOwner() {
         console.log(newItem);
         console.log('PHOTO:', newItem.image);
         setData(newItem);
+        setInfo(true);
     }
  
     const isInvalid = price === '' || mainPictures === '' || otherPictures === '' || propertyType === '' || streetAddress === '' || city === '' || states === '' || zipCode === '' || bed === '' || bath === '' || area === '' || year === '' || description === '' || parking === '' || floor === '' || living === '';
@@ -137,140 +139,144 @@ function SellByOwner() {
     //         setError('');
     //     }
     // }
-
-    return (
-        <>
-           <Form style={{backgroundColor: "grey"}}>
-                <Form.Title>Post a For Sale by Owner Listing</Form.Title>
-                {error && <Form.Error>{error}</Form.Error>}
-                <Form.Base onSubmit={handleSubmit}>
-                    <Form.Select onChange={({ target }) => setPropertyType(target.value)}>
-                        <Form.Option
-                            value="Single House"
-                            >Single House</Form.Option>
-                        <Form.Option 
-                            value="Townhouse"
-                            >Townhouse</Form.Option>
-                        <Form.Option 
-                            value="Apartment"
-                            >Apartment</Form.Option>
-                    </Form.Select>
-                    <Form.Input
-                        placeholder="Street Address"
-                        value={streetAddress}
-                        onChange={({ target }) => setStreetAddress(target.value)}
-                        pattern="^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$"
-                    />
-                    <Row style={{margin: "auto"}}>
-                        <Form.Input
-                            placeholder="Apt #"
-                            value={aptNum}
-                            onChange={({ target }) => setAptNum(target.value)}
-                            style={{width: "150px", marginRight: "5px"}}
-                            pattern="^[0-9]*$"
-                        />
-                        <Form.Input
-                            placeholder="City"
-                            value={city}
-                            onChange={({ target }) => setCity(target.value)}
-                            style={{width: "150px", marginLeft: "5px"}}
-                            pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
-                        />
-                    </Row>
-                    <Row style={{margin: "auto"}}>
-                        <Form.Input
-                            placeholder="Zip #"
-                            value={zipCode}
-                            onChange={({ target }) => setZipCode(target.value)}
-                            style={{width: "150px", marginRight: "5px"}}
-                            pattern="[0-9]{5}"
-                        />
-                        <Form.Input
-                            placeholder="State"
-                            value={states}
-                            onChange={({ target }) => setStates(target.value)}
-                            style={{width: "150px", marginLeft: "5px"}}
-                            //pattern="[A-Z][a-z]"
-                        />
-                    </Row>
-                    <Row style={{margin: "auto"}}>
-                        <Form.Input
-                            placeholder="Living #"
-                            value={living}
-                            onChange={({ target }) => setLiving(target.value)}
-                            style={{width: "150px", marginRight: "5px"}}
-                            pattern="^[0-9]*$"
-                        />
-                        <Form.Input
-                            placeholder="Year #"
-                            value={year}
-                            onChange={({ target }) => setYear(target.value)}
-                            style={{width: "150px", marginLeft: "5px"}}
-                            pattern="[0-9]{4}"
-                        />
-                    </Row>
-                    <Row style={{margin: "auto"}}>
-                        <Form.Input
-                            placeholder="Bed #"
-                            value={bed}
-                            onChange={({ target }) => setBed(target.value)}
-                            style={{width: "100px", marginRight: "2.5px"}}
-                            pattern="[0-9]{1}"
-                        />
-                        <Form.Input
-                            placeholder="Bath #"
-                            value={bath}
-                            onChange={({ target }) => setBath(target.value)}
-                            style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
-                            pattern="[0-9]{1}"
-                        />
-                        <Form.Input
-                            placeholder="Area #"
-                            value={area}
-                            onChange={({ target }) => setArea(target.value)}
-                            style={{width: "100px", marginLeft: "2.5px"}}
-                            pattern="^[0-9]*$"
-                        />
-                    </Row>
-                    <Row style={{margin: "auto"}}>
-                        <Form.Select style={{width: "150px", marginRight: "6px"}} onChange={({ target }) => setFloor(target.value)}>
-                                <Form.Option
-                                    value="Carpet"
-                                    >Carpet</Form.Option>
-                                <Form.Option 
-                                    value="Wooden"
-                                    >Wooden</Form.Option>
+    if(info){
+        return (
+            <>
+               <Form style={{backgroundColor: "grey"}}>
+                    <Form.Title>Post a For Sale by Owner Listing</Form.Title>
+                    {error && <Form.Error>{error}</Form.Error>}
+                    <Form.Base onSubmit={handleSubmit}>
+                        <Form.Select onChange={({ target }) => setPropertyType(target.value)}>
+                            <Form.Option
+                                value="Single House"
+                                >Single House</Form.Option>
+                            <Form.Option 
+                                value="Townhouse"
+                                >Townhouse</Form.Option>
+                            <Form.Option 
+                                value="Apartment"
+                                >Apartment</Form.Option>
                         </Form.Select>
-                        <Form.Select style={{width: "150px", marginLeft: "6px"}} onChange={() => setParking(1)}>
-                                <Form.Option
-                                    value="1"
-                                    >Open</Form.Option>
-                                <Form.Option 
-                                    value="0"
-                                    >Close
-                                </Form.Option>
-                        </Form.Select>
-                    </Row>
-                    <Form.Input
-                        placeholder="Price $"
-                        value={price}
-                        onChange={({ target }) => setPrice(target.value)}
-                        pattern="^[0-9]*$"
-                    />
-                    <Form.TextArea
-                        placeholder="Description"
-                        value={description}
-                        onChange={({ target }) => setDescription(target.value)}
-                        style={{height: "300px"}}
-                    />
-                    <ItemAdd maxCount="6" type="Main" createItem={createItem} />
-                    <Form.Submit type="submit" disable={isInvalid}>
-                        Post Listing
-                    </Form.Submit>
-                </Form.Base>
-            </Form>
-        </>
-    )
+                        <Form.Input
+                            placeholder="Street Address"
+                            value={streetAddress}
+                            onChange={({ target }) => setStreetAddress(target.value)}
+                            pattern="^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$|^\d{1,6}\040([A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,}\040[A-Z]{1}[a-z]{1,})$"
+                        />
+                        <Row style={{margin: "auto"}}>
+                            <Form.Input
+                                placeholder="Apt #"
+                                value={aptNum}
+                                onChange={({ target }) => setAptNum(target.value)}
+                                style={{width: "150px", marginRight: "5px"}}
+                                pattern="^[0-9]*$"
+                            />
+                            <Form.Input
+                                placeholder="City"
+                                value={city}
+                                onChange={({ target }) => setCity(target.value)}
+                                style={{width: "150px", marginLeft: "5px"}}
+                                pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
+                            />
+                        </Row>
+                        <Row style={{margin: "auto"}}>
+                            <Form.Input
+                                placeholder="Zip #"
+                                value={zipCode}
+                                onChange={({ target }) => setZipCode(target.value)}
+                                style={{width: "150px", marginRight: "5px"}}
+                                pattern="[0-9]{5}"
+                            />
+                            <Form.Input
+                                placeholder="State"
+                                value={states}
+                                onChange={({ target }) => setStates(target.value)}
+                                style={{width: "150px", marginLeft: "5px"}}
+                                //pattern="[A-Z][a-z]"
+                            />
+                        </Row>
+                        <Row style={{margin: "auto"}}>
+                            <Form.Input
+                                placeholder="Living #"
+                                value={living}
+                                onChange={({ target }) => setLiving(target.value)}
+                                style={{width: "150px", marginRight: "5px"}}
+                                pattern="^[0-9]*$"
+                            />
+                            <Form.Input
+                                placeholder="Year #"
+                                value={year}
+                                onChange={({ target }) => setYear(target.value)}
+                                style={{width: "150px", marginLeft: "5px"}}
+                                pattern="[0-9]{4}"
+                            />
+                        </Row>
+                        <Row style={{margin: "auto"}}>
+                            <Form.Input
+                                placeholder="Bed #"
+                                value={bed}
+                                onChange={({ target }) => setBed(target.value)}
+                                style={{width: "100px", marginRight: "2.5px"}}
+                                pattern="[0-9]{1}"
+                            />
+                            <Form.Input
+                                placeholder="Bath #"
+                                value={bath}
+                                onChange={({ target }) => setBath(target.value)}
+                                style={{width: "100px", marginLeft: "2.5px", marginRight: "2.5px"}}
+                                pattern="[0-9]{1}"
+                            />
+                            <Form.Input
+                                placeholder="Area #"
+                                value={area}
+                                onChange={({ target }) => setArea(target.value)}
+                                style={{width: "100px", marginLeft: "2.5px"}}
+                                pattern="^[0-9]*$"
+                            />
+                        </Row>
+                        <Row style={{margin: "auto"}}>
+                            <Form.Select style={{width: "150px", marginRight: "6px"}} onChange={({ target }) => setFloor(target.value)}>
+                                    <Form.Option
+                                        value="Carpet"
+                                        >Carpet</Form.Option>
+                                    <Form.Option 
+                                        value="Wooden"
+                                        >Wooden</Form.Option>
+                            </Form.Select>
+                            <Form.Select style={{width: "150px", marginLeft: "6px"}} onChange={() => setParking(1)}>
+                                    <Form.Option
+                                        value="1"
+                                        >Open</Form.Option>
+                                    <Form.Option 
+                                        value="0"
+                                        >Close
+                                    </Form.Option>
+                            </Form.Select>
+                        </Row>
+                        <Form.Input
+                            placeholder="Price $"
+                            value={price}
+                            onChange={({ target }) => setPrice(target.value)}
+                            pattern="^[0-9]*$"
+                        />
+                        <Form.TextArea
+                            placeholder="Description"
+                            value={description}
+                            onChange={({ target }) => setDescription(target.value)}
+                            style={{height: "300px"}}
+                        />
+                        <Form.Submit type="submit" disable={isInvalid}>
+                            Post Listing
+                        </Form.Submit>
+                    </Form.Base>
+                </Form>
+            </>
+        )
+    }else{
+        return(
+            <ItemAdd maxCount="6" type="Main" createItem={createItem} />
+        )
+    }
 }
 
 export default SellByOwner
