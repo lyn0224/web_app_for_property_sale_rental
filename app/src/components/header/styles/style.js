@@ -7,6 +7,7 @@ export const Container = styled.div`
     justify-content: space-around;
     padding: 1rem 0;
     border-bottom: 1px solid #cccccc;
+    align-items: center;
     @media (max-width: 600px){
         flex-direction: column;
         font-size : 1rem;
