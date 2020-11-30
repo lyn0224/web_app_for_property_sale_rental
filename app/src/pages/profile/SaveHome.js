@@ -8,7 +8,7 @@ import Loading from "../../containers/LoadingContainer"
 // import {Context} from "../../context/SaveHomeContext"
 
 function SaveHome(prop) {
-  const {houses} = useContext(Context);
+  const {houses,favorite} = useContext(Context);
     
   function singlecard(obj){
       // console.log(obj.main_dir)
@@ -44,15 +44,17 @@ function SaveHome(prop) {
       // fetch user favorite table here
   },[])
   if(houses){
-      const  cards = houses.map(house=>singlecard(house));
+
+      const cards = houses.map(house=> { 
+          const A = favorite.find(index=>house.S_ID === index.properity_id)
+          if(A){
+            const B = houses.find(index=>index.S_ID === A.properity_id)
+            return singlecard(B)
+          }
+        })
       return(
           <>
-           <div>
-              This is Save Home page!
-          </div>
-
               {cards}
-
           </>
       )
   }else{
