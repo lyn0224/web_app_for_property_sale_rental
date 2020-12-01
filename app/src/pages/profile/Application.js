@@ -103,6 +103,9 @@ function Application(){
     return(
         <Profile>
             <ApplicationForm>
+            <Profile.Text>
+                    Application
+                </Profile.Text>
                 {applicants}
                 </ApplicationForm>
     

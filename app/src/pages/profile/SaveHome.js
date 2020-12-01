@@ -62,6 +62,9 @@ function SaveHome(prop) {
     if(cards[0]!==undefined)
       {return(
           <Profile>
+              <Profile.Text>
+                    Saved Homes
+                </Profile.Text>
               <Profile.CardsContainer>
                 {cards}
               </Profile.CardsContainer>

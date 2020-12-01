@@ -13,7 +13,8 @@ import {Group,
         Logo, 
         ButtonLink,
         Dropdown,
-        TextLink} from './styles/style'
+        TextLink,
+    ConditionLogoText} from './styles/style'
 
 function Header({children, ...resProps}){
 return <Background {...resProps}>{children}</Background>
@@ -30,6 +31,18 @@ Header.Logo = function HeaderLogo({ to, children, ...restProps }) {
                 
                     {/* <Logo {...restProps} /> */}
                     <LogoText >{children}</LogoText>
+                
+            </ReactRouterLink>
+        </LogoPosition>
+    )
+}
+Header.ConditionLogoText = function HeaderConditionLogoText({ to, children, ...restProps }) {
+    return (
+        <LogoPosition>
+            <ReactRouterLink to={to} style={{ textDecoration: 'none' }}>
+                
+                    {/* <Logo {...restProps} /> */}
+                    <ConditionLogoText >{children}</ConditionLogoText>
                 
             </ReactRouterLink>
         </LogoPosition>

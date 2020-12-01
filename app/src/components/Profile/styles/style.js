@@ -14,7 +14,7 @@ export const Text = styled.div`
     font-size:2rem;
     font-weight:bold;
     margin:0 auto;
-    color: gray
+    color: black;
 
 `;
 

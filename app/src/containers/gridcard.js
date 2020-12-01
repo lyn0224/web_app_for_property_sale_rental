@@ -10,7 +10,7 @@ function GridcardContainer(props) {
                     </Gridcard.img>
                 <Gridcard.Title>Buy a home</Gridcard.Title>
                 <Gridcard.Text>Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</Gridcard.Text>
-                <Gridcard.Button to = {ROUTES.HOME}>Search homes</Gridcard.Button>
+                <Gridcard.Button to = {ROUTES.BUY}>Search homes</Gridcard.Button>
             </Gridcard.Base>
             <Gridcard.Base>
                 <Gridcard.img src = {DefaultImg} alt = "#">

@@ -22,7 +22,7 @@ class forSaleRouter{
                 }
 
                 //openhouse
-                db.query("SELECT * from OPEN_HOUSE where to_date > CURDATE() order by S_ID ASC", (err, openHouse) => {
+                db.query("SELECT S_ID, DATE_FORMAT(from_date, '%M %d %Y') as from_date, DATE_FORMAT(to_date, '%M %d %Y') as to_date from OPEN_HOUSE where to_date > CURDATE() order by S_ID ASC", (err, openHouse) => {
                     var i;
                     //console.log("open house");
                     //console.log(openHouse);
@@ -44,14 +44,16 @@ class forSaleRouter{
                         data[i].pic_dir = pic_array;
                         data[i].main_dir = pic_folder + "/outside.PNG";
                         //console.log("test");
-                        console.log("openhouse:", openHouse);
-                        console.log("k:", k);
+                        //console.log("openhouse:", openHouse);
+                        //console.log("k:", k);
                         if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
                             data[i].open_house = openHouse[k];
                             k++;
+                        } else{
+                            data[i].open_house = null;
                         }
                     }
-                    console.log("data:", data);
+                    //console.log("data:", data);
                
                     if(err) {
                         console.log(err);

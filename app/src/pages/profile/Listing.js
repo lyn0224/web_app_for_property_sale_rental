@@ -239,6 +239,9 @@ function Listing() {
         console.log(isInvalid)
         return(
             <Profile>
+                <Profile.Text>
+                    Listing
+                </Profile.Text>
             <ListingForm>
                 {cards}
                 </ListingForm>

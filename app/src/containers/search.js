@@ -31,8 +31,6 @@ function Search(){
             <SearchForm.Title>
                 Home has never been more important
             </SearchForm.Title>
-            {console.log("this is searchTerm", searchTerm)}
-            <SearchForm.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </SearchForm>
       
     )

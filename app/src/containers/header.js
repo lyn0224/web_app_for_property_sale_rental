@@ -9,8 +9,8 @@ import *as ROUTES from '../constants/routes'
 function HeaderContainer(props){
 
     const {user,logout} = useContext(Context);
-    const conditionalRentals = user === null ? null: (<Header.Link to = {ROUTES.RENTALS}>Manage Rentals</Header.Link>);
-    const conditionalSignin = user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):    
+    const conditionalRentals = (user === null || user.role ==="A" )? null: (<Header.Link to = {ROUTES.RENTALS}>Manage Rentals</Header.Link>);
+    const conditionalSignin = user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):
             (<Header.Group>
             <Header.Profile>
             <Header.Link to ='#'>{user.username}</Header.Link>
@@ -40,7 +40,8 @@ function HeaderContainer(props){
                 </Header.Dropdown>
             </Header.Profile>
         </Header.Group>)
-
+        const conditionalAdmin = (user!==null && user.role =="A") ? <Header.Link to = {ROUTES.HELP}>Admin</Header.Link> : null;
+        const conditionallogo = user!==null ? <Header.ConditionLogoText to = {ROUTES.HOME}>Zillow</Header.ConditionLogoText>:<Header.Logo to = {ROUTES.HOME}>Zillow</Header.Logo>
     return(
         <Header>
             <Header.Frame>
@@ -51,11 +52,11 @@ function HeaderContainer(props){
                     <Header.Link to = {ROUTES.AGENT_FINDER}>Agent finder</Header.Link>
                 </Header.LeftPanel>
                 
-                <Header.Logo to = {ROUTES.HOME}>Zillow</Header.Logo>
+                {conditionallogo}
 
                 <Header.RightPanel>
                     {conditionalRentals}
-                    <Header.Link to = {ROUTES.HELP}>Help</Header.Link>
+                    {conditionalAdmin}
                     {conditionalSignin}
                 </Header.RightPanel>
             </Header.Frame>

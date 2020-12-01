@@ -169,6 +169,7 @@ year_built     INT             NOT NULL,
 ammenities     text,
 description    text,
 pic_dir       VARCHAR(200)   NOT NULL,
+status        CHAR NOT NULL,
 PRIMARY KEY (R_ID),
 FOREIGN KEY (Owner_ID) REFERENCES ACCOUNT(ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE,
