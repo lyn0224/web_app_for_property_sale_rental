@@ -25,8 +25,6 @@ function HousesProvider({children}) {
 
     const user = JSON.parse(localStorage.getItem('authUser'));
 
-
-
     useEffect( ()=>{
         fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
         filterDate();

@@ -48,14 +48,14 @@ Buy.List = function BuyList({ children, ...restProps }) {
 //     return <Dropdown {...restProps}>{children}</Dropdown>
 // }
 
-Buy.Search = function BuySearch ({ searchTerm, setSearchTerm,find_result, ...restProps }){
+Buy.Search = function BuySearch ({ searchTerm, setSearchTerm,find_result, placeholder, ...restProps }){
     return (
         <Search {...restProps }>
             
             <SearchInput
                 value={searchTerm}
                 onChange={({ target }) => setSearchTerm(target.value)}
-                placeholder="Search houses you want"
+                placeholder={placeholder}
 
             />
             <SearchIcon style={{ outline: 'none' } } onClick = {()=>find_result(searchTerm)}>

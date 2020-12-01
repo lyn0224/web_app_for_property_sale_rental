@@ -7,62 +7,36 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import Footer from "./footer"
 import AgentLayout from '../components/agentFinder/agentLayout'
 import { Context } from '../context/realtorContext';
+import { BuyLayout } from '../components/export';
+import RealtorCard from '../containers/realtorcard'
+import RealtorImg from '../img/realtorPic.jpeg'
 
 function RealtorContainer() {
     const [searchTermName, setSearchTermName] = useState('');
     const [searchTermLocation, setSearchTermLocation] = useState('');
-    const {realtors, find_result} = useContext(Context)
+    const {realtors, find_result, find_name} = useContext(Context)
     // const realtors = "unknown";
 
-    const conditionalRealtor = !realtors ? 
+    const conditionalRealtor = (searchTermName==='' && searchTermLocation==='') ? 
     <>
     <AgentLayout.FirstSection>
     <p><strong>Find agents in your area.</strong></p>
     <p></p>
     <p>To get started, enter your location or search for a specific agent by name.</p>
-    <img src="https://www.zillowstatic.com/static-leaderboards/LATEST/static-leaderboards/images/no-results-lg.jpg"></img>
-    </AgentLayout.FirstSection> </>: <p>{realtors.specialty}</p>; {/*<RealtorCard />; */}
+    <img src={RealtorImg} width="400px"></img>
+    </AgentLayout.FirstSection> </>: <RealtorCard/>; {/*<RealtorCard />; */}
+    
+    // console.log(searchTermName==='' && searchTermLocation==='')
     return (
         <>
         <div className="HomeList-grid-container" style={{width: "80%", marginLeft: "auto", marginRight: "auto"}}>
             <div>
                 <Row>
                     <Col className="w-25">
-                        <Row>
-                            <p>Location</p>
-                        </Row>
-                        <Row>
-                            <InputGroup className="mb-3" >
-                            <FormControl
-                                placeholder="Neighborhood/City/Zip"
-                                aria-label="Search for agent location"
-                                aria-describedby="basic-addon2"
-                                className="smaller-input"
-                                value={searchTermName}
-                                />
-                                <InputGroup.Append>
-                                <Button variant="outline-secondary"  onClick = {()=>find_result(searchTermName)}><AiOutlineSearch /></Button>
-                                </InputGroup.Append>
-                            </InputGroup>
-                        </Row>
+                        <BuyLayout.Search searchTerm={searchTermName} setSearchTerm={setSearchTermName} find_result = {find_result} placeholder="City/ZipCode"/>
                     </Col>
                     <Col className="w-25">
-                        <Row>
-                            <p>Name</p>
-                        </Row>
-                        <Row>
-                            <InputGroup className="mb-3" >
-                            <FormControl
-                                placeholder="Agent name"
-                                aria-label="Search for agent name"
-                                aria-describedby="basic-addon2"
-                                className="smaller-input"
-                                />
-                                <InputGroup.Append>
-                                <Button variant="outline-secondary"><AiOutlineSearch /></Button>
-                                </InputGroup.Append>
-                            </InputGroup>
-                        </Row>
+                        <BuyLayout.Search searchTerm={searchTermLocation} setSearchTerm={setSearchTermLocation} find_result = {find_name} placeholder="Name"/>
                     </Col>
                 </Row>
             </div>

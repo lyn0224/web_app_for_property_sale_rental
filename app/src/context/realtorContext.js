@@ -18,17 +18,24 @@ function RealtorProvider({children}) {
 
     const user = JSON.parse(localStorage.getItem('authUser'));
 
-    useEffect( ()=>{
-        fetch(Search_URL).then(response=>response.json()).then(result=>setRealtors(result.dataset))
-        console.log("here are realtor", realtors)
-    },[realtors])
+    useEffect(()=>{
+        fetch(Search_URL).then(response=>response.json()).then(result=>setRealtors(result.list))
+    },[search])
 
     function find_result(input){
-        console.log(input)
         if(!input){
             setSearch(realtors)
         }else{
-            const array = realtors.filter(realtor=>realtor.zipcode == input || realtor.Fname ==input)
+            const array = realtors.filter(realtor=>realtor.zipcode == input)
+            setSearch(array)
+        }
+    }
+
+    function find_name(input){
+        if(!input){
+            setSearch(realtors)
+        }else{
+            const array = realtors.filter(realtor=>realtor.Fname == input || realtor.Lname == input)
             setSearch(array)
         }
     }
@@ -36,7 +43,7 @@ function RealtorProvider({children}) {
     return (
         <>
         <Context.Provider  value={{
-            realtors, find_result, search
+            realtors, find_result, search, find_name
             }}>
             {children}
         </Context.Provider>

@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import {Row} from "react-bootstrap"
 import ItemAdd from "../components/itemAdd"
 import axios from 'axios';
+// import ListingPic from '../img/homeicon.png'
  
 function SellByOwner() {
     const [sellID, setSellID] = useState('');
@@ -58,10 +59,12 @@ function SellByOwner() {
     const isInvalid = price === '' || mainPictures === '' || otherPictures === '' || propertyType === '' || streetAddress === '' || city === '' || states === '' || zipCode === '' || bed === '' || bath === '' || area === '' || year === '' || description === '' || parking === '' || floor === '' || living === '';
 
     async function handleSubmit(){
-        const formData = new FormData();
-        formData.append('list_type', "sell");
-        formData.append('main', mainPictures);
-        formData.append('others', otherPictures);
+        const formData = new FormData();
+        formData.append('list_type', "sell");
+        formData.append('main', mainPictures);
+        data.image.slice(1).forEach(file=>{
+            formData.append('others', file);
+        });
 
         formData.append('owner', user.id);
         formData.append('realtor', 1);
@@ -142,7 +145,8 @@ function SellByOwner() {
     if(info){
         return (
             <>
-               <Form style={{backgroundColor: "grey"}}>
+                <div style={{backgroundImage:"url('paper.gif')"}}>
+                <Form style={{backgroundColor: "grey"}}>
                     <Form.Title>Post a For Sale by Owner Listing</Form.Title>
                     {error && <Form.Error>{error}</Form.Error>}
                     <Form.Base onSubmit={handleSubmit}>
@@ -270,6 +274,7 @@ function SellByOwner() {
                         </Form.Submit>
                     </Form.Base>
                 </Form>
+                </div>
             </>
         )
     }else{

@@ -51,24 +51,17 @@ function RentByOwner() {
         console.log(newItem);
         console.log('PHOTO:', newItem.image);
         setMainPictures(newItem.image[0])
-        let array = []
-        newItem.image.slice(1).forEach(file=>{
-            array.push(file)
-        });
-        console.log("this is array", array);
-        setOtherPictures(array);
         setData(newItem);
         setInfo(true);
     }
     
     function handleSubmit(){
-        console.log("main", mainPictures);
-        console.log("other", otherPictures);
-
-        const formData = new FormData();
-        formData.append('list_type', "rent");
-        formData.append('main', mainPictures);
-        formData.append('others', otherPictures);
+        const formData = new FormData();
+        formData.append('list_type', "rent");
+        formData.append('main', mainPictures);
+        data.image.slice(1).forEach(file=>{
+            formData.append('others', file);
+        });
 
         formData.append('Owner_ID', user.id);
         formData.append('Realtor_ID', 1);
@@ -122,55 +115,6 @@ function RentByOwner() {
     }
 
     const isInvalid = mainPictures === '' || otherPictures === '' || available === '' || rate === '' || term === '' || deposite === '' || ammenities === '' || description === '' || propertyType === '' || streetAddress === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '' || floor === '' || living === '' || year === '' || parking === '' || states === '';
-    // function handleInvalid(){
-    //     let regxAddress = new RegExp("^([0-9a-zA-Z]+)(,\s*[0-9a-zA-Z]+)*$");
-    //     let resultAddress = regxAddress.test(streetAddress);
-    //     if(!resultAddress){
-    //         setError("inValid input for address")
-    //     }
-    //     let regxNum = new RegExp("^[0-9]*$")
-    //     let resultApt = regxNum.test(aptNum);
-    //     let resultBed = regxNum.test(bed);
-    //     let resultBath = regxNum.test(bath);
-    //     let resultArea = regxNum.test(area);
-    //     let resultLiving = regxNum.test(living);
-    //     let resultDeposite = regxNum.test(deposite);
-    //     let resultRate = regxNum.test(rate);
-    //     if(!resultApt){
-    //         setError("inValid input for apt/unit number")
-    //     }
-    //     if(!resultBed){
-    //         setError("inValid input for bed number")
-    //     }
-    //     if(!resultBath){
-    //         setError("inValid input for bath number")
-    //     }
-    //     if(!resultArea){
-    //         setError("inValid input for area number")
-    //     }
-    //     if(!resultLiving){
-    //         setError("inValid input for living number")
-    //     }
-    //     if(!resultRate){
-    //         setError("inValid input for rate")
-    //     }
-    //     if(!resultDeposite){
-    //         setError("inValid input for deposite")
-    //     }
-    //     let regxCity = new RegExp("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$");
-    //     let resultCity = regxCity.test(city);
-    //     if(!resultCity){
-    //         setError("inValid input for city")
-    //     }
-    //     let regxZip = new RegExp("^\d{5}(?:[-\s]\d{4})?$");
-    //     let resultZip = regxZip.test(city);
-    //     if(!resultZip){
-    //         setError("inValid input for zip code")
-    //     }
-    //     if(resultZip && resultCity && resultLiving && resultArea && resultBath && resultBed && resultApt){
-    //         setError('');
-    //     }
-    // }
 
     if(info){
         return (
