@@ -11,17 +11,17 @@ import { Context } from '../context/realtorContext';
 function RealtorContainer() {
     const [searchTermName, setSearchTermName] = useState('');
     const [searchTermLocation, setSearchTermLocation] = useState('');
-    // const {realtors} = useContext(Context)
-    const realtors = "unknown";
+    const {realtors, find_result} = useContext(Context)
+    // const realtors = "unknown";
 
-    const conditionalRealtor = realtors ? 
+    const conditionalRealtor = !realtors ? 
     <>
     <AgentLayout.FirstSection>
-    <p1><strong>Find agents in your area.</strong></p1>
+    <p><strong>Find agents in your area.</strong></p>
     <p></p>
-    <p2>To get started, enter your location or search for a specific agent by name.</p2>
+    <p>To get started, enter your location or search for a specific agent by name.</p>
     <img src="https://www.zillowstatic.com/static-leaderboards/LATEST/static-leaderboards/images/no-results-lg.jpg"></img>
-    </AgentLayout.FirstSection> </>: null; {/*<RealtorCard />; */}
+    </AgentLayout.FirstSection> </>: <p>{realtors.specialty}</p>; {/*<RealtorCard />; */}
     return (
         <>
         <div className="HomeList-grid-container" style={{width: "80%", marginLeft: "auto", marginRight: "auto"}}>
@@ -38,9 +38,10 @@ function RealtorContainer() {
                                 aria-label="Search for agent location"
                                 aria-describedby="basic-addon2"
                                 className="smaller-input"
+                                value={searchTermName}
                                 />
                                 <InputGroup.Append>
-                                <Button variant="outline-secondary"><AiOutlineSearch /></Button>
+                                <Button variant="outline-secondary"  onClick = {()=>find_result(searchTermName)}><AiOutlineSearch /></Button>
                                 </InputGroup.Append>
                             </InputGroup>
                         </Row>

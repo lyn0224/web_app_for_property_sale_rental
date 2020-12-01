@@ -10,9 +10,10 @@ function Listing() {
     const [Listing, setListing] = useState()
     const [ID,setID] = useState();
     const [display,setDisplay] = useState("none")
-
+    const [openDisplay,setOpenDisplay] = useState("none")
     const Update_URL = "http://localhost:9000/updateForSale"
     const Delete_URL = 'http://localhost:9000/deleteForSale'
+    const OpenHouse_URL = 'http://localhost:9000/openHouse'
     const [check,setCheck] = useState(false)      
 
     const [PropertyType,setPropertyType]= useState()
@@ -32,8 +33,12 @@ function Listing() {
     const [Pic_dir,setPic_dir] = useState()
     const [Main_dir,setMain_dir] = useState()
     const [Flooring,setFlooring] = useState()
+    
+    const [startDate, setStartDate] = useState()
+    const [endDate, setEndDate] = useState()
 
-    const isInvalid = PropertyType === ''|| Street === '' || Zip ==='' ||City === ''||City === ''||Price === ''||Bedroom === ''||Parking===''||Description===''; 
+    const isInvalid = PropertyType === '' || Street === '' || Zip ==='' ||City === ''||Price === ''||Bedroom === ''||Parking===''||Description===''; 
+    const OpenisInvalid = startDate === '' | endDate === '';
     useEffect( ()=>{
         try{
             fetch(Application_URL, {
@@ -161,6 +166,51 @@ function Listing() {
             }
 
     }
+    function toggleOpenhouse(id){
+        if(openDisplay === "none")
+            {
+            setOpenDisplay("display")
+            setID(id)
+        }
+            
+        else{
+            setOpenDisplay("none")
+        }
+    }
+
+    async function handleOpenHouse (event){
+        
+        event.preventDefault();
+            console.log(ID)
+            try{
+                let res = await fetch(OpenHouse_URL, {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                      S_ID : ID,
+                      from_date : startDate,
+                      to_date :endDate
+                    })
+                });
+                let result = await res.json();
+                console.log(result);
+       
+                if(result && result.success){
+                    console.log("successful submited OpenHouse");
+                    setCheck(!check)
+                }else if(result && result.success === false){
+             
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+      
+            }
+
+    }
     function ListingCard(obj){
         return (
         
@@ -171,10 +221,11 @@ function Listing() {
                     </ListingForm.ImageContainer>
                 </ListingForm.Link>
                 <ListingForm.TextContainer>
-                        <ListingForm.Title>city : {obj.city}</ListingForm.Title>
-                        <ListingForm.Text>street : {obj.street}</ListingForm.Text>
-                        <ListingForm.Text>Price : {obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
+                        <ListingForm.Title>{obj.city}</ListingForm.Title>
+                        <ListingForm.Text>{obj.street}</ListingForm.Text>
+                        <ListingForm.Text>{obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
                     </ListingForm.TextContainer>
+                <ListingForm.Button to={'#'} func={toggleOpenhouse} id={obj.S_ID}>Open House</ListingForm.Button>
                 <ListingForm.Button to={'#'} func={toggleDisplay} id={obj.S_ID}>Update</ListingForm.Button>
                 <ListingForm.Button to={ROUTES.LISTING} func={handleDelete} id={obj.S_ID}>Remove</ListingForm.Button>
             </ListingForm.Base>  
@@ -185,6 +236,7 @@ function Listing() {
 
     if(Listing&&Listing.length){
         const  cards = Listing.map(item=>ListingCard(item));
+        console.log(isInvalid)
         return(
             <Profile>
             <ListingForm>
@@ -333,7 +385,37 @@ function Listing() {
                             <Application.Submit disabled={isInvalid} onclick={toggleDisplay}>Submit</Application.Submit>
                         </Application.InputArea>
                 </Application.Base>     
-           
+                
+                
+            <Application display = {openDisplay} >
+            </Application>
+            <Application.Base display = {openDisplay}>
+
+                        <Application.Close toggleDisplay={toggleOpenhouse}><i className="far fa-window-close"></i></Application.Close>
+                        <Application.Title>OpenHouse Form</Application.Title>
+                        <Application.InputArea onSubmit={handleOpenHouse} method="POST" Scroll = "scroll">
+                        
+                            <Application.InputField>
+                                <Application.Text>Start Date</Application.Text>
+                                <Application.Input  
+                                    type = "date"
+                   
+                                    defaultValue ={startDate}
+                                    onChange={({ target }) => setStartDate(target.value)}/> 
+                           </Application.InputField>
+ 
+                           <Application.InputField>
+                                <Application.Text>End Date</Application.Text>
+                                <Application.Input  
+                                    type = "date"
+                 
+                                    defaultValue ={endDate}
+                                    onChange={({ target }) => setEndDate(target.value)}/> 
+                           </Application.InputField>
+                        
+                            <Application.Submit disabled={OpenisInvalid} onclick={toggleOpenhouse}>Submit</Application.Submit>
+                        </Application.InputArea>
+                </Application.Base>     
                 </Profile>
         )
     }else{

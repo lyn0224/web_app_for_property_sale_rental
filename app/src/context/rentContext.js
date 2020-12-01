@@ -15,6 +15,7 @@ function RentProvider({children}) {
     const [maxSize, setMaxSize] = useState(3000);
     const [available, setAvailable] = useState()
     const [flooring, setFlooring] = useState('all')
+    const [year, setYear] = useState('all')
 
     const Rent_Search_URL = 'http://localhost:9000/rent';
     const Rent_Favorite_URL = '#';
@@ -90,9 +91,12 @@ function RentProvider({children}) {
         if(name === "flooring"){
             setFlooring(value);
         }
-        // if(name === "available"){
-        //     setAvailable(value);
-        // }
+        if(name === "available"){
+            setAvailable(value);
+        }
+        if(name === "year"){
+            setYear(value);
+        }
         if(name === "parking"){
             if(value){
                 setParking(1);
@@ -104,7 +108,7 @@ function RentProvider({children}) {
 
     function filterData(){
         if(houses){
-            console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available);
+            console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available, year);
             let tempHouses = [...houses];
             console.log("before filter",tempHouses);
             if(types !== "all"){
@@ -136,7 +140,7 @@ function RentProvider({children}) {
     }
 
     async function handleSave(){
-        console.log(types, bed, bath, parking, minRate, maxRate, minSize, maxSize);
+        console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available, year);
         // try{
         //     let res = await fetch(Rent_Save_URL, {
         //         method: 'post',
@@ -155,6 +159,7 @@ function RentProvider({children}) {
         //             maxSize: maxSize,
         //             flooring: flooring, 
         //             available: available
+        //             year: year
         //         })
         //     });
         //     let result = await res.json();

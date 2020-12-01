@@ -3,7 +3,8 @@ import React, {useState, createContext, Component, useEffect } from 'react';
 const Context = React.createContext()
 function RealtorProvider({children}) {
 
-    const [realtor,setRealtors] = useState()
+    const [realtors,setRealtors] = useState()
+    const [search,setSearch] = useState()
     const [firstName,setFirstName] = useState()
     const [lastName,setLastName] = useState()
     const [email,setEmail] = useState()
@@ -13,28 +14,29 @@ function RealtorProvider({children}) {
     const [rent, setRent] = useState();
     const [specialty, setSpecialty] = useState();
 
-    const Search_URL = 'http://localhost:9000/realtor';
+    const Search_URL = 'http://localhost:9000/api/realtor/zip?keyword';
 
     const user = JSON.parse(localStorage.getItem('authUser'));
 
     useEffect( ()=>{
         fetch(Search_URL).then(response=>response.json()).then(result=>setRealtors(result.dataset))
-    })
+        console.log("here are realtor", realtors)
+    },[realtors])
 
-    // function find_result(input){
-    //     console.log(input)
-    //     if(!input){
-    //         setSearch(houses)
-    //     }else{
-    //         const array = houses.filter(house=>house.Owner_ID == input || house.city ==input)
-    //         setSearch(array)
-    //     }
-    // }
+    function find_result(input){
+        console.log(input)
+        if(!input){
+            setSearch(realtors)
+        }else{
+            const array = realtors.filter(realtor=>realtor.zipcode == input || realtor.Fname ==input)
+            setSearch(array)
+        }
+    }
 
     return (
         <>
         <Context.Provider  value={{
-            realtor
+            realtors, find_result, search
             }}>
             {children}
         </Context.Provider>

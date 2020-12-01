@@ -54,5 +54,6 @@ export const ImageContainer = styled.div`
         margin:1rem;
 `
 export const TextContainer = styled.div`
+        width: 300px;
    
 `

@@ -291,6 +291,7 @@ app.get('/api/realtor/zip', async function (req, res) {
     const { keyword } = req.query;
     const data = await s.searchByZip(db, keyword);
     res.json({ success: data.list.length > 0 ? true : false, ...data });
+    console.log("data",data)
   } catch (ex) {
     res.json({ success: false, msg: ex.msg || ex.message || ex });
   }
