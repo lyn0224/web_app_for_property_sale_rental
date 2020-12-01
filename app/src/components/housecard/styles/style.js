@@ -8,7 +8,7 @@ export const Container = styled.div`
         display: grid;
         grid-template-columns: repeat(2, minmax(500px,250px));
         grid-template-rows: repeat(auto-fill, minmax(300px,100px)); 
-        border-left: 1px solid #cccccc;
+ 
         padding:1rem;
         @media (min-width: 1700px) {
                 grid-template-columns: repeat(3, minmax(490px,250px));

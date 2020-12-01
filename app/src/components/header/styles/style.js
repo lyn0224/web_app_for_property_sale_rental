@@ -4,7 +4,7 @@ import {Link as ReactRouterLink} from 'react-router-dom'
 export const Container = styled.div`
     display : flex;
     height : 90px;
-    justify-content: space-around;
+
     padding: 1rem 0;
     border-bottom: 1px solid #cccccc;
     align-items: center;
@@ -75,7 +75,18 @@ export const LogoText = styled.div`
     color: rgb(20, 122, 255);
     margin:0; 
     padding:0;
-    margin-right: 3rem;
+    margin-right: 14rem;
+    @media (max-width: 600px){
+        margin-right: 0rem;
+    }
+    
+`
+export const ConditionLogoText = styled.div`
+    font-weight: 700;
+    font-size: 3rem;
+    color: rgb(20, 122, 255);
+    margin:0; 
+    padding:0;
     @media (max-width: 600px){
         margin-right: 0rem;
     }

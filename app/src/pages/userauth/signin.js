@@ -43,7 +43,13 @@ function Signin(){
                     var decoded = jwt_decode(token);
                     localStorage.setItem('authUser', JSON.stringify(decoded.user));
                     setUser(JSON.parse(localStorage.getItem('authUser')));
-                    history.push(ROUTES.HOME);
+                   const U = JSON.parse(localStorage.getItem('authUser'))
+                    if(U.role == "A"){
+                        history.push(ROUTES.HELP);
+                    }
+                    else{
+                        history.push(ROUTES.HOME);
+                    }
                 }
                 
                 console.log("login success");

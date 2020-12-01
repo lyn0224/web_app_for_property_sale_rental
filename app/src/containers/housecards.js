@@ -35,7 +35,7 @@ function Housecards({props}){
                     <Housecard.TextControl>
                         <Housecard.NormalText>{obj.bedroom} <p style={{display:"inline",color: "black",fontWeight :"500"}}>bds</p></Housecard.NormalText>
                         <Housecard.NormalText>{obj.bathroom} <p style={{display:"inline",color: "black", fontWeight :"500"}}>ba</p></Housecard.NormalText>
-                        <Housecard.NormalText>{obj.area} <p style={{display:"inline",color: "black",fontWeight :"500"}}>sqft</p></Housecard.NormalText>
+                        <Housecard.NormalText style={{borderRight:"0"}} >{obj.area} <p style={{display:"inline",color: "black",fontWeight :"500"}}>sqft</p></Housecard.NormalText>
                         </Housecard.TextControl>
                 </Housecard.TextContainer>
                 </Housecard.Content>
