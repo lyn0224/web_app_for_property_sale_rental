@@ -8,14 +8,9 @@ function Housecards({props}){
     const {houses,search,favorite,addFavorite,removeFavorite,filterHouses} = useContext(Context);
     
     
-    // console.log(houses)
+    console.log(houses)
     function singlecard(obj,favorite){
-        // console.log(favorite)
-        // const findFavorite = favorite.filter(house=>{ if(house.properity_id === obj.S_ID){
-        //         console.log(house)
-        //         console.log(house.properity_id === obj.S_ID)
-        //         return house
-        // }})
+
         const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite} house = {obj}/>:<Housecard.notFavorite addFavorite={addFavorite} house = {obj}/>
             
         return (

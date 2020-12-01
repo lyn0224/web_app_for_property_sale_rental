@@ -9,6 +9,16 @@ export const Container = styled.div`
     background-color: black;
     opacity: 0.2;
     top:0px;
+    
+    @media (max-width: 800px) {
+        width:100%;
+        height: 100%;
+        top:0px;
+        bottom:0px;
+        background-color:  initial;
+    }
+
+ 
 `;
 
 export const Error = styled.div`
@@ -24,10 +34,17 @@ export const Base = styled.div`
     background-color: white;
     border-radius: 5px;
     margin: auto;
-    width: 800px;
+    width: 700px;
     opacity:2;
     border: 1px solid #cccccc;
+    
     padding: 60px 68px 40px;
+    @media (max-width: 800px) {
+        top: 0;
+        left: 0;
+        width: 100%;
+        
+    }
     
 `;
 
@@ -35,6 +52,11 @@ export const Title = styled.h1`
     color:#3870ff;
     position: relative;
     margin-left:30%;
+    @media (max-width: 800px) {
+        margin-left:30%;
+        font-size:1rem;
+    }
+    
 `;
 
 export const Text = styled.p`
@@ -66,7 +88,10 @@ export const InputArea = styled.form`
     align-items: center;
     overflow: ${props => props.Scroll};
     overflow-x: hidden;
-    
+    @media (max-width: 800px) {
+        width:100%;
+      
+    }
 `
 export const Input = styled.input`
     background: #ebeced;
@@ -83,6 +108,11 @@ export const Input = styled.input`
     &:last-of-type {
         margin-bottom: 30px;
     }
+    @media (max-width: 800px) {
+        width:200px;
+        height: 30px;
+        
+    }
 `;
 
 export const TextArea = styled.textarea`
@@ -96,6 +126,7 @@ export const TextArea = styled.textarea`
     width:300px;
     height:150px;
     margin-bottom: 20px;
+ 
 `;
 
 export const Submit = styled.button`
@@ -114,6 +145,7 @@ export const Submit = styled.button`
     &:disabled {
         opacity: 0.5;
     }
+    
 `;
 export const Close = styled.div`
     background: white;
@@ -128,4 +160,5 @@ export const Close = styled.div`
     &:disabled {
         opacity: 0.5;
     }
+    
 `;

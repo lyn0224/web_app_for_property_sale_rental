@@ -37,6 +37,7 @@ export const Base = styled.form`
     flex-direction: column;
     max-width: 450px;
     width: 100%;
+  
 `;
 
 export const Title = styled.h1`
