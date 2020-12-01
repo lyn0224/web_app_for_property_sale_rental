@@ -149,7 +149,7 @@ export const Footer = styled.div`
     background: black;
 `
 export const List = styled.div`
-    z-index: 10;
+    z-index: 2;
     width: 100%;
     
 

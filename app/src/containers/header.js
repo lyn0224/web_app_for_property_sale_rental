@@ -73,10 +73,10 @@ function HeaderContainer(props){
                     <Header.TextLink to ={ROUTES.ACCOUNT_SETTING} onClick ={toggleMenu}>Account Setting</Header.TextLink>
                 </Header.Group>
                 <Header.Group>
-                    <Header.TextLink to ='#' onClick = {()=>logout()} onClick ={toggleMenu}>
-                        Sign out
-                    </Header.TextLink>
-                </Header.Group>
+                            <Header.TextLink to ='#' onClick = {()=>logout()}>
+                                Sign out
+                            </Header.TextLink>
+                        </Header.Group>
                 </>
     )
     const samll_conditionalAdmin = (user!==null && user.role =="A") ? <Header.Group> <Header.TextLink to = {ROUTES.HELP} onClick ={toggleMenu}>Admin</Header.TextLink> </Header.Group> : null;
