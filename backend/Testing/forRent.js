@@ -26,7 +26,7 @@ class forRentRouter{
                     //data[i].pic_dir = data[i].pic_dir + '/outside.png'
                     let pic_folder = data[i].pic_dir
                     let pic_folder_path = pic_folder.substring(pic_folder.lastIndexOf("/")+1);
-                    let directory_name = 'public/forSale/' + pic_folder_path;
+                    let directory_name = 'public/forRent/' + pic_folder_path;
                     //console.log(directory_name);
                     let filenames = fs.readdirSync(directory_name);
                     //console.log(filenames);
