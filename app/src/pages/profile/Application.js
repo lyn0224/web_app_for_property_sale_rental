@@ -84,9 +84,9 @@ function Application(){
                 <ApplicationForm.ImageContainer>
                     <ApplicationForm.Image src = {obj.main_pic?obj.main_pic:defaultimg} alt = {"#"}/>
                 </ApplicationForm.ImageContainer>
-                <ApplicationForm.Text>Name : {obj.name}</ApplicationForm.Text>
-                <ApplicationForm.Text>Offer Price : {obj.offer_price.toLocaleString("en-US", {style: "currency", currency: "USD"})}</ApplicationForm.Text>
-                <ApplicationForm.Text>Property : {obj.property_ID}</ApplicationForm.Text>
+                <ApplicationForm.Text>Name: {obj.name}</ApplicationForm.Text>
+                <ApplicationForm.Text>Offer Price: {obj.offer_price.toLocaleString("en-US", {style: "currency", currency: "USD"})}</ApplicationForm.Text>
+                <ApplicationForm.Text>Property: {obj.property_ID}</ApplicationForm.Text>
 
                 <ApplicationForm.Button onclick ={Contact} id ={obj.property_ID}name = {obj.name} Buyer_ID = {obj.Buyer_ID}>Contact</ApplicationForm.Button>
                 <ApplicationForm.Button onclick ={Reject} id ={obj.property_ID} name = {obj.name} Buyer_ID = {obj.Buyer_ID}>Reject</ApplicationForm.Button>
@@ -102,10 +102,11 @@ function Application(){
 
     return(
         <Profile>
-            <ApplicationForm>
             <Profile.Text>
                     Application
                 </Profile.Text>
+            <ApplicationForm>
+            
                 {applicants}
                 </ApplicationForm>
     
