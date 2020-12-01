@@ -114,7 +114,7 @@ function HouseDetail(props){
                         <Houseinfo.FeatureContainer>
                             <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
-                                    <i class="fas fa-home"></i>
+                                    <i className="fas fa-home"></i>
                                 </Houseinfo.FeatureIcon>
                                     Type 
                                     <Houseinfo.FeatureText >
@@ -123,7 +123,7 @@ function HouseDetail(props){
                             </Houseinfo.FeatureBase>
                             <Houseinfo.FeatureBase>
                                 <Houseinfo.FeatureIcon>
-                                    <i class="far fa-building"></i> 
+                                    <i className="far fa-building"></i> 
                                     </Houseinfo.FeatureIcon>
                                     Year built
                                     <Houseinfo.FeatureText>
@@ -132,7 +132,7 @@ function HouseDetail(props){
                                 </Houseinfo.FeatureBase>
                             <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
-                                    <i class="fas fa-temperature-high"></i>  
+                                    <i className="fas fa-temperature-high"></i>  
                                     </Houseinfo.FeatureIcon>
                                     Cooling
                                 <Houseinfo.FeatureText>
@@ -141,7 +141,7 @@ function HouseDetail(props){
                             </Houseinfo.FeatureBase>
                             <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
-                                    <i class="fas fa-parking"></i>
+                                    <i className="fas fa-parking"></i>
                                     </Houseinfo.FeatureIcon>
                                  Parking 
                                 <Houseinfo.FeatureText>
@@ -150,7 +150,7 @@ function HouseDetail(props){
                             </Houseinfo.FeatureBase>
                             <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
-                                <i class="fas fa-temperature-low"></i>
+                                <i className="fas fa-temperature-low"></i>
                                 </Houseinfo.FeatureIcon>
                                  Heating 
                                 <Houseinfo.FeatureText>
@@ -159,18 +159,30 @@ function HouseDetail(props){
                             </Houseinfo.FeatureBase>
                             <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
-                                <i class="fas fa-grip-lines"></i>
+                                <i className="fas fa-grip-lines"></i>
                                 </Houseinfo.FeatureIcon>Flooring 
                                 <Houseinfo.FeatureText>
                                     {house.flooring?house.flooring:"No Data"}
                                     </Houseinfo.FeatureText>
                             </Houseinfo.FeatureBase>
+
                             <Houseinfo.FeatureBase>
                             <Houseinfo.FeatureIcon>
-                                <i class="fas fa-dollar-sign"></i>
+                                <i className="fas fa-dollar-sign"></i>
                                 </Houseinfo.FeatureIcon> Price/sqft 
                                 <Houseinfo.FeatureText>
                                     {house.sqft?house.sqft:"No Data"}
+                                </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+
+                            <Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureIcon>
+                                <i className="far fa-calendar-alt"></i>
+                                </Houseinfo.FeatureIcon> Open House
+                                <Houseinfo.FeatureText>
+                                    {house.open_house.from_date?house.open_house.from_date:"No Data"} 
+                                    {"   "}
+                                    {house.open_house.to_date?house.open_house.to_date:"No Data"}
                                 </Houseinfo.FeatureText>
                             </Houseinfo.FeatureBase>
                         </Houseinfo.FeatureContainer>
