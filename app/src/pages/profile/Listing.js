@@ -221,9 +221,10 @@ function Listing() {
                     </ListingForm.ImageContainer>
                 </ListingForm.Link>
                 <ListingForm.TextContainer>
-                        <ListingForm.Title>{obj.city}</ListingForm.Title>
+                <ListingForm.Title>{obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Title>
+                <ListingForm.Text>{obj.city+" "+obj.state}</ListingForm.Text>
                         <ListingForm.Text>{obj.street}</ListingForm.Text>
-                        <ListingForm.Text>{obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
+                        
                     </ListingForm.TextContainer>
                 <ListingForm.Button to={'#'} func={toggleOpenhouse} id={obj.S_ID}>Open House</ListingForm.Button>
                 <ListingForm.Button to={'#'} func={toggleDisplay} id={obj.S_ID}>Update</ListingForm.Button>

@@ -21,7 +21,7 @@ export const ListingImg = styled.img`
 `
 export const ListingButton = styled.button`
         margin: 0 1.5rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
         background-color:#3d6eff;
         padding: 0.75rem 1.5rem;
         border-radius: 15px;
@@ -54,6 +54,7 @@ export const ImageContainer = styled.div`
         margin:1rem;
 `
 export const TextContainer = styled.div`
-        width: 300px;
+        min-width: 150px;
+        text-align:center;
    
 `

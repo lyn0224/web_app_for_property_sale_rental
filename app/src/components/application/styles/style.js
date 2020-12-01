@@ -29,15 +29,15 @@ export const Base = styled.div`
     display: ${props => props.display};
     position:absolute;
     top: 5vh;
-    left: 35vw;
+    left: 30vw;
     height: 90vh;
     background-color: white;
     border-radius: 5px;
     margin: auto;
-    width: 700px;
+    width: 600px;
     opacity:2;
     border: 1px solid #cccccc;
-    
+    text-align:center;
     padding: 60px 68px 40px;
     @media (max-width: 800px) {
         top: 0;
@@ -45,16 +45,25 @@ export const Base = styled.div`
         width: 100%;
         
     }
+
+    @media (min-width: 1800px) {
+        width: 700px;
+        left: 35vw;
+    }
     
 `;
 
 export const Title = styled.h1`
     color:#3870ff;
-    position: relative;
-    margin-left:30%;
+    font-size:2rem;
+
+
     @media (max-width: 800px) {
-        margin-left:30%;
-        font-size:1rem;
+        
+    }
+    @media (min-width: 1800px) {
+
+        font-size:2rem;
     }
     
 `;
@@ -82,7 +91,7 @@ export const InputArea = styled.form`
     padding: 3rem;
     display:flex;
     flex-direction:column;
-    width:600px;
+    width:100%;
     margin:0 auto;
     height: 80%;
     align-items: center;
@@ -92,6 +101,7 @@ export const InputArea = styled.form`
         width:100%;
       
     }
+
 `
 export const Input = styled.input`
     background: #ebeced;

@@ -7,6 +7,7 @@ export const Container = styled.div`
     border-bottom: 1px solid #cccccc;
     align-items: center;
     justify-content:center;
+    
 `;
 export const Link = styled.a``;
 export const TextLink = styled.p`
@@ -15,6 +16,10 @@ export const TextLink = styled.p`
     margin: 1rem;
     &:hover{
         border-bottom: 2px solid blue;
+    }
+    @media (max-width: 800px) {
+        font-size:0.9rem;
+        margin: 0.5rem;
     }
 `;
 export const Text = styled.p``;
