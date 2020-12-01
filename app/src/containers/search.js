@@ -6,25 +6,25 @@ function Search(){
 
     useEffect(() => {
         try{
-            fetch('http://localhost:9000/search', {
+            fetch(`http://localhost:9000/api/search?search_type=r&keyword=${searchTerm}`, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    searchTerm: searchTerm,
-                })
+                // body: JSON.stringify({
+                //     keyword: searchTerm
+                // })
             }).then(res => res.json()).then(result=>{
                 console.log(result);
-                let houseList = result.xxx;
-                setHouses(houseList);
+                // let houseList = result.xxx;
+                // setHouses(houseList);
             })
         }catch(e){
             console.log(e);
         }
        
-    }, []);
+    }, [searchTerm]);
 
     return(
         <SearchForm>
