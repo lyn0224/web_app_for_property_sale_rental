@@ -72,12 +72,10 @@ export default function FilterBar() {
         });
     }
 
-    
-
     return (
         <section className="filter-container">
      
-            <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} />
+            <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} placeholder="Search the houses that you want"/>
             <form className="filter-form">
                 {/*select type */}
                 <div className="form-group">

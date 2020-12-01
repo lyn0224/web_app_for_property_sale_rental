@@ -9,9 +9,10 @@ export const Container = styled.div`
     border-bottom: 1px solid #cccccc;
     align-items: center;
     @media (max-width: 600px){
-        flex-direction: column;
+        flex-direction: row;
         font-size : 1rem;
     }
+  
 `
 
 export const Logo = styled.img`
@@ -33,6 +34,7 @@ export const RightPanel = styled.div`
         margin:0 auto;
         margin-bottom:1rem;
     }
+    
     
 `
 export const LeftPanel = styled.div`
@@ -61,10 +63,14 @@ export const Text = styled.div`
     margin:0; 
     padding:0;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: black;
     @media (max-width: 600px){
         font-size : 0.75rem;
+        
+    }
+    @media (min-width: 1800px){
+        font-size : 1.5rem;
         
     }
    
@@ -103,7 +109,23 @@ export const ButtonLink = styled(ReactRouterLink)`
 
 export const Group = styled.div`
 display: flex;
-align-items: center;`
+align-items: center;
+
+`
+export const SmallIcon = styled.button`
+display: none;
+align-items: center;
+z-index:4;
+background:white;
+@media (max-width: 600px){
+    display: initial;
+    position: fixed;
+    font-size: 2rem;
+    color:rgb(20, 122, 255);
+    left:20px;
+    border:none;
+}
+`
 
 
 
@@ -171,3 +193,24 @@ export const TextLink = styled.p`
             position: fixed;
             flex-direction: column;
         }`
+
+export const SmallDropdown = styled.div`
+    display: ${props => props.display==="display" ? "display":"none"};
+    background:white;
+    width:70vw;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0px;
+    z-index:3;
+    box-shadow: 0px 0px 10px rgb(98, 98, 98);
+
+
+`
+
+export const SmallGroup = styled.div`
+    background:white;
+    position:fixed;
+    top:15%;
+    left:7%;
+`

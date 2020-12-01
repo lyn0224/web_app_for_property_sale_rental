@@ -25,8 +25,6 @@ function HousesProvider({children}) {
 
     const user = JSON.parse(localStorage.getItem('authUser'));
 
-
-
     useEffect( ()=>{
         fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
         filterDate();
@@ -237,7 +235,7 @@ function HousesProvider({children}) {
         return (
             <>
             <Context.Provider  value={{
-                houses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
+                houses,setHouses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
                 }}>
                 {children}
             </Context.Provider>

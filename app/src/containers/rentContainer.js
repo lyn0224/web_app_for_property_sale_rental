@@ -8,20 +8,14 @@ function RentContainer() {
     
     const [searchTerm, setSearchTerm] = useState('');
     const {houses, find_result} = useContext(RentContext)
-    console.log("this is rent",houses)
+    // console.log("this is rent",houses)
     const conditionalFilterBar = houses ? 
         <RentFilterBar/> : null;
 
     return (
         <BuyLayout>
-            
-      
-            
             <BuyLayout.SecondSection>
             {conditionalFilterBar}
- 
-          
-
                 <BuyLayout.List>
                     <RentHousecards/>
                 </BuyLayout.List>

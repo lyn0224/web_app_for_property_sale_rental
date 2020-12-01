@@ -14,7 +14,7 @@ import {Group,
         ButtonLink,
         Dropdown,
         TextLink,
-    ConditionLogoText} from './styles/style'
+    ConditionLogoText,SmallDropdown,SmallIcon,SmallGroup} from './styles/style'
 
 function Header({children, ...resProps}){
 return <Background {...resProps}>{children}</Background>
@@ -80,6 +80,10 @@ Header.Group = function HeaderGroup({ children, ...restProps }) {
     return <Group {...restProps}>{children}</Group>;
 }
 
+
+Header.SmallIcon = function HeaderSmallIcon({ display, toggleMenu,children, ...restProps }) {
+    return <SmallIcon display = {display} onClick = {toggleMenu} {...restProps}>{children}</SmallIcon>;
+}
 Header.Profile = function HeaderProfile({ children, ...restProps }) {
     return (
         <Profile {...restProps}>
@@ -101,4 +105,13 @@ Header.TextLink = function HeaderTextLink({ to, children, ...restProps  }){
                         </TextLink> 
                     </ReactRouterLink>
            
+}
+
+
+Header.SmallDropdown = function HeaderSmallDropdown({ display,children, ...restProps }) {
+    return <SmallDropdown display ={display}{...restProps}>{children}</SmallDropdown>
+}
+
+Header.SmallGroup = function HeaderSmallGroup({children, ...restProps }) {
+    return <SmallGroup {...restProps}> {children} </SmallGroup>
 }

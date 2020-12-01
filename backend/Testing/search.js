@@ -31,7 +31,8 @@ class searchRouter {
     return list.length > 0 ? list[0] : null;
   }
 
-  async saveSearchKeyword(db, keyword, token, search_type, min_price, max_price, bedroom, bathroom) {
+  async saveSearchKeyword(db, keyword, token, search_type, min_price, max_price, bedroom, bathroom, home_type, zip_code,
+    year_built, flooring, house_size, parking) {
     if (!token) {
       return;
     }
@@ -75,7 +76,32 @@ class searchRouter {
       keys.push('bathroom');
       values.push(bathroom);
     }
-
+    if (home_type) {
+      keys.push('home_type');
+      values.push( `'${home_type}'`);
+    }
+    if (zip_code) {
+      keys.push('zip_code');
+      values.push(zip_code);
+    }
+    if (year_built) {
+      keys.push('year_built');
+      values.push(year_built);
+    }
+    if (flooring) {
+      keys.push('flooring');
+      values.push( `'${flooring}'` );
+    }
+    if (house_size) {
+      keys.push('house_size');
+      values.push(house_size);
+    }
+    console.log('parking:',parking);
+    if ( parking) {
+      keys.push(' parking');
+      values.push( parking);
+    }
+   
 
     let sql = `insert into favorite_search (${keys.join(',')})values(${values.join(',')})`
 
@@ -99,19 +125,19 @@ class searchRouter {
   async begin(db, req) {
     console.log('----------', req.headers.token)
     const token = req.headers.token;
-    const { keyword = '', page, size, search_type, min_price, max_price, bedroom, bathroom } = req.query;
+    const { keyword = '', page, size, search_type, min_price, max_price, bedroom, bathroom, home_type, zip_code,
+    year_built, flooring, house_size, parking} = req.query;
     // const p = Number(page || 1) || 1;
     // const s = Number(size || 10) || 10;
     // save search keywor to favorite_search table
 
     console.log('token',min_price)
 
-    this.saveSearchKeyword(db, keyword, token, search_type, min_price, max_price, bedroom, bathroom);
+    this.saveSearchKeyword(db, keyword, token, search_type, min_price, max_price, bedroom, bathroom, home_type||search_type, zip_code,
+      year_built, flooring, house_size, parking);
 
-    let where = `(t.street like '%${keyword}%' or t.city like '%${keyword}%' or t.zip like '%${keyword}%' or t.flooring like '%${keyword}%')`
-    // if (search_type) {
-    //   where += ` and t.search_type = '${search_type}'`
-    // }
+    let where = `(t.street like '%${keyword}%' or t.city like '%${keyword}%' )`
+
     if (min_price) {
       where += ` and t.price>= ${min_price}`;
     }
@@ -124,11 +150,29 @@ class searchRouter {
     if (bathroom) {
       where += ` and t.bathroom <= ${bathroom}`;
     }
+    if(zip_code){
+      where += ` and t.zip like '%${zip_code}%'`;
+    }
+    if(flooring){
+      where += ` and t.flooring like '%${flooring}%'`;
+    }
+    if(year_built)
+    {   
+      where += ` and t.year_built like '%${year_built}%' `
+    }
+    if(house_size){
+      where += ` and t.area = ${house_size}`
+    }
+    if(parking){
+      where += ` and t.parking = ${parking}`
+    }
+
+    console.log('parking:',parking, where)
 
     // let tmpView = `select * from ${this.TableName} tt where tt.search_type = '${search_type}'`
     let tmpView = `select * from ${this.TableName} tt `;
     if (search_type) {
-      tmpView += ` where where tt.search_type = '${search_type}'`;
+      tmpView += ` where tt.search_type = '${search_type}'`;
     }
 
     let sql = `select * from (${tmpView})t where ${where} `
@@ -136,5 +180,6 @@ class searchRouter {
     return { list }
   }
 }
+
 
 module.exports = searchRouter;

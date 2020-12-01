@@ -89,7 +89,11 @@ function HouseDetail(props){
     }
 
     if(check) {
-        console.log(house)
+        const conditionalDate =( house.open_house && house.open_house.from_date && house.open_house.to_date)? (<Houseinfo.FeatureText>
+        {house.open_house.from_date?house.open_house.from_date:"No Data"} 
+        {"   "}
+        {house.open_house.to_date?house.open_house.to_date:"No Data"}
+    </Houseinfo.FeatureText>) :<Houseinfo.FeatureText>No Data</Houseinfo.FeatureText>;
         return(
             <>
              <Houseinfo>
@@ -179,11 +183,7 @@ function HouseDetail(props){
                             <Houseinfo.FeatureIcon>
                                 <i className="far fa-calendar-alt"></i>
                                 </Houseinfo.FeatureIcon> Open House
-                                <Houseinfo.FeatureText>
-                                    {house.open_house.from_date?house.open_house.from_date:"No Data"} 
-                                    {"   "}
-                                    {house.open_house.to_date?house.open_house.to_date:"No Data"}
-                                </Houseinfo.FeatureText>
+                                {conditionalDate}
                             </Houseinfo.FeatureBase>
                         </Houseinfo.FeatureContainer>
                         <Houseinfo.Button to={'#'} toggleDisplay={toggleDisplay}>Application</Houseinfo.Button>

@@ -1,9 +1,7 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-    height: calc(100vh - 150px);
-    
-    
+    min-height: calc(100vh - 150px);
 `;
 export const Link = styled.a``;
 export const TextLink = styled.p`
@@ -15,14 +13,16 @@ export const Text = styled.div`
     font-weight:bold;
     margin:0 auto;
     color: black;
+    @media (max-width: 800px) {
+        font-size: 1.5rem;
 
+}
 `;
 
 export const CardsContainer = styled.div`
     width:100%;
     height: 100%;
-    overflow: scroll;
-    overflow-x: hidden;
+
     display: grid;
     grid-template-columns: repeat(3, minmax(500px,250px));
     grid-template-rows: repeat(auto-fill, minmax(300px,100px)); 
