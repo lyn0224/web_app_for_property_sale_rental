@@ -29,6 +29,7 @@ class realtorRouter {
      * @memberof realtorRouter
      */
     async searchByName(db, keyword = '') {
+      console.log("keyword", keyword)
       const sql = `select * from REALTOR t where t.Fname like '%${keyword}%' or t.Lname like '%${keyword}%' `;
       const list = await this.execSQL(db, sql);
       return { list }
@@ -43,8 +44,10 @@ class realtorRouter {
      * @memberof realtorRouter
      */
     async searchByZip(db, keyword) {
+      console.log("keyword", keyword)
       const sql = `select * from REALTOR t where t.zipcode like '%${keyword}%' `;
       const list = await this.execSQL(db, sql);
+      console.log("list", list)
       return { list }
     }
   }

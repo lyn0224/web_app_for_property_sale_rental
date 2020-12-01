@@ -22,6 +22,6 @@ export const Notice = styled.div`
         font-size: 1rem;
         margin-bottom: 0;
         margin-top: 0;
-        padding-let: 5px;
+        padding-left: 5px;
     }
 `

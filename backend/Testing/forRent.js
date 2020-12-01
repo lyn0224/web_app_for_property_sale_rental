@@ -10,7 +10,7 @@ class forRentRouter{
             // let userID = req.body.id;
 
              //let cols = ['%outside%'];
-            db.query("SELECT * from FOR_RENT WHERE available_date > CURDATE()", (err, data) => {
+            db.query("SELECT * from FOR_RENT where status = 'A'", (err, data) => {
 
                 if(err) {
                     console.log(err);
@@ -55,7 +55,7 @@ class forRentRouter{
 
         updateListing(db, req, res) {
             let fdata = req.body;
-            let cols = [fdata.Realtor_ID, fdata.property_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.available_date, fdata.rate, fdata.lease_term, fdata.security_deposit, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.parking, fdata.flooring, fdata.area, fdata.year_built, fdata.ammenities, fdata.description, fdata.R_ID];
+            let cols = [fdata.Realtor_ID, fdata.property_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.available_date, fdata.rate, fdata.lease_term, fdata.security_deposit, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.parking, fdata.flooring, fdata.area, fdata.year_built, fdata.ammenities, fdata.description,fdata.R_ID];
             let sql = "UPDATE FOR_RENT SET Realtor_ID = ?, property_type = ?," +
                         "apt_num = ?, street = ?, city = ?, state = ?, zip = ?," +
                         "available_date = ?, rate = ?, lease_term = ?, security_deposit = ?, bedroom = ?, bathroom = ?," +
@@ -157,7 +157,7 @@ class forRentRouter{
                 }
                 // once approved, need to update property's available data to earlier than today
 
-                db.query("UPDATE FOR_RENT SET available_date = (CURDATE() - INTERVAL 1 DAY) where R_ID = ?", [property_ID], (err) =>{
+                db.query("UPDATE FOR_RENT SET status = 'N' where R_ID = ?", [property_ID], (err) =>{
                     if(err) {
                         console.log(err);
                         res.json({

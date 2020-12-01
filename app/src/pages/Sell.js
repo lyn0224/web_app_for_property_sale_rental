@@ -11,14 +11,14 @@ export class Sell extends Component {
     render() {
         return (
             <>
-            <Row>
-                <SellLayout.Notice>
-                    <img src={DefaultImg} alt="Paris"/>
-                    <p><strong>Our commitment to safety</strong></p>
-                    <p>Whether we're making an offer on your home or connecting you with an agent, we're committed to prioritizing the safety of our customers, communities and employees.</p>
-                </SellLayout.Notice>
-            </Row>    
-            <div style={{addingBottom: "5px"}}>
+            
+            <SellLayout.Notice>
+                <img src={DefaultImg} alt="Paris"/>
+                <p><strong>Our commitment to safety</strong></p>
+                <p>Whether we're making an offer on your home or connecting you with an agent, we're committed to prioritizing the safety of our customers, communities and employees.</p>
+            </SellLayout.Notice>
+               
+            <div>
                 <h1 style={{textAlign: "center"}}>
                     Sell with confidence <Badge variant="secondary">SELL</Badge>
                 </h1>
@@ -26,7 +26,7 @@ export class Sell extends Component {
                     Zillow is making it simpler and safer to sell your home and move forward.
                 </h5>
             </div>
-            <div style={{width: "90%", margin: "auto", paddingTop: "5px"}}>
+            <div>
             <Row>
                 <Col xs={8}>
                     <Card>

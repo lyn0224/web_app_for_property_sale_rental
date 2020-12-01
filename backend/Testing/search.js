@@ -128,7 +128,7 @@ class searchRouter {
     // let tmpView = `select * from ${this.TableName} tt where tt.search_type = '${search_type}'`
     let tmpView = `select * from ${this.TableName} tt `;
     if (search_type) {
-      tmpView += ` where tt.search_type = '${search_type}'`;
+      tmpView += ` where where tt.search_type = '${search_type}'`;
     }
 
     let sql = `select * from (${tmpView})t where ${where} `

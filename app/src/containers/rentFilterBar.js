@@ -1,6 +1,6 @@
-import React from 'react';
-import { useContext } from 'react';
+import React,{useState,useContext} from 'react';
 import { RentContext } from '../context/rentContext';
+import { BuyLayout } from '../components/export';
 
 //get all unique values
 const getUnique = (items, value) => {
@@ -9,6 +9,7 @@ const getUnique = (items, value) => {
 
 export default function RentFilterBar() {
     const context = useContext(RentContext);
+    const [searchTerm, setSearchTerm] = useState('');
     // console.log(context);
     const {
         handleChange,
@@ -24,7 +25,8 @@ export default function RentFilterBar() {
         maxSize,
         parking,
         year,
-        houses
+        houses,
+        find_result
     } = context;
     let types = [];
     let beds = [];
@@ -81,6 +83,7 @@ export default function RentFilterBar() {
 
     return (
         <section className="filter-container">
+            <BuyLayout.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} find_result = {find_result} />
             <form className="filter-form">
                 {/*select type */}
                 <div className="form-group">

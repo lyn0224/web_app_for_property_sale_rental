@@ -16,6 +16,7 @@ function HousesProvider({children}) {
     const [minSize, setMinSize] = useState(0);
     const [maxSize, setMaxSize] = useState(3000);
     const [flooring, setFoorling] = useState('all')
+    const [year, setYear] = useState('all')
 
     const Search_URL = 'http://localhost:9000/house';
     const Favorite_URL = 'http://localhost:9000/search';
@@ -41,7 +42,7 @@ function HousesProvider({children}) {
                 console.log(e);
             }
        }
-    },[types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize])
+    },[types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year])
 
 
     function find_result(input){
@@ -81,6 +82,9 @@ function HousesProvider({children}) {
         }
         if(name === "flooring"){
             setFoorling(value);
+        }
+        if(name === "year"){
+            setYear(value);
         }
         if(name === "parking"){
             if(value){
@@ -122,7 +126,7 @@ function HousesProvider({children}) {
     }
 
     async function handleSave(){
-        console.log(types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize);
+        console.log(types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
         // try{
         //     let res = await fetch(Save_URL, {
         //         method: 'post',
@@ -140,7 +144,8 @@ function HousesProvider({children}) {
         //             minPrice: minPrice, 
         //             maxPrice: maxPrice, 
         //             minSize: minSize, 
-        //             maxSize: maxSize
+        //             maxSize: maxSize,
+        //             year: year 
         //         })
         //     });
         //     let result = await res.json();
