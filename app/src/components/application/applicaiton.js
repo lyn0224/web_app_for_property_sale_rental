@@ -12,7 +12,9 @@ import {
     Submit ,
     Close,
     InputArea,
-    InputField
+    InputField,
+    Select,
+    Option
 } from './styles/style';
 
 export default function Application({ children, ...restProps }) {
@@ -60,4 +62,12 @@ Application.Close = function ApplicationClose({toggleDisplay, children, ...restP
 }
 Application.Submit = function ApplicationSubmit({onclick, children, ...restProps }) {
     return <Submit {...restProps} onClick = {()=>onclick()}>{children}</Submit>
+}
+
+Application.Select =function ApplicationSelect({ children, ...restProps }) {
+    return <Select {...restProps}>{children}</Select>
+}
+
+Application.Option = function ApplicationOption({ children, ...restProps }) {
+    return <Option {...restProps}>{children}</Option>;
 }

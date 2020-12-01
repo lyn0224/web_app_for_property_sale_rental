@@ -10,7 +10,7 @@ export const Container = styled.div`
 `
 export const Base = styled.div`
         display:flex;
-       
+        
         border-bottom: 1px solid #cccccc;
         height:300px;
         width:50%;
@@ -18,8 +18,10 @@ export const Base = styled.div`
         justify-content:center;
 
         @media (max-width: 800px) {
+                margin-top:2rem;
                 display:initial;
                 width:100%;
+                height:400px;
                 text-align:center;
                 
        }

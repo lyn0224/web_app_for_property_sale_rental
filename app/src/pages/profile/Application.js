@@ -9,7 +9,7 @@ function Application(){
     const Reject_URL = `http://localhost:9000/rejectBuy`
     const [Applications, setApplciaitons] = useState()
     const [check,setCheck] = useState(false) 
-    console.log(Applications)
+    console.log(user)
     useEffect( ()=>{
             try{
                 fetch(Application_URL, {
@@ -20,6 +20,7 @@ function Application(){
                     },
                     body: JSON.stringify({
                         ID: user.id,
+                        role: user.role
                     })
                 }).then(res => res.json()).then(result=>{
                     setApplciaitons(result.dataset)

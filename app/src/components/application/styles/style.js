@@ -3,7 +3,7 @@ import { Link as ReachRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
     display :${props => props.display};
-    position:absolute;
+    position:fixed;
     width: 100vw;
     height: 100vh;
     background-color: black;
@@ -27,7 +27,7 @@ export const Error = styled.div`
 
 export const Base = styled.div`
     display: ${props => props.display};
-    position:absolute;
+    position:fixed;
     top: 5vh;
     left: 30vw;
     height: 90vh;
@@ -135,7 +135,8 @@ export const TextArea = styled.textarea`
     padding: 5px 20px;
     outline:none;
     width:300px;
-    height:150px;
+    max-height:150px;
+    min-height:150px;
     margin-bottom: 20px;
  
 `;
@@ -174,4 +175,31 @@ export const Close = styled.div`
     }
 
     
+`;
+
+export const Select = styled.select`
+    position: relative;
+    font-size: 20px;
+
+    background: #d4d4d4;
+    color:grey;
+    text-shadow:0 1px 0 rgba(0,0,0,0.4);
+    padding: 10px 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+`
+
+export const Option = styled.option`
+    background: white;
+    border-radius: 4px;
+    border: 0;
+    color: black;
+    height: 50px;
+    line-height: 50px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    
+    &:last-of-type {
+        margin-bottom: 30px;
+    }
 `;

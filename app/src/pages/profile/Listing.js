@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useContext} from 'react'
-import {ListingForm,Application,Profile } from '../../components/export';
+import {ListingForm,Application,Profile,Form} from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import {Context} from "../../context/housesContext"
@@ -19,8 +19,8 @@ function Listing() {
 
     const [check,setCheck] = useState(false)      
 
-    const [PropertyType,setPropertyType]= useState()
-    const [apart_number,setApart_number]= useState()
+    const [PropertyType,setPropertyType]= useState('')
+    const [apart_number,setApart_number]= useState('')
     const [Street,setStreet]= useState()
     const [Zip,setZip]= useState()
     const [City,setCity]= useState()
@@ -40,8 +40,9 @@ function Listing() {
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
 
-    const isInvalid = PropertyType === '' || Street === '' || Zip ==='' ||City === ''||Price === ''||Bedroom === ''||Parking===''||Description===''; 
-    const OpenisInvalid = startDate === '' | endDate === '';
+    const isInvalid = apart_number=== ''|State === ''| Livingroom === ''|Area === ''| Street === ''| Zip === '' |City === ''|Price === ''| Bedroom === ''| Parking===''|Description===''; 
+
+    const OpenisInvalid = (startDate === undefined||startDate === '') | (endDate === undefined||endDate === '');
     useEffect( ()=>{
         try{
             fetch(Application_URL, {
@@ -52,6 +53,7 @@ function Listing() {
                 },
                 body: JSON.stringify({
                     ID: user.id,
+                    role: user.role
                 })
             }).then(res => res.json()).then(result=>{
                 setListing(result.dataset)
@@ -238,7 +240,6 @@ function Listing() {
    
         )
     }
-
     if(Listing&&Listing.length){
         const  cards = Listing.map(item=>ListingCard(item));
         console.log(isInvalid)
@@ -259,20 +260,29 @@ function Listing() {
                         <Application.Title>Update Form</Application.Title>
                         <Application.InputArea onSubmit={handleUpdate} method="POST" Scroll = "scroll">
                         
-                            <Application.InputField>
-                                <Application.Text>Property Type</Application.Text>
-                                <Application.Input  
-                                    placeholder="Property Type"
-                                    defaultValue ={PropertyType}
-                                    onChange={({ target }) => setPropertyType(target.value)}/> 
-                           </Application.InputField>
-                        
+                            <Application.Select onChange={({ target }) => setPropertyType(target.value)}>
+                                <Application.Option
+                                    defaultValue="selected">
+                                        {PropertyType}
+                                        </Application.Option>
+                                <Application.Option
+                                    value="Single House"
+                                    >Single House</Application.Option>
+                                <Application.Option 
+                                    value="Townhouse"
+                                    >Townhouse</Application.Option>
+                                <Application.Option 
+                                    value="Apartment"
+                                    >Apartment</Application.Option>
+                            </Application.Select>
+              
                            <Application.InputField>
                                 <Application.Text>Apart number</Application.Text>
                                 <Application.Input
-                                    placeholder="apart number"
+                                     placeholder="Apt #"
                                     defaultValue ={apart_number}
-                                    onChange={({ target }) => setApart_number(target.value)}/>
+                                    onChange={({ target }) => setApart_number(target.value)}
+                                    pattern="^[0-9]*$"/>
                                 </Application.InputField>
 
                             <Application.InputField>
@@ -280,7 +290,8 @@ function Listing() {
                                 <Application.Input  
                                     placeholder="Street"
                                     defaultValue ={Street}
-                                    onChange={({ target }) => setStreet(target.value)}/>
+                                    onChange={({ target }) => setStreet(target.value)}
+                                    />
                            </Application.InputField>
 
                            <Application.InputField>
@@ -288,7 +299,8 @@ function Listing() {
                                 <Application.Input  
                                     placeholder="City"
                                     defaultValue ={City}
-                                    onChange={({ target }) => setCity(target.value)}/>
+                                    onChange={({ target }) => setCity(target.value)}
+                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"/>
                             </Application.InputField>
 
                             <Application.InputField>
@@ -304,8 +316,8 @@ function Listing() {
                                 <Application.Input  
                                     placeholder="Zip-code"
                                     defaultValue ={Zip}
-                                    onChange={({ target }) => setZip(target.value)
-                                    }/>
+                                    onChange={({ target }) => setZip(target.value)}
+                                    pattern="[0-9]{5}"/>
                             </Application.InputField>
 
                             <Application.InputField>
@@ -314,45 +326,63 @@ function Listing() {
                                     placeholder="Price"
                                     defaultValue ={Price}
                                     onChange={({ target }) => setPrice(target.value)}
+                        
                                     />
                              </Application.InputField>
 
                              <Application.InputField>
                                 <Application.Text>Bedroom</Application.Text> 
-                                <Application.Input  
+                                <Application.Input 
                                     placeholder="Bedroom"
                                     defaultValue ={Bedroom}
                                     onChange={({ target }) => setBedroom(target.value)}
+                             
                                     />
                             </Application.InputField>
                         
                             <Application.InputField>
                                 <Application.Text>Bathroom</Application.Text> 
                                 <Application.Input  
+                  
                                     placeholder="Bathroom"
                                     defaultValue ={Bathroom}
                                     onChange={({ target }) => setBathroom(target.value)}
+                                  
                                     />
                             </Application.InputField>
 
                             <Application.InputField>
-                                <Application.Text>Livingroom</Application.Text> 
+                                <Application.Text>Living #</Application.Text> 
                                 <Application.Input  
-                                    placeholder="Livingroom"
+                                    placeholder="Living #"
                                     defaultValue ={Livingroom}
                                     onChange={({ target }) => setLivingroom(target.value)}
+                                    pattern="^[0-9]*$"
                                     />
                             </Application.InputField>
                             
                             <Application.InputField>
                                 <Application.Text>Flooring</Application.Text> 
-                                <Application.Input  
-                                    placeholder="Flooring"
+                                <Application.Select  
+                       
                                     defaultValue ={Flooring}
                                     onChange={({ target }) => setFlooring(target.value)}
-                                    />
+                                    >
+                                    <Application.Option
+                                    defaultValue="selected">
+                                        {Flooring}
+                                        </Application.Option>
+                                    <Application.Option
+                                        value="Carpet"
+                                        >Carpet</Application.Option>
+                                    <Application.Option 
+                                        value="Wooden"
+                                        >Wooden</Application.Option>
+                                    </Application.Select>
                              </Application.InputField>    
 
+
+            
                             <Application.InputField>
 
                                 <Application.Text>Parking</Application.Text> 
@@ -369,6 +399,7 @@ function Listing() {
                                     placeholder="Area"
                                     defaultValue ={Area}
                                     onChange={({ target }) => setArea(target.value)}
+                    
                                     />
                             </Application.InputField>
 
@@ -378,6 +409,7 @@ function Listing() {
                                     placeholder="Year"
                                     defaultValue ={Year}
                                     onChange={({ target }) => setYear(target.value)}
+                           
                                     />
                                     
                             </Application.InputField>
@@ -387,7 +419,8 @@ function Listing() {
                                 <Application.TextArea  
                                     placeholder="Description"
                                     defaultValue ={Description}
-                                    onChange={({ target }) => setDescription(target.value)}>
+                                    onChange={({ target }) => setDescription(target.value)}
+                                    >
                                 </Application.TextArea>
                             </Application.InputField>
                             <Application.Submit disabled={isInvalid} onclick={toggleDisplay}>Submit</Application.Submit>
@@ -420,9 +453,10 @@ function Listing() {
                                     defaultValue ={endDate}
                                     onChange={({ target }) => setEndDate(target.value)}/> 
                            </Application.InputField>
-                        
-                            <Application.Submit disabled={OpenisInvalid} onclick={toggleOpenhouse}>Submit</Application.Submit>
+                           <Application.Submit  disabled={OpenisInvalid} onclick={toggleOpenhouse}>Submit</Application.Submit>
+                            
                         </Application.InputArea>
+                      
                 </Application.Base>     
                 </Profile>
         )
