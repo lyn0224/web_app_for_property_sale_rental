@@ -235,7 +235,7 @@ function HousesProvider({children}) {
         return (
             <>
             <Context.Provider  value={{
-                houses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
+                houses,setHouses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
                 }}>
                 {children}
             </Context.Provider>

@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import {Row} from "react-bootstrap"
 import ItemAdd from "../components/itemAdd"
 import axios from 'axios';
+import Footer from "../containers/footer"
 // import ListingPic from '../img/homeicon.png'
  
 function SellByOwner() {
@@ -145,7 +146,9 @@ function SellByOwner() {
     if(info){
         return (
             <>
+            
                 <div style={{backgroundImage:"url('paper.gif')"}}>
+                    
                 <Form style={{backgroundColor: "grey"}}>
                     <Form.Title>Post a For Sale by Owner Listing</Form.Title>
                     {error && <Form.Error>{error}</Form.Error>}
@@ -275,11 +278,15 @@ function SellByOwner() {
                     </Form.Base>
                 </Form>
                 </div>
+             
             </>
         )
     }else{
         return(
+            <>
             <ItemAdd maxCount="6" type="Main" createItem={createItem} />
+            <Footer/>
+            </>
         )
     }
 }

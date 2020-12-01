@@ -10,7 +10,7 @@ export const Container = styled.div`
         grid-template-rows: repeat(auto-fill, minmax(300px,100px)); 
  
         padding:1rem;
-        @media (min-width: 1700px) {
+        @media (min-width: 1800px) {
                 grid-template-columns: repeat(3, minmax(490px,250px));
             }
         @media (max-width: 800px) {
@@ -35,7 +35,7 @@ export const Base = styled.div`
     &:hover {
         box-shadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
     }
-    @media (min-width: 1700px) {
+    @media (min-width: 1800px) {
         max-width: 500px;
         max-height: 250px;
     }
@@ -48,7 +48,7 @@ export const CardImg = styled.img`
         object-fit: cover;
         width: 300px;
         height:250px;
-        @media (min-width: 1700px) {
+        @media (min-width: 1800px) {
                 width: 300px;
                 height: 250px;
             }

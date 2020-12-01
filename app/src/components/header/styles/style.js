@@ -12,6 +12,7 @@ export const Container = styled.div`
         flex-direction: row;
         font-size : 1rem;
     }
+  
 `
 
 export const Logo = styled.img`
@@ -33,6 +34,7 @@ export const RightPanel = styled.div`
         margin:0 auto;
         margin-bottom:1rem;
     }
+    
     
 `
 export const LeftPanel = styled.div`
@@ -61,10 +63,14 @@ export const Text = styled.div`
     margin:0; 
     padding:0;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: black;
     @media (max-width: 600px){
         font-size : 0.75rem;
+        
+    }
+    @media (min-width: 1800px){
+        font-size : 1.5rem;
         
     }
    
@@ -110,6 +116,7 @@ export const SmallIcon = styled.button`
 display: none;
 align-items: center;
 z-index:4;
+background:white;
 @media (max-width: 600px){
     display: initial;
     position: fixed;

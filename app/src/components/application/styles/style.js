@@ -39,6 +39,7 @@ export const Base = styled.div`
     border: 1px solid #cccccc;
     text-align:center;
     padding: 60px 68px 40px;
+    z-index:5;
     @media (max-width: 800px) {
         top: 0;
         left: 0;
@@ -167,8 +168,10 @@ export const Close = styled.div`
     color: black;
     cursor: pointer;
     font-size:30px;
+    z-index:5;
     &:disabled {
         opacity: 0.5;
     }
+
     
 `;

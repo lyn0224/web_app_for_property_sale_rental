@@ -1,7 +1,7 @@
 import React,{useEffect,useContext} from 'react'
 import * as ROUTES from '../../constants/routes'
 import Loading from "../../containers/LoadingContainer"
-
+import { Housecard,Profile } from '../../components/export';
 function SaveSearch() {
 
     
@@ -21,10 +21,12 @@ function SaveSearch() {
 
         return(
             <>
-             <div>
-                This is Save Search page!
-            </div>
-            <Loading/>
+             <Profile>
+                <Profile.Text>  This is Save Search page!</Profile.Text>
+                  
+            
+                <Loading/>
+            </Profile>
             </>
         )
    

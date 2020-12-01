@@ -1,10 +1,11 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import {ListingForm,Application,Profile } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
-import Loading from "../../containers/LoadingContainer"
+import {Context} from "../../context/housesContext"
 
 function Listing() {
+    const {setHouses} = useContext(Context)
     const user = JSON.parse(localStorage.getItem('authUser'))
     const Application_URL = `http://localhost:9000/users/${user.id}/forSaleListing`
     const [Listing, setListing] = useState()
@@ -14,6 +15,8 @@ function Listing() {
     const Update_URL = "http://localhost:9000/updateForSale"
     const Delete_URL = 'http://localhost:9000/deleteForSale'
     const OpenHouse_URL = 'http://localhost:9000/openHouse'
+    const Search_URL = 'http://localhost:9000/house';
+
     const [check,setCheck] = useState(false)      
 
     const [PropertyType,setPropertyType]= useState()
@@ -112,11 +115,12 @@ function Listing() {
                 
                 alert(result.msg);
             }
+       
         }catch(e){
             console.log(e);
   
         }
-
+        fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
     }
     
     async function handleUpdate (event){
