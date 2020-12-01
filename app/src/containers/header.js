@@ -9,7 +9,7 @@ import *as ROUTES from '../constants/routes'
 function HeaderContainer(props){
 
     const {user,logout} = useContext(Context);
-    const conditionalRentals = (user === null || user.role ==="A" )? null: (<Header.Link to = {ROUTES.RENTALS}>Manage Rentals</Header.Link>);
+    const conditionalRentals = (user === null || user.role ==="A" )? null: (<Header.Link to = {ROUTES.RENT_POST}>Manage Rentals</Header.Link>);
     const conditionalSignin = user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):
             (<Header.Group>
             <Header.Profile>
