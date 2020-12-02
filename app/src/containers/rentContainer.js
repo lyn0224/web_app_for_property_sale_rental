@@ -7,13 +7,14 @@ import RentFilterBar from './rentFilterBar'
 function RentContainer() {
     
     const [searchTerm, setSearchTerm] = useState('');
-    const {houses, find_result} = useContext(RentContext)
-    // console.log("this is rent",houses)
-    const conditionalFilterBar = houses ? 
+    const {rentHouses, find_result} = useContext(RentContext)
+    // console.log("this is rent",rentHouses)
+    const conditionalFilterBar = rentHouses ? 
         <RentFilterBar/> : null;
 
     return (
         <BuyLayout>
+
             <BuyLayout.SecondSection>
             {conditionalFilterBar}
                 <BuyLayout.List>

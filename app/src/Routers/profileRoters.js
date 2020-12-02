@@ -7,12 +7,13 @@ import Application from "../pages/profile/Application"
 import Listing from "../pages/profile/Listing"
 import * as ROUTES from '../constants/routes'
 import ProfileNavbar from '../containers/profileNav'
+import FavoriteHome from '../pages/profile/FavoriteHome'
 function ProfileRouters(){
     return(
         <>
         <ProfileNavbar/>
         <Switch>
-              <Route path = {ROUTES.SAVED_HOME}><SaveHome/></Route>
+              <Route path = {ROUTES.SAVED_HOME}><FavoriteHome/></Route>
               <Route path = {ROUTES.SAVED_SEARCH}><SaveSearch/></Route>
               <Route path = {ROUTES.ACCOUNT_SETTING}><AccoutSetting/></Route>
               <Route path = {ROUTES.APPLICATION}><Application/></Route>

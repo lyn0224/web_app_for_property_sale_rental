@@ -19,7 +19,7 @@ function HousesProvider({children}) {
     const [year, setYear] = useState('all')
 
     const Search_URL = `${DB}/house`;
-    const Favorite_URL = `${DB}/search`;
+    // const Favorite_URL = `${DB}/search`;
     const Save_URL = `${DB}/save_search`;
     const Favorite_Home_URL = `${DB}/api/favorite/home`;
 

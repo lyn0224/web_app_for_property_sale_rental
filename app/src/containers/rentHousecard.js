@@ -4,13 +4,13 @@ import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { RentContext } from '../context/rentContext';
 import Loading from "../containers/LoadingContainer"
+
 function RentHousecards({props}){
-    const {houses,search,favorite,addFavorite,removeFavorite,filterHouses} = useContext(RentContext);
-    const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite}/>:<Housecard.notFavorite addFavorite={addFavorite}/>
+    const {rentHouses,search,rentFavorite,addRentFavorite,removeRentFavorite} = useContext(RentContext);
     
-    // console.log(houses)
-    function singlecard(obj){
-        // console.log(obj.main_dir)
+    function singlecard(obj,rentFavorite){
+        const icon = rentFavorite?<Housecard.RentFavorite removeRentFavorite ={removeRentFavorite} house = {obj}/>:<Housecard.notRentFavorite addRentFavorite={addRentFavorite} house = {obj}/>
+            
         return (
             <Housecard.Base key = {obj.R_ID} >  
             <Housecard.ImageContainer> 
@@ -39,33 +39,26 @@ function RentHousecards({props}){
             </Housecard.Link>
             
         </Housecard.Base>
-        // <Housecard.Base key = {obj.R_ID} >  
-        //     <Housecard.ImageContainer> 
-        //         {icon}      
-        //         </Housecard.ImageContainer>                 
-        //     <Housecard.Link to = {`${ROUTES.RENT}/${obj.R_ID}` }>
-                
-        //         {/* <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/> */}
-        //         <Housecard.ImageContainer>
-                    
-                    
-        //             <Housecard.img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
-        //         </Housecard.ImageContainer>
-        //         <Housecard.TextContainer>
-        //             <Housecard.Title>City : {obj.city}</Housecard.Title>
-        //             <Housecard.Text>Street : {obj.street}</Housecard.Text>
-        //             <Housecard.Text>Rate : {obj.rate ? obj.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Text>
-        //         </Housecard.TextContainer>
-
-        //     </Housecard.Link>
-            
-        // </Housecard.Base>
         )
     }
     // console.log(houses)
     // console.log(search)
-    if(houses && !search){
-        const  cards = houses.map(house=>singlecard(house));
+    if(rentHouses && !search){
+        console.log("rentHouses",rentHouses)
+        
+        const  cards = rentHouses.map(house=>{
+            if(rentFavorite!==undefined && rentFavorite){
+                console.log("rentFavorite",rentFavorite)
+                const checkFavorite = rentFavorite.find(item=>item.properity_id === house.R_ID)
+                console.log("checkFavorite", checkFavorite)
+                const A = checkFavorite? true : false;
+               return singlecard(house, A)
+            }else{
+                const C = false;
+                return singlecard(house, C)
+            }
+            
+        });
         return(
             <>
             <Housecard>
@@ -73,7 +66,7 @@ function RentHousecards({props}){
             </Housecard>
             </>
         )
-    }else if(houses && search){
+    }else if(rentHouses && search){
         if(search.length === 0){
             return(
                 <>

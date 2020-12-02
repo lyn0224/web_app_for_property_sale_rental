@@ -44,6 +44,14 @@ Housecard.Favorite = function HousecardFavorite({house,children, removeFavorite,
         </Favorite>
     )
 }
+Housecard.RentFavorite = function HousecardFavorite({house,children, removeRentFavorite,...restProps}){
+    return(
+        
+        <Favorite {...restProps} onClick = {()=>removeRentFavorite(house)}>
+            <i className="fas fa-heart" ></i>
+        </Favorite>
+    )
+}
 Housecard.notFavorite = function HousecardnotFavorite({house,children,addFavorite,...restProps}){
     return(
         <Favorite {...restProps} onClick = {()=>addFavorite(house) }>
@@ -51,6 +59,14 @@ Housecard.notFavorite = function HousecardnotFavorite({house,children,addFavorit
         </Favorite>
     )
 }
+Housecard.notRentFavorite = function HousecardnotFavorite({house,children,addRentFavorite,...restProps}){
+    return(
+        <Favorite {...restProps} onClick = {()=>addRentFavorite(house) }>
+            <i className="far fa-heart"></i>
+        </Favorite>
+    )
+}
+
 Housecard.Button = function HousecardButton({to,children,...restProps}){
     return(
             <ReactRouterLink to = {to}>

@@ -2,26 +2,25 @@ import React,{useEffect,useContext,useState} from 'react'
 import { Housecard,Profile } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
-import { Context } from '../../context/housesContext';
 import { RentContext } from '../../context/rentContext';
 import Loading from "../../containers/LoadingContainer"
 import {DB} from '../../constants/DB'
 import SaveHomeRouter from '../../Routers/saveHomeRouter'
 
-function SaveHome(prop) {
-    const {houses,favorite,removeFavorite} = useContext(Context);
+function SaveRentHome(prop) {
+    const {rentHouses,rentFavorite,removeRentFavorite} = useContext(RentContext);
+    // console.log("here is rentFavorite", rentFavorite)
     // const {houses, setHouses} = useState();
     const user = JSON.parse(localStorage.getItem('authUser'));
 
     function singlecard(obj){
-        // console.log(obj.main_dir)
-        const icon = <Housecard.Favorite removeFavorite ={removeFavorite} house = {obj}/> 
+        const icon = <Housecard.Favorite removeFavorite ={removeRentFavorite} house = {obj}/> 
         return (
-            <Housecard.Base key = {obj.S_ID} >  
+            <Housecard.Base key = {obj.R_ID} >  
                 <Housecard.ImageContainer> 
                     {icon}
                     </Housecard.ImageContainer> 
-            <Housecard.Link to = {`${ROUTES.BUY}/${obj.S_ID}` }>
+            <Housecard.Link to = {`${ROUTES.BUY}/${obj.R_ID}` }>
             
                 {/* <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/> */}
                 <Housecard.Content>
@@ -30,8 +29,8 @@ function SaveHome(prop) {
                     <Housecard.img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
                 </Housecard.ImageContainer>
                 <Housecard.TextContainer>
-                    <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>For Sale</Housecard.Title>
-                    <Housecard.Price>{obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Price>
+                    <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>For Rent</Housecard.Title>
+                    <Housecard.Price>{obj.rate ? obj.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Price>
                     <Housecard.Text> <p style={{display:"inline", color: "#525252", fontWeight :"600", fontSize :"1rem"}}> {obj.city} </p>{obj.state}</Housecard.Text>
                     <Housecard.Text>{obj.street}</Housecard.Text>
                     <Housecard.TextControl>
@@ -53,14 +52,12 @@ function SaveHome(prop) {
            
     },[])
 
-  if(houses){
-        console.log("houses",houses)
-        console.log("favorite",favorite)
-      const cards = houses.map(house=> { 
-          if(favorite){
-                const A = favorite.find(index=>house.S_ID === index.properity_id)
+    if(rentHouses){
+        const cards = rentHouses.map(house=> { 
+            if(rentFavorite){
+                const A = rentFavorite.find(index=>house.R_ID === index.properity_id)
                 if(A){
-                    const B = houses.find(index=>index.S_ID === A.properity_id)
+                    const B = rentHouses.find(index=>index.R_ID === A.properity_id)
                     return singlecard(B)
                 }
             }else{
@@ -70,6 +67,7 @@ function SaveHome(prop) {
     if(cards[0]!==undefined)
       {return(
           <Profile>
+
               <Profile.Text>
                     Saved Homes
                 </Profile.Text>
@@ -92,4 +90,4 @@ function SaveHome(prop) {
     
 }
 
-export default SaveHome
+export default SaveRentHome

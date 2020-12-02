@@ -2,9 +2,9 @@ import React, {useState, createContext, Component, useEffect } from 'react';
 import {DB} from '../constants/DB'
 const RentContext = React.createContext()
 function RentProvider({children}) {
-    const [houses,setHouses] = useState()
+    const [rentHouses,setRentHouses] = useState()
     const [search,setSearch] = useState()
-    const [favorite,setFavorite] = useState()
+    const [rentFavorite, setRentFavorite] = useState()
     const [types,setTypes] = useState("all")
     const [bed,setBed] = useState(0)
     const [bath,setBath] = useState(0)
@@ -18,47 +18,34 @@ function RentProvider({children}) {
     const [year, setYear] = useState('all')
 
     const Rent_Search_URL = `${DB}/rent`;
-    const Rent_Favorite_URL = '#';
-    const Rent_Save_URL = '#';
-    const Rent_Remove_URL = "#";
-    const Rent_Add_URL = "#"
+    const Rent_Favorite_URL = `${DB}/api/favorite/home`;
+    const Rent_Save_URL = `${DB}/save_search`;
+
     const user = JSON.parse(localStorage.getItem('authUser'));
 
-
-    console.log("i am context")
     useEffect( ()=>{
         
-        fetch(Rent_Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
+        fetch(Rent_Search_URL).then(response=>response.json()).then(result=>setRentHouses(result.dataset))
         filterData();
-    //     if(user){
-    //         try{
-    //             fetch(Rent_Favorite_URL, {
-    //                 method: 'post',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                     'Accept': 'application/json'
-    //                 },
-    //                 body: JSON.stringify({
-    //                     username: user.name,
-    //                 })
-    //             }).then(res => res.json()).then(result=>{
-    //                 console.log(result);
-    //                 let Favorite_List = result.xxx;
-    //                 setFavorite(Favorite_List);
-    //             })
-    //         }catch(e){
-    //             console.log(e);
-    //         }
-    //    }
+        if(user){
+            try{
+                fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+                    console.log(result);
+                    let Favorite_List = result.list;
+                    setRentFavorite(Favorite_List);
+                })
+            }catch(e){
+                console.log(e);
+            }
+       }
     },[types, bed, bath, parking, minRate, maxRate, flooring, minSize, maxSize, available])
 
 
     function find_result(input){
-        console.log(input)
         if(!input){
-            setSearch(houses)
+            setSearch(rentHouses)
         }else{
-            const array = houses.filter(house=>house.Owner_ID == input || house.city ==input)
+            const array = rentHouses.filter(house=>house.Owner_ID == input || house.city ==input)
             setSearch(array)
         }
     }
@@ -107,9 +94,9 @@ function RentProvider({children}) {
     }
 
     function filterData(){
-        if(houses){
+        if(rentHouses){
             console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available, year);
-            let tempHouses = [...houses];
+            let tempHouses = [...rentHouses];
             console.log("before filter",tempHouses);
             if(types !== "all"){
                 tempHouses = tempHouses.filter(house => house.property_type === types);
@@ -177,40 +164,87 @@ function RentProvider({children}) {
         //     console.log(e);
         // }
     }
+    // console.log("rent house", house);
+    async function removeRentFavorite(rentHouse){
+        try{
+            let res = await fetch(Rent_Favorite_URL, {
+                method: 'delete',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    U_ID: user.id,
+                    home_type :"r", 
+                    properity_id:rentHouse.R_ID
+                })
+            });
+            let result = await res.json();
+            console.log(result);
+            if(result && result.success){
+                console.log("successful delete from favorite");
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+        }
+        // const update = favorite.filter()
+        try{
+            console.log("favorite");
+            fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+                console.log(result);
+                let Favorite_List = result.list;
+                setRentFavorite(Favorite_List);
+            })
+        }catch(e){
+            console.log(e);
+        }
+    }
 
-    async function removeFavorite(house){
-        // try{
-        //     let res = await fetch(Remove_URL, {
-        //         method: 'post',
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             username: user.username,
-        //             // houseInfor : house
-        //         })
-        //     });
-        //     let result = await res.json();
-        //     console.log(result);
-        //     if(result && result.success){
-        //         console.log("successful add to favorite");
-        //     }else if(result && result.success === false){
-        //         alert(result.msg);
-        //     }
-        // }catch(e){
-        //     console.log(e);
-        // }
-        setFavorite(false)
+    async function addRentFavorite(rentHouse){
+        // console.log("rent user", user)
+        // console.log("rent house", rentHouse)
+        try{
+            let res = await fetch(Rent_Favorite_URL, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    U_ID: user.id,
+                    home_type :"r", 
+                    properity_id:rentHouse.R_ID,
+                })
+            });
+            let result = await res.json();
+            console.log(result);
+            if(result && result.success){
+                console.log("successful add to favorite");
+            }else if(result && result.success === false){
+                alert(result.msg);
+            }
+        }catch(e){
+            console.log(e);
+        }
+        try{
+            console.log("favorite");
+            fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+                console.log(result);
+                let Favorite_List = result.list;
+                setRentFavorite(Favorite_List);
+            })
+        }catch(e){
+            console.log(e);
+        }
+        console.log("this is favorite", rentFavorite)
     }
-    async function addFavorite(){
-        setFavorite(true)
-    }
-    console.log(houses);
+
     return (
         <>
         <RentContext.Provider  value={{
-            houses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
+            rentHouses, handleChange,handleSave,find_result,search,setSearch,rentFavorite, removeRentFavorite,addRentFavorite, minSize, maxSize
             }}>
             {children}
         </RentContext.Provider>

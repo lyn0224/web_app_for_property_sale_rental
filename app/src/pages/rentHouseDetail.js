@@ -10,7 +10,7 @@ import {Row, Col} from 'react-bootstrap'
 import {DB} from '../constants/DB'
 
 function RentHouseDetail(props){
-    const {houses} = useContext(RentContext);
+    const {rentHouses} = useContext(RentContext);
     const {id} = useParams()
  
     const [house,setHouse] = useState()
@@ -31,8 +31,8 @@ function RentHouseDetail(props){
 
     const isInvalid =  name === '' || credit === '' || employer === '' || salary === '';
     useEffect(()=>{
-        if(houses !== undefined){
-            houses.map(list=>{
+        if(rentHouses !== undefined){
+            rentHouses.map(list=>{
                 if(list.R_ID == id){
                     setHouse(list)
                 }else{

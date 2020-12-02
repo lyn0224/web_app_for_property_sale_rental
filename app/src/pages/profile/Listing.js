@@ -105,7 +105,8 @@ function Listing() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    S_ID : id
+                    S_ID : id,
+                    role: user.role
                 })
             });
             let result = await res.json();

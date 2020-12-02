@@ -14,7 +14,9 @@ function RealtorDetail(props){
     const {id} = useParams()
 
     const Rent_Application_URL = `${DB}/users/${id}/forRentListing`
+    const Buy_Application_URL = `${DB}/users/${id}/forSaleListing`
     const [Listing, setListing] = useState()
+    const [buyListing, setBuyListing] = useState()
     const [ID,setID] = useState();
 
     const [realtor,setRealtor] = useState()
@@ -56,10 +58,28 @@ function RealtorDetail(props){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    ID: user.id,
+                    ID: id,
+                    role: "R"
                 })
             }).then(res => res.json()).then(result=>{
                 setListing(result.dataset)
+            })
+        }catch(e){
+            console.log(e);
+        }
+        try{
+            fetch(Buy_Application_URL, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ID: id,
+                    role: "R"
+                })
+            }).then(res => res.json()).then(result=>{
+                setBuyListing(result.dataset)
             })
         }catch(e){
             console.log(e);
@@ -69,10 +89,10 @@ function RealtorDetail(props){
     function ListingCard(obj){
         return (
             <>
-            <p>Houses currently list</p>
-            <ListingForm.Base key = {obj.S_ID} style={{right: "0", height: "150px", width: "300px"}}>
+            <p>Houses currently list for SALE</p>
+            <ListingForm.Base key = {obj.R_ID} style={{right: "0", height: "150px", width: "300px"}}>
                 <ListingForm.ImageContainer>
-                    <ListingForm.Img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
+                    <ListingForm.Img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#" style={{height:"50%"}}/>
                 </ListingForm.ImageContainer>
                 <ListingForm.TextContainer>
                         <ListingForm.Text>city : {obj.city}</ListingForm.Text>
@@ -83,10 +103,29 @@ function RealtorDetail(props){
             </>
         )
     }
+    function BuyListingCard(obj){
+        return (
+            <>
+            <p>Houses currently list for RENT</p>
+            <ListingForm.Base key = {obj.S_ID} style={{right: "0", height: "150px", width: "300px", paddingTop: "0"}}>
+                <ListingForm.ImageContainer>
+                    <ListingForm.Img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#" style={{height:"50%"}}/>
+                </ListingForm.ImageContainer>
+                <ListingForm.TextContainer>
+                        <ListingForm.Text>city : {obj.city}</ListingForm.Text>
+                        <ListingForm.Text>street : {obj.street}</ListingForm.Text>
+                        <ListingForm.Text>price : {obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
+                    </ListingForm.TextContainer>
+            </ListingForm.Base> 
+            </>
+        )
+    }
+
     console.log(realtor, Listing)
-    if(realtor && Listing) {
+    if(realtor && Listing && buyListing) {
         console.log(realtor)
         const  cards = Listing.map(item=>ListingCard(item));
+        const  buycards = buyListing.map(item=>BuyListingCard(item));
         return(
             <>
              <Houseinfo style={{width: "80%", margin: "auto", height:"60%"}}>
@@ -97,8 +136,8 @@ function RealtorDetail(props){
                         </Houseinfo.Title>
                         
                         <Houseinfo.Price>                            
-                            <Houseinfo.Bath> <Houseinfo.BathInfo> {realtor.sales} </Houseinfo.BathInfo> sales</Houseinfo.Bath>
-                            <Houseinfo.Area> <Houseinfo.BathInfo> {realtor.rent} </Houseinfo.BathInfo> rents</Houseinfo.Area>
+                            <Houseinfo.Bath> <Houseinfo.BathInfo> {buycards.length} </Houseinfo.BathInfo> sales</Houseinfo.Bath>
+                            <Houseinfo.Area> <Houseinfo.BathInfo> {cards.length} </Houseinfo.BathInfo> rents</Houseinfo.Area>
                         </Houseinfo.Price>
 
                         <Houseinfo.Text>Email: {realtor.Email}</Houseinfo.Text>
@@ -108,6 +147,9 @@ function RealtorDetail(props){
                 </Houseinfo.Base>
                 <ListingForm>
                     {cards}
+                </ListingForm>
+                <ListingForm>
+                    {buycards}
                 </ListingForm>
             </Houseinfo> 
             

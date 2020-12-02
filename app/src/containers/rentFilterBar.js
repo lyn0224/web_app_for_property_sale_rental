@@ -25,7 +25,7 @@ export default function RentFilterBar() {
         maxSize,
         parking,
         year,
-        houses,
+        rentHouses,
         find_result
     } = context;
     let types = [];
@@ -36,20 +36,20 @@ export default function RentFilterBar() {
     let years = [];
     let availables = [];
     // //get unique types
-    if(houses){
-        types = getUnique(houses, 'property_type');
+    if(rentHouses){
+        types = getUnique(rentHouses, 'property_type');
         types = ['all', ...types];
         types = types.map((item, index) => {
             return <option value={item} key={index}>{item}</option>
         });
         
-        beds = getUnique(houses, 'bedroom');
+        beds = getUnique(rentHouses, 'bedroom');
         beds = ['any', ...beds];
         beds = beds.map((item, index) => {
             return <option value={item} key={index}>{item}+</option>
         });
 
-        baths = getUnique(houses, 'bathroom');
+        baths = getUnique(rentHouses, 'bathroom');
         baths = ['any', ...baths];
         baths = baths.map((item, index) => {
             return <option value={item} key={index}>{item}+</option>
@@ -60,13 +60,13 @@ export default function RentFilterBar() {
             return <option value={item} key={index+1}>{item}</option>
         });
 
-        floorings = getUnique(houses, "flooring");
+        floorings = getUnique(rentHouses, "flooring");
         floorings = ['all', ...floorings];
         floorings = floorings.map((item, index) => {
             return <option value={item} key={index}>{item}</option>
         });
 
-        years = getUnique(houses, 'year_built');
+        years = getUnique(rentHouses, 'year_built');
         years = ['all', ...years];
         years = years.map((item, index) => {
             return <option value={item} key={index}>{item}</option>
