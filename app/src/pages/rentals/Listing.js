@@ -165,6 +165,7 @@ function Listing() {
 
     }
     function ListingCard(obj){
+        console.log("obj",obj.visit[0].start_time)
         return (
         
             <ListingForm.Base key = {obj.S_ID}>
@@ -177,6 +178,7 @@ function Listing() {
                         <ListingForm.Title>city : {obj.city}</ListingForm.Title>
                         <ListingForm.Text>street : {obj.street}</ListingForm.Text>
                         <ListingForm.Text>Rate : {obj.rate ? obj.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
+                        <ListingForm.Text>Visit : {obj.visit ? obj.visit[0].start_time.substring(0,10):null}</ListingForm.Text>
                     </ListingForm.TextContainer>
                 <ListingForm.Button to={'#'} func={toggleDisplay} id={obj.R_ID}>Update</ListingForm.Button>
                 <ListingForm.Button to={ROUTES.LISTING} func={handleDelete} id={obj.R_ID}>Remove</ListingForm.Button>
