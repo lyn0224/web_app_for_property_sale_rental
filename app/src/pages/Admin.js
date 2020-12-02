@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react'
 import {Table} from "react-bootstrap"
 //npm install react-bootstrap bootstrap
-
+import {DB} from '../constants/DB'
 function Admin() {
 
     const [users, setUsers] = useState([]);
@@ -9,7 +9,7 @@ function Admin() {
     
     const getUser = async () => {
         try{
-            let res = await fetch('http://localhost:9000/get_user', {
+            let res = await fetch(`${DB}/get_user`, {
                 method: 'get',
                 headers: {
                     'Accept': 'application/json',
@@ -39,7 +39,7 @@ function Admin() {
     const handleUpdateClick = async (user_id) =>{
         //console.log(user_id);
         try{
-            let res = await fetch('http://localhost:9000/update_user', {
+            let res = await fetch(`${DB}/update_user`, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -66,7 +66,7 @@ function Admin() {
     const handleRemoveClick = async (user_id) =>{
         //console.log(user_id);
         try{
-            let res = await fetch('http://localhost:9000/remove_user', {
+            let res = await fetch(`${DB}/remove_user`, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',

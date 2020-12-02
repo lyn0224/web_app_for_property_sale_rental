@@ -7,6 +7,8 @@ import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
 import {Row, Col} from 'react-bootstrap'
+import {DB} from '../constants/DB'
+
 function RentHouseDetail(props){
     const {houses} = useContext(RentContext);
     const {id} = useParams()
@@ -19,6 +21,8 @@ function RentHouseDetail(props){
     const [credit, setCredit]= useState('')
     const [employer, setEmployer] = useState()
     const [salary, setSalary] = useState()
+
+    const Rent_Applicaiton_URL = `${DB}/rentRequest`
     const user = JSON.parse(localStorage.getItem('authUser'));
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
@@ -64,6 +68,7 @@ function RentHouseDetail(props){
     )): "null";
     
     const Visit_URL = "http://localhost:9000/visit"
+
     async function handleVisit(event){
         event.preventDefault();
             console.log("ID", house.R_ID)

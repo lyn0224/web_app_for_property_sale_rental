@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import {Row} from "react-bootstrap"
 import ItemAdd from "../../components/itemAdd"
 import axios from 'axios';
+import {DB} from '../../constants/DB'
 // import rentNavbar from '../../containers/rentNav'
 import { RealtorContext } from '../../context/realtorContext';
  
@@ -39,7 +40,17 @@ function RentByOwner() {
     const [info,setInfo] = useState(false);
 
     const user = JSON.parse(localStorage.getItem('authUser'));
- 
+
+    const Upload_URL = `${DB}/upload`
+    useEffect(()=>{
+        if(data){
+            console.log("i am here");
+        }
+        console.log("effect main", mainPictures);
+        console.log("effect other", otherPictures);
+        // setPictures(formData);
+    },[data])
+    
     const createItem= async(newItem) => {
         console.log(error);
         console.log(newItem);
@@ -111,7 +122,7 @@ function RentByOwner() {
 
         axios({
             method: "POST",
-            url: 'http://localhost:9000/upload',
+            url: Upload_URL,
             data: formData,
             headers: {
                 "Content-Type": "multipart/form-data"

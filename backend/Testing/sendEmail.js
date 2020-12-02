@@ -8,6 +8,7 @@ class sendEmail{
     sendEmail(req, res){
 
       console.log("Sending email");
+      console.log(req.email);
       let transporter = nodemailer.createTransport({
         service: 'yahoo',
         host: 'smtp.mail.yahoo.com',
@@ -28,12 +29,12 @@ class sendEmail{
     
       transporter
         .sendMail(message)
-        .then(() => {
-          res.json({
-              success: true,
-              msg: ''
-              });
-        })
+        // .then(() => {
+        //   res.json({
+        //       success: true,
+        //       msg: ''
+        //       });
+        // })
         .catch((error) => console.error(error));
     };
   

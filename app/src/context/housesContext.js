@@ -1,5 +1,5 @@
 import React, {useState, createContext, Component, useEffect } from 'react';
-
+import {DB} from '../constants/DB'
 const Context = React.createContext()
 function HousesProvider({children}) {
 
@@ -18,10 +18,10 @@ function HousesProvider({children}) {
     const [flooring, setFoorling] = useState('all')
     const [year, setYear] = useState('all')
 
-    const Search_URL = 'http://localhost:9000/house';
-    const Favorite_URL = 'http://localhost:9000/search';
-    const Save_URL = 'http://localhost:9000/save_search';
-    const Favorite_Home_URL = "http://localhost:9000/api/favorite/home";
+    const Search_URL = `${DB}/house`;
+    const Favorite_URL = `${DB}/search`;
+    const Save_URL = `${DB}/save_search`;
+    const Favorite_Home_URL = `${DB}/api/favorite/home`;
 
     const user = JSON.parse(localStorage.getItem('authUser'));
 
@@ -31,7 +31,7 @@ function HousesProvider({children}) {
         if(user){
             try{
                 console.log("favorite");
-                fetch(`http://localhost:9000/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+                fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
                     console.log(result);
                     let Favorite_List = result.list;
                     setFavorite(Favorite_List);
@@ -128,37 +128,7 @@ function HousesProvider({children}) {
 
     async function handleSave(){
         console.log(types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
-        // try{
-        //     let res = await fetch(Save_URL, {
-        //         method: 'post',
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             table: table,
-        //             types: types,
-        //             bed: bed,
-        //             bath: bath,
-        //             parking: parking,
-        //             flooring: flooring,  
-        //             minPrice: minPrice, 
-        //             maxPrice: maxPrice, 
-        //             minSize: minSize, 
-        //             maxSize: maxSize,
-        //             year: year 
-        //         })
-        //     });
-        //     let result = await res.json();
-        //     console.log(result);
-        //     if(result && result.success){
-        //         console.log("successful add to save search");
-        //     }else if(result && result.success === false){
-        //         alert(result.msg);
-        //     }
-        // }catch(e){
-        //     console.log(e);
-        // }
+       
     }
 
     async function removeFavorite(house){
@@ -189,7 +159,7 @@ function HousesProvider({children}) {
         // const update = favorite.filter()
         try{
             console.log("favorite");
-            fetch(`http://localhost:9000/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+            fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
                 console.log(result);
                 let Favorite_List = result.list;
                 setFavorite(Favorite_List);
@@ -225,7 +195,7 @@ function HousesProvider({children}) {
         }
         try{
             console.log("favorite");
-            fetch(`http://localhost:9000/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
+            fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
                 console.log(result);
                 let Favorite_List = result.list;
                 setFavorite(Favorite_List);

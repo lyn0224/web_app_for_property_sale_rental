@@ -77,12 +77,17 @@ Agile board => 	Issue board
     Submit an application for the lease, including credit score, employment
     information - an email sent to the Landlord/landlord’s realtor
 
+#### System Architecture Diagram
+<p>
+    <img src="https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/blob/master/SystemArchitecture.PNG" width = "100%" height = "100%" />
+                                                                              </p>
+
 #### Wireframe Diagram
 <p>
     <img src="./app/src/img/wireframe.jpg" width="100%" height="100%" />
 </p>
 
-#### Database Class Diagram
+#### Database Schema Diagram
 <p>
-    <img src="./app/src/img/DatabaseArchitectureDiagram.png" width="100%" height="100%" />
+    <img src="https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/blob/master/DatabaseSchema.png" width="100%" height="100%" />
 </p>

@@ -51,6 +51,7 @@
   font-size: 0.8rem;
   margin-left: 0.5rem;
 }
+
 @media screen and (min-width: 776px) {
   .filter-form {
     width: 70vw;
@@ -78,3 +79,27 @@
 button.disable{
   opacity: 0.5;
 } 
+
+@media (max-width: 1200px) {
+  .filter-form {
+    width: 10vw;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(110px,50px));
+    grid-row-gap: 0.5rem;
+    grid-column-gap: 10px;
+    align-items: center;
+    margin: 0 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .filter-form {
+    width: 10vw;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px,50px));
+    grid-row-gap: 0.5rem;
+    grid-column-gap: 10px;
+    align-items: center;
+    margin: 0 2rem;
+  }
+}
