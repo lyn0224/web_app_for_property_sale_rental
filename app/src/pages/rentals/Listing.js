@@ -38,6 +38,7 @@ function Listing() {
 
     const isInvalid = PropertyType === ''|| Street === '' || Zip ==='' ||City === ''||City === ''||Rate === ''||Bedroom === ''||Parking===''||Description===''; 
     useEffect( ()=>{
+        console.log("R", user.role)
         try{
             fetch(Rent_Application_URL, {
                 method: 'post',
@@ -99,7 +100,7 @@ function Listing() {
                 },
                 body: JSON.stringify({
                     R_ID : id,
-                    role: user.a_type
+                    role: user.role
                 })
             });
             let result = await res.json();
@@ -165,7 +166,7 @@ function Listing() {
 
     }
     function ListingCard(obj){
-        console.log("obj",obj.visit[0].start_time)
+        // console.log("obj",obj.visit[0].start_time)
         return (
         
             <ListingForm.Base key = {obj.S_ID}>
