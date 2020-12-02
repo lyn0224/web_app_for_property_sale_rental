@@ -7,10 +7,15 @@ import *as ROUTES from '../constants/routes'
         const history = useHistory()
         const [user, setUser] = useState(JSON.parse(localStorage.getItem('authUser')));
     
+        function refreshPage() {
+            window.location.reload(false);
+        }
        function logout(){
         localStorage.removeItem("authUser")
         setUser(null);
         history.push(ROUTES.HOME);
+        refreshPage();
+        
        }
         return(
             <Context.Provider value = {{user,setUser,logout}}>

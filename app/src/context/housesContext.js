@@ -23,14 +23,15 @@ function HousesProvider({children}) {
     const Favorite_Home_URL = `${DB}/api/favorite/home`;
 
  
-    const Save_Search_List = `${DB}/api/favorite/mine?id=${user.id}`
+   
     const [favorite_search_list,setFavorite_search_list] = useState()
     useEffect( ()=>{
         fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
         
         filterDate();
         if(user){
-            fetch(Save_Search_List).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
+
+            fetch(`${DB}/api/favorite/mine?id=${user.id}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
             try{
                 // console.log("favorite");
                 fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
@@ -133,24 +134,29 @@ function HousesProvider({children}) {
     }
     async function handleSave(search_type){
         // console.log(search_type,types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
-
+        console.log(user)
+        if(user){
         // const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&house_size=${maxSize}&parking=${parking}&home_type=${types=="all"?null:types}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
-        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed==="0"?null:bed}&bathroom=${bath==="0"?null:bath}&year_built=${year==="all"?null:year}&parking=${parking}&home_type=${types}&flooring=${flooring==="all"?null:flooring}&house_size=${minSize}`
-        // console.log(SaveSearch_URL)
-        // &parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
-        try{
-            console.log("save search");
+            const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed==="0"?null:bed}&bathroom=${bath==="0"?null:bath}&year_built=${year==="all"?null:year}&parking=${parking}&home_type=${types}&flooring=${flooring==="all"?null:flooring}&house_size=${minSize}`
+            // console.log(SaveSearch_URL)
+            // &parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
+            try{
+                console.log("save search");
 
-            fetch(SaveSearch_URL).then(res => res.json()).then(result=>{
-                console.log(result);
-            })
-        }catch(e){
-            console.log(e);
+                fetch(SaveSearch_URL).then(res => res.json()).then(result=>{
+                    console.log(result);
+                })
+            }catch(e){
+                console.log(e);
+            }
+            fetch(`${DB}/api/favorite/mine?id=${user.id}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
+        }else{
+            alert("Please sign in to save search")
         }
-        fetch(Save_Search_List).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
     }
 
     async function removeFavorite(house,type){
+        if(user){
         try{
             let res = await fetch(Favorite_Home_URL, {
                 method: 'delete',
@@ -185,16 +191,24 @@ function HousesProvider({children}) {
         }catch(e){
             console.log(e);
         }
+    }else{
+        alert("Please sign in to remove favorite house")
+    }
     }
 
     async function deleteFavorite_Search(obj){
+        if(user){
         fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>console.log(result)).catch(e=>console.log(e))
 
         fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list)).catch(e=>console.log(e))
+        }
+        else{
+            alert("Please sign in to delete saved search")
+        }
     }
     async function addFavorite(house){
         // console.log(user)
-
+        if(user){
         try{
             let res = await fetch(Favorite_Home_URL, {
                 method: 'post',
@@ -228,6 +242,9 @@ function HousesProvider({children}) {
         }catch(e){
             console.log(e);
         }
+    }else{
+        alert("Please sign in add favorite house")
+    }
  
     }
         return (

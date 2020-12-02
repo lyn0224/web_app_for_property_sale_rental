@@ -17,7 +17,9 @@ function Signin(){
     const history = useHistory();
     
     const Login_URL = `${DB}/login`
-
+    function refreshPage() {
+        window.location.reload(false);
+      }
     async function handleSignin(event){
         event.preventDefault();
         if(!username){
@@ -47,12 +49,16 @@ function Signin(){
                     localStorage.setItem('authUser', JSON.stringify(decoded.user));
                     setUser(JSON.parse(localStorage.getItem('authUser')));
                    const U = JSON.parse(localStorage.getItem('authUser'))
+                 
                     if(U.role === "A"){
                         history.push(ROUTES.HELP);
+                      
                     }
                     else{
                         history.push(ROUTES.HOME);
+        
                     }
+                    refreshPage()
                 }
                 
                 console.log("login success");
