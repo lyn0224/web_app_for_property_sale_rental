@@ -7,8 +7,10 @@ const getUnique = (items, value) => {
     return [...new Set(items.map(item => item[value]))];
 };
 
-export default function RentFilterBar() {
+export default function RentFilterBar(props) {
     const context = useContext(RentContext);
+    console.log(props.search_type)
+
     const [searchTerm, setSearchTerm] = useState('');
     // console.log(context);
     const {
@@ -34,7 +36,6 @@ export default function RentFilterBar() {
     let rates = [];
     let floorings = [];
     let years = [];
-    let availables = [];
     // //get unique types
     if(rentHouses){
         types = getUnique(rentHouses, 'property_type');
@@ -72,11 +73,11 @@ export default function RentFilterBar() {
             return <option value={item} key={index}>{item}</option>
         });
 
-        availables = ["in one month", "in three months", "in six months"]
-        availables = ['all', ...availables];
-        availables = availables.map((item, index) => {
-            return <option value={item} key={index}>{item}+</option>
-        });
+        // availables = ["in one month", "in three months", "in six months"]
+        // availables = ['all', ...availables];
+        // availables = availables.map((item, index) => {
+        //     return <option value={item} key={index}>{item}+</option>
+        // });
     }
 
     
@@ -171,7 +172,7 @@ export default function RentFilterBar() {
                         onChange={handleChange}
                     >{floorings}</select>
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="available">Available Date</label>
                     <select 
                         name="available"
@@ -180,7 +181,7 @@ export default function RentFilterBar() {
                         className="form-control"
                         onChange={handleChange}
                     >{availables}</select>
-                </div>
+                </div> */}
 
                 <div className="form-group">
                     <label htmlFor="size">
@@ -199,7 +200,7 @@ export default function RentFilterBar() {
                     </div>
                 </div>
             </form>
-            <button style={{width: "100px", height: "30px", fontSize: "13px", marginLeft: "100px"}} onClick={()=>handleSave()}>Save Search</button>
+            <button style={{width: "100px", height: "30px", fontSize: "13px", marginLeft: "100px"}} onClick={()=>handleSave(props.search_type)}>Save Search</button>
         </section>
     )
 }

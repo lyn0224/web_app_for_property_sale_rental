@@ -67,10 +67,18 @@ function RentHousecards({props}){
             </>
         )
     }else if(rentHouses && search){
+        if(rentHouses.length === 0){
+            return(
+                <>
+                <Housecard>
+                    no result
+                </Housecard>
+                </>
+            )
+        }
         if(search.length === 0){
             return(
                 <>
-                
                 <Housecard>
                     no result
                 </Housecard>
@@ -80,7 +88,6 @@ function RentHousecards({props}){
         const  cards = search.map(house=>singlecard(house));
             return(
                 <>
-                
                 <Housecard>
                     {cards}
                 </Housecard>
