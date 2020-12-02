@@ -145,7 +145,7 @@ class forRentRouter{
             let renter_name = req.body.renter_name;
 
             let cols = [renter_ID, property_ID];
-            db.query("UPDATE RENTER_APPLICATION SET request_status = 'A' where RENTER_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("DELETE FROM RENTER_APPLICATION WHERE RENTER_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -221,7 +221,7 @@ class forRentRouter{
             let property_ID = req.body.property_ID;
             let renter_name = req.body.renter_name;
             let cols = [renter_ID, property_ID];
-            db.query("UPDATE RENTER_APPLICATION SET request_status = 'R' where RENTER_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("DELETE FROM RENTER_APPLICATION where RENTER_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);

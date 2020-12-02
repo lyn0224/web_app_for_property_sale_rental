@@ -3,16 +3,18 @@ import {ListingForm,Application } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import Loading from "../../containers/LoadingContainer"
-
+import {DB} from '../../constants/DB'
 function Listing() {
     const user = JSON.parse(localStorage.getItem('authUser'))
-    const Rent_Application_URL = `http://localhost:9000/users/${user.id}/forRentListing`
+    
     const [Listing, setListing] = useState()
     const [ID,setID] = useState();
     const [display,setDisplay] = useState("none")
 
-    const Update_URL = "http://localhost:9000/updateForRent"
-    const Delete_URL = 'http://localhost:9000/deleteForRent'
+
+    const Rent_Application_URL = `${DB}/users/${user.id}/forRentListing`
+    const Update_URL = `${DB}/updateForRent`
+    const Delete_URL = `${DB}/deleteForRent`
     const [check,setCheck] = useState(false)      
 
     const [PropertyType,setPropertyType]= useState()
@@ -45,6 +47,7 @@ function Listing() {
                 },
                 body: JSON.stringify({
                     ID: user.id,
+                    role: user.role
                 })
             }).then(res => res.json()).then(result=>{
                 setListing(result.dataset)
@@ -95,7 +98,8 @@ function Listing() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    R_ID : id
+                    R_ID : id,
+                    role: user.a_type
                 })
             });
             let result = await res.json();
@@ -161,6 +165,7 @@ function Listing() {
 
     }
     function ListingCard(obj){
+        console.log("obj",obj.visit[0].start_time)
         return (
         
             <ListingForm.Base key = {obj.S_ID}>
@@ -173,6 +178,7 @@ function Listing() {
                         <ListingForm.Title>city : {obj.city}</ListingForm.Title>
                         <ListingForm.Text>street : {obj.street}</ListingForm.Text>
                         <ListingForm.Text>Rate : {obj.rate ? obj.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
+                        <ListingForm.Text>Visit : {obj.visit ? obj.visit[0].start_time.substring(0,10):null}</ListingForm.Text>
                     </ListingForm.TextContainer>
                 <ListingForm.Button to={'#'} func={toggleDisplay} id={obj.R_ID}>Update</ListingForm.Button>
                 <ListingForm.Button to={ROUTES.LISTING} func={handleDelete} id={obj.R_ID}>Remove</ListingForm.Button>

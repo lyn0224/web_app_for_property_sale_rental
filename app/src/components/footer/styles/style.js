@@ -5,7 +5,7 @@ export const Container = styled.div`
     flex-direction: column;
     padding: 70px 56px;
     margin: 0;
-    height: 400px;
+    height: 600px;
     width: 100%;
     background: black;
     vertical-align:bottom;
@@ -14,6 +14,9 @@ export const Container = styled.div`
     @media (max-width: 1000px) {
         padding: 70px 30px;
         height: 800px;
+    }
+    @media (min-width: 1800px) {
+        height: 400px;
     }
 `;
 

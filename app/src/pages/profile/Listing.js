@@ -3,20 +3,20 @@ import {ListingForm,Application,Profile,Form} from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import {Context} from "../../context/housesContext"
-
+import {DB} from '../../constants/DB'
 function Listing() {
     const {setHouses} = useContext(Context)
     const user = JSON.parse(localStorage.getItem('authUser'))
-    const Application_URL = `http://localhost:9000/users/${user.id}/forSaleListing`
+ 
     const [Listing, setListing] = useState()
     const [ID,setID] = useState();
     const [display,setDisplay] = useState("none")
     const [openDisplay,setOpenDisplay] = useState("none")
-    const Update_URL = "http://localhost:9000/updateForSale"
-    const Delete_URL = 'http://localhost:9000/deleteForSale'
-    const OpenHouse_URL = 'http://localhost:9000/openHouse'
-    const Search_URL = 'http://localhost:9000/house';
-
+    const Update_URL = `${DB}/updateForSale`
+    const Delete_URL = `${DB}/deleteForSale`
+    const OpenHouse_URL = `${DB}/openHouse`
+    const Search_URL = `${DB}/house`;
+    const Application_URL = `${DB}/users/${user.id}/forSaleListing`
     const [check,setCheck] = useState(false)      
 
     const [PropertyType,setPropertyType]= useState('')
@@ -53,7 +53,7 @@ function Listing() {
                 },
                 body: JSON.stringify({
                     ID: user.id,
-                    role: user.role
+                    role: user.a_type
                 })
             }).then(res => res.json()).then(result=>{
                 setListing(result.dataset)
@@ -105,7 +105,8 @@ function Listing() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    S_ID : id
+                    S_ID : id,
+                    role: user.role
                 })
             });
             let result = await res.json();

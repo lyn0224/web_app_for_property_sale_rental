@@ -42,6 +42,7 @@ class FavoriteRouter {
      * @memberof FavoriteRouter
      */
     async homeList(db, req) {
+      console.log("req.query", req.query)
       const { id } = req.query;
       if (!id) {
         throw Error('user id need to be filled');

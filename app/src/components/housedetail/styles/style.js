@@ -55,7 +55,6 @@ export const CardButton = styled.button`
         border: 0;
         color: white;
         cursor: pointer;
-
         @media (max-width: 800px) {
                 margin: 0 30%;
 
@@ -150,7 +149,7 @@ export const FeatureContainer = styled.div`
 
 export const FeatureBase = styled.div`
         font-weight:bolder;
-        margin: 0.5rem;
+        margin: 0.2rem;
         display:flex;
 
         @media (max-width: 800px) {

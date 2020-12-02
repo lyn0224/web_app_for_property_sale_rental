@@ -2,24 +2,24 @@ import  React from 'react'
 import{Link as ReactRouterLink} from 'react-router-dom'
 import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price} from './styles/style';
 
-function Housecard({children,...restProps}){
+function Realtorcard({children,...restProps}){
     return <Container {...restProps}>
                 {children}</Container>
 }
 
-export default Housecard
+export default Realtorcard
 
-Housecard.Base = function HousecardBase({children, ref,...restProps}){
+Realtorcard.Base = function RealtorcardBase({children, ref,...restProps}){
     return <Base {...restProps} ref = {ref}>
                 {children}
                 </Base>
 }
-Housecard.Content = function HousecardContent({children,...restProps}){
+Realtorcard.Content = function RealtorcardContent({children,...restProps}){
     return <Content {...restProps}>
                 {children}
                 </Content>
 }
-Housecard.Link = function HousecardLink({to,children,...restProps}){
+Realtorcard.Link = function RealtorcardLink({to,children,...restProps}){
     return (
 
             <ReactRouterLink to = {to} {...restProps} style = {{textDecoration:"none"}}>
@@ -28,7 +28,7 @@ Housecard.Link = function HousecardLink({to,children,...restProps}){
             )
 }
 
-Housecard.img = function HousecardImg({src,alt, children,...restProps}){
+Realtorcard.img = function RealtorcardImg({src,alt, children,...restProps}){
     return(
             <CardImg src = {src} alt = {alt} {...restProps}>
                
@@ -36,7 +36,7 @@ Housecard.img = function HousecardImg({src,alt, children,...restProps}){
                 </CardImg>
     )
 }
-Housecard.Favorite = function HousecardFavorite({house,children, removeFavorite,...restProps}){
+Realtorcard.Favorite = function RealtorcardFavorite({house,children, removeFavorite,...restProps}){
     return(
         
         <Favorite {...restProps} onClick = {()=>removeFavorite(house)}>
@@ -44,30 +44,14 @@ Housecard.Favorite = function HousecardFavorite({house,children, removeFavorite,
         </Favorite>
     )
 }
-Housecard.RentFavorite = function HousecardFavorite({house,children, removeRentFavorite,...restProps}){
-    return(
-        
-        <Favorite {...restProps} onClick = {()=>removeRentFavorite(house)}>
-            <i className="fas fa-heart" ></i>
-        </Favorite>
-    )
-}
-Housecard.notFavorite = function HousecardnotFavorite({house,children,addFavorite,...restProps}){
+Realtorcard.notFavorite = function RealtorcardnotFavorite({house,children,addFavorite,...restProps}){
     return(
         <Favorite {...restProps} onClick = {()=>addFavorite(house) }>
             <i className="far fa-heart"></i>
         </Favorite>
     )
 }
-Housecard.notRentFavorite = function HousecardnotFavorite({house,children,addRentFavorite,...restProps}){
-    return(
-        <Favorite {...restProps} onClick = {()=>addRentFavorite(house) }>
-            <i className="far fa-heart"></i>
-        </Favorite>
-    )
-}
-
-Housecard.Button = function HousecardButton({to,children,...restProps}){
+Realtorcard.Button = function RealtorcardButton({to,children,...restProps}){
     return(
             <ReactRouterLink to = {to}>
                 <CardButton {...restProps} style={{ outline: 'none' }}>
@@ -77,7 +61,7 @@ Housecard.Button = function HousecardButton({to,children,...restProps}){
     )
 }
 
-Housecard.Title = function HousecardTitle({children,...restProps}){
+Realtorcard.Title = function RealtorcardTitle({children,...restProps}){
     return(
         <Title {...restProps}>
             {children}
@@ -85,14 +69,14 @@ Housecard.Title = function HousecardTitle({children,...restProps}){
     )
 }
 
-Housecard.Text = function HousecardText({children,...restProps}){
+Realtorcard.Text = function RealtorcardText({children,...restProps}){
     return(
         <Text {...restProps}>
             {children}
         </Text>
     )
 }
-Housecard.ImageContainer = function HousecardImageContainer({children,...restProps}){
+Realtorcard.ImageContainer = function RealtorcardImageContainer({children,...restProps}){
         return(
             <ImageContainer {...restProps}>
                 {children}
@@ -100,14 +84,14 @@ Housecard.ImageContainer = function HousecardImageContainer({children,...restPro
         )
 }
 
-Housecard.TextContainer = function HousecardTextContainer({children,...restProps}){
+Realtorcard.TextContainer = function RealtorcardTextContainer({children,...restProps}){
     return(
         <TextContainer {...restProps}>
             {children}
         </TextContainer>
     )
 }
-Housecard.TextControl = function HousecardTextControl({children,...restProps}){
+Realtorcard.TextControl = function RealtorcardTextControl({children,...restProps}){
     return(
         <TextControl {...restProps}>
             {children}
@@ -116,14 +100,14 @@ Housecard.TextControl = function HousecardTextControl({children,...restProps}){
 }
 
 
-Housecard.NormalText = function HousecardNormalText({children,...restProps}){
+Realtorcard.NormalText = function RealtorcardNormalText({children,...restProps}){
     return(
         <NormalText {...restProps}>
             {children}
         </NormalText>
     )
 }
-Housecard.Price = function HousecardPrice({children,...restProps}){
+Realtorcard.Price = function RealtorcardPrice({children,...restProps}){
     return(
         <Price {...restProps}>
             {children}

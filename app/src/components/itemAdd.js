@@ -58,9 +58,10 @@ export default class ItemAdd extends React.Component {
         }
         const isInvalid = this.state.current === 0;
         console.log(isInvalid)
+        const conditionalText = this.props.type === "Rent" ? <Form.Title>Add picture For Rent by Owner Listing</Form.Title> : <Form.Title>Add picture For Sale by Owner Listing</Form.Title>;
         return (
             <Form style={{backgroundColor: "grey"}}>
-                <Form.Title>Add picture For Sale by Owner Listing</Form.Title>
+                {conditionalText}
                 <Form.Base name="itemAdd" onSubmit={this.handleSubmit}>
                     Add image for your listing, the first image will be the primary picture.
                     <p></p>

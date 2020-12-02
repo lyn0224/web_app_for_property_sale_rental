@@ -223,6 +223,7 @@ app.get("/get_user", function(req, res) {
   })
   // get favorite list
   app.get('/api/favorite/home', async function (req, res) {
+    console.log("req",req.query);
     try {
       const fav = new favorite();
       const data = await fav.homeList(db, req);
@@ -231,6 +232,7 @@ app.get("/get_user", function(req, res) {
       res.json({ success: false, msg: ex.msg || ex.message || ex });
     }
   })
+
   // get favorite search list
   app.get('/api/favorite/search', async function (req, res) {
     try {

@@ -1,32 +1,32 @@
-import { Housecard } from '../components/export';
+import { Realtorcard } from '../components/export';
 import React,{useContext} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
-import { Context } from '../context/realtorContext';
+import { RealtorContext } from '../context/realtorContext';
 import Loading from "../containers/LoadingContainer"
 import Realtor from '../pages/realtor/realtors';
 
 function RentHousecards({props}){
-    const {realtors,search} = useContext(Context);
+    const {realtors,search} = useContext(RealtorContext);
     
     // console.log(houses)
     function singlecard(obj){
         // console.log(obj.main_dir)
         return (
 
-        <Housecard.Base key = {obj.U_ID} >  
-            <Housecard.ImageContainer>      
-                </Housecard.ImageContainer>                 
-            <Housecard.Link to = {`${ROUTES.AGENT_FINDER}/${obj.U_ID}` }>
-                <Housecard.TextContainer>
-                <Housecard.Title>{obj.Fname} {obj.Lname}</Housecard.Title>
-                    <Housecard.Text>Email : {obj.Email}</Housecard.Text>
-                    <Housecard.Text>ZipCode : {obj.zipcode}</Housecard.Text>
-                </Housecard.TextContainer>
+        <Realtorcard.Base key = {obj.U_ID}>  
+            <Realtorcard.ImageContainer>      
+                </Realtorcard.ImageContainer>                 
+            <Realtorcard.Link to = {`${ROUTES.AGENT_FINDER}/${obj.U_ID}` }>
+                <Realtorcard.TextContainer>
+                <Realtorcard.Title>{obj.Fname} {obj.Lname}</Realtorcard.Title>
+                    <Realtorcard.Text>Email : {obj.Email}</Realtorcard.Text>
+                    <Realtorcard.Text>ZipCode : {obj.zipcode}</Realtorcard.Text>
+                </Realtorcard.TextContainer>
 
-            </Housecard.Link>
+            </Realtorcard.Link>
             
-        </Housecard.Base>
+        </Realtorcard.Base>
         )
     }
 
@@ -34,9 +34,9 @@ function RentHousecards({props}){
         const  cards = realtors.map(realtor=>singlecard(realtor));
         return(
             <>
-            <Housecard>
+            <Realtorcard>
                 {cards}
-            </Housecard>
+            </Realtorcard>
             </>
         )
     }else if(realtors && search){
@@ -44,19 +44,18 @@ function RentHousecards({props}){
             return(
                 <>
                 
-                <Housecard>
+                <Realtorcard>
                     no result
-                </Housecard>
+                </Realtorcard>
                 </>
             )
         }else if(search.length !== 0){
         const  cards = search.map(realtor=>singlecard(realtor));
             return(
                 <>
-                
-                <Housecard>
+                <Realtorcard>
                     {cards}
-                </Housecard>
+                </Realtorcard>
                 </>
             )
         }
