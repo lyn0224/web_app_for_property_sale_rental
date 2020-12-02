@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {Card, Badge, Button, Row, Col} from 'react-bootstrap'
-import img12 from "../img/homeicon.png";
 import { Link } from 'react-router-dom';
 import *as ROUTES from '../constants/routes'
 import SellLayout from '../components/sell/sell'

@@ -1,8 +1,8 @@
-import React,{useEffect, useState,useContext} from 'react'
+import React,{useEffect, useState} from 'react'
 import {ApplicationForm,Profile} from '../../components/export'
 import defaultimg from "../../img/homeicon.png"
-import Loading from "../../containers/LoadingContainer"
 import {DB} from '../../constants/DB'
+
 function Application(){
     const user = JSON.parse(localStorage.getItem('authUser'))
     const Application_URL = `${DB}/users/${user.id}/buyerApplication`

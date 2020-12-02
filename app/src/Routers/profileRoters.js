@@ -7,7 +7,7 @@ import Application from "../pages/profile/Application"
 import Listing from "../pages/profile/Listing"
 import * as ROUTES from '../constants/routes'
 import ProfileNavbar from '../containers/profileNav'
-import FavoriteHome from '../pages/profile/FavoriteHome'
+
 function ProfileRouters(){
     return(
         <>

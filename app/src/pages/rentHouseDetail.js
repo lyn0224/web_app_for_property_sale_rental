@@ -7,7 +7,7 @@ import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
 import {Row, Col} from 'react-bootstrap'
-import {DB} from '../constants/DB'
+// import {DB} from '../constants/DB'
 
 function RentHouseDetail(props){
     const {rentHouses} = useContext(RentContext);
@@ -22,7 +22,7 @@ function RentHouseDetail(props){
     const [employer, setEmployer] = useState()
     const [salary, setSalary] = useState()
 
-    const Rent_Applicaiton_URL = `${DB}/rentRequest`
+    // const Rent_Applicaiton_URL = `${DB}/rentRequest`
     const user = JSON.parse(localStorage.getItem('authUser'));
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
@@ -33,7 +33,7 @@ function RentHouseDetail(props){
     useEffect(()=>{
         if(rentHouses !== undefined){
             rentHouses.map(list=>{
-                if(list.R_ID == id){
+                if(list.R_ID === id){
                     setHouse(list)
                 }else{
 

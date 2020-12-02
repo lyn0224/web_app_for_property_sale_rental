@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Container, FirstSection} from './styles/style'
 function AgentLayout({children, ...restProps}){
     return(

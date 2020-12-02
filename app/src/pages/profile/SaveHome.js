@@ -1,18 +1,16 @@
-import React,{useEffect,useContext,useState} from 'react'
+import React,{useEffect,useContext} from 'react'
 import { Housecard,Profile } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import { Context } from '../../context/housesContext';
 import { RentContext } from '../../context/rentContext';
 import Loading from "../../containers/LoadingContainer"
-import {DB} from '../../constants/DB'
 
 
 function SaveHome(prop) {
     const {houses,favorite,removeFavorite} = useContext(Context);
-    const {rentHouses,rentFavorite,removeRentFavorite} = useContext(RentContext);
+    const {rentHouses,rentFavorite} = useContext(RentContext);
     // const {houses, setHouses} = useState();
-    const user = JSON.parse(localStorage.getItem('authUser'));
 
     function singlecard(obj,type){
         console.log("type",type)
@@ -31,7 +29,7 @@ function SaveHome(prop) {
                     <Housecard.img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
                 </Housecard.ImageContainer>
                 <Housecard.TextContainer>
-        <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>{type =="S"?"For Sale":"For Rent"}</Housecard.Title>
+        <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>{type ==="S"?"For Sale":"For Rent"}</Housecard.Title>
                     <Housecard.Price>{obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Price>
                     <Housecard.Text> <p style={{display:"inline", color: "#525252", fontWeight :"600", fontSize :"1rem"}}> {obj.city} </p>{obj.state}</Housecard.Text>
                     <Housecard.Text>{obj.street}</Housecard.Text>
@@ -47,7 +45,7 @@ function SaveHome(prop) {
         </Housecard.Base>
         )
     }
-    const Save_Home = `${DB}/api/favorite/home?id=${user.id}`
+    // const Save_Home = `${DB}/api/favorite/home?id=${user.id}`
     useEffect(()=>{
         // fetch user favorite table here
         // fetch(Save_Home).then(response=>response.json()).then(result=>setHouses(result.list))
@@ -57,12 +55,14 @@ function SaveHome(prop) {
   if(houses&&rentHouses){
         console.log("houses",houses)
         console.log("favorite",favorite)
-      const cards = houses.map(house=> { 
-          if(favorite){
+        const cards = houses.map(house=> { 
+            if(favorite){
                 const A = favorite.find(index=>house.S_ID === index.properity_id)
                 if(A){
                     const B = houses.find(index=>index.S_ID === A.properity_id)
                     return singlecard(B,"S")
+                }else{
+                    return null;
                 }
             }else{
                 return null;

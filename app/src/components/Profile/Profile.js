@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import {Link as ReactRouterLink} from 'react-router-dom'
-import {Container,Link,TextLink,Text,CardsContainer} from './styles/style'
+import React from 'react'
+import {Container, Text,CardsContainer} from './styles/style'
 function Profile({children, ...restProps}){
     return(
         <Container {...restProps}>

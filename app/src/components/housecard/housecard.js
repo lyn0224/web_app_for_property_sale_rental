@@ -1,6 +1,6 @@
 import  React from 'react'
 import{Link as ReactRouterLink} from 'react-router-dom'
-import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price,Error} from './styles/style';
+import { Container, CardImg, CardButton, Title, Text,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price,Error} from './styles/style';
 
 function Housecard({children,...restProps}){
     return <Container {...restProps}>

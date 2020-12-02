@@ -11,10 +11,8 @@ import { RealtorContext } from '../context/realtorContext';
 function SellByOwner() {
     const {realtors} = useContext(RealtorContext)
 
-    const [sellID, setSellID] = useState('');
-    const [ownerID, setOwnerID] = useState('');
     const [realtorID, setRealtorID] = useState('');
-    const [error, setError] = useState('');
+    const [error] = useState('');
     const [propertyType, setPropertyType] = useState("Single House");
     const [streetAddress, setStreetAddress] = useState('');
     const [aptNum, setAptNum] = useState('');

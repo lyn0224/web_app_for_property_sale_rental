@@ -1,10 +1,9 @@
-import React, {useState, createContext, Component, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import {DB} from '../constants/DB'
 const Context = React.createContext()
 function HousesProvider({children}) {
     const user = JSON.parse(localStorage.getItem('authUser'));
     const [houses,setHouses] = useState()
-    const [Favorite_Home,setFavorite_Home] = useState()
     const [search,setSearch] = useState()
     const [favorite,setFavorite] = useState()
     const [types,setTypes] = useState("all")
@@ -20,7 +19,7 @@ function HousesProvider({children}) {
 
     const Search_URL = `${DB}/house`;
     // const Favorite_URL = `${DB}/search`;
-    const Save_URL = `${DB}/save_search`;
+    // const Save_URL = `${DB}/save_search`;
     const Favorite_Home_URL = `${DB}/api/favorite/home`;
 
  
@@ -135,7 +134,7 @@ function HousesProvider({children}) {
         console.log(search_type,types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
 
         // const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&house_size=${maxSize}&parking=${parking}&home_type=${types=="all"?null:types}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
-        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
+        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed==="0"?null:bed}&bathroom=${bath==="0"?null:bath}&year_built=${year==="all"?null:year}`
         console.log(SaveSearch_URL)
         // &parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
         try{
@@ -161,7 +160,7 @@ function HousesProvider({children}) {
                 body: JSON.stringify({
                     U_ID: user.id,
                     home_type :"h", 
-                    properity_id:(type =="S"?house.S_ID:house.R_ID),
+                    properity_id:(type ==="S"?house.S_ID:house.R_ID),
                 })
             });
             let result = await res.json();

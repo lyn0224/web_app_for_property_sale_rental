@@ -18,11 +18,9 @@ export default function RentFilterBar(props) {
         handleSave,
         type,
         bed,
-        bath,
         minRate,
         maxRate,
         flooring,
-        available,
         minSize,
         maxSize,
         parking,
@@ -44,19 +42,19 @@ export default function RentFilterBar(props) {
             return <option value={item} key={index}>{item}</option>
         });
         
-        beds = getUnique(rentHouses, 'bedroom');
+        beds = [1,2,3,4,5]
         beds = ['any', ...beds];
         beds = beds.map((item, index) => {
             return <option value={item} key={index}>{item}+</option>
         });
 
-        baths = getUnique(rentHouses, 'bathroom');
+        baths = [1,2,3,4,5]
         baths = ['any', ...baths];
         baths = baths.map((item, index) => {
             return <option value={item} key={index}>{item}+</option>
         });
 
-        rates = [1000,2000,2500,3000,3500,,4000,5000]
+        rates = [1000,2000,2500,3000,3500,4000,5000]
         rates = rates.map((item, index) => {
             return <option value={item} key={index+1}>{item}</option>
         });
@@ -67,7 +65,7 @@ export default function RentFilterBar(props) {
             return <option value={item} key={index}>{item}</option>
         });
 
-        years = getUnique(rentHouses, 'year_built');
+        years = [1990,1995,2000,2005,2010,2015,2020]
         years = ['all', ...years];
         years = years.map((item, index) => {
             return <option value={item} key={index}>{item}</option>

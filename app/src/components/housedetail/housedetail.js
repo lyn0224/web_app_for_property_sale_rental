@@ -6,7 +6,6 @@ import{
     CardButton, 
     Title, 
     Text,
-    Link,
     Base,
     ImageBase,
     TextControl,

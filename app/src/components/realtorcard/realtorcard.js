@@ -1,6 +1,6 @@
 import  React from 'react'
 import{Link as ReactRouterLink} from 'react-router-dom'
-import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price} from './styles/style';
+import { Container, CardImg, CardButton, Title, Text,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price} from './styles/style';
 
 function Realtorcard({children,...restProps}){
     return <Container {...restProps}>

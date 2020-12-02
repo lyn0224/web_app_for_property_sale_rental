@@ -5,14 +5,13 @@ const containerStyle = {
   width: '50vw',
   height: '100%',
 };
-const apikey ="AIzaSyDeHTJyVnww0H_cTPoqXFT3lWKkNCvVL08";
 const center = {
   lat: -3.745,
   lng: -38.523
 };
  
 function MyComponent() {
-  const [map, setMap] = React.useState(null)
+  const [setMap] = React.useState(null)
  
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();

@@ -52,7 +52,7 @@ export default class ItemAdd extends React.Component {
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (imagePreviewUrl.map(imgUrl => <img src={imgUrl} style={{height: "200px", width: "200px"}}/>));
+            $imagePreview = (imagePreviewUrl.map(imgUrl => <img key="1" src={imgUrl} style={{height: "200px", width: "200px"}}/>));
         } else {
             $imagePreview = null;
         }

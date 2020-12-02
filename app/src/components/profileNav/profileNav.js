@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Link as ReactRouterLink} from 'react-router-dom'
 import {Container,Link,TextLink,Text} from './styles/style'
 function ProfileNav({children, ...restProps}){

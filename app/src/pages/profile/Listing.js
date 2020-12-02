@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useContext} from 'react'
-import {ListingForm,Application,Profile,Form} from '../../components/export';
+import {ListingForm,Application,Profile} from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import {Context} from "../../context/housesContext"
@@ -33,8 +33,8 @@ function Listing() {
     const [Year,setYear] = useState()
     const [Area,setArea] = useState()
     const [Description,setDescription] = useState()
-    const [Pic_dir,setPic_dir] = useState()
-    const [Main_dir,setMain_dir] = useState()
+    const [setPic_dir] = useState()
+    const [setMain_dir] = useState()
     const [Flooring,setFlooring] = useState()
     
     const [startDate, setStartDate] = useState()

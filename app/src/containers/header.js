@@ -41,11 +41,11 @@ function HeaderContainer(props){
                 </Header.Dropdown>
             </Header.Profile>
         </Header.Group>)
-        const conditionalAdmin = (user!==null && user.role =="A") ? <Header.Link to = {ROUTES.HELP}>Admin</Header.Link> : null;
+        const conditionalAdmin = (user!==null && user.role ==="A") ? <Header.Link to = {ROUTES.HELP}>Admin</Header.Link> : null;
         const conditionallogo = user!==null ? <Header.ConditionLogoText to = {ROUTES.HOME}>Zillow</Header.ConditionLogoText>:<Header.Logo to = {ROUTES.HOME}>Zillow</Header.Logo>
     const [Menu, setMenuDisplay] = useState("none")
     function toggleMenu(){
-        if(Menu == "none"){
+        if(Menu === "none"){
             setMenuDisplay("display")
             
         }
@@ -80,7 +80,7 @@ function HeaderContainer(props){
                         </Header.Group>
                 </>
     )
-    const samll_conditionalAdmin = (user!==null && user.role =="A") ? <Header.Group> <Header.TextLink to = {ROUTES.HELP} onClick ={toggleMenu}>Admin</Header.TextLink> </Header.Group> : null;
+    const samll_conditionalAdmin = (user!==null && user.role ==="A") ? <Header.Group> <Header.TextLink to = {ROUTES.HELP} onClick ={toggleMenu}>Admin</Header.TextLink> </Header.Group> : null;
     const conditionalRent = user === null ? null : (<Header.Link to = {ROUTES.SELL}>Sell</Header.Link>);
 
     return(

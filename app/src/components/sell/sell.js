@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {Container, Notice, Icon} from './styles/style'
+import React from 'react'
+import {Container, Notice} from './styles/style'
 function Sell({children, ...restProps}){
     return(
         <Container {...restProps}>

@@ -1,5 +1,5 @@
 import React, {useState,useContext}from 'react'
-import { Redirect, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { Form } from '../../components/export';
 import {Context} from '../../context/userInfo'
 import * as ROUTES from '../../constants/routes'
@@ -7,7 +7,7 @@ import Footer from "../../containers/footer"
 import jwt_decode from "jwt-decode";
 import {DB} from '../../constants/DB'
 function Signin(){
-    const [error, setError] = useState('');
+    const [error] = useState('');
 
     const [username, setuUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -47,7 +47,7 @@ function Signin(){
                     localStorage.setItem('authUser', JSON.stringify(decoded.user));
                     setUser(JSON.parse(localStorage.getItem('authUser')));
                    const U = JSON.parse(localStorage.getItem('authUser'))
-                    if(U.role == "A"){
+                    if(U.role === "A"){
                         history.push(ROUTES.HELP);
                     }
                     else{

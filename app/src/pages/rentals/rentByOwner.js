@@ -10,10 +10,8 @@ import { RealtorContext } from '../../context/realtorContext';
 function RentByOwner() {
     const {realtors} = useContext(RealtorContext)
 
-    const [sellID, setSellID] = useState('');
-    const [ownerID, setOwnerID] = useState('');
     const [realtorID, setRealtorID] = useState('');
-    const [error, setError] = useState('');
+    const [error] = useState('');
     const [propertyType, setPropertyType] = useState("Single House");
     const [streetAddress, setStreetAddress] = useState('');
     const [aptNum, setAptNum] = useState('');
@@ -31,10 +29,9 @@ function RentByOwner() {
     const [living, setLiving] = useState('');
     const [floor, setFloor] = useState("Carpet");
     const [parking, setParking] = useState(1);
-    const [price, setPrice] = useState('');
     const [year, setYear] = useState('');
     const [mainPictures, setMainPictures] = useState([]);
-    const [otherPictures, setOtherPictures] = useState([]);
+    const [otherPictures] = useState([]);
     const [description, setDescription] = useState('');
     const [data,setData] = useState();
     const [info,setInfo] = useState(false);
@@ -50,7 +47,7 @@ function RentByOwner() {
         console.log("effect other", otherPictures);
         // setPictures(formData);
     },[data])
-    
+
     const createItem= async(newItem) => {
         console.log(error);
         console.log(newItem);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Background, Search, SearchIcon,SearchInput,Title,Subtitle,Group} from './styles/style'
 function SearchForm({children, ...restProps}){
     return(

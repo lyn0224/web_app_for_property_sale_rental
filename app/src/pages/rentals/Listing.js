@@ -31,9 +31,8 @@ function Listing() {
     const [Year,setYear] = useState()
     const [Area,setArea] = useState()
     const [Description,setDescription] = useState()
-    const [available, setAvailable] = useState()
-    const [Pic_dir,setPic_dir] = useState()
-    const [Main_dir,setMain_dir] = useState()
+    const [setPic_dir] = useState()
+    const [setMain_dir] = useState()
 
 
     const isInvalid = PropertyType === ''|| Street === '' || Zip ==='' ||City === ''||City === ''||Rate === ''||Bedroom === ''||Parking===''||Description===''; 
@@ -169,8 +168,8 @@ function Listing() {
         // console.log("obj",obj.visit[0].start_time)
         return (
         
-            <ListingForm.Base key = {obj.S_ID}>
-                <ListingForm.Link to = {`${ROUTES.BUY}/${obj.S_ID}` }>
+            <ListingForm.Base key = {obj.R_ID}>
+                <ListingForm.Link to = {`${ROUTES.BUY}/${obj.R_ID}` }>
                     <ListingForm.ImageContainer>
                         <ListingForm.Img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
                     </ListingForm.ImageContainer>

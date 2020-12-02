@@ -7,6 +7,7 @@ import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
 import {DB} from '../constants/DB'
+
 function HouseDetail(props){
     const {houses} = useContext(Context);
     const {id} = useParams()
@@ -24,7 +25,7 @@ function HouseDetail(props){
     useEffect(()=>{
         if(houses !== undefined){
             houses.map(list=>{
-                if(list.S_ID == id){
+                if(list.S_ID === id){
                     setHouse(list)
                 }else{
 

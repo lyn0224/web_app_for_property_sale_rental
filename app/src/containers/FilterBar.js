@@ -11,13 +11,12 @@ export default function FilterBar(props) {
     // console.log(context);
     console.log(props.search_type)
     const [searchTerm, setSearchTerm] = useState('');
-    const {} = useContext(Context)
+    // const {} = useContext(Context)
     const {
         handleChange,
         handleSave,
         type,
         bed,
-        bath,
         minPrice,
         maxPrice,
         flooring,
@@ -26,7 +25,6 @@ export default function FilterBar(props) {
         parking,
         year,
         houses,
-        handleSubmit, 
         find_result
     } = context;
     let types = [];
@@ -43,16 +41,16 @@ export default function FilterBar(props) {
             return <option value={item} key={index}>{item}</option>
         });
         
-        beds = getUnique(houses, 'bedroom');
+        beds = [1,2,3,4,5]
         beds = ['any', ...beds];
         beds = beds.map((item, index) => {
-            return <option value={item} key={index}>{item}</option>
+            return <option value={item} key={index}>{item}+</option>
         });
 
-        baths = getUnique(houses, 'bathroom');
+        baths = [1,2,3,4,5]
         baths = ['any', ...baths];
         baths = baths.map((item, index) => {
-            return <option value={item} key={index}>{item}</option>
+            return <option value={item} key={index}>{item}+</option>
         });
 
         prices = [500000,1000000,1500000,2000000,2500000,3000000,3500000]
@@ -66,7 +64,7 @@ export default function FilterBar(props) {
             return <option value={item} key={index+1}>{item}</option>
         });
 
-        years = getUnique(houses, 'year_built');
+        years = [1990,1995,2000,2005,2010,2015,2020]
         years = ['all', ...years];
         years = years.map((item, index) => {
             return <option value={item} key={index}>{item}</option>

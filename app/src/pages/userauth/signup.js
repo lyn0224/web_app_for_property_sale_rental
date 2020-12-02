@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Form } from '../../components/export';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes'
@@ -11,7 +11,7 @@ function Signup() {
     const [username, setUsername] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [error] = useState('');
     const [realtor, setRealtor] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -59,8 +59,8 @@ function Signup() {
     }
     
     function handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        // const target = event.target;
+        // const value = target.type === 'checkbox' ? target.checked : target.value;
         setRealtor(!realtor);
     }
     const isInvalid = !realtor ? username === '' || password === '' || emailAddress === '' :

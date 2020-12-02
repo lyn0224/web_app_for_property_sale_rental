@@ -1,10 +1,8 @@
 import { Realtorcard } from '../components/export';
 import React,{useContext} from 'react'
-import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { RealtorContext } from '../context/realtorContext';
 import Loading from "../containers/LoadingContainer"
-import Realtor from '../pages/realtor/realtors';
 
 function RentHousecards({props}){
     const {realtors,search} = useContext(RealtorContext);

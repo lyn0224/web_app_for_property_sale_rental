@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import {Link as ReactRouterLink} from 'react-router-dom'
 import { Container, CardImg, CardButton, Title, Text,Link,Base} from './styles/style';
 import React from 'react'

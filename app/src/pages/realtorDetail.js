@@ -17,7 +17,7 @@ function RealtorDetail(props){
     const Buy_Application_URL = `${DB}/users/${id}/forSaleListing`
     const [Listing, setListing] = useState()
     const [buyListing, setBuyListing] = useState()
-    const [ID,setID] = useState();
+    // const [ID,setID] = useState();
 
     const [realtor,setRealtor] = useState()
     // const [check,setCheck] = useState(false)
@@ -31,13 +31,13 @@ function RealtorDetail(props){
     // const [rent, setRent] = useState();
     // const [specialty, setSpecialty] = useState();
 
-    const user = JSON.parse(localStorage.getItem('authUser'));
+    // const user = JSON.parse(localStorage.getItem('authUser'));
 
     useEffect(()=>{
         console.log("this is realtor", realtor, id)
         if(realtors !== undefined){
             realtors.map(list=>{
-                if(list.U_ID == id){
+                if(list.U_ID === id){
                     setRealtor(list)
                 }else{
 

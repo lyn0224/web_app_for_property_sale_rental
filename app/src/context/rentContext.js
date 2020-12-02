@@ -1,4 +1,4 @@
-import React, {useState, createContext, Component, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import {DB} from '../constants/DB'
 const RentContext = React.createContext()
 function RentProvider({children}) {
@@ -13,13 +13,13 @@ function RentProvider({children}) {
     const [maxRate, setMaxRate] = useState(10000);
     const [minSize, setMinSize] = useState(0);
     const [maxSize, setMaxSize] = useState(3000);
-    const [available, setAvailable] = useState()
+    const [available] = useState()
     const [flooring, setFlooring] = useState('all')
     const [year, setYear] = useState('all')
 
     const Rent_Search_URL = `${DB}/rent`;
     const Rent_Favorite_URL = `${DB}/api/favorite/home`;
-    const Rent_Save_URL = `${DB}/save_search`;
+    // const Rent_Save_URL = `${DB}/save_search`;
 
     const user = JSON.parse(localStorage.getItem('authUser'));
 
@@ -45,7 +45,7 @@ function RentProvider({children}) {
         if(!input){
             setSearch(rentHouses)
         }else{
-            const array = rentHouses.filter(house=>house.Owner_ID == input || house.city ==input)
+            const array = rentHouses.filter(house=>house.Owner_ID === input || house.city ===input)
             setSearch(array)
         }
     }
@@ -128,7 +128,7 @@ function RentProvider({children}) {
     }
 
     async function handleSave(search_type){
-        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minRate}&max_price=${maxRate}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}&parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
+        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minRate}&max_price=${maxRate}&bedroom=${bed==="0"?null:bed}&bathroom=${bath==="0"?null:bath}&year_built=${year==="all"?null:year}&parking=${parking}&home_type=${types}&flooring=${flooring==="all"?null:flooring}&house_size=${minSize}`
         console.log(SaveSearch_URL)
         try{
             console.log("save search");

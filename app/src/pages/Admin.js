@@ -1,11 +1,10 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Table} from "react-bootstrap"
 //npm install react-bootstrap bootstrap
 import {DB} from '../constants/DB'
 function Admin() {
 
     const [users, setUsers] = useState([]);
-    const [houses, setHouses] = useState([]);
     
     const getUser = async () => {
         try{

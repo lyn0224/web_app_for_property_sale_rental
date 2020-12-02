@@ -3,7 +3,6 @@ import React,{useContext} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { RentContext } from '../context/rentContext';
-import Loading from "../containers/LoadingContainer"
 
 function RentHousecards({props}){
     const {rentHouses,search,rentFavorite,addRentFavorite,removeRentFavorite} = useContext(RentContext);
@@ -68,13 +67,15 @@ function RentHousecards({props}){
             </>
         )
     }else if(rentHouses && search){
-        if(rentHouses.length === 0){
+        if(search.length === 0){
+            
             return(
-                <>
-                <Housecard>
-                    no result
-                </Housecard>
-                </>
+                <div style={{textAlign:"center"}}>
+                
+
+                    <Housecard.Error>No Data in Data Base</Housecard.Error>
+ 
+                </div>
             )
         }
         if(search.length === 0){

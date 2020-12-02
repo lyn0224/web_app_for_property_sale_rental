@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 import {SearchForm} from '../components/export'
-import {DB} from '../constants/DB'
 function Search(){
  
 

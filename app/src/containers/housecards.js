@@ -3,9 +3,8 @@ import React,{useContext} from 'react'
 import DefaultImg from '../img/homeicon.png'
 import * as ROUTES from '../constants/routes'
 import { Context } from '../context/housesContext';
-import Loading from "../containers/LoadingContainer"
 function Housecards({props}){
-    const {houses,search,favorite,addFavorite,removeFavorite,filterHouses} = useContext(Context);
+    const {houses,search,favorite,addFavorite,removeFavorite} = useContext(Context);
     
     
     console.log(houses)

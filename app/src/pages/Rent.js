@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import RentContainer from "../containers/rentContainer"
 function Rent () {
 

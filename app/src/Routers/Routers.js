@@ -9,7 +9,6 @@ import Sell from "../pages/Sell"
 import Rent from "../pages/Rent"
 import * as ROUTES from '../constants/routes' 
 import Admin from '../pages/Admin'
-import AgentFinder from '../pages/agentFinder';
 import Realtor from '../pages/realtor/realtors'
 import SellByOwner from '../pages/sellByOwner'
 import HouseDetail from '../pages/houseDetail'

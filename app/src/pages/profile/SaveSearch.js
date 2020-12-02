@@ -1,9 +1,7 @@
 import React,{useContext} from 'react'
-import Loading from "../../containers/LoadingContainer"
 import { Housecard,Profile } from '../../components/export';
 import { Context } from '../../context/housesContext';
 import DefaultImg from '../../img/homeicon.png'
-import { Search } from '../../components/searchform/styles/style';
 function SaveSearch() {
     const {favorite_search_list} = useContext(Context);
     function RemoveSearch(obj){
@@ -32,8 +30,10 @@ function SaveSearch() {
                         <Housecard.Text>bath: {obj.bathroom?obj.bathroom:"No Data"}</Housecard.Text>
                         <Housecard.Text>min price: {obj.min_price?obj.min_price:"0"}</Housecard.Text>
                         <Housecard.Text>max price: {obj.max_price?obj.max_price:"No Data"}</Housecard.Text>
-                        <Housecard.Text>zip code: {obj.zip_code?obj.zip_code:"No Data"}</Housecard.Text>
-                            
+                        <Housecard.Text>min size: {obj.house_size?obj.house_size:"No Data"}</Housecard.Text>
+                        <Housecard.Text>year built: {obj.year_built?obj.year_built:"No Data"}</Housecard.Text>
+                        <Housecard.Text>flooring: {obj.flooring?obj.flooring:"No Data"}</Housecard.Text>
+
                 </Housecard.TextContainer>
 
                 </Housecard.Content>
