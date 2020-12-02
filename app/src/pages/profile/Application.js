@@ -10,7 +10,7 @@ function Application(){
     const Reject_URL = `${DB}/rejectBuy`
     const [Applications, setApplciaitons] = useState()
     const [check,setCheck] = useState(false) 
-    console.log(user)
+    // console.log(user)
     useEffect( ()=>{
             try{
                 fetch(Application_URL, {

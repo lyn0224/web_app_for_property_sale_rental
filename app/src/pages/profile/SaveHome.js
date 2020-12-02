@@ -53,8 +53,8 @@ function SaveHome(prop) {
     },[])
 
   if(houses&&rentHouses){
-        console.log("houses",houses)
-        console.log("favorite",favorite)
+        // console.log("houses",houses)
+        // console.log("favorite",favorite)
         const cards = houses.map(house=> { 
             if(favorite){
                 const A = favorite.find(index=>house.S_ID === index.properity_id)

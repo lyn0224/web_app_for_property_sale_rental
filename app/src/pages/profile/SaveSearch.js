@@ -7,7 +7,7 @@ function SaveSearch() {
   
 
     function singlecard(obj){
-        console.log(obj)
+        // console.log(obj)
         const icon = <Housecard.Favorite removeFavorite ={deleteFavorite_Search} house = {obj}/> 
         return (
             <Housecard.Base key = {Math.random()} >  

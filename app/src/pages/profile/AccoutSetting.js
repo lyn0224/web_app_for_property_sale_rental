@@ -3,7 +3,7 @@ import { ListGroup } from 'react-bootstrap'
 import {Profile} from "../../components/export"
 function AccountSetting(){
     const user = JSON.parse(localStorage.getItem('authUser'))
-    console.log(user)
+    // console.log(user)
     if(user){
     return (
         <Profile>

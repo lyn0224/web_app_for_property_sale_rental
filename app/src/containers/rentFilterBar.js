@@ -9,7 +9,7 @@ const getUnique = (items, value) => {
 
 export default function RentFilterBar(props) {
     const context = useContext(RentContext);
-    console.log(props.search_type)
+    // console.log(props.search_type)
 
     const [searchTerm, setSearchTerm] = useState('');
     // console.log(context);

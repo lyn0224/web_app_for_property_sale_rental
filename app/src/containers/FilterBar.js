@@ -9,7 +9,7 @@ const getUnique = (items, value) => {
 export default function FilterBar(props) {
     const context = useContext(Context);
     // console.log(context);
-    console.log(props.search_type)
+    // console.log(props.search_type)
     const [searchTerm, setSearchTerm] = useState('');
     // const {} = useContext(Context)
     const {

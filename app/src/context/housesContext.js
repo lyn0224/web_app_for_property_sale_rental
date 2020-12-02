@@ -32,7 +32,7 @@ function HousesProvider({children}) {
         if(user){
             fetch(Save_Search_List).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
             try{
-                console.log("favorite");
+                // console.log("favorite");
                 fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
                     console.log(result);
                     let Favorite_List = result.list;
@@ -46,7 +46,8 @@ function HousesProvider({children}) {
 
 
     function find_result(input){
-        console.log(input)
+        // console.log(input)
+
         if(!input){
             setSearch(houses)
         }else{
@@ -99,20 +100,20 @@ function HousesProvider({children}) {
 
     function filterDate(){
         if(houses){
-            console.log(types, bath, bed, minPrice, maxPrice, minSize, maxSize, parking, flooring);
+            // console.log(types, bath, bed, minPrice, maxPrice, minSize, maxSize, parking, flooring);
             let tempHouses = [...houses];
-            console.log("before filter",tempHouses);
+            // console.log("before filter",tempHouses);
             if(types !== "all"){
                 tempHouses = tempHouses.filter(house => house.property_type === types);
             }
             if(flooring !== "all"){
                 tempHouses = tempHouses.filter(house => house.flooring === flooring);
             }
-            console.log("after flooring",tempHouses);
+            // console.log("after flooring",tempHouses);
             if(bed !== "any"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
             }
-            console.log("after bed",tempHouses);
+            // console.log("after bed",tempHouses);
             if(bath !== "any"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
@@ -120,25 +121,26 @@ function HousesProvider({children}) {
                 
                 tempHouses = tempHouses.filter(house=>house.year_built >= year);
             }
-            console.log("after bath",tempHouses);
+            // console.log("after bath",tempHouses);
             tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
-            console.log("after prices",tempHouses);
+            // console.log("after prices",tempHouses);
             tempHouses = tempHouses.filter(house=>house.area <= maxSize && house.area >= minSize)
-            console.log("after size",tempHouses);
+            // console.log("after size",tempHouses);
             tempHouses = tempHouses.filter(house => house.parking === parking);
-            console.log("after filter",tempHouses);
+            // console.log("after filter",tempHouses);
             setSearch(tempHouses);
         }
     }
     async function handleSave(search_type){
-        console.log(search_type,types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
+        // console.log(search_type,types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
 
         // const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&house_size=${maxSize}&parking=${parking}&home_type=${types=="all"?null:types}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
         const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed==="0"?null:bed}&bathroom=${bath==="0"?null:bath}&year_built=${year==="all"?null:year}`
-        console.log(SaveSearch_URL)
+        // console.log(SaveSearch_URL)
         // &parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
         try{
             console.log("save search");
+
             fetch(SaveSearch_URL).then(res => res.json()).then(result=>{
                 console.log(result);
             })
@@ -163,7 +165,7 @@ function HousesProvider({children}) {
                 })
             });
             let result = await res.json();
-            console.log(result);
+            // console.log(result);
             if(result && result.success){
                 console.log("successful delete from favorite");
             }else if(result && result.success === false){
@@ -174,7 +176,7 @@ function HousesProvider({children}) {
         }
         // const update = favorite.filter()
         try{
-            console.log("favorite");
+            // console.log("favorite");
             fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
                 console.log(result);
                 let Favorite_List = result.list;
@@ -191,7 +193,8 @@ function HousesProvider({children}) {
         fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list)).catch(e=>console.log(e))
     }
     async function addFavorite(house){
-        console.log(user)
+        // console.log(user)
+
         try{
             let res = await fetch(Favorite_Home_URL, {
                 method: 'post',
@@ -206,7 +209,7 @@ function HousesProvider({children}) {
                 })
             });
             let result = await res.json();
-            console.log(result);
+            // console.log(result);
             if(result && result.success){
                 console.log("successful add to favorite");
             }else if(result && result.success === false){
@@ -216,7 +219,7 @@ function HousesProvider({children}) {
             console.log(e);
         }
         try{
-            console.log("favorite");
+            // console.log("favorite");
             fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
                 console.log(result);
                 let Favorite_List = result.list;

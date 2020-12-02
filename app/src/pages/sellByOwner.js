@@ -35,9 +35,9 @@ function SellByOwner() {
  
     const user = JSON.parse(localStorage.getItem('authUser'));
     const createItem= async(newItem) => {
-        console.log(error);
-        console.log(newItem);
-        console.log('PHOTO:', newItem.image);
+        // console.log(error);
+        // console.log(newItem);
+        // console.log('PHOTO:', newItem.image);
         setData(newItem);
         setInfo(true);
     }
@@ -55,7 +55,7 @@ function SellByOwner() {
             setOtherPictures(array);
         }
         // setPictures(formData);
-        console.log("this is realtor id", realtorID);
+        // console.log("this is realtor id", realtorID);
     },[data, floor, propertyType, realtorID])
 
 
@@ -89,7 +89,7 @@ function SellByOwner() {
         formData.append('description', description);
         formData.append('status', 'A');
         // setData(formData)
-        console.log("formData",formData);
+        // console.log("formData",formData);
         axios({
             method: "POST",
             url: Upload_URL,

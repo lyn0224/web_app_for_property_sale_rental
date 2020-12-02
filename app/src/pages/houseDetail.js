@@ -56,10 +56,10 @@ function HouseDetail(props){
         
         event.preventDefault();
         if(user){
-            console.log(user.id)
-            console.log(house.S_ID)
-            console.log(name)
-            console.log(Application_price)
+            // console.log(user.id)
+            // console.log(house.S_ID)
+            // console.log(name)
+            // console.log(Application_price)
             try{
                 let res = await fetch(Applicaiton_URL, {
                     method: 'post',
@@ -94,7 +94,7 @@ function HouseDetail(props){
     }
 
     if(check) {
-        console.log(house)
+        // console.log(house)
         const conditionalDate =( house.open_house && house.open_house.from_date && house.open_house.to_date)? (<Houseinfo.FeatureText>
         {house.open_house.from_date?house.open_house.from_date:"No Data"} 
         {"   "}

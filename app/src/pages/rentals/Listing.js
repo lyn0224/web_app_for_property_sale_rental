@@ -37,7 +37,7 @@ function Listing() {
 
     const isInvalid = PropertyType === ''|| Street === '' || Zip ==='' ||City === ''||City === ''||Rate === ''||Bedroom === ''||Parking===''||Description===''; 
     useEffect( ()=>{
-        console.log("R", user.role)
+        // console.log("R", user.role)
         try{
             fetch(Rent_Application_URL, {
                 method: 'post',

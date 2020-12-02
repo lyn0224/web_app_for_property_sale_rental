@@ -34,7 +34,7 @@ function RealtorDetail(props){
     // const user = JSON.parse(localStorage.getItem('authUser'));
 
     useEffect(()=>{
-        console.log("this is realtor", realtor, id)
+        // console.log("this is realtor", realtor, id)
         if(realtors !== undefined){
             realtors.map(list=>{
                 if(list.U_ID === id){
@@ -123,7 +123,7 @@ function RealtorDetail(props){
 
     console.log(realtor, Listing)
     if(realtor && Listing && buyListing) {
-        console.log(realtor)
+        // console.log(realtor)
         const  cards = Listing.map(item=>ListingCard(item));
         const  buycards = buyListing.map(item=>BuyListingCard(item));
         return(

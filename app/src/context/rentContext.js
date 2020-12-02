@@ -92,35 +92,35 @@ function RentProvider({children}) {
 
     function filterData(){
         if(rentHouses){
-            console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available, year);
+            // console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available, year);
             let tempHouses = [...rentHouses];
-            console.log("before filter",tempHouses);
+            // console.log("before filter",tempHouses);
             if(types !== "all"){
                 tempHouses = tempHouses.filter(house => house.property_type === types);
             }
-            console.log("after types",tempHouses);
+            // console.log("after types",tempHouses);
             if(bed !== "any+"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
             }
-            console.log("after bed",tempHouses);
+            // console.log("after bed",tempHouses);
             if(bath !== "any+"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
             if(flooring !== "all"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
-            console.log("after bath",tempHouses);
+            // console.log("after bath",tempHouses);
             if(year !== "all"){
                 tempHouses = tempHouses.filter(house=>house.year_built >= year);
             }
-            console.log("after bath",year);
+            // console.log("after bath",year);
             console.log(minRate, maxRate)
             tempHouses = tempHouses.filter(house=>house.rate <= maxRate && house.rate >= minRate)
-            console.log("after prices",tempHouses);
+            // console.log("after prices",tempHouses);
             tempHouses = tempHouses.filter(house=>house.area <= maxSize && house.area >= minSize)
-            console.log("after size",tempHouses);
+            // console.log("after size",tempHouses);
             tempHouses = tempHouses.filter(house => house.parking === parking);
-            console.log("after parking", tempHouses);
+            // console.log("after parking", tempHouses);
             // tempHouses = tempHouses.filter(house => house.available_date >= available);
             // console.log("after available",tempHouses);
             setSearch(tempHouses);
@@ -129,7 +129,7 @@ function RentProvider({children}) {
 
     async function handleSave(search_type){
         const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minRate}&max_price=${maxRate}&bedroom=${bed==="0"?null:bed}&bathroom=${bath==="0"?null:bath}&year_built=${year==="all"?null:year}&parking=${parking}&home_type=${types}&flooring=${flooring==="all"?null:flooring}&house_size=${minSize}`
-        console.log(SaveSearch_URL)
+        // console.log(SaveSearch_URL)
         try{
             console.log("save search");
             fetch(SaveSearch_URL).then(res => res.json()).then(result=>{
@@ -157,6 +157,7 @@ function RentProvider({children}) {
             });
             let result = await res.json();
             console.log(result);
+            
             if(result && result.success){
                 console.log("successful delete from favorite");
             }else if(result && result.success === false){

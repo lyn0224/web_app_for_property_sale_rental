@@ -188,7 +188,7 @@ function Listing() {
     async function handleOpenHouse (event){
         
         event.preventDefault();
-            console.log(ID)
+            // console.log(ID)
             try{
                 let res = await fetch(OpenHouse_URL, {
                     method: 'post',
@@ -244,7 +244,7 @@ function Listing() {
     }
     if(Listing&&Listing.length){
         const  cards = Listing.map(item=>ListingCard(item));
-        console.log(isInvalid)
+        // console.log(isInvalid)
         return(
             <Profile>
                 <Profile.Text>

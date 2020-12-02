@@ -44,13 +44,13 @@ function RentHousecards({props}){
     // console.log(houses)
     // console.log(search)
     if(rentHouses && !search){
-        console.log("rentHouses",rentHouses)
+        // console.log("rentHouses",rentHouses)
         
         const  cards = rentHouses.map(house=>{
             if(rentFavorite!==undefined && rentFavorite){
-                console.log("rentFavorite",rentFavorite)
+                // console.log("rentFavorite",rentFavorite)
                 const checkFavorite = rentFavorite.find(item=>item.properity_id === house.R_ID)
-                console.log("checkFavorite", checkFavorite)
+                // console.log("checkFavorite", checkFavorite)
                 const A = checkFavorite? true : false;
                return singlecard(house, A)
             }else{
@@ -90,7 +90,7 @@ function RentHousecards({props}){
             const  cards = search.map(house=>{
                 if(rentFavorite!==undefined && rentFavorite){
                     const checkFavorite = rentFavorite.find(item=>item.properity_id === house.S_ID)
-                    console.log(checkFavorite)
+                    // console.log(checkFavorite)
                     const A = checkFavorite? true : false;
                    return singlecard(house,A)
                 }else{

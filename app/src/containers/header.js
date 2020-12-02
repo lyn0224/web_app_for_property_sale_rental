@@ -50,7 +50,7 @@ function HeaderContainer(props){
             
         }
         else {setMenuDisplay("none")}
-        console.log(Menu)
+        // console.log(Menu)
     }
 
 

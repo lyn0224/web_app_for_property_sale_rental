@@ -9,7 +9,7 @@ function Application(){
     const Rent_Contact_URL = `${DB}/approveRent`
     const Rent_Reject_URL = `${DB}/rejectRent`
     const [Applications, setApplciaitons] = useState()
-    console.log(Rent_Application_URL)
+    // console.log(Rent_Application_URL)
     useEffect( ()=>{
             try{
                 fetch(Rent_Application_URL, {

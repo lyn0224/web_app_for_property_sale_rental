@@ -43,15 +43,15 @@ function RentByOwner() {
         if(data){
             console.log("i am here");
         }
-        console.log("effect main", mainPictures);
-        console.log("effect other", otherPictures);
+        // console.log("effect main", mainPictures);
+        // console.log("effect other", otherPictures);
         // setPictures(formData);
     },[data])
 
     const createItem= async(newItem) => {
-        console.log(error);
-        console.log(newItem);
-        console.log('PHOTO:', newItem.image);
+        // console.log(error);
+        // console.log(newItem);
+        // console.log('PHOTO:', newItem.image);
         setMainPictures(newItem.image[0])
         setData(newItem);
         setInfo(true);
@@ -60,10 +60,6 @@ function RentByOwner() {
         if(data){
             console.log("i am here");
         }
-        console.log("effect main", mainPictures);
-        console.log("effect other", otherPictures);
-        // setPictures(formData);
-        console.log("this is realtor id", realtorID);
     },[data, realtorID])
 
 
@@ -99,23 +95,23 @@ function RentByOwner() {
         formData.append('description', description);
         formData.append('status', 'A');
     
-        console.log(formData.get('main'));
-        console.log(formData.get('others'));
-        console.log(formData.get('p_type'));
-        console.log(formData.get('street'));
-        console.log(formData.get('apt_num'));
-        console.log(formData.get('state'));
-        console.log(formData.get('zip'));
-        console.log(formData.get('price'));
-        console.log(formData.get('bedroom'));
-        console.log(formData.get('bathroom'));
-        console.log(formData.get('livingroom'));
-        console.log(formData.get('flooring'));
-        console.log(formData.get('parking'));
-        console.log(formData.get('area'));
-        console.log(formData.get('year'));
-        console.log(formData.get('description'));
-        console.log(formData.get('status'));
+        // console.log(formData.get('main'));
+        // console.log(formData.get('others'));
+        // console.log(formData.get('p_type'));
+        // console.log(formData.get('street'));
+        // console.log(formData.get('apt_num'));
+        // console.log(formData.get('state'));
+        // console.log(formData.get('zip'));
+        // console.log(formData.get('price'));
+        // console.log(formData.get('bedroom'));
+        // console.log(formData.get('bathroom'));
+        // console.log(formData.get('livingroom'));
+        // console.log(formData.get('flooring'));
+        // console.log(formData.get('parking'));
+        // console.log(formData.get('area'));
+        // console.log(formData.get('year'));
+        // console.log(formData.get('description'));
+        // console.log(formData.get('status'));
 
         axios({
             method: "POST",
