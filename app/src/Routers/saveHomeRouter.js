@@ -7,10 +7,10 @@ import SaveHomeNav from '../containers/saveHomeNav'
 function SaveHomeRouter(){
     return(
         <>
-        <SaveHomeNav/>
+        {/* <SaveHomeNav/> */}
         <Switch>
               <Route path = {ROUTES.SAVED_HOME_BUY}><SaveHome/></Route>
-              <Route path = {ROUTES.SAVED_HOME_RENT}><SaveRentHome/></Route>
+              <Route exact path = {ROUTES.SAVED_HOME_RENT}><SaveRentHome/></Route>
         </Switch>
         </>
     )
