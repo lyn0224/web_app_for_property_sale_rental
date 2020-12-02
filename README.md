@@ -89,5 +89,5 @@ Agile board => 	Issue board
 
 #### Database Schema Diagram
 <p>
-    <img src="./DatabaseSchemaDiagram.png" width="100%" height="100%" />
+    <img src="https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/blob/master/DatabaseSchema.png" width="100%" height="100%" />
 </p>
