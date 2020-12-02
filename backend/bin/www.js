@@ -297,6 +297,29 @@ app.get('/api/realtor/zip', async function (req, res) {
   }
 })
 
+// 获取当前用户的所有搜索记录
+app.get('/api/favorite/mine', async function (req, res) {
+  try {
+    const fav = new favorite();
+    const data = await fav.getMySearchHistory(db, req);
+    res.json({success: data.list.length > 0 ? true : false, ...data});
+  } catch (ex) {
+    res.json({success: false, msg: ex.msg || ex.message || ex});
+  }
+});
+// add post search
+
+
+app.post('/api/search', async function (req, res) {
+  try {
+    const s = new search();
+    const data = await s.begin(db, req);
+    res.json({success: true, ...data});
+  } catch (ex) {
+    res.json({success: false, msg: ex.msg || ex.message || ex});
+  }
+});
+
 // set port, listen for requests
 app.listen(9000, () => {
   console.log("Server is running on port 9000.");
