@@ -79,7 +79,7 @@ Agile board => 	Issue board
 
 #### System Architecture Diagram
 <p>
-    <img src="System Architecture Diagram.png width = "100%" height = "100%" />
+    <img src="./SystemArchitectureDiagram.png width = "100%" height = "100%" />
                                                                               </p>
 
 #### Wireframe Diagram
@@ -89,5 +89,5 @@ Agile board => 	Issue board
 
 #### Database Schema Diagram
 <p>
-    <img src="./app/src/img/DatabaseArchitectureDiagram.png" width="100%" height="100%" />
+    <img src="./DatabaseSchemaDiagram.png" width="100%" height="100%" />
 </p>
