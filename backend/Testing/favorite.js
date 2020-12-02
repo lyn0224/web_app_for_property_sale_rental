@@ -189,8 +189,27 @@ class FavoriteRouter {
       }
       return detail;
     }
-  
+
+    /**
+   * 获取用户的搜索历史记录
+   *
+   * @param {*} db
+   * @param {*} req
+   * @returns
+   * @memberof FavoriteRouter
+   */
+  async getMySearchHistory(db, req) {
+    const {id} = req.query;
+    if (!id) {
+      throw Error('id need to be filled');
+    }
+    const sql = `select * from favorite_search t where t.u_id = ${id}`;
+    const list = await this.execSQL(db, sql);
+    return {list};
   }
+}
+  
+  
   
   
   module.exports = FavoriteRouter;
