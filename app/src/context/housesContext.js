@@ -149,7 +149,6 @@ function HousesProvider({children}) {
     }
 
     async function removeFavorite(house,type){
-        // console.log("1111",type)
         try{
             let res = await fetch(Favorite_Home_URL, {
                 method: 'delete',
@@ -184,6 +183,12 @@ function HousesProvider({children}) {
         }catch(e){
             console.log(e);
         }
+    }
+
+    async function deleteFavorite_Search(obj){
+        fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>console.log(result)).catch(e=>console.log(e))
+
+        fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list)).catch(e=>console.log(e))
     }
     async function addFavorite(house){
         console.log(user)
@@ -225,7 +230,7 @@ function HousesProvider({children}) {
         return (
             <>
             <Context.Provider  value={{
-                houses,setHouses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize,favorite_search_list
+                houses,setHouses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize,favorite_search_list,deleteFavorite_Search
                 }}>
                 {children}
             </Context.Provider>
