@@ -47,10 +47,20 @@ class individualUser{
                         data[i].pic_dir = pic_array;
                         data[i].main_dir = pic_folder + "/outside.PNG";
                         //console.log("test");
-                        if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
-                            data[i].open_house = openHouse[k];
-                            k++;
+
+                        for(k = 0; k < openHouse.length; k++){
+                            if(openHouse[k].S_ID === data[i].S_ID){
+                                data[i].open_house = openHouse[k];
+                            }
                         }
+                        if(data[i].open_house == undefined){
+                            data[i].open_house = null;
+                        }
+        
+                        // if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
+                        //     data[i].open_house = openHouse[k];
+                        //     k++;
+                        // }
                     }
                
                     if(err) {
@@ -197,11 +207,24 @@ class individualUser{
                         data[i].pic_dir = pic_array;
                         data[i].main_dir = pic_folder + "/outside.PNG";
                         //console.log("test");
-                        while(k < visit.length && visit[k].property_ID === data[i].R_ID){
-                            visit_array.push(visit[k]);
-                            k++;
+                        for(k = 0; k < visit.length; k++){
+                            if(visit[k].property_ID === data[i].R_ID){
+                                visit_array.push(visit[k]);
+                            }
                         }
-                        data[i].visit = visit_array;
+
+                        if(visit_array.length == 0){
+                            data[i].visit = null;
+                        } else {
+                            data[i].visit = visit_array;
+                            visit_array = [];
+                        }
+
+                        // while(k < visit.length && visit[k].property_ID === data[i].R_ID){
+                        //     visit_array.push(visit[k]);
+                        //     k++;
+                        // }
+                        // data[i].visit = visit_array;
                     }
                
                     if(err) {

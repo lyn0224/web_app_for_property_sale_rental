@@ -23,6 +23,16 @@ class forSaleRouter{
 
                 //openhouse
                 db.query("SELECT S_ID, DATE_FORMAT(from_date, '%M %d %Y') as from_date, DATE_FORMAT(to_date, '%M %d %Y') as to_date from OPEN_HOUSE where to_date > CURDATE() order by S_ID ASC", (err, openHouse) => {
+                    
+                    if(err) {
+                        console.log(err);
+                        res.json({
+                            success: false,
+                            msg: ''
+                        })
+                        return;
+                    }
+
                     var i;
                     //console.log("open house");
                     //console.log(openHouse);
@@ -44,26 +54,28 @@ class forSaleRouter{
                         data[i].pic_dir = pic_array;
                         data[i].main_dir = pic_folder + "/outside.PNG";
                         //console.log("test");
-                        //console.log("openhouse:", openHouse);
-                        //console.log("k:", k);
-                        if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
-                            data[i].open_house = openHouse[k];
-                            k++;
-                        } else{
+                        console.log("openhouse:", openHouse);
+                        console.log("k:", k);
+
+                        for(k = 0; k < openHouse.length; k++){
+                            if(openHouse[k].S_ID === data[i].S_ID){
+                                data[i].open_house = openHouse[k];
+                            }
+                        }
+                        if(data[i].open_house == undefined){
                             data[i].open_house = null;
                         }
+        
+                        // if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
+                        //     data[i].open_house = openHouse[k];
+                        //     k++;
+                        // } else{
+                        //     data[i].open_house = null;
+                        // }
                     }
                     //console.log("data:", data);
                
-                    if(err) {
-                        console.log(err);
-                        res.json({
-                            success: false,
-                            msg: ''
-                        })
-                        return;
-                    }
-               
+                    
                
                     res.json({
                         success: true,
@@ -169,7 +181,7 @@ class forSaleRouter{
             let property_ID = req.body.S_ID;
             let buyer_name = req.body.name;
             let cols = [buyer_ID, property_ID];
-            db.query("UPDATE BUYER_APPLICATION SET offer_status = 'A' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("DELETE FROM BUYER_APPLICATION where Buyer_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -245,7 +257,7 @@ class forSaleRouter{
             let property_ID = req.body.S_ID;
             let buyer_name = req.body.name;
             let cols = [buyer_ID, property_ID];
-            db.query("UPDATE BUYER_APPLICATION SET offer_status = 'R' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("DELETE FROM BUYER_APPLICATION where Buyer_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
