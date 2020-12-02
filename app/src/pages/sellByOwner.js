@@ -4,6 +4,7 @@ import {Row} from "react-bootstrap"
 import ItemAdd from "../components/itemAdd"
 import axios from 'axios';
 import Footer from "../containers/footer"
+import {DB} from '../constants/DB'
 // import ListingPic from '../img/homeicon.png'
  
 function SellByOwner() {
@@ -32,6 +33,8 @@ function SellByOwner() {
     const [info,setInfo] = useState(false);
  
     const user = JSON.parse(localStorage.getItem('authUser'));
+    const Upload_URL = `${DB}/upload`
+    // 'http://localhost:9000/upload'
     useEffect(()=>{
         console.log("update")
         if(data){
@@ -89,7 +92,7 @@ function SellByOwner() {
         console.log("formData",formData);
         axios({
             method: "POST",
-            url: 'http://localhost:9000/upload',
+            url: Upload_URL,
             data: formData,
             headers: {
             "Content-Type": "multipart/form-data"

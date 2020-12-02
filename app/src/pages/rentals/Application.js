@@ -2,12 +2,12 @@ import React,{useEffect, useState,useContext} from 'react'
 import {ApplicationForm} from '../../components/export'
 import defaultimg from "../../img/homeicon.png"
 import Loading from "../../containers/LoadingContainer"
-
+import {DB} from '../../constants/DB'
 function Application(){
     const user = JSON.parse(localStorage.getItem('authUser'))
-    const Rent_Application_URL = `http://localhost:9000/users/${user.id}/renterApplication`
-    const Rent_Contact_URL = `http://localhost:9000/approveRent`
-    const Rent_Reject_URL = `http://localhost:9000/rejectRent`
+    const Rent_Application_URL = `${DB}/users/${user.id}/renterApplication`
+    const Rent_Contact_URL = `${DB}/approveRent`
+    const Rent_Reject_URL = `${DB}/rejectRent`
     const [Applications, setApplciaitons] = useState()
     console.log(Rent_Application_URL)
     useEffect( ()=>{

@@ -2,11 +2,12 @@ import React,{useEffect, useState,useContext} from 'react'
 import {ApplicationForm,Profile} from '../../components/export'
 import defaultimg from "../../img/homeicon.png"
 import Loading from "../../containers/LoadingContainer"
+import {DB} from '../../constants/DB'
 function Application(){
     const user = JSON.parse(localStorage.getItem('authUser'))
-    const Application_URL = `http://localhost:9000/users/${user.id}/buyerApplication`
-    const Contact_URL = `http://localhost:9000/approveBuy`
-    const Reject_URL = `http://localhost:9000/rejectBuy`
+    const Application_URL = `${DB}/users/${user.id}/buyerApplication`
+    const Contact_URL = `${DB}/approveBuy`
+    const Reject_URL = `${DB}/rejectBuy`
     const [Applications, setApplciaitons] = useState()
     const [check,setCheck] = useState(false) 
     console.log(user)

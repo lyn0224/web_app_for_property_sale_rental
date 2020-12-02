@@ -6,6 +6,7 @@ import { Context } from '../context/housesContext';
 import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
+import {DB} from '../constants/DB'
 function HouseDetail(props){
     const {houses} = useContext(Context);
     const {id} = useParams()
@@ -17,6 +18,9 @@ function HouseDetail(props){
     const [Application_price,setApplication_price]= useState('')
     const user = JSON.parse(localStorage.getItem('authUser'));
     const isInvalid =  name === '' || Application_price === '';
+
+    const Applicaiton_URL = `${DB}/buyRequest`
+
     useEffect(()=>{
         if(houses !== undefined){
             houses.map(list=>{
@@ -46,7 +50,7 @@ function HouseDetail(props){
         <Houseinfo.img key = {Math.random() } src = {image}/>
     )): "null";
     
-    const Applicaiton_URL = "http://localhost:9000/buyRequest"
+   
     async function handleApplication (event){
         
         event.preventDefault();

@@ -14,6 +14,13 @@ export const Search = styled.div`
         border: 1px solid #a8a8a8;
         border-radius: 10px;
         margin: 1rem 2rem;
+        @media (max-width: 1200px) {
+            width: 200px;
+        }
+        @media (max-width: 800px) {
+            width: 300px;
+        }
+       
         
 `
 export const SearchIcon = styled.button`
@@ -43,7 +50,7 @@ export const SearchInput = styled.input`
             font-size:14px;
             text-indent: 8px;
           }
-    
+       
 `
 
 export const ButtonSection = styled.div`

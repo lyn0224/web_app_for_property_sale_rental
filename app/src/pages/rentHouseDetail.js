@@ -6,6 +6,7 @@ import { RentContext } from '../context/rentContext';
 import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
+import {DB} from '../constants/DB'
 function RentHouseDetail(props){
     const {houses} = useContext(RentContext);
     const {id} = useParams()
@@ -18,6 +19,7 @@ function RentHouseDetail(props){
     const [employer,setEmployer]= useState('')
     const [income,setIncome]= useState('')
 
+    const Rent_Applicaiton_URL = `${DB}/rentRequest`
     const user = JSON.parse(localStorage.getItem('authUser'));
     const isInvalid =  name === '' || credit === '' || employer === '' || income === '';
     useEffect(()=>{
@@ -49,7 +51,7 @@ function RentHouseDetail(props){
         <Houseinfo.img key = {Math.random() } src = {image}/>
     )): "null";
     
-    const Rent_Applicaiton_URL = "http://localhost:9000/rentRequest"
+    
     async function handleApplication (event){
         
         event.preventDefault();
