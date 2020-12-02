@@ -23,6 +23,16 @@ class forSaleRouter{
 
                 //openhouse
                 db.query("SELECT S_ID, DATE_FORMAT(from_date, '%M %d %Y') as from_date, DATE_FORMAT(to_date, '%M %d %Y') as to_date from OPEN_HOUSE where to_date > CURDATE() order by S_ID ASC", (err, openHouse) => {
+                    
+                    if(err) {
+                        console.log(err);
+                        res.json({
+                            success: false,
+                            msg: ''
+                        })
+                        return;
+                    }
+
                     var i;
                     //console.log("open house");
                     //console.log(openHouse);
@@ -44,26 +54,28 @@ class forSaleRouter{
                         data[i].pic_dir = pic_array;
                         data[i].main_dir = pic_folder + "/outside.PNG";
                         //console.log("test");
-                        //console.log("openhouse:", openHouse);
-                        //console.log("k:", k);
-                        if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
-                            data[i].open_house = openHouse[k];
-                            k++;
-                        } else{
+                        console.log("openhouse:", openHouse);
+                        console.log("k:", k);
+
+                        for(k = 0; k < openHouse.length; k++){
+                            if(openHouse[k].S_ID === data[i].S_ID){
+                                data[i].open_house = openHouse[k];
+                            }
+                        }
+                        if(data[i].open_house == undefined){
                             data[i].open_house = null;
                         }
+        
+                        // if(k < openHouse.length && openHouse[k].S_ID === data[i].S_ID){
+                        //     data[i].open_house = openHouse[k];
+                        //     k++;
+                        // } else{
+                        //     data[i].open_house = null;
+                        // }
                     }
                     //console.log("data:", data);
                
-                    if(err) {
-                        console.log(err);
-                        res.json({
-                            success: false,
-                            msg: ''
-                        })
-                        return;
-                    }
-               
+                    
                
                     res.json({
                         success: true,
