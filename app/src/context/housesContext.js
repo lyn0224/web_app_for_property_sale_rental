@@ -148,8 +148,8 @@ function HousesProvider({children}) {
        
     }
 
-    async function removeFavorite(house){
-        console.log(house)
+    async function removeFavorite(house,type){
+        // console.log("1111",type)
         try{
             let res = await fetch(Favorite_Home_URL, {
                 method: 'delete',
@@ -160,7 +160,7 @@ function HousesProvider({children}) {
                 body: JSON.stringify({
                     U_ID: user.id,
                     home_type :"h", 
-                    properity_id:house.S_ID,
+                    properity_id:(type =="S"?house.S_ID:house.R_ID),
                 })
             });
             let result = await res.json();

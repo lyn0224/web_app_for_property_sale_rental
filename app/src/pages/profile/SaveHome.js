@@ -14,9 +14,9 @@ function SaveHome(prop) {
     // const {houses, setHouses} = useState();
     const user = JSON.parse(localStorage.getItem('authUser'));
 
-    function singlecard(obj){
-        // console.log(obj.main_dir)
-        const icon = <Housecard.Favorite removeFavorite ={removeFavorite} house = {obj}/> 
+    function singlecard(obj,type){
+        console.log("type",type)
+        const icon = <Housecard.Favorite removeFavorite ={removeFavorite} house = {obj} type = {type}/> 
         return (
             <Housecard.Base key = {obj.S_ID} >  
                 <Housecard.ImageContainer> 
@@ -31,7 +31,7 @@ function SaveHome(prop) {
                     <Housecard.img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
                 </Housecard.ImageContainer>
                 <Housecard.TextContainer>
-                    <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>For Sale</Housecard.Title>
+        <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>{type =="S"?"For Sale":"For Rent"}</Housecard.Title>
                     <Housecard.Price>{obj.price ? obj.price.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Price>
                     <Housecard.Text> <p style={{display:"inline", color: "#525252", fontWeight :"600", fontSize :"1rem"}}> {obj.city} </p>{obj.state}</Housecard.Text>
                     <Housecard.Text>{obj.street}</Housecard.Text>
@@ -62,7 +62,7 @@ function SaveHome(prop) {
                 const A = favorite.find(index=>house.S_ID === index.properity_id)
                 if(A){
                     const B = houses.find(index=>index.S_ID === A.properity_id)
-                    return singlecard(B)
+                    return singlecard(B,"S")
                 }
             }else{
                 return null;
@@ -74,7 +74,7 @@ function SaveHome(prop) {
                 const A = rentFavorite.find(index=>house.R_ID === index.properity_id)
                 if(A){
                     const B = rentHouses.find(index=>index.R_ID === A.properity_id)
-                    return singlecard(B)
+                    return singlecard(B,"R")
                 }
             }else{
                 return null;
@@ -107,7 +107,7 @@ function SaveHome(prop) {
             const A = rentFavorite.find(index=>house.R_ID === index.properity_id)
             if(A){
                 const B = rentHouses.find(index=>index.R_ID === A.properity_id)
-                return singlecard(B)
+                return singlecard(B,"R")
             }
         }else{
             return null;
@@ -143,7 +143,7 @@ function SaveHome(prop) {
                 const A = favorite.find(index=>house.S_ID === index.properity_id)
                 if(A){
                     const B = houses.find(index=>index.S_ID === A.properity_id)
-                    return singlecard(B)
+                    return singlecard(B,"S")
                 }
             }else{
                 return null;
