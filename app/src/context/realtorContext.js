@@ -1,6 +1,7 @@
 import React, {useState, createContext, Component, useEffect } from 'react';
+import {DB} from '../constants/DB'
+const RealtorContext = React.createContext()
 
-const Context = React.createContext()
 function RealtorProvider({children}) {
 
     const [realtors,setRealtors] = useState()
@@ -14,7 +15,7 @@ function RealtorProvider({children}) {
     const [rent, setRent] = useState();
     const [specialty, setSpecialty] = useState();
 
-    const Search_URL = 'http://localhost:9000/api/realtor/zip?keyword';
+    const Search_URL = `${DB}/api/realtor/zip?keyword`;
 
     const user = JSON.parse(localStorage.getItem('authUser'));
 
@@ -42,15 +43,15 @@ function RealtorProvider({children}) {
 
     return (
         <>
-        <Context.Provider  value={{
+        <RealtorContext.Provider  value={{
             realtors, find_result, search, find_name
             }}>
             {children}
-        </Context.Provider>
+        </RealtorContext.Provider>
         </>
     )
 }
 
 
 
-export{RealtorProvider, Context}
+export{RealtorProvider, RealtorContext}

@@ -18,6 +18,8 @@ const uploadFiles = async (req, res) => {
       picture_path = file_path + f_num;
 
       let fdata = req.body;
+      console.log("this is fdata.realtor", fdata.realtor);
+      console.log("this is fdata.Realtor_ID", fdata.Realtor_ID);
       if(req.body.list_type == 'sell'){
         cols = [fdata.owner, fdata.realtor, fdata.p_type, fdata.apt_num, fdata.street, fdata.city, fdata.state, fdata.zip, fdata.status, fdata.price, fdata.bedroom, fdata.bathroom, fdata.livingroom, fdata.flooring, fdata.parking, fdata.area, fdata.year, fdata.description, picture_path];
         sql2 = 'INSERT INTO FOR_SALE (Owner_ID,Realtor_ID,property_type,apt_num,street,city,state,zip,sale_status,price,bedroom,bathroom,livingroom,flooring,parking,area,year_built,description,pic_dir) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';

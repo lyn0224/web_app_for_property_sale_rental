@@ -3,7 +3,7 @@ import { Form } from '../../components/export';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes'
 import Footer from "../../containers/footer"
-
+import {DB} from '../../constants/DB'
 function Signup() {
 
     const history = useHistory();
@@ -17,14 +17,16 @@ function Signup() {
     const [lastName, setLastName] = useState('');
     const [zipcode, setZipCode] = useState('');
     const [phone, setPhone] = useState('');
-    
+
+    const Register_URL = `${DB}/register`
+    // 'http://localhost:9000/register'
     async function handleSignup (event){
         //console.log(username, emailAddress, password, firstName, lastName, zipcode, phone);
         event.preventDefault();
                
 
             try{
-                let res = await fetch('http://localhost:9000/register', {
+                let res = await fetch(Register_URL, {
                     method: 'post',
                     headers: {
                         'Accept': 'application/json',

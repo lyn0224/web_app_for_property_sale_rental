@@ -6,7 +6,7 @@ import { Button, InputGroup, FormControl, Container, Row, Col, Card} from 'react
 import { AiOutlineSearch } from 'react-icons/ai';
 import Footer from "./footer"
 import AgentLayout from '../components/agentFinder/agentLayout'
-import { Context } from '../context/realtorContext';
+import { RealtorContext } from '../context/realtorContext';
 import { BuyLayout } from '../components/export';
 import RealtorCard from '../containers/realtorcard'
 import RealtorImg from '../img/realtorPic.jpeg'
@@ -14,7 +14,7 @@ import RealtorImg from '../img/realtorPic.jpeg'
 function RealtorContainer() {
     const [searchTermName, setSearchTermName] = useState('');
     const [searchTermLocation, setSearchTermLocation] = useState('');
-    const {realtors, find_result, find_name} = useContext(Context)
+    const {realtors, find_result, find_name} = useContext(RealtorContext)
     // const realtors = "unknown";
 
     const conditionalRealtor = (searchTermName==='' && searchTermLocation==='') ? 
@@ -29,8 +29,8 @@ function RealtorContainer() {
     // console.log(searchTermName==='' && searchTermLocation==='')
     return (
         <>
-        <div className="HomeList-grid-container" style={{width: "80%", marginLeft: "auto", marginRight: "auto"}}>
-            <div>
+        <div className="HomeList-grid-container">
+            <div  style={{width: "80%", margin: "auto"}}>
                 <Row>
                     <Col className="w-25">
                         <BuyLayout.Search searchTerm={searchTermName} setSearchTerm={setSearchTermName} find_result = {find_result} placeholder="City/ZipCode"/>

@@ -79,6 +79,7 @@ export const ImageContainer = styled.div`
         position:relative;
         width:300px;
         margin:1rem;
+      
         max-height: 200px;
         @media (max-width: 800px) {
                 width:250px;

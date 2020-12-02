@@ -3,17 +3,17 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import {useParams} from 'react-router-dom'
 // import { RentContext } from '../context/rentContext';
-import { Context } from '../context/realtorContext';
+import { RealtorContext } from '../context/realtorContext';
 import { Houseinfo, ListingForm } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
 import DefaultImg from '../img/homeicon.png'
-
+import {DB} from '../constants/DB'
 function RealtorDetail(props){
 
-    const {realtors} = useContext(Context);
+    const {realtors} = useContext(RealtorContext);
     const {id} = useParams()
 
-    const Rent_Application_URL = `http://localhost:9000/users/${id}/forRentListing`
+    const Rent_Application_URL = `${DB}/users/${id}/forRentListing`
     const [Listing, setListing] = useState()
     const [ID,setID] = useState();
 

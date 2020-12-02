@@ -68,7 +68,7 @@ export default function FilterBar() {
         years = getUnique(houses, 'year_built');
         years = ['all', ...years];
         years = years.map((item, index) => {
-            return <option value={item} key={index}>{item}</option>
+            return <option value={item} key={index}>{item}+</option>
         });
     }
 

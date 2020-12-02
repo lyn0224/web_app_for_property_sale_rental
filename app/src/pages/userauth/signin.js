@@ -5,7 +5,7 @@ import {Context} from '../../context/userInfo'
 import * as ROUTES from '../../constants/routes'
 import Footer from "../../containers/footer"
 import jwt_decode from "jwt-decode";
-
+import {DB} from '../../constants/DB'
 function Signin(){
     const [error, setError] = useState('');
 
@@ -15,6 +15,9 @@ function Signin(){
     const isInvalid = password === '' | password === '';
     const {setUser,user} = useContext(Context)
     const history = useHistory();
+    
+    const Login_URL = `${DB}/login`
+
     async function handleSignin(event){
         event.preventDefault();
         if(!username){
@@ -24,7 +27,7 @@ function Signin(){
             return;
         }
         try{
-            let res = await fetch('http://localhost:9000/login', {
+            let res = await fetch(Login_URL, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',

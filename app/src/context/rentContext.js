@@ -1,5 +1,5 @@
 import React, {useState, createContext, Component, useEffect } from 'react';
-
+import {DB} from '../constants/DB'
 const RentContext = React.createContext()
 function RentProvider({children}) {
     const [houses,setHouses] = useState()
@@ -17,7 +17,7 @@ function RentProvider({children}) {
     const [flooring, setFlooring] = useState('all')
     const [year, setYear] = useState('all')
 
-    const Rent_Search_URL = 'http://localhost:9000/rent';
+    const Rent_Search_URL = `${DB}/rent`;
     const Rent_Favorite_URL = '#';
     const Rent_Save_URL = '#';
     const Rent_Remove_URL = "#";
@@ -126,6 +126,10 @@ function RentProvider({children}) {
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
             console.log("after bath",tempHouses);
+            if(year !== "all"){
+                tempHouses = tempHouses.filter(house=>house.year >= year);
+            }
+            console.log("after bath",year);
             console.log(minRate, maxRate)
             tempHouses = tempHouses.filter(house=>house.rate <= maxRate && house.rate >= minRate)
             console.log("after prices",tempHouses);
