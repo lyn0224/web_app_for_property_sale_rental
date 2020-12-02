@@ -135,8 +135,9 @@ function HousesProvider({children}) {
         console.log(search_type,types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
 
         // const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&house_size=${maxSize}&parking=${parking}&home_type=${types=="all"?null:types}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
-        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}&parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
+        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
         console.log(SaveSearch_URL)
+        // &parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
         try{
             console.log("save search");
             fetch(SaveSearch_URL).then(res => res.json()).then(result=>{
@@ -145,7 +146,7 @@ function HousesProvider({children}) {
         }catch(e){
             console.log(e);
         }
-       
+        fetch(Save_Search_List).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
     }
 
     async function removeFavorite(house,type){
