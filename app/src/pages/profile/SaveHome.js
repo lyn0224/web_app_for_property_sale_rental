@@ -3,13 +3,14 @@ import { Housecard,Profile } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import { Context } from '../../context/housesContext';
-
+import { RentContext } from '../../context/rentContext';
 import Loading from "../../containers/LoadingContainer"
 import {DB} from '../../constants/DB'
 
 
 function SaveHome(prop) {
     const {houses,favorite,removeFavorite} = useContext(Context);
+    const {rentHouses,rentFavorite,removeRentFavorite} = useContext(RentContext);
     // const {houses, setHouses} = useState();
     const user = JSON.parse(localStorage.getItem('authUser'));
 
@@ -53,7 +54,7 @@ function SaveHome(prop) {
            
     },[])
 
-  if(houses){
+  if(houses&&rentHouses){
         console.log("houses",houses)
         console.log("favorite",favorite)
       const cards = houses.map(house=> { 
@@ -67,8 +68,90 @@ function SaveHome(prop) {
                 return null;
             }  
         })
-    if(cards[0]!==undefined)
+
+        const rentcards = rentHouses.map(house=> { 
+            if(rentFavorite){
+                const A = rentFavorite.find(index=>house.R_ID === index.properity_id)
+                if(A){
+                    const B = rentHouses.find(index=>index.R_ID === A.properity_id)
+                    return singlecard(B)
+                }
+            }else{
+                return null;
+            }  
+        })
+    if(cards[0]!==undefined&&rentcards[0]!==undefined)
       {return(
+          <Profile>
+              <Profile.Text>
+                    Saved Homes
+                </Profile.Text>
+              <Profile.CardsContainer>
+                {cards}
+                {rentcards}
+              </Profile.CardsContainer>
+          </Profile>
+      )}
+    else{ 
+        return(
+            <Profile>
+                <Profile.Text>
+                Oops you dont have any favorited home yet
+              </Profile.Text>
+             
+            </Profile>
+        )}
+  }else if(rentHouses){
+    const rentcards = rentHouses.map(house=> { 
+        if(rentFavorite){
+            const A = rentFavorite.find(index=>house.R_ID === index.properity_id)
+            if(A){
+                const B = rentHouses.find(index=>index.R_ID === A.properity_id)
+                return singlecard(B)
+            }
+        }else{
+            return null;
+        }  
+    })
+
+    if(rentcards[0]!==undefined)
+    {return(
+        <Profile>
+            <Profile.Text>
+                  Saved Homes
+              </Profile.Text>
+            <Profile.CardsContainer>
+
+              {rentcards}
+            </Profile.CardsContainer>
+        </Profile>
+    )}
+  else{ 
+      return(
+          <Profile>
+              <Profile.Text>
+              Oops you dont have any favorited home yet
+            </Profile.Text>
+           
+          </Profile>
+      )}
+
+  }
+  else if(houses){
+        const cards = houses.map(house=> { 
+          if(favorite){
+                const A = favorite.find(index=>house.S_ID === index.properity_id)
+                if(A){
+                    const B = houses.find(index=>index.S_ID === A.properity_id)
+                    return singlecard(B)
+                }
+            }else{
+                return null;
+            }  
+        })
+
+
+        if(cards[0]!==undefined){return(
           <Profile>
               <Profile.Text>
                     Saved Homes
@@ -78,7 +161,8 @@ function SaveHome(prop) {
               </Profile.CardsContainer>
           </Profile>
       )}
-    else{ return(
+    else{ 
+        return(
             <Profile>
                 <Profile.Text>
                 Oops you dont have any favorited home yet
