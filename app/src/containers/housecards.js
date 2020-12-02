@@ -68,6 +68,7 @@ function Housecards({props}){
         )
     }else if(houses && search){
         if(search.length === 0){
+            
             return(
                 <>
                 

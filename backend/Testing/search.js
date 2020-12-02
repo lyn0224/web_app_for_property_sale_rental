@@ -80,14 +80,16 @@ class searchRouter {
     // U_ID, search_type
     const keys = ['U_ID', 'search_type'];
     const values = [user_id, `'${search_type || ''}'`];
-
+    console.log(min_price)
     if (min_price && min_price != 'null')  {
       keys.push('min_price');
       values.push(min_price);
+      console.log("here min price")
     }
     if (max_price && max_price != 'null')  {
       keys.push('max_price');
       values.push(max_price);
+      console.log(values)
     }
     if (bedroom && bedroom != 'null')  {
       keys.push('bedroom');
@@ -122,10 +124,11 @@ class searchRouter {
       keys.push(' parking');
       values.push(parking);
     }
-
+    // console.log('keys:',keys);  
+    // console.log('values:',values); 
     let sql = `insert into favorite_search (${keys.join(',')})values(${values.join(',')})`;
-    // console.log('sql:',sql);  
 
+ 
     console.log('save success.....');
     try {
       await this.execSQL(db, sql);
@@ -149,21 +152,21 @@ class searchRouter {
       keyword = '',
       search_type,
       zip_code,
-      minPrice: min_price,  
-      maxPrice: max_price,  
-      bed:      bedroom,
-      bath:     bathroom,
-      types:    home_type,
-      year:     year_built,
-      flooring: flooring,
-      maxSize:  house_size,
+      min_price,  
+      max_price,  
+      bedroom,
+      bathroom,
+      home_type,
+      year_built,
+      flooring,
+      house_size,
       minSize,
       minRate,
       maxRate,
       parking,
       uid
     } = Object.assign({},req.query, req.body);
-
+   
     this.saveSearchKeyword(db, uid, token, search_type, min_price || minRate, max_price||maxRate, bedroom, bathroom, home_type, zip_code, year_built, flooring, house_size, parking);
 
     let where = `(t.street like '%${keyword}%' or t.city like '%${keyword}%' )`;

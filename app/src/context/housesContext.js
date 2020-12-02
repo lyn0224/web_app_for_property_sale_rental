@@ -48,7 +48,8 @@ function HousesProvider({children}) {
         if(!input){
             setSearch(houses)
         }else{
-            const array = houses.filter(house=>house.Owner_ID == input || house.city ==input)
+            input = input.toString().toLowerCase()
+            const array = houses.filter(house=>house.Owner_ID.toString().toLowerCase().includes(input) || house.city.toString().toLowerCase().includes(input))
             setSearch(array)
         }
     }
@@ -57,11 +58,14 @@ function HousesProvider({children}) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = event.target.name;
+        console.log("name",name)
+        console.log("value",value)
         if(name === "type"){
             setTypes(value);
         }
         if(name === "bed"){
             setBed(value);
+
         }
         if(name === "bath"){
             setBath(value);
@@ -105,15 +109,16 @@ function HousesProvider({children}) {
                 tempHouses = tempHouses.filter(house => house.flooring === flooring);
             }
             console.log("after flooring",tempHouses);
-            if(bed !== "any+"){
+            if(bed !== "any"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
             }
             console.log("after bed",tempHouses);
-            if(bath !== "any+"){
+            if(bath !== "any"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
             if(year !== "all"){
-                tempHouses = tempHouses.filter(house=>house.year >= year);
+                
+                tempHouses = tempHouses.filter(house=>house.year_built >= year);
             }
             console.log("after bath",tempHouses);
             tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
@@ -125,9 +130,20 @@ function HousesProvider({children}) {
             setSearch(tempHouses);
         }
     }
+    async function handleSave(search_type){
+        console.log(search_type,types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
 
-    async function handleSave(){
-        console.log(types, bed, bath, parking, minPrice, maxPrice, minSize, maxSize, year);
+        // const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&house_size=${maxSize}&parking=${parking}&home_type=${types=="all"?null:types}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
+        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minPrice}&max_price=${maxPrice}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}`
+        console.log(SaveSearch_URL)
+        try{
+            console.log("save search");
+            fetch(SaveSearch_URL).then(res => res.json()).then(result=>{
+                console.log(result);
+            })
+        }catch(e){
+            console.log(e);
+        }
        
     }
 

@@ -45,13 +45,13 @@ export default function FilterBar() {
         beds = getUnique(houses, 'bedroom');
         beds = ['any', ...beds];
         beds = beds.map((item, index) => {
-            return <option value={item} key={index}>{item}+</option>
+            return <option value={item} key={index}>{item}</option>
         });
 
         baths = getUnique(houses, 'bathroom');
         baths = ['any', ...baths];
         baths = baths.map((item, index) => {
-            return <option value={item} key={index}>{item}+</option>
+            return <option value={item} key={index}>{item}</option>
         });
 
         prices = [500000,1000000,1500000,2000000,2500000,3000000,3500000]
@@ -68,7 +68,7 @@ export default function FilterBar() {
         years = getUnique(houses, 'year_built');
         years = ['all', ...years];
         years = years.map((item, index) => {
-            return <option value={item} key={index}>{item}+</option>
+            return <option value={item} key={index}>{item}</option>
         });
     }
 
@@ -182,7 +182,7 @@ export default function FilterBar() {
                     </div>
                 </div>
             </form>
-            <button style={{width: "100px", height: "30px", fontSize: "13px", marginLeft: "100px"}} onClick={()=>handleSave()}>Save Search</button>
+            <button style={{width: "100px", height: "30px", fontSize: "13px", marginLeft: "100px"}} onClick={()=>handleSave("b")}>Save Search</button>
         </section>
     )
 }
