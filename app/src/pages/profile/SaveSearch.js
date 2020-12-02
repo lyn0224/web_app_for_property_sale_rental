@@ -5,16 +5,12 @@ import { Context } from '../../context/housesContext';
 import DefaultImg from '../../img/homeicon.png'
 import { Search } from '../../components/searchform/styles/style';
 function SaveSearch() {
-    const {favorite_search_list} = useContext(Context);
-    function RemoveSearch(obj){
-        console.log(obj)
-        console.log("was deleted")
-    }
+    const {favorite_search_list,deleteFavorite_Search} = useContext(Context);
   
 
     function singlecard(obj){
         console.log(obj)
-        const icon = <Housecard.Favorite removeFavorite ={RemoveSearch} house = {obj}/> 
+        const icon = <Housecard.Favorite removeFavorite ={deleteFavorite_Search} house = {obj}/> 
         return (
             <Housecard.Base key = {Math.random()} >  
 
