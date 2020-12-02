@@ -79,7 +79,7 @@ Agile board => 	Issue board
 
 #### System Architecture Diagram
 <p>
-    <img src="./System Architecture Diagram.png width = "100%" height = "100%" />
+    <img src="System Architecture Diagram.png width = "100%" height = "100%" />
                                                                               </p>
 
 #### Wireframe Diagram
