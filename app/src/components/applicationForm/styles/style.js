@@ -4,7 +4,6 @@ export const Container = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-
     min-height: calc(100vh - 550px);
 
 `;
@@ -13,7 +12,7 @@ export const Card = styled.div`
     display:flex;
     border-bottom: 1px solid #cccccc;
     height:300px;
-    width:50%;
+
     align-items:center;
     margin: 0 5%;
     @media (max-width: 800px) {
@@ -68,11 +67,16 @@ export const Text = styled.p`
 export const ImageContainer = styled.div`
     position:relative;
     width:300px;
-    height:200px;
     margin:1rem;
+    max-height: 200px;
+    @media (max-width: 800px) {
+            width:250px;
+            margin:0 auto;
+            
+    }
 `    
 export const Image = styled.img`
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: 200px;
 `   

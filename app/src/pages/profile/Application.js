@@ -83,6 +83,7 @@ function Application(){
          console.log(obj)
         return(
             <ApplicationForm.Card key={Math.random()}>
+                
                 <ApplicationForm.ImageContainer>
                     <ApplicationForm.Image src = {obj.main_pic?obj.main_pic:defaultimg} alt = {"#"}/>
                 </ApplicationForm.ImageContainer>

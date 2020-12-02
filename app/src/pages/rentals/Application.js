@@ -79,6 +79,7 @@ function Application(){
          
         return(
             <ApplicationForm.Card key={Math.random()}>
+           
                 <ApplicationForm.ImageContainer>
                     <ApplicationForm.Image src = {defaultimg} alt = {"#"}/>
                 </ApplicationForm.ImageContainer>
