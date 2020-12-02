@@ -114,7 +114,7 @@ class FavoriteRouter {
      * @memberof FavoriteRouter
      */
     async searchAdd(db, req) {
-      const { U_ID, search_type, min_price = 0, max_price = 0, bedroom = 0, bathroom = 0, home_type = '', zip_code = 0 } = req.body;
+      const { U_ID, search_type, min_price = 0, max_price = 0, bedroom = 0, bathroom = 0, home_type = '', year_built = '', flooring='', house_size='', parking=0 } = req.body;
       if (!U_ID) {
         throw Error('user id need to be filled');
       }
@@ -124,8 +124,8 @@ class FavoriteRouter {
       if (!search_type) {
         throw Error('search type need to be filled');
       }
-      let sql = `insert favorite_search(U_ID, search_type, min_price, max_price, bedroom, bathroom, home_type, zip_code)values(
-        ${U_ID}, '${search_type}', ${min_price}, ${max_price}, '${bedroom}', '${bathroom}', '${home_type}', ${zip_code}'
+      let sql = `insert favorite_search(U_ID, search_type, min_price, max_price, bedroom, bathroom, home_type, year_built, flooring, house_size, parking)values(
+        ${U_ID}, '${search_type}', ${min_price}, ${max_price}, '${bedroom}', '${bathroom}', '${home_type}', ${year_built}, ${flooring}, ${house_size}, ${parking}'
       )`
       await this.execSQL(db, sql);
       return { msg: 'add success' }
@@ -140,11 +140,11 @@ class FavoriteRouter {
      * @memberof FavoriteRouter
      */
     async searchDelete(db, req) {
-      const { id } = req.query;
-      if (id) {
+      const { ID } = req.query;
+      if (ID) {
         throw Error('id need to be filled');
       }
-      let sql = `delete from favorite_search where id = ${id}`;
+      let sql = `delete from favorite_search where ID = ${ID}`;
       await this.execSQL(db, sql);
       return { msg: 'delete success' }
     }

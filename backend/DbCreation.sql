@@ -80,18 +80,19 @@ FOREIGN KEY (Realtor_ID) REFERENCES REALTOR(U_ID)
 
 -- Favorite_search
 create table favorite_search(
+ID             INT    NOT NULL AUTO_INCREMENT,
 U_ID           INT           NOT NULL,
 search_type    CHAR          NOT NULL,
 min_price      INT,
 max_price      INT,
 bedroom        INT,
 bathroom       INT,
-home_type      CHAR,
-zip_code       INT,
+home_type      VARCHAR(20),
 year_built     VARCHAR(4),
 flooring       VARCHAR(10),
 house_size     VARCHAR(10),
 parking        boolean,
+PRIMARY KEY(ID),
 FOREIGN KEY (U_ID) REFERENCES ACCOUNT(ID)
 					ON DELETE CASCADE  ON UPDATE CASCADE);
 /*
