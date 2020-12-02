@@ -89,6 +89,7 @@ function HouseDetail(props){
     }
 
     if(check) {
+        console.log(house)
         const conditionalDate =( house.open_house && house.open_house.from_date && house.open_house.to_date)? (<Houseinfo.FeatureText>
         {house.open_house.from_date?house.open_house.from_date:"No Data"} 
         {"   "}

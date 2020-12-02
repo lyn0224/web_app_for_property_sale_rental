@@ -209,12 +209,13 @@ function Listing() {
                     setCheck(!check)
                 }else if(result && result.success === false){
              
-                    alert(result.msg);
+                    console.log(result.msg);
                 }
             }catch(e){
                 console.log(e);
       
             }
+            fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
 
     }
     function ListingCard(obj){
