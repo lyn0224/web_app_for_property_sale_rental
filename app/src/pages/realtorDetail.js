@@ -89,16 +89,16 @@ function RealtorDetail(props){
     function ListingCard(obj){
         return (
             <>
-            <p>Houses currently list for SALE</p>
+            <p>Houses currently list for RENT</p>
             <ListingForm.Base key = {obj.R_ID} style={{right: "0", height: "150px", width: "300px"}}>
                 <ListingForm.ImageContainer>
                     <ListingForm.Img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#" style={{height:"50%"}}/>
                 </ListingForm.ImageContainer>
                 <ListingForm.TextContainer>
-                        <ListingForm.Text>city : {obj.city}</ListingForm.Text>
-                        <ListingForm.Text>street : {obj.street}</ListingForm.Text>
-                        <ListingForm.Text>Rate : {obj.rate ? obj.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
-                    </ListingForm.TextContainer>
+                    <ListingForm.Text>city : {obj.city}</ListingForm.Text>
+                    <ListingForm.Text>street : {obj.street}</ListingForm.Text>
+                    <ListingForm.Text>Rate : {obj.rate ? obj.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</ListingForm.Text>
+                </ListingForm.TextContainer>
             </ListingForm.Base> 
             </>
         )
@@ -106,8 +106,8 @@ function RealtorDetail(props){
     function BuyListingCard(obj){
         return (
             <>
-            <p>Houses currently list for RENT</p>
-            <ListingForm.Base key = {obj.S_ID} style={{right: "0", height: "150px", width: "300px", paddingTop: "0"}}>
+            <p>Houses currently list for SALE</p>
+            <ListingForm.Base key = {obj.S_ID} style={{right: "0", height: "150px", width: "300px"}}>
                 <ListingForm.ImageContainer>
                     <ListingForm.Img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#" style={{height:"50%"}}/>
                 </ListingForm.ImageContainer>
@@ -145,10 +145,10 @@ function RealtorDetail(props){
                         <Houseinfo.Text>Phone Number: {realtor.phone}</Houseinfo.Text>
                     </Houseinfo.TextControl>
                 </Houseinfo.Base>
-                <ListingForm>
+                <ListingForm style={{height: "20%"}}>
                     {cards}
                 </ListingForm>
-                <ListingForm>
+                <ListingForm style={{height: "20%"}}>
                     {buycards}
                 </ListingForm>
             </Houseinfo> 

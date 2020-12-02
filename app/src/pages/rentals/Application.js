@@ -81,7 +81,7 @@ function Application(){
             <ApplicationForm.Card key={Math.random()}>
            
                 <ApplicationForm.ImageContainer>
-                    <ApplicationForm.Image src = {defaultimg} alt = {"#"}/>
+                    <ApplicationForm.Image src = {obj.main_pic?obj.main_pic:defaultimg} alt = {"#"}/>
                 </ApplicationForm.ImageContainer>
                 {/* <ApplicationForm.Text>Name : {obj.name}</ApplicationForm.Text>
                 <ApplicationForm.Text>Property : {obj.property_ID}</ApplicationForm.Text> */}
