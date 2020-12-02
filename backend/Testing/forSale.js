@@ -181,7 +181,7 @@ class forSaleRouter{
             let property_ID = req.body.S_ID;
             let buyer_name = req.body.name;
             let cols = [buyer_ID, property_ID];
-            db.query("UPDATE BUYER_APPLICATION SET offer_status = 'A' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("DELETE FROM BUYER_APPLICATION where Buyer_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
@@ -257,7 +257,7 @@ class forSaleRouter{
             let property_ID = req.body.S_ID;
             let buyer_name = req.body.name;
             let cols = [buyer_ID, property_ID];
-            db.query("UPDATE BUYER_APPLICATION SET offer_status = 'R' where Buyer_ID = ? and property_ID = ?", cols, (err) => {
+            db.query("DELETE FROM BUYER_APPLICATION where Buyer_ID = ? and property_ID = ?", cols, (err) => {
 
                 if(err) {
                     console.log(err);
