@@ -2,7 +2,7 @@ import React, {useState, createContext, Component, useEffect } from 'react';
 import {DB} from '../constants/DB'
 const Context = React.createContext()
 function HousesProvider({children}) {
-
+    const user = JSON.parse(localStorage.getItem('authUser'));
     const [houses,setHouses] = useState()
     const [Favorite_Home,setFavorite_Home] = useState()
     const [search,setSearch] = useState()
@@ -23,12 +23,15 @@ function HousesProvider({children}) {
     const Save_URL = `${DB}/save_search`;
     const Favorite_Home_URL = `${DB}/api/favorite/home`;
 
-    const user = JSON.parse(localStorage.getItem('authUser'));
-
+ 
+    const Save_Search_List = `${DB}/api/favorite/mine?id=${user.id}`
+    const [favorite_search_list,setFavorite_search_list] = useState()
     useEffect( ()=>{
         fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
+        
         filterDate();
         if(user){
+            fetch(Save_Search_List).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
             try{
                 console.log("favorite");
                 fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
@@ -58,8 +61,6 @@ function HousesProvider({children}) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = event.target.name;
-        console.log("name",name)
-        console.log("value",value)
         if(name === "type"){
             setTypes(value);
         }
@@ -224,7 +225,7 @@ function HousesProvider({children}) {
         return (
             <>
             <Context.Provider  value={{
-                houses,setHouses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize
+                houses,setHouses, handleChange,handleSave,find_result,search,setSearch,removeFavorite,addFavorite,favorite, minSize, maxSize,favorite_search_list
                 }}>
                 {children}
             </Context.Provider>

@@ -70,12 +70,12 @@ function Housecards({props}){
         if(search.length === 0){
             
             return(
-                <>
+                <div style={{textAlign:"center"}}>
                 
-                <Housecard>
-                    no result
-                </Housecard>
-                </>
+
+                    <Housecard.Error>No Data in Data Base</Housecard.Error>
+ 
+                </div>
             )
         }else if(search.length !== 0){
         const  cards = search.map(house=>singlecard(house));

@@ -6,9 +6,10 @@ const getUnique = (items, value) => {
     return [...new Set(items.map(item => item[value]))];
 };
 
-export default function FilterBar() {
+export default function FilterBar(props) {
     const context = useContext(Context);
     // console.log(context);
+    console.log(props.search_type)
     const [searchTerm, setSearchTerm] = useState('');
     const {} = useContext(Context)
     const {
@@ -182,7 +183,7 @@ export default function FilterBar() {
                     </div>
                 </div>
             </form>
-            <button style={{width: "100px", height: "30px", fontSize: "13px", marginLeft: "100px"}} onClick={()=>handleSave("b")}>Save Search</button>
+            <button style={{width: "100px", height: "30px", fontSize: "13px", marginLeft: "100px"}} onClick={()=>handleSave(props.search_type)}>Save Search</button>
         </section>
     )
 }

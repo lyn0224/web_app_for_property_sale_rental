@@ -1,6 +1,6 @@
 import  React from 'react'
 import{Link as ReactRouterLink} from 'react-router-dom'
-import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price} from './styles/style';
+import { Container, CardImg, CardButton, Title, Text,Link,Base,Favorite,ImageContainer,TextContainer,Content,TextControl,NormalText,Price,Error} from './styles/style';
 
 function Housecard({children,...restProps}){
     return <Container {...restProps}>
@@ -13,6 +13,12 @@ Housecard.Base = function HousecardBase({children, ref,...restProps}){
     return <Base {...restProps} ref = {ref}>
                 {children}
                 </Base>
+}
+
+Housecard.Error = function HousecardError({children,...restProps}){
+    return <Error {...restProps} >
+                {children}
+                </Error>
 }
 Housecard.Content = function HousecardContent({children,...restProps}){
     return <Content {...restProps}>
@@ -124,6 +130,14 @@ Housecard.NormalText = function HousecardNormalText({children,...restProps}){
     )
 }
 Housecard.Price = function HousecardPrice({children,...restProps}){
+    return(
+        <Price {...restProps}>
+            {children}
+        </Price>
+    )
+}
+
+Housecard.label = function HousecardPrice({children,...restProps}){
     return(
         <Price {...restProps}>
             {children}

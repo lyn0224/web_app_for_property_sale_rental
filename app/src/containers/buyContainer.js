@@ -9,7 +9,7 @@ function Buy() {
     const {houses,handleSubmit, find_result} = useContext(Context)
 
     const conditionalFilterBar = houses ? 
-        <FilterBar/> : null;
+        <FilterBar search_type = "b"/> : null;
     return (
         <BuyLayout>
             

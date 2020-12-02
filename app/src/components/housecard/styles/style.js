@@ -149,3 +149,10 @@ export const TextContainer = styled.div`
         }
 `
 
+export const Error = styled.div` 
+        text-align:center:
+
+        font-weight:bold;
+        color:#0b6ab3;
+
+`

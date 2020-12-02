@@ -3,10 +3,10 @@ import { Housecard,Profile } from '../../components/export';
 import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import { Context } from '../../context/housesContext';
-import { RentContext } from '../../context/rentContext';
+
 import Loading from "../../containers/LoadingContainer"
 import {DB} from '../../constants/DB'
-import SaveHomeRouter from '../../Routers/saveHomeRouter'
+
 
 function SaveHome(prop) {
     const {houses,favorite,removeFavorite} = useContext(Context);
