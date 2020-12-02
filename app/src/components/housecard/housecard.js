@@ -42,18 +42,18 @@ Housecard.img = function HousecardImg({src,alt, children,...restProps}){
                 </CardImg>
     )
 }
-Housecard.Favorite = function HousecardFavorite({house,children, removeFavorite,...restProps}){
+Housecard.Favorite = function HousecardFavorite({house,type,children, removeFavorite,...restProps}){
     return(
         
-        <Favorite {...restProps} onClick = {()=>removeFavorite(house)}>
+        <Favorite {...restProps} onClick = {()=>removeFavorite(house,type)}>
             <i className="fas fa-heart" ></i>
         </Favorite>
     )
 }
-Housecard.RentFavorite = function HousecardFavorite({house,children, removeRentFavorite,...restProps}){
+Housecard.RentFavorite = function HousecardFavorite({house,type,children, removeRentFavorite,...restProps}){
     return(
         
-        <Favorite {...restProps} onClick = {()=>removeRentFavorite(house)}>
+        <Favorite {...restProps} onClick = {()=>removeRentFavorite(house,type)}>
             <i className="fas fa-heart" ></i>
         </Favorite>
     )

@@ -5,8 +5,6 @@ import { Context } from '../context/housesContext';
 import Map from './googlemap'
 import FilterBar from './FilterBar'
 function Buy() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const {houses,handleSubmit, find_result} = useContext(Context)
 
     // const conditionalFilterBar = houses ? 
     //     <FilterBar search_type = "b"/> : null;

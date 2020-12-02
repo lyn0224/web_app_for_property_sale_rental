@@ -9,7 +9,8 @@ function RentHousecards({props}){
     const {rentHouses,search,rentFavorite,addRentFavorite,removeRentFavorite} = useContext(RentContext);
     
     function singlecard(obj,rentFavorite){
-        const icon = rentFavorite?<Housecard.RentFavorite removeRentFavorite ={removeRentFavorite} house = {obj}/>:<Housecard.notRentFavorite addRentFavorite={addRentFavorite} house = {obj}/>
+        const type = "R"
+        const icon = rentFavorite?<Housecard.RentFavorite removeRentFavorite ={removeRentFavorite} house = {obj} type={type}/>:<Housecard.notRentFavorite addRentFavorite={addRentFavorite} house = {obj}/>
             
         return (
             <Housecard.Base key = {obj.R_ID} >  
@@ -25,7 +26,7 @@ function RentHousecards({props}){
                     <Housecard.img src = {obj.main_dir?obj.main_dir:DefaultImg} alt ="#"/>
                 </Housecard.ImageContainer>
                 <Housecard.TextContainer>
-                    <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>For Sale</Housecard.Title>
+                    <Housecard.Title><p style={{display:"inline", color: "#ff8286"}}> {obj.property_type} </p>For Rent</Housecard.Title>
                     <Housecard.Price>{obj.rate ? obj.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Housecard.Price>
                     <Housecard.Text> <p style={{display:"inline", color: "#525252", fontWeight :"600", fontSize :"1rem"}}> {obj.city} </p>{obj.state}</Housecard.Text>
                     <Housecard.Text>{obj.street}</Housecard.Text>
@@ -85,7 +86,18 @@ function RentHousecards({props}){
                 </>
             )
         }else if(search.length !== 0){
-        const  cards = search.map(house=>singlecard(house));
+            const  cards = search.map(house=>{
+                if(rentFavorite!==undefined && rentFavorite){
+                    const checkFavorite = rentFavorite.find(item=>item.properity_id === house.S_ID)
+                    console.log(checkFavorite)
+                    const A = checkFavorite? true : false;
+                   return singlecard(house,A)
+                }else{
+                    const C = false;
+                    return singlecard(house,C)
+                }
+                
+            });
             return(
                 <>
                 <Housecard>
@@ -96,7 +108,12 @@ function RentHousecards({props}){
         }
     }else{
         return(
-           <Loading/>
+            <div style={{textAlign:"center"}}>
+            
+
+                <Housecard.Error>No Data in Data Base</Housecard.Error>
+
+            </div>
         )
     }
    
