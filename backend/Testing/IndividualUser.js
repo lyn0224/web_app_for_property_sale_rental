@@ -154,6 +154,8 @@ class individualUser{
         }
 
         forRentListing(db, req, res) {
+            let sql = '';
+            let cols = [];
             if(req.body.role === 'R'){
                 sql = "SELECT * from FOR_RENT WHERE Owner_ID = ? OR Realtor_ID = ?";
                 cols = [req.body.ID, req.body.ID];
