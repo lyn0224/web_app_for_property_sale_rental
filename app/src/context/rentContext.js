@@ -78,9 +78,6 @@ function RentProvider({children}) {
         if(name === "flooring"){
             setFlooring(value);
         }
-        if(name === "available"){
-            setAvailable(value);
-        }
         if(name === "year"){
             setYear(value);
         }
@@ -114,7 +111,7 @@ function RentProvider({children}) {
             }
             console.log("after bath",tempHouses);
             if(year !== "all"){
-                tempHouses = tempHouses.filter(house=>house.year >= year);
+                tempHouses = tempHouses.filter(house=>house.year_built >= year);
             }
             console.log("after bath",year);
             console.log(minRate, maxRate)
@@ -130,41 +127,20 @@ function RentProvider({children}) {
         }
     }
 
-    async function handleSave(){
-        console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available, year);
-        // try{
-        //     let res = await fetch(Rent_Save_URL, {
-        //         method: 'post',
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             types: types,
-        //             bed: bed,
-        //             bath: bath,
-        //             parking: parking,
-        //             minRate: minRate, 
-        //             maxRate: maxRate, 
-        //             minSize: minSize, 
-        //             maxSize: maxSize,
-        //             flooring: flooring, 
-        //             available: available
-        //             year: year
-        //         })
-        //     });
-        //     let result = await res.json();
-        //     console.log(result);
-        //     if(result && result.success){
-        //         console.log("successful add to save search");
-        //     }else if(result && result.success === false){
-        //         alert(result.msg);
-        //     }
-        // }catch(e){
-        //     console.log(e);
-        // }
+    async function handleSave(search_type){
+        const SaveSearch_URL = `${DB}/api/search?search_type=${search_type}&uid=${user.id}&min_price=${minRate}&max_price=${maxRate}&bedroom=${bed=="0"?null:bed}&bathroom=${bath=="0"?null:bath}&year_built=${year=="all"?null:year}&parking=${parking}&home_type=${types}&flooring=${flooring=="all"?null:flooring}&house_size=${minSize}`
+        console.log(SaveSearch_URL)
+        try{
+            console.log("save search");
+            fetch(SaveSearch_URL).then(res => res.json()).then(result=>{
+                console.log(result);
+            })
+        }catch(e){
+            console.log(e);
+        }
+       
     }
-    // console.log("rent house", house);
+
     async function removeRentFavorite(rentHouse){
         try{
             let res = await fetch(Rent_Favorite_URL, {
