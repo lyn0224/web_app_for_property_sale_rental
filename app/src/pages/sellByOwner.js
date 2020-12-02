@@ -5,8 +5,11 @@ import ItemAdd from "../components/itemAdd"
 import axios from 'axios';
 import Footer from "../containers/footer"
 // import ListingPic from '../img/homeicon.png'
+import { RealtorContext } from '../context/realtorContext';
  
 function SellByOwner() {
+    const {realtors} = useContext(RealtorContext)
+
     const [sellID, setSellID] = useState('');
     const [ownerID, setOwnerID] = useState('');
     const [realtorID, setRealtorID] = useState('');
@@ -32,6 +35,15 @@ function SellByOwner() {
     const [info,setInfo] = useState(false);
  
     const user = JSON.parse(localStorage.getItem('authUser'));
+
+    const createItem= async(newItem) => {
+        console.log(error);
+        console.log(newItem);
+        console.log('PHOTO:', newItem.image);
+        setData(newItem);
+        setInfo(true);
+    }
+    
     useEffect(()=>{
         console.log("update")
         if(data){
@@ -42,33 +54,24 @@ function SellByOwner() {
             });
             setOtherPictures(array);
         }
-        console.log(propertyType);
-        console.log(floor);
-        console.log(mainPictures);
-        console.log(otherPictures);
         // setPictures(formData);
-    },[data, floor, propertyType])
+        console.log("this is realtor id", realtorID);
+    },[data, floor, propertyType, realtorID])
 
-    const createItem= async(newItem) => {
-        console.log(error);
-        console.log(newItem);
-        console.log('PHOTO:', newItem.image);
-        setData(newItem);
-        setInfo(true);
-    }
+
  
     const isInvalid = price === '' || mainPictures === '' || otherPictures === '' || propertyType === '' || streetAddress === '' || city === '' || states === '' || zipCode === '' || bed === '' || bath === '' || area === '' || year === '' || description === '' || parking === '' || floor === '' || living === '';
 
     async function handleSubmit(){
         const formData = new FormData();
-        formData.append('list_type', "sell");
+        formData.append('list_type', "rent");
         formData.append('main', mainPictures);
         data.image.slice(1).forEach(file=>{
             formData.append('others', file);
         });
 
         formData.append('owner', user.id);
-        formData.append('realtor', 1);
+        formData.append('realtor', realtorID);
         formData.append('p_type', propertyType);
         formData.append('apt_num', aptNum);
         formData.append('street', streetAddress);
@@ -97,52 +100,21 @@ function SellByOwner() {
         });
     }
 
-    // function handleInvalid(){
-    //     let regxAddress = new RegExp("^([0-9a-zA-Z]+)(,\s*[0-9a-zA-Z]+)*$");
-    //     let resultAddress = regxAddress.test(streetAddress);
-    //     if(!resultAddress){
-    //         setError("inValid input for address")
-    //     }
-    //     let regxNum = new RegExp("^[0-9]*$")
-    //     let resultApt = regxNum.test(aptNum);
-    //     let resultBed = regxNum.test(bed);
-    //     let resultBath = regxNum.test(bath);
-    //     let resultArea = regxNum.test(area);
-    //     let resultLiving = regxNum.test(living);
-    //     let resultPrice = regxNum.test(price);
-    //     if(!resultApt){
-    //         console.log("inValid input for apt/unit number")
-    //         setError("inValid input for apt/unit number")
-    //     }
-    //     if(!resultBed){
-    //         setError("inValid input for bed number")
-    //     }
-    //     if(!resultBath){
-    //         setError("inValid input for bath number")
-    //     }
-    //     if(!resultArea){
-    //         setError("inValid input for area number")
-    //     }
-    //     if(!resultLiving){
-    //         setError("inValid input for living number")
-    //     }
-    //     if(!resultPrice){
-    //         setError("inValid input for price")
-    //     }
-    //     let regxCity = new RegExp("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$");
-    //     let resultCity = regxCity.test(city);
-    //     if(!resultCity){
-    //         setError("inValid input for city")
-    //     }
-    //     let regxZip = new RegExp("^\d{5}(?:[-\s]\d{4})?$");
-    //     let resultZip = regxZip.test(zipCode);
-    //     if(!resultZip){
-    //         setError("inValid input for zip code")
-    //     }
-    //     if(resultZip && resultCity && resultLiving && resultArea && resultBath && resultBed && resultApt){
-    //         setError('');
-    //     }
-    // }
+    const getUnique = (items, value) => {
+        return [...new Set(items.map(item => item[value]))];
+    };
+
+
+    let agents = [];
+    // //get unique types
+    if(realtors){
+        agents = getUnique(realtors, 'Fname');
+        agents = ['Realtor', ...agents];
+        agents = agents.map((item, index) => {
+            return <Form.Option value={index} key={index}>{item}</Form.Option>
+        });
+    }
+
     if(info){
         return (
             <>
@@ -163,6 +135,9 @@ function SellByOwner() {
                             <Form.Option 
                                 value="Apartment"
                                 >Apartment</Form.Option>
+                        </Form.Select>
+                        <Form.Select onChange={({ target }) => setRealtorID(target.value)}>
+                            {agents}
                         </Form.Select>
                         <Form.Input
                             placeholder="Street Address"

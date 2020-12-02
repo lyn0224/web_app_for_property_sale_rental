@@ -134,7 +134,7 @@ function HouseDetail(props){
                                         {house.year_built?house.year_built:"No Data"}
                                     </Houseinfo.FeatureText> 
                                 </Houseinfo.FeatureBase>
-                            <Houseinfo.FeatureBase> 
+                            {/* <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
                                     <i className="fas fa-temperature-high"></i>  
                                     </Houseinfo.FeatureIcon>
@@ -142,17 +142,17 @@ function HouseDetail(props){
                                 <Houseinfo.FeatureText>
                                     {house.Cooling?house.Cooling:"No Data"}
                                 </Houseinfo.FeatureText> 
-                            </Houseinfo.FeatureBase>
+                            </Houseinfo.FeatureBase> */}
                             <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
                                     <i className="fas fa-parking"></i>
                                     </Houseinfo.FeatureIcon>
                                  Parking 
                                 <Houseinfo.FeatureText>
-                                    {house.parking?house.parking:"No Data"}
+                                    {house.parking===1?"Open":"Close"} Parking
                                     </Houseinfo.FeatureText>
                             </Houseinfo.FeatureBase>
-                            <Houseinfo.FeatureBase> 
+                            {/* <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
                                 <i className="fas fa-temperature-low"></i>
                                 </Houseinfo.FeatureIcon>
@@ -160,7 +160,7 @@ function HouseDetail(props){
                                 <Houseinfo.FeatureText>
                                     {house.Heating?house.Heating:"No Data"}
                                     </Houseinfo.FeatureText>
-                            </Houseinfo.FeatureBase>
+                            </Houseinfo.FeatureBase> */}
                             <Houseinfo.FeatureBase> 
                                 <Houseinfo.FeatureIcon>
                                 <i className="fas fa-grip-lines"></i>
@@ -175,7 +175,7 @@ function HouseDetail(props){
                                 <i className="fas fa-dollar-sign"></i>
                                 </Houseinfo.FeatureIcon> Price/sqft 
                                 <Houseinfo.FeatureText>
-                                    {house.sqft?house.sqft:"No Data"}
+                                    {house.price ? (house.price/house.area).toLocaleString("en-US", {style: "currency", currency: "USD"}):null} 
                                 </Houseinfo.FeatureText>
                             </Houseinfo.FeatureBase>
 

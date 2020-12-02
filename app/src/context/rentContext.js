@@ -126,6 +126,10 @@ function RentProvider({children}) {
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
             console.log("after bath",tempHouses);
+            if(year !== "all"){
+                tempHouses = tempHouses.filter(house=>house.year >= year);
+            }
+            console.log("after bath",year);
             console.log(minRate, maxRate)
             tempHouses = tempHouses.filter(house=>house.rate <= maxRate && house.rate >= minRate)
             console.log("after prices",tempHouses);

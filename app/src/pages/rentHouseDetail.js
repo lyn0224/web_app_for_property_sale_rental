@@ -6,6 +6,7 @@ import { RentContext } from '../context/rentContext';
 import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
+import {Row, Col} from 'react-bootstrap'
 function RentHouseDetail(props){
     const {houses} = useContext(RentContext);
     const {id} = useParams()
@@ -13,13 +14,18 @@ function RentHouseDetail(props){
     const [house,setHouse] = useState()
     const [check,setCheck] = useState(false)
     const [display,setDisplay] = useState("none")
+    const [visitDisplay,setVisitDisplay] = useState("none")
     const [name,setName]= useState('')
-    const [credit,setCredit]= useState('')
-    const [employer,setEmployer]= useState('')
-    const [income,setIncome]= useState('')
-
+    const [credit, setCredit]= useState('')
+    const [employer, setEmployer] = useState()
+    const [salary, setSalary] = useState()
     const user = JSON.parse(localStorage.getItem('authUser'));
-    const isInvalid =  name === '' || credit === '' || employer === '' || income === '';
+    const [startDate, setStartDate] = useState()
+    const [endDate, setEndDate] = useState()
+    const VisitIsInvalid = (startDate === undefined||startDate === '') | (endDate === undefined||endDate === '');
+
+
+    const isInvalid =  name === '' || credit === '' || employer === '' || salary === '';
     useEffect(()=>{
         if(houses !== undefined){
             houses.map(list=>{
@@ -45,47 +51,86 @@ function RentHouseDetail(props){
         else
             setDisplay("none")
     }
+    function toggleVisitDisplay(){
+        if(visitDisplay === "none")
+            setVisitDisplay("display")
+        else
+           setVisitDisplay("none")
+    }
+    
+
     const house_imge = check? house.pic_dir.map(image =>(
         <Houseinfo.img key = {Math.random() } src = {image}/>
     )): "null";
     
-    const Rent_Applicaiton_URL = "http://localhost:9000/rentRequest"
-    async function handleApplication (event){
-        
+    const Visit_URL = "http://localhost:9000/visit"
+    async function handleVisit(event){
         event.preventDefault();
-        if(user){
-            console.log(user.id)
-            console.log(house.R_ID)
-            console.log(name)
-            console.log(credit)
-            console.log(employer)
-            console.log(income)
+            console.log("ID", house.R_ID)
             try{
-                let res = await fetch(Rent_Applicaiton_URL, {
+                let res = await fetch(Visit_URL, {
                     method: 'post',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        ID : user.id,
-                        R_ID : house.R_ID,
-                        renter_name: name,
+                        ID: user.id,
+                        property_ID: house.R_ID,
+                        start_time: startDate,
+                        end_time:endDate
+                    })
+                });
+                let result = await res.json();
+                console.log(result);
+       
+                if(result && result.success){
+                    console.log("successful submited OpenHouse");
+                    setCheck(!check)
+                }else if(result && result.success === false){
+             
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+      
+            }
+    }
+
+    const Applicaiton_URL = "http://localhost:9000/rentRequest"
+    async function handleApplication (event){
+        
+        event.preventDefault();
+        if(user){
+            // console.log(user.id)
+            // console.log(house.R_ID)
+            // console.log(name)
+            // console.log(Application_price)
+            try{
+                let res = await fetch(Applicaiton_URL, {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        renter_ID : user.id,
+                        property_ID : house.R_ID,
                         credit_score: credit,
-                        employer: employer,
-                        annual_salary: income
+                        employer : employer,
+                        annual_salary: salary,
+                        renter_name: name
                         // houseinfo:house,
                     })
                 });
                 let result = await res.json();
                 console.log(result);
-                alert(result.msg);
                 if(result && result.success){
-                    alert(result.msg);
+                    console.log(result.msg);
                     console.log("successful submited applciation");
                 }else if(result && result.success === false){
              
-                    alert(result.msg);
+                    console.log("false"+result.msg);
                 }
             }catch(e){
                 console.log(e);
@@ -95,7 +140,13 @@ function RentHouseDetail(props){
             alert("you need signin to use this function")
         }
     }
+
     if(check) {
+        const conditionalDate =( house.open_house && house.open_house.from_date && house.open_house.to_date)? (<Houseinfo.FeatureText>
+        {house.open_house.from_date?house.open_house.from_date:"No Data"} 
+        {"   "}
+        {house.open_house.to_date?house.open_house.to_date:"No Data"}
+    </Houseinfo.FeatureText>) :<Houseinfo.FeatureText>No Data</Houseinfo.FeatureText>;
         return(
             <>
              <Houseinfo>
@@ -103,53 +154,162 @@ function RentHouseDetail(props){
                         {house_imge}
                     </Houseinfo.ImageBase>
                     <Houseinfo.Base>
-                        <Houseinfo.Title>{house.name}</Houseinfo.Title>
-                        <Houseinfo.Text>Owner_ID : {house.Owner_ID}</Houseinfo.Text>
-                        <Houseinfo.Text>Realtor_ID : {house.Owner_ID}</Houseinfo.Text>
-                        <Houseinfo.Text>property_type : {house.property_type}</Houseinfo.Text>
-                        <Houseinfo.Text>Rate : {house.rate ? house.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}</Houseinfo.Text>
-                        <Houseinfo.Text>year : {house.year_built}</Houseinfo.Text>
-                        <Houseinfo.Text>location : {house.city+" "+house.street+" "+house.street_num+" "+house.state}</Houseinfo.Text>
-                        <Houseinfo.Text>zip : {house.zip}</Houseinfo.Text>
-                        <Houseinfo.Text>area : {house.area}</Houseinfo.Text>
-                        <Houseinfo.Text>parking : {house.parking}</Houseinfo.Text>
-                        <Houseinfo.Text>flooring : {house.flooring}</Houseinfo.Text>
-                        <Houseinfo.Text>available : {house.available_date}</Houseinfo.Text>
-                        <Houseinfo.Button to={'#'} toggleDisplay={toggleDisplay}>Application</Houseinfo.Button>
+                        <Houseinfo.TextControl>
+                        <Houseinfo.Title><p style={{display:"inline", color: "#ff8286"}}> {house.property_type} </p>For Rent</Houseinfo.Title>
+                        
+                        <Houseinfo.Price>
+                            {house.rate ? house.rate.toLocaleString("en-US", {style: "currency", currency: "USD"}):null} 
+                            <Houseinfo.Bath> <Houseinfo.BathInfo> {house.bathroom}</Houseinfo.BathInfo> bds</Houseinfo.Bath>
+                            <Houseinfo.Bath> <Houseinfo.BathInfo> {house.bathroom} </Houseinfo.BathInfo> ba</Houseinfo.Bath>
+                            <Houseinfo.Area> <Houseinfo.BathInfo> {house.area} </Houseinfo.BathInfo> sqft</Houseinfo.Area>
+                        </Houseinfo.Price>
+
+            
+                        <Houseinfo.Text>{house.street+" " + house.city+" "+house.state + " "+ house.zip}</Houseinfo.Text>
+                        </Houseinfo.TextControl>
+                        <Houseinfo.FeatureTitle>Facts and Features</Houseinfo.FeatureTitle>
+                        <Houseinfo.FeatureContainer>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                    <i className="fas fa-home"></i>
+                                </Houseinfo.FeatureIcon>
+                                    Type 
+                                    <Houseinfo.FeatureText >
+                                        {house.property_type?house.property_type:"No Data"}
+                                        </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase>
+                                <Houseinfo.FeatureIcon>
+                                    <i className="far fa-building"></i> 
+                                    </Houseinfo.FeatureIcon>
+                                    Year built
+                                    <Houseinfo.FeatureText>
+                                        {house.year_built?house.year_built:"No Data"}
+                                    </Houseinfo.FeatureText> 
+                                </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                    <i className="fas fa-temperature-high"></i>  
+                                    </Houseinfo.FeatureIcon>
+                                    Available
+                                <Houseinfo.FeatureText>
+                                    {house.available_date?house.available_date.substring(0, 10):"No Data"}
+                                </Houseinfo.FeatureText> 
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                    <i className="fas fa-parking"></i>
+                                    </Houseinfo.FeatureIcon>
+                                 Parking 
+                                <Houseinfo.FeatureText>
+                                    {house.parking===1?"Open":"Close"} Parking
+                                    </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                <i className="fas fa-temperature-low"></i>
+                                </Houseinfo.FeatureIcon>
+                                 Term 
+                                <Houseinfo.FeatureText>
+                                    {house.lease_term?house.lease_term+" months":"No Data"}
+                                    </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase> 
+                                <Houseinfo.FeatureIcon>
+                                <i className="fas fa-grip-lines"></i>
+                                </Houseinfo.FeatureIcon>Flooring 
+                                <Houseinfo.FeatureText>
+                                    {house.flooring?house.flooring:"No Data"}
+                                    </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+
+                            <Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureIcon>
+                                <i className="fas fa-dollar-sign"></i>
+                                </Houseinfo.FeatureIcon> Deposite 
+                                <Houseinfo.FeatureText>
+                                    {house.security_deposit ? house.security_deposit.toLocaleString("en-US", {style: "currency", currency: "USD"}):null}                                </Houseinfo.FeatureText>
+                            </Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureBase>
+                            <Houseinfo.FeatureIcon>
+                                <i className="far fa-calendar-alt"></i>
+                                </Houseinfo.FeatureIcon> Open Visit
+                            </Houseinfo.FeatureBase>
+                        </Houseinfo.FeatureContainer>
+                        <Row style={{margin: "auto"}}>
+                            <Col>
+                                <Houseinfo.Button to={'#'} toggleDisplay={toggleDisplay}>Application</Houseinfo.Button>
+                            </Col>
+                            <Col>
+                            <   Houseinfo.Button to={'#'} toggleDisplay={toggleVisitDisplay}>Visit</Houseinfo.Button>
+                            </Col>
+                        </Row>
                     </Houseinfo.Base>
                 </Houseinfo>
             <Application display = {display} >
                 
                
             </Application>
-            <Application.Base display = {display}>
-                        <Application.Close toggleDisplay={toggleDisplay}><i className="far fa-window-close"></i></Application.Close>
-                        <Application.InputArea onSubmit={handleApplication} method="POST">
-                            <Application.Title>Application Form</Application.Title>
-                            <Application.Input  
-                                placeholder="Name"
-                                value={name}
-                                onChange={({ target }) => setName(target.value)}>
-                            </Application.Input>
-                            <Application.Input
-                                 placeholder="Credit Score"
-                                 value={credit}
-                                 onChange={({ target }) => setCredit(target.value)}>
-                            </Application.Input>
-                            <Application.Input
-                                 placeholder="Employer Information"
-                                 value={employer}
-                                 onChange={({ target }) => setEmployer(target.value)}>
-                            </Application.Input>
-                            <Application.Input
-                                 placeholder="Annual Income"
-                                 value={income}
-                                 onChange={({ target }) => setIncome(target.value)}>
-                            </Application.Input>
 
-                            {/* <Application.Submit disabled={isInvalid} onclick={toggleDisplay}>Submit</Application.Submit> */}
+            <Application.Base display = {display}>
+                <Application.Close toggleDisplay={toggleDisplay}><i className="far fa-window-close"></i></Application.Close>
+                <Application.Title>Application Form</Application.Title>
+                <Application.InputArea onSubmit={handleApplication} method="POST" Scroll ="hidden">
+                    <Application.Input  
+                        placeholder="Name"
+                        value={name}
+                        onChange={({ target }) => setName(target.value)}>
+                    </Application.Input>
+                    <Application.Input
+                            placeholder="Credit Score"
+                            value={credit}
+                            onChange={({ target }) => setCredit(target.value)}>
+                    </Application.Input>
+                    <Application.Input
+                            placeholder="Employer"
+                            value={employer}
+                            onChange={({ target }) => setEmployer(target.value)}>
+                    </Application.Input>
+                    <Application.Input
+                            placeholder="Annual Income"
+                            value={salary}
+                            onChange={({ target }) => setSalary(target.value)}>
+                    </Application.Input>
+
+                    <Application.Submit disabled={isInvalid} onclick={toggleDisplay}>Submit</Application.Submit>
+                </Application.InputArea>
+            </Application.Base> 
+
+            <Application display = {visitDisplay} >
+                
+               
+            </Application>
+
+            <Application.Base display = {visitDisplay}>
+                <Application.Close toggleDisplay={toggleVisitDisplay}><i className="far fa-window-close"></i></Application.Close>
+                <Application.Title>Schedule Visit Form</Application.Title>
+                        <Application.InputArea onSubmit={handleVisit} method="POST" Scroll = "scroll">
+                        
+                            <Application.InputField>
+                                <Application.Text>Start Date</Application.Text>
+                                <Application.Input  
+                                    type = "date"
+                                    defaultValue ={startDate}
+                                    onChange={({ target }) => setStartDate(target.value)}/> 
+                           </Application.InputField>
+ 
+                           <Application.InputField>
+                                <Application.Text>End Date</Application.Text>
+                                <Application.Input  
+                                    type = "date"
+                                    defaultValue ={endDate}
+                                    onChange={({ target }) => setEndDate(target.value)}/> 
+                           </Application.InputField>
+                           <Application.Submit  disabled={VisitIsInvalid} onclick={toggleVisitDisplay}>Submit</Application.Submit>
+                            
                         </Application.InputArea>
-                </Application.Base>  
+                      
+                </Application.Base>       
           </>
         )
     }

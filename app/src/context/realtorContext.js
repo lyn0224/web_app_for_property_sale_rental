@@ -1,6 +1,6 @@
 import React, {useState, createContext, Component, useEffect } from 'react';
 
-const Context = React.createContext()
+const RealtorContext = React.createContext()
 function RealtorProvider({children}) {
 
     const [realtors,setRealtors] = useState()
@@ -42,15 +42,15 @@ function RealtorProvider({children}) {
 
     return (
         <>
-        <Context.Provider  value={{
+        <RealtorContext.Provider  value={{
             realtors, find_result, search, find_name
             }}>
             {children}
-        </Context.Provider>
+        </RealtorContext.Provider>
         </>
     )
 }
 
 
 
-export{RealtorProvider, Context}
+export{RealtorProvider, RealtorContext}

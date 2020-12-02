@@ -11,7 +11,8 @@ function HeaderContainer(props){
     const {user,logout} = useContext(Context);
     const conditionalRentals = (user === null || user.role ==="A" )? null: (<Header.Link to = {ROUTES.RENT_POST}>Manage Rentals</Header.Link>);
     const conditionalSignin = user === null ? (<Header.Link to = {ROUTES.SIGN_IN}>Sign in</Header.Link>):
-            (<Header.Group>
+
+        (<Header.Group>
             <Header.Profile>
             <Header.Link to ='#'>{user.username}</Header.Link>
 
@@ -80,13 +81,16 @@ function HeaderContainer(props){
                 </>
     )
     const samll_conditionalAdmin = (user!==null && user.role =="A") ? <Header.Group> <Header.TextLink to = {ROUTES.HELP} onClick ={toggleMenu}>Admin</Header.TextLink> </Header.Group> : null;
-        return(
+    const conditionalRent = user === null ? null : (<Header.Link to = {ROUTES.SELL}>Sell</Header.Link>);
+
+    return(
         <Header>
             <Header.Frame>
                 <Header.LeftPanel>
                     <Header.Link to = {ROUTES.BUY}>Buy</Header.Link>
                     <Header.Link to = {ROUTES.RENT}>Rent</Header.Link>
-                    <Header.Link to = {ROUTES.SELL}>Sell</Header.Link>
+                    {/* <Header.Link to = {ROUTES.SELL}>Sell</Header.Link> */}
+                    {conditionalRent}
                     <Header.Link to = {ROUTES.AGENT_FINDER}>Agent finder</Header.Link>
                 </Header.LeftPanel>
                 

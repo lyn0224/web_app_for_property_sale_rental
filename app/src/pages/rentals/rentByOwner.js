@@ -4,8 +4,11 @@ import {Row} from "react-bootstrap"
 import ItemAdd from "../../components/itemAdd"
 import axios from 'axios';
 // import rentNavbar from '../../containers/rentNav'
-
+import { RealtorContext } from '../../context/realtorContext';
+ 
 function RentByOwner() {
+    const {realtors} = useContext(RealtorContext)
+
     const [sellID, setSellID] = useState('');
     const [ownerID, setOwnerID] = useState('');
     const [realtorID, setRealtorID] = useState('');
@@ -37,15 +40,6 @@ function RentByOwner() {
 
     const user = JSON.parse(localStorage.getItem('authUser'));
  
-    useEffect(()=>{
-        if(data){
-            console.log("i am here");
-        }
-        console.log("effect main", mainPictures);
-        console.log("effect other", otherPictures);
-        // setPictures(formData);
-    },[data])
-
     const createItem= async(newItem) => {
         console.log(error);
         console.log(newItem);
@@ -54,6 +48,17 @@ function RentByOwner() {
         setData(newItem);
         setInfo(true);
     }
+    useEffect(()=>{
+        if(data){
+            console.log("i am here");
+        }
+        console.log("effect main", mainPictures);
+        console.log("effect other", otherPictures);
+        // setPictures(formData);
+        console.log("this is realtor id", realtorID);
+    },[data, realtorID])
+
+
     
     function handleSubmit(){
         const formData = new FormData();
@@ -64,7 +69,7 @@ function RentByOwner() {
         });
 
         formData.append('Owner_ID', user.id);
-        formData.append('Realtor_ID', 1);
+        formData.append('Realtor_ID', realtorID);
         formData.append('property_type', propertyType);
         formData.append('apt_num', aptNum);
         formData.append('street', streetAddress);
@@ -116,6 +121,20 @@ function RentByOwner() {
 
     const isInvalid = mainPictures === '' || otherPictures === '' || available === '' || rate === '' || term === '' || deposite === '' || ammenities === '' || description === '' || propertyType === '' || streetAddress === '' || city === '' || zipCode === '' || bed === '' || bath === '' || area === '' || floor === '' || living === '' || year === '' || parking === '' || states === '';
 
+    const getUnique = (items, value) => {
+        return [...new Set(items.map(item => item[value]))];
+    };
+
+    let agents = [];
+    // //get unique types
+    if(realtors){
+        agents = getUnique(realtors, 'Fname');
+        agents = ['Realtor', ...agents];
+        agents = agents.map((item, index) => {
+            return <Form.Option value={index} key={index}>{item}</Form.Option>
+        });
+    }
+
     if(info){
         return (
             <>
@@ -134,6 +153,9 @@ function RentByOwner() {
                         <Form.Option 
                             value="Apartment"
                             >Apartment</Form.Option>
+                    </Form.Select>
+                    <Form.Select onChange={({ target }) => setRealtorID(target.value)}>
+                        {agents}
                     </Form.Select>
                     <Form.Input
                         placeholder="Street Address"
@@ -289,7 +311,7 @@ function RentByOwner() {
         )
     }else{
         return(
-            <ItemAdd maxCount="6" type="Main" key="1" createItem={createItem} />
+            <ItemAdd maxCount="6" type="Rent" key="1" createItem={createItem} />
         )
     }
 }

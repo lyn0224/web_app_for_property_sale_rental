@@ -75,7 +75,7 @@ export default function RentFilterBar() {
         availables = ["in one month", "in three months", "in six months"]
         availables = ['all', ...availables];
         availables = availables.map((item, index) => {
-            return <option value={item} key={index}>{item}</option>
+            return <option value={item} key={index}>{item}+</option>
         });
     }
 

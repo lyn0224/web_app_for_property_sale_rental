@@ -53,7 +53,7 @@ function Listing() {
                 },
                 body: JSON.stringify({
                     ID: user.id,
-                    role: user.role
+                    role: user.a_type
                 })
             }).then(res => res.json()).then(result=>{
                 setListing(result.dataset)

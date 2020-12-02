@@ -112,6 +112,9 @@ function HousesProvider({children}) {
             if(bath !== "any+"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
+            if(year !== "all"){
+                tempHouses = tempHouses.filter(house=>house.year >= year);
+            }
             console.log("after bath",tempHouses);
             tempHouses = tempHouses.filter(house=>house.price <= maxPrice && house.price >= minPrice)
             console.log("after prices",tempHouses);
