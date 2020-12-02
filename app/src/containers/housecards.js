@@ -10,8 +10,8 @@ function Housecards({props}){
     
     console.log(houses)
     function singlecard(obj,favorite){
-
-        const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite} house = {obj}/>:<Housecard.notFavorite addFavorite={addFavorite} house = {obj}/>
+        const type = "S"
+        const icon = favorite?<Housecard.Favorite removeFavorite ={removeFavorite} house = {obj} type = {type}/>:<Housecard.notFavorite addFavorite={addFavorite} house = {obj}/>
             
         return (
         
@@ -78,7 +78,19 @@ function Housecards({props}){
                 </div>
             )
         }else if(search.length !== 0){
-        const  cards = search.map(house=>singlecard(house));
+
+            const  cards = search.map(house=>{
+                if(favorite!==undefined && favorite){
+                    const checkFavorite = favorite.find(item=>item.properity_id === house.S_ID)
+                    console.log(checkFavorite)
+                    const A = checkFavorite? true : false;
+                   return singlecard(house,A)
+                }else{
+                    const C = false;
+                    return singlecard(house,C)
+                }
+                
+            });
             return(
                 <>
                 
@@ -90,7 +102,12 @@ function Housecards({props}){
         }
     }else{
         return(
-           <Loading/>
+            <div style={{textAlign:"center"}}>
+            
+
+                <Housecard.Error>No Data in Data Base</Housecard.Error>
+
+            </div>
         )
     }
    
