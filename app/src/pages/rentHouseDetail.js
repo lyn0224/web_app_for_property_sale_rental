@@ -19,8 +19,8 @@ function RentHouseDetail(props){
     const [visitDisplay,setVisitDisplay] = useState("none")
     const [name,setName]= useState('')
     const [credit, setCredit]= useState('')
-    const [employer, setEmployer] = useState()
-    const [salary, setSalary] = useState()
+    const [employer, setEmployer] = useState('')
+    const [salary, setSalary] = useState('')
 
     // const Rent_Applicaiton_URL = `${DB}/rentRequest`
     const user = JSON.parse(localStorage.getItem('authUser'));
@@ -29,7 +29,7 @@ function RentHouseDetail(props){
     const VisitIsInvalid = (startDate === undefined||startDate === '') | (endDate === undefined||endDate === '');
 
 
-    const isInvalid =  name === '' || credit === '' || employer === '' || salary === '';
+    const isInvalid = name === '' || credit === '' || employer === '' || salary === '';
     useEffect(()=>{
         if(rentHouses !== undefined){
             const temp_id = parseInt(id);
