@@ -42,6 +42,7 @@
     - show the favorite search list && delete the list
     - find all agent from the agent table
     - find agent by zipcode/name
+    - fix mini bugs in database
     
 # Link to your team's Google Sprint Task Sheet
     Link: https://docs.google.com/spreadsheets/d/10t7nQZ7mw0GsuoKvn8TLyeAO8zWAKiNflflNgLXNAtk/edit#gid=1730128268
