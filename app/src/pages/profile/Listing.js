@@ -16,8 +16,7 @@ function Listing() {
     const Delete_URL = `${DB}/deleteForSale`
     const OpenHouse_URL = `${DB}/openHouse`
     const Search_URL = `${DB}/house`;
-    const Application_URL = `${DB}/users/${user.id}/forSaleListing`
-    const [check,setCheck] = useState(false)      
+    const Application_URL = `${DB}/users/${user.id}/forSaleListing` 
 
     const [PropertyType,setPropertyType]= useState('')
     const [apart_number,setApart_number]= useState('')
@@ -33,8 +32,8 @@ function Listing() {
     const [Year,setYear] = useState()
     const [Area,setArea] = useState()
     const [Description,setDescription] = useState()
-    const [setPic_dir] = useState()
-    const [setMain_dir] = useState()
+    const [Pic_dir,setPic_dir] = useState()
+    const [Main_dir,setMain_dir] = useState()
     const [Flooring,setFlooring] = useState()
     
     const [startDate, setStartDate] = useState()
@@ -62,8 +61,10 @@ function Listing() {
             console.log(e);
         }
    
-},[check])
-
+},[])
+    function refreshPage() {
+        window.location.reload(false);
+    }
     function toggleDisplay(id){
         if(display === "none")
             {
@@ -113,7 +114,9 @@ function Listing() {
             console.log(result);
             if(result && result.success){
                 console.log("successful delete list");
-                setCheck(!check)
+    
+                refreshPage()
+               
             }else if(result && result.success === false){
                 
                 alert(result.msg);
@@ -124,6 +127,7 @@ function Listing() {
   
         }
         fetch(Search_URL).then(response=>response.json()).then(result=>setHouses(result.dataset))
+       
     }
     
     async function handleUpdate (event){
@@ -151,6 +155,8 @@ function Listing() {
                         state : State,
                         street : Street,
                         year : Year,
+                        pic_dir:Pic_dir,
+                        main_dir:Main_dir,
                         zip:Zip,
                         S_ID: ID,
                         description:Description,
@@ -162,7 +168,8 @@ function Listing() {
        
                 if(result && result.success){
                     console.log("successful submited updated");
-                    setCheck(!check)
+             
+                    refreshPage()
                 }else if(result && result.success === false){
              
                     alert(result.msg);
@@ -207,7 +214,7 @@ function Listing() {
        
                 if(result && result.success){
                     console.log("successful submited OpenHouse");
-                    setCheck(!check)
+                    refreshPage()
                 }else if(result && result.success === false){
              
                     console.log(result.msg);

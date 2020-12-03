@@ -48,6 +48,15 @@ export const ListingButton = styled.button`
                 margin: 0 0.5rem;
                 margin-bottom: 1rem;
         }
+
+        &:hover {background-color:#8abdff}
+
+        &:active {
+      background-color: #8abdff;
+      box-shadow: 0 5px #948e8e;
+      transform: translateY(4px);
+    }
+
 `
 
 export const Title = styled.p`

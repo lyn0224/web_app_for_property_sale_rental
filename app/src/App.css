@@ -8,9 +8,12 @@
     margin-bottom: 20px;
 }
 .filter-container {
+
+  flex-direction: column;
   width: 25vw;
   height: calc(100vh - 90px);
   padding: 1rem 0;
+
   /* overflow: scroll;
   overflow-x: hidden; */
 }
@@ -102,4 +105,27 @@ button.disable{
     align-items: center;
     margin: 0 2rem;
   }
+}
+
+.filter-button{
+    background: #e50914;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 85px;
+    padding: 0.75rem 1rem;
+    width:150px;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    outline:none;
+    
+}
+
+.filter-button:hover {background-color: #ff8c92}
+
+.filter-button:active {
+  background-color: #ff8c92;
+  box-shadow: 0 5px #ff8c92;
+  transform: translateY(4px);
 }
