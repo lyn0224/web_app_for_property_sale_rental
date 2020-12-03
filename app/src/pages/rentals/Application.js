@@ -46,12 +46,19 @@ function Application(){
                 })
             }).then(res => res.json()).then(result=>{
                 setApplciaitons(result.dataset)
+                console.log("reject");
+                console.log(result);
+                refreshPage()
              
             })
         }catch(e){
             console.log(e);
         }
     }
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
     async function Contact(property_id,buyer_name){
         try{
             fetch(Rent_Contact_URL, {
@@ -67,6 +74,8 @@ function Application(){
                 })
             }).then(res => res.json()).then(result=>{
                 setApplciaitons(result.dataset)
+                console.log(result);
+                refreshPage()
              
             })
         }catch(e){
