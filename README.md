@@ -14,6 +14,7 @@
     Ruichun Chen: Sell Page, Rent Page, Rent Application Page, Rent Visit Page, Rent Listing Page, Rent Filter Bar, Sale Filter Bar, Save Search, Sale Lisitng Page, Manage     Rentals Page, Realtor Page, Realtor Detail Page, Search Realtor Page, Admin Page, 
     Dongmei Yin:
     -	Backend design & coding with Express js
+    -   System architecture diagram
         o	Login function
         o	Buy/Rent page data retrieval
         o	Approve/Reject/Remove users for admin
