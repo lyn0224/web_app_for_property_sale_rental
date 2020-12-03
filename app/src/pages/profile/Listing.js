@@ -4,8 +4,10 @@ import DefaultImg from '../../img/homeicon.png'
 import * as ROUTES from '../../constants/routes'
 import {Context} from "../../context/housesContext"
 import {DB} from '../../constants/DB'
+
 function Listing() {
     const {setHouses} = useContext(Context)
+    
     const user = JSON.parse(localStorage.getItem('authUser'))
  
     const [Listing, setListing] = useState()
@@ -39,7 +41,7 @@ function Listing() {
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
 
-    const isInvalid = apart_number=== ''|State === ''| Livingroom === ''|Area === ''| Street === ''| Zip === '' |City === ''|Price === ''| Bedroom === ''| Parking===''|Description===''; 
+    const isInvalid = State === ''| Livingroom === ''|Area === ''| Street === ''| Zip === '' |City === ''|Price === ''| Bedroom === ''| Parking===''|Description===''; 
 
     const OpenisInvalid = (startDate === undefined||startDate === '') | (endDate === undefined||endDate === '');
     useEffect( ()=>{
@@ -159,7 +161,7 @@ function Listing() {
                         main_dir:Main_dir,
                         zip:Zip,
                         S_ID: ID,
-                        description:Description,
+                        description: Description,
                         status:"A"
                     })
                 });
