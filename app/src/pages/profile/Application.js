@@ -9,8 +9,12 @@ function Application(){
     const Contact_URL = `${DB}/approveBuy`
     const Reject_URL = `${DB}/rejectBuy`
     const [Applications, setApplciaitons] = useState()
-    const [check,setCheck] = useState(false) 
+
     // console.log(user)
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
     useEffect( ()=>{
             try{
                 fetch(Application_URL, {
@@ -31,7 +35,7 @@ function Application(){
                 console.log(e);
             }
        
-    },[check])
+    },[])
     async function Reject(property_id,buyer_name,Buyer_ID   ){
         try{
             fetch(Reject_URL, {
@@ -49,7 +53,7 @@ function Application(){
                 setApplciaitons(result.dataset)
                 console.log("reject");
                 console.log(result);
-                setCheck(!check)
+                refreshPage()
             })
         }catch(e){
             console.log(e);
@@ -71,7 +75,7 @@ function Application(){
             }).then(res => res.json()).then(result=>{
                 setApplciaitons(result.dataset)
                 console.log(result);
-                setCheck(!check)
+                refreshPage()
             })
         }catch(e){
             console.log(e);

@@ -181,7 +181,7 @@ export default function FilterBar(props) {
                     </div>
                 </div>
             </form>
-            <button style={{width: "100px", height: "30px", fontSize: "13px", marginLeft: "100px"}} onClick={()=>handleSave(props.search_type)}>Save Search</button>
+            <button className = "filter-button"  onClick={()=>handleSave(props.search_type)}>Save Search</button>
         </section>
     )
 }

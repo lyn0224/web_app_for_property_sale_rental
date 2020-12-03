@@ -13,7 +13,7 @@ function RentProvider({children}) {
     const [maxRate, setMaxRate] = useState(10000);
     const [minSize, setMinSize] = useState(0);
     const [maxSize, setMaxSize] = useState(3000);
-    const [available] = useState()
+
     const [flooring, setFlooring] = useState('all')
     const [year, setYear] = useState('all')
 
@@ -41,7 +41,7 @@ function RentProvider({children}) {
                 console.log(e);
             }
        }
-    },[types, bed, bath, parking, minRate, maxRate, flooring, minSize, maxSize, available])
+    },[types, bed, bath, parking, minRate, maxRate, flooring, minSize, maxSize])
 
 
     function find_result(input){

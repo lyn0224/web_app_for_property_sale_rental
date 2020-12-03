@@ -157,6 +157,14 @@ export const Submit = styled.button`
     &:disabled {
         opacity: 0.5;
     }
+
+    &:hover {background-color: #ff8c92}
+
+    &:active {
+  background-color: #ff8c92;
+  box-shadow: 0 5px #948e8e;
+  transform: translateY(4px);
+}
     
 `;
 export const Close = styled.div`

@@ -11,7 +11,7 @@ export const Container = styled.div`
  
         padding:1rem;
         @media (min-width: 1800px) {
-                grid-template-columns: repeat(3, minmax(490px,250px));
+                grid-template-columns: repeat(3, minmax(510px,250px));
             }
         @media (max-width: 800px) {
                 grid-template-columns: repeat(1, minmax(350px,200px));
