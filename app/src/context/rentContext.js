@@ -22,7 +22,9 @@ function RentProvider({children}) {
 
     const user = JSON.parse(localStorage.getItem('authUser'));
     const [favorite_search_list,setFavorite_search_list] = useState()
-
+    function refreshPage() {
+        window.location.reload(false);
+      }
     useEffect( ()=>{
         fetch(Rent_Search_URL).then(response=>response.json()).then(result=>setRentHouses(result.dataset))
         
@@ -158,7 +160,7 @@ function RentProvider({children}) {
             }catch(e){
                 console.log(e);
             }
-            fetch(`${DB}/api/favorite/mine?id=${user.id}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
+            refreshPage()
         }else{
             alert("Please sign in to save search")
         }

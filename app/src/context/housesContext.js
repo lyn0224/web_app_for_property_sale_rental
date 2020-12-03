@@ -149,7 +149,7 @@ function HousesProvider({children}) {
             }catch(e){
                 console.log(e);
             }
-            fetch(`${DB}/api/favorite/mine?id=${user.id}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list))
+            refreshPage()
         }else{
             alert("Please sign in to save search")
         }
@@ -195,12 +195,36 @@ function HousesProvider({children}) {
         alert("Please sign in to remove favorite house")
     }
     }
-
+    function refreshPage() {
+        window.location.reload(false);
+      }
     async function deleteFavorite_Search(obj){
         if(user){
-        fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>console.log(result)).catch(e=>console.log(e))
-
-        fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list)).catch(e=>console.log(e))
+            console.log(obj.ID)
+            try{
+                let res = await fetch(`${DB}/api/favorite/search?ID=${obj.ID}`, {
+                    method: 'delete',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                   
+                });
+                let result = await res.json();
+                // console.log(result);
+                if(result && result.success){
+                    console.log("successful delete from favorite search");
+                    // console.log(result)
+                    refreshPage()
+                    
+                }else if(result && result.success === false){
+                    alert(result.msg);
+                }
+            }catch(e){
+                console.log(e);
+            }
+        
+        
         }
         else{
             alert("Please sign in to delete saved search")

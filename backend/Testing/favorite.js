@@ -140,8 +140,10 @@ class FavoriteRouter {
      * @memberof FavoriteRouter
      */
     async searchDelete(db, req) {
+      console.log("query", req.query);
       const { ID } = req.query;
-      if (ID) {
+      console.log("ID", ID);
+      if (ID=='' || ID == undefined) {
         throw Error('id need to be filled');
       }
       let sql = `delete from favorite_search where ID = ${ID}`;

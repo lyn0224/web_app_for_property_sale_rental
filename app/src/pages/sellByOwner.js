@@ -71,7 +71,7 @@ function SellByOwner() {
         });
 
         formData.append('owner', user.id);
-        formData.append('realtor', realtorID);
+        formData.append('Realtor_ID', realtorID);
         formData.append('p_type', propertyType);
         formData.append('apt_num', aptNum);
         formData.append('street', streetAddress);
