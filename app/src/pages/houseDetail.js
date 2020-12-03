@@ -23,9 +23,14 @@ function HouseDetail(props){
     const Applicaiton_URL = `${DB}/buyRequest`
 
     useEffect(()=>{
+        
         if(houses !== undefined){
+    
+            const temp_id = parseInt(id);
+            
             houses.map(list=>{
-                if(list.S_ID === id){
+    
+                if(list.S_ID === temp_id){
                     setHouse(list)
                 }else{
 
@@ -41,6 +46,7 @@ function HouseDetail(props){
             setCheck(false)
         }
     })
+    console.log(house)
     function toggleDisplay(){
         if(display === "none")
             setDisplay("display")
