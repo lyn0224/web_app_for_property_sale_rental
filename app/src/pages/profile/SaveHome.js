@@ -9,18 +9,20 @@ import Loading from "../../containers/LoadingContainer"
 
 function SaveHome(prop) {
     const {houses,favorite,removeFavorite} = useContext(Context);
-    const {rentHouses,rentFavorite} = useContext(RentContext);
+    const {rentHouses,rentFavorite,removeRentFavorite} = useContext(RentContext);
     // const {houses, setHouses} = useState();
 
     function singlecard(obj,type){
         console.log("type",type)
-        const icon = <Housecard.Favorite removeFavorite ={removeFavorite} house = {obj} type = {type}/> 
+        const conditional_Remove_Favorite_Function = type === "S"? removeFavorite: removeRentFavorite;
+        const IMAGE_LINK = `${type ==="S"?ROUTES.BUY:ROUTES.RENT}/${type ==="S"?obj.S_ID:obj.R_ID}`
+        const icon = <Housecard.Favorite removeFavorite ={conditional_Remove_Favorite_Function} house = {obj} type = {type}/> 
         return (
-            <Housecard.Base key = {obj.S_ID} >  
+            <Housecard.Base key = {type ==="S"?obj.S_ID:obj.R_ID} >  
                 <Housecard.ImageContainer> 
                     {icon}
                     </Housecard.ImageContainer> 
-            <Housecard.Link to = {`${ROUTES.BUY}/${obj.S_ID}` }>
+            <Housecard.Link to = {IMAGE_LINK }>
             
                 {/* <Housecard.img src = {obj.pic_dir? obj.pic_dir:DefaultImg} alt ="#"/> */}
                 <Housecard.Content>

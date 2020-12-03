@@ -32,8 +32,9 @@ function RentHouseDetail(props){
     const isInvalid =  name === '' || credit === '' || employer === '' || salary === '';
     useEffect(()=>{
         if(rentHouses !== undefined){
+            const temp_id = parseInt(id);
             rentHouses.map(list=>{
-                if(list.R_ID === id){
+                if(list.R_ID === temp_id){
                     setHouse(list)
                 }else{
 
