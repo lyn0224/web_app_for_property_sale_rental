@@ -11,7 +11,7 @@
     
 # A summary of areas of contributions (for each team member)
     An Bo:
-    Ruichun Chen:
+    Ruichun Chen: Sell Page, Rent Page, Rent Application Page, Rent Visit Page, Rent Listing Page, Rent Filter Bar, Sale Filter Bar, Save Search, Sale Lisitng Page, Manage Rentals Page, Realtor Page, Realtor Detail Page, Search Realtor Page, Admin Page, 
     Dongmei Yin:
     Weichao Liang:
     
