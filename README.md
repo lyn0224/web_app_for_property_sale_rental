@@ -26,19 +26,19 @@
 </p>
 
 # some npm install command:
-    backend:\
-        npm i bcrypt\
-        npm i body-parser\
-        npm i jsonwebtoken\
-        npm i nodemon\
-        npm i multer --save\
-        npm i nodemailer --save\
-    frontend:\
-        npm install react-icons --save\
-        npm i google-maps-react\
-        npm install react-bootstrap bootstrap\
-        npm i contentful\
-    clean git log:\
+    backend:
+        npm i bcrypt
+        npm i body-parser
+        npm i jsonwebtoken
+        npm i nodemon
+        npm i multer --save
+        npm i nodemailer --save
+    frontend:
+        npm install react-icons --save
+        npm i google-maps-react
+        npm install react-bootstrap bootstrap
+        npm i contentful
+    clean git log:
         git reset --hard
 
 ## How to start the project
