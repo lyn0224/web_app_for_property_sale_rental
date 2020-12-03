@@ -2,7 +2,7 @@ class FavoriteRouter {
 
     // execute sql 
     async execSQL(db, sql) {
-      console.log('sql :', sql);
+      //console.log('sql :', sql);
       return new Promise((resolve, reject) => {
         db.query(sql, (err, rows, fields) => {
           if (err) {
@@ -42,7 +42,7 @@ class FavoriteRouter {
      * @memberof FavoriteRouter
      */
     async homeList(db, req) {
-      console.log("req.query", req.query)
+      //console.log("req.query", req.query)
       const { id } = req.query;
       if (!id) {
         throw Error('user id need to be filled');
