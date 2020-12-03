@@ -164,44 +164,6 @@ function RentProvider({children}) {
         }
     }
 
-    // async function removeRentFavorite(rentHouse){
-    //     try{
-    //         let res = await fetch(Rent_Favorite_URL, {
-    //             method: 'delete',
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 U_ID: user.id,
-    //                 home_type :"r", 
-    //                 properity_id:rentHouse.R_ID
-    //             })
-    //         });
-    //         let result = await res.json();
-    //         console.log(result);
-            
-    //         if(result && result.success){
-    //             console.log("successful delete from favorite");
-    //         }else if(result && result.success === false){
-    //             alert(result.msg);
-    //         }
-    //     }catch(e){
-    //         console.log(e);
-    //     }
-    //     // const update = favorite.filter()
-    //     try{
-    //         console.log("favorite");
-    //         fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
-    //             console.log(result);
-    //             let Favorite_List = result.list;
-    //             setRentFavorite(Favorite_List);
-    //         })
-    //     }catch(e){
-    //         console.log(e);
-    //     }
-    // }
-
     async function removeRentFavorite(house,type){
         if(user){
         try{
@@ -231,7 +193,7 @@ function RentProvider({children}) {
         try{
             // console.log("favorite");
             fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
-                console.log(result);
+                console.log("after remove",result);
                 let Favorite_List = result.list;
                 setRentFavorite(Favorite_List);
             })
@@ -243,55 +205,7 @@ function RentProvider({children}) {
     }
     }
 
-    // async function deleteFavorite_Search(obj){
-    //     if(user){
-    //         fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>console.log(result)).catch(e=>console.log(e))
-
-    //         fetch(`${DB}/api/favorite/mine?ID=${obj.ID}`).then(response=>response.json()).then(result=>setFavorite_search_list(result.list)).catch(e=>console.log(e))
-    //     }
-    //     else{
-    //         alert("Please sign in to delete saved search")
-    //     }
-    // }
-
-    // async function addRentFavorite(rentHouse){
-    //     // console.log("rent user", user)
-    //     // console.log("rent house", rentHouse)
-    //     try{
-    //         let res = await fetch(Rent_Favorite_URL, {
-    //             method: 'post',
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 U_ID: user.id,
-    //                 home_type :"r", 
-    //                 properity_id:rentHouse.R_ID,
-    //             })
-    //         });
-    //         let result = await res.json();
-    //         console.log(result);
-    //         if(result && result.success){
-    //             console.log("successful add to favorite");
-    //         }else if(result && result.success === false){
-    //             alert(result.msg);
-    //         }
-    //     }catch(e){
-    //         console.log(e);
-    //     }
-    //     try{
-    //         console.log("favorite");
-    //         fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
-    //             console.log(result);
-    //             let Favorite_List = result.list;
-    //             setRentFavorite(Favorite_List);
-    //         })
-    //     }catch(e){
-    //         console.log(e);
-    //     }
-    //     console.log("this is favorite", rentFavorite)
-    // }
+   
 
     async function addRentFavorite(house){
         // console.log(user)
@@ -322,7 +236,7 @@ function RentProvider({children}) {
         try{
             // console.log("favorite");
             fetch(`${DB}/api/favorite/home?id=${user.id}`).then(res => res.json()).then(result=>{
-                console.log(result);
+                console.log("after add",result);
                 let Favorite_List = result.list;
                 setRentFavorite(Favorite_List);
             })

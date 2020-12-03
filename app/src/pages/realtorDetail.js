@@ -36,8 +36,9 @@ function RealtorDetail(props){
     useEffect(()=>{
         // console.log("this is realtor", realtor, id)
         if(realtors !== undefined){
+            const temp_id = parseInt(id);
             realtors.map(list=>{
-                if(list.U_ID === id){
+                if(list.U_ID === temp_id){
                     setRealtor(list)
                 }else{
 

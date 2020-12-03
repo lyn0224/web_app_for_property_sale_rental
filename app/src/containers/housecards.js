@@ -48,8 +48,10 @@ function Housecards({props}){
     if(houses && !search){
         const  cards = houses.map(house=>{
             if(favorite!==undefined && favorite){
-                const checkFavorite = favorite.find(item=>item.properity_id === house.S_ID)
+                console.log("favorite",favorite)
+                const checkFavorite = favorite.find((item=>(item.properity_id === house.S_ID)&&(item.home_type === "h")))
                 // console.log(checkFavorite)
+         
                 const A = checkFavorite? true : false;
                return singlecard(house,A)
             }else{

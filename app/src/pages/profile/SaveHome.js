@@ -13,7 +13,6 @@ function SaveHome(prop) {
     // const {houses, setHouses} = useState();
 
     function singlecard(obj,type){
-        console.log("type",type)
         const conditional_Remove_Favorite_Function = type === "S"? removeFavorite: removeRentFavorite;
         const IMAGE_LINK = `${type ==="S"?ROUTES.BUY:ROUTES.RENT}/${type ==="S"?obj.S_ID:obj.R_ID}`
         const icon = <Housecard.Favorite removeFavorite ={conditional_Remove_Favorite_Function} house = {obj} type = {type}/> 
@@ -59,7 +58,8 @@ function SaveHome(prop) {
         // console.log("favorite",favorite)
         const cards = houses.map(house=> { 
             if(favorite){
-                const A = favorite.find(index=>house.S_ID === index.properity_id)
+                const A = favorite.find(index=>(house.S_ID === index.properity_id)&&(index.home_type=== "h"))
+                console.log(A)
                 if(A){
                     const B = houses.find(index=>index.S_ID === A.properity_id)
                     return singlecard(B,"S")
@@ -73,7 +73,7 @@ function SaveHome(prop) {
 
         const rentcards = rentHouses.map(house=> { 
             if(rentFavorite){
-                const A = rentFavorite.find(index=>house.R_ID === index.properity_id)
+                const A = rentFavorite.find(index=>(house.R_ID === index.properity_id)&&(index.home_type=== "r"))
                 if(A){
                     const B = rentHouses.find(index=>index.R_ID === A.properity_id)
                     return singlecard(B,"R")
@@ -82,7 +82,8 @@ function SaveHome(prop) {
                 return null;
             }  
         })
-    if(cards[0]!==undefined&&rentcards[0]!==undefined)
+
+    if(typeof cards!= "undefined" && typeof rentcards!="undefined")
       {return(
           <Profile>
               <Profile.Text>
@@ -106,7 +107,7 @@ function SaveHome(prop) {
   }else if(rentHouses){
     const rentcards = rentHouses.map(house=> { 
         if(rentFavorite){
-            const A = rentFavorite.find(index=>house.R_ID === index.properity_id)
+            const A = rentFavorite.find(index=>(house.R_ID === index.properity_id)&&(index.home_type=== "r"))
             if(A){
                 const B = rentHouses.find(index=>index.R_ID === A.properity_id)
                 return singlecard(B,"R")
@@ -142,7 +143,7 @@ function SaveHome(prop) {
   else if(houses){
         const cards = houses.map(house=> { 
           if(favorite){
-                const A = favorite.find(index=>house.S_ID === index.properity_id)
+                const A = favorite.find(index=>(house.S_ID === index.properity_id)&&(index.home_type=== "h"))
                 if(A){
                     const B = houses.find(index=>index.S_ID === A.properity_id)
                     return singlecard(B,"S")

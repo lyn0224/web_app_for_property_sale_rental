@@ -64,7 +64,7 @@ function SellByOwner() {
 
     async function handleSubmit(){
         const formData = new FormData();
-        formData.append('list_type', "rent");
+        formData.append('list_type', "sell");
         formData.append('main', mainPictures);
         data.image.slice(1).forEach(file=>{
             formData.append('others', file);

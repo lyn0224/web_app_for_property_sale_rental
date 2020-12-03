@@ -49,7 +49,7 @@ function RentHousecards({props}){
         const  cards = rentHouses.map(house=>{
             if(rentFavorite!==undefined && rentFavorite){
                 // console.log("rentFavorite",rentFavorite)
-                const checkFavorite = rentFavorite.find(item=>item.properity_id === house.R_ID)
+                const checkFavorite = rentFavorite.find(item=>(item.properity_id === house.R_ID)&&(item.home_type === "r"))
                 // console.log("checkFavorite", checkFavorite)
                 const A = checkFavorite? true : false;
                return singlecard(house, A)
