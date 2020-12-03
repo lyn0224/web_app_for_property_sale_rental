@@ -11,8 +11,23 @@
     
 # A summary of areas of contributions (for each team member)
     An Bo:
-    Ruichun Chen: Sell Page, Rent Page, Rent Application Page, Rent Visit Page, Rent Listing Page, Rent Filter Bar, Sale Filter Bar, Save Search, Sale Lisitng Page, Manage Rentals Page, Realtor Page, Realtor Detail Page, Search Realtor Page, Admin Page, 
+    Ruichun Chen: Sell Page, Rent Page, Rent Application Page, Rent Visit Page, Rent Listing Page, Rent Filter Bar, Sale Filter Bar, Save Search, Sale Lisitng Page, Manage     Rentals Page, Realtor Page, Realtor Detail Page, Search Realtor Page, Admin Page, 
     Dongmei Yin:
+    -	Backend design & coding with Express js
+        o	Login function
+        o	Buy/Rent page data retrieval
+        o	Approve/Reject/Remove users for admin
+        o	Sell/RentOut home listing insertion
+        o	Buy/Rent application insertion & notification email to owner/realtor
+        o	Retrieve/delete/update properties for sale
+        o	Schedule open house
+        o	Retrieve/delete/update properties for rent
+        o	Schedule visit
+        o	Retrieve/approve/reject Buy/Rent applications & send notification email to applicant
+    -	Database design and implementation
+    -	Testing
+    -	Code Deployment onto AWS
+
     Weichao Liang:
     
 # Link to your team's Google Sprint Task Sheet
