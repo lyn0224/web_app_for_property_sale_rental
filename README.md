@@ -10,8 +10,54 @@
     Weichao Liang
     
 # A summary of areas of contributions (for each team member)
-    An Bo:
-    Ruichun Chen: Sell Page, Rent Page, Rent Application Page, Rent Visit Page, Rent Listing Page, Rent Filter Bar, Sale Filter Bar, Save Search, Sale Lisitng Page, Manage     Rentals Page, Realtor Page, Realtor Detail Page, Search Realtor Page, Admin Page, 
+    An Bo: 
+        Designs:
+        -Website UI design
+        -Website css
+        -Responsive UI for whole website
+        -Coding Format
+        -Front end folder structure
+        -Buy(Sale) and Rent Page
+        -Buy(Sale) and Rent Detail Page
+        -Main search
+        -Save Search
+        -Save Favorite
+        -Account Setting page
+        -Sale Lisitng Page
+        -Signin Page
+        -Signup Page
+        -Forms(Application,Update, Open house)
+        
+       Frontend Functions:
+        -PageRoutes
+        -Login
+        -Signin
+        -Update Listing
+        -Delete Listing
+        -Update open house
+        -Add favorite search/house
+        -Remove favorite search/house
+        -Submit buy application
+       Others:
+        -Fix bugs/help others fix bug)
+        -Fix UI issues
+        -Solve github conflicts
+        
+    Ruichun Chen:
+        Sell Page
+        Rent Page, 
+        Rent Application Page, 
+        Rent Visit Page, 
+        Rent Listing Page, 
+        Rent Filter Bar, 
+        Sale Filter Bar,
+        Sale Listing Page,
+        Save Search,
+        Manage Rentals Page, 
+        Realtor Page, 
+        Realtor Detail Page, 
+        Search Realtor Page, 
+        Admin Page, 
     Dongmei Yin:
     -	Backend design & coding with Express js
     -   System architecture diagram
