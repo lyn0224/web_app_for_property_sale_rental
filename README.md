@@ -39,7 +39,7 @@
         -Remove favorite search/house
         -Submit buy application
        Others:
-        -Fix bugs/help others fix bug)
+        -Fix bugs/help others fix bug or issues
         -Fix UI issues
         -Solve github conflicts
         
