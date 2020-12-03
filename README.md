@@ -22,7 +22,7 @@
 </p>
 
 <p>
-    <img src="./app/src/img/sprint_task_sheet.png" width="100%" height="100%" />
+    <img src="./app/src/img/sprint_task_sheet_2.png" width="100%" height="100%" />
 </p>
 
 # some npm install command:
