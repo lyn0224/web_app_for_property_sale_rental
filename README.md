@@ -77,6 +77,96 @@ Agile board => 	Issue board
     Submit an application for the lease, including credit score, employment
     information - an email sent to the Landlord/landlord’s realtor
 
+### Note for each meeting
+## Backlog
+1. Register/Login (user table)
+2. Approve Remove (Admin approve, reject and remove method) (waitlist table)
+3. Search: Sale, Rent(zip, price, sqft...) (sell/rent table)
+4. Favorites: save search (favorite table)
+5. Sell: Add home(home price, sqft,... )(seller, realtor) (sell table)
+6. Buy: application form => email (buy application table)
+7. Rent: Add/Update listing(rent term, type), print/update application (listing table/application table)
+8. Rent: application form (rent application table)
+9. UI
+10.  Unknown
+11. different roles (Admin, User, Realtor) 
+12.  Database
+
+## Scrum 1: 
+    Figure out programming framework
+    Frontend: React 
+    Backend: Express + MySQL
+    Learn & Explore about programming languages
+    Raw database schema & SQL code for db creation
+
+## Scrum 2:
+    Preparing basic knowledge about languages.
+    Build up an overall template.
+
+## Scrum 3 :
+    Frontend: Login.js Signup.js
+    Backend: Main.js(for login and signup validation)
+
+## Scrum 4 :
+    Frontend: 
+        Setup UI
+        Sign up 
+        User page
+        Saved homes(favorite?)
+        Saved searches(favorite)
+        Listings(rent/sell home)
+        Account setting(update profile)(function)
+    Backend: 
+        Rachel for Register
+        (user table) (waitlist table) (sell table) (favorite table) (buy application table) (listing table) (rent application table)
+        Table fields
+
+## Scrum 5 :
+    Frontend: 
+        Buy page with house UI
+        Sell page with sell by owner form
+        Complete User page (favorite, search, listing) 
+        Format data from house list => search(filter by zip code, bath, bed, price etc.)
+        … prepare for filter agent, open house schedule
+    Backend: 
+        Register as realtor → Rachel
+        Admin reject/remove  → lyn
+        Get all house data (buy/rent page) → Lyn
+        Search house
+        by different keywords → Rachel
+        filter home → frontend
+        ...prepare for return favorite(save house) list => favorite table, save search, add listing(sell), 
+
+## Scrum 6 :
+    Frontend: 
+        Rent page with house UI
+        Profile page(listing page, saved home, save search, review application) 
+        Rentals page(post list page, update page, application page) 
+        Agent page 
+        Application page open house schedule
+    Backend: 
+        Search from all sell/rent
+        Save as favorite
+        Sell
+        Upload details of home list 
+        Update status/other details of home list 
+        Remove listing 
+    Schedule open house 
+        Review buyer’s application → approve and reject-
+    Buy
+        Submit application with an offer for the home
+        Email sent to landlord/landlord’s realtor
+    Rent out
+        Upload details of home list
+        Update details of home list (lease term, availability date, security deposit)
+        Remove listing
+        Review renter’s application → approve and reject
+        Schedule visit
+    Rent
+        Submit application for lease (include credit score and employment history)
+        Email sent to landlord/landlord’s realtor
+
+
 #### System Architecture Diagram
 <p>
     <img src="https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/blob/master/SystemArchitecture.PNG" width = "100%" height = "100%" />
@@ -85,6 +175,11 @@ Agile board => 	Issue board
 #### Wireframe Diagram
 <p>
     <img src="./app/src/img/wireframe.jpg" width="100%" height="100%" />
+</p>
+
+#### Wireframe Diagram (Update)
+<p>
+    <img src="./app/src/img/wireframe_2.jpg" width="100%" height="100%" />
 </p>
 
 #### Database Schema Diagram
