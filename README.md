@@ -20,8 +20,8 @@
         -Buy(Sale) and Rent Page
         -Buy(Sale) and Rent Detail Page
         -Main search
-        -Save Search
-        -Save Favorite
+        -Save Search Page
+        -Save Favorite Home Page
         -Account Setting page
         -Sale Lisitng Page
         -Signin Page
