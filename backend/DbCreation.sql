@@ -187,7 +187,7 @@ property_ID           INT           NOT NULL,
 start_time      DATETIME      NOT NULL,
 end_time        DATETIME     NOT NULL,
 PRIMARY KEY(visitor_ID, property_ID),
-FOREIGN KEY(visitor_ID) REFERENCES account(ID)
+FOREIGN KEY(visitor_ID) REFERENCES ACCOUNT(ID)
 					ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (property_ID) REFERENCES FOR_RENT(R_ID)
 					ON UPDATE CASCADE  ON DELETE CASCADE);
