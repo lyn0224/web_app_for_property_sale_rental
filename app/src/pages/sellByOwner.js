@@ -34,32 +34,22 @@ function SellByOwner() {
     const [info,setInfo] = useState(false);
  
     const user = JSON.parse(localStorage.getItem('authUser'));
+
     const createItem= async(newItem) => {
-        // console.log(error);
-        // console.log(newItem);
-        // console.log('PHOTO:', newItem.image);
+        console.log("click")
+        setMainPictures(newItem.image[0])
         setData(newItem);
         setInfo(true);
     }
 
+    useEffect(()=>{
+        if(data){
+            console.log("i am here");
+        }
+    },[data, realtorID])
+
     const Upload_URL = `${DB}/upload`
 
-    useEffect(()=>{
-        console.log("update")
-        if(data){
-            setMainPictures(data.image[0])
-            let array = []
-            data.image.slice(1).forEach(file=>{
-                array.push(file)
-            });
-            setOtherPictures(array);
-        }
-        // setPictures(formData);
-        // console.log("this is realtor id", realtorID);
-    },[data, floor, propertyType, realtorID])
-
-
- 
     const isInvalid = price === '' || mainPictures === '' || otherPictures === '' || propertyType === '' || streetAddress === '' || city === '' || states === '' || zipCode === '' || bed === '' || bath === '' || area === '' || year === '' || description === '' || parking === '' || floor === '' || living === '';
 
     async function handleSubmit(){
@@ -88,14 +78,34 @@ function SellByOwner() {
         formData.append('year', year);
         formData.append('description', description);
         formData.append('status', 'A');
-        // setData(formData)
-        // console.log("formData",formData);
+
+        console.log("owner", formData.get('owner'));
+        console.log("realtor", formData.get('realtor'));
+        console.log("p_type", formData.get('p_type'));
+        console.log("street", formData.get('street'));
+        console.log("city", formData.get('city'));
+        console.log("apt_num", formData.get('apt_num'));
+        console.log("state", formData.get('state'));
+        console.log("zip", formData.get('zip'));
+        console.log("price", formData.get('price'));
+        console.log("bedroom", formData.get('bedroom'));
+        console.log("bathroom", formData.get('bathroom'));
+        console.log("livingroom", formData.get('livingroom'));
+        console.log("flooring", formData.get('flooring'));
+        console.log("parking", formData.get('parking'));
+        console.log("area", formData.get('area'));
+        console.log("year",formData.get('year'));
+        console.log("description",formData.get('description'));
+        console.log("status",formData.get('status'));
+        console.log("main",formData.get('main'));
+        console.log("others",formData.get('others'));
+
         axios({
             method: "POST",
             url: Upload_URL,
             data: formData,
             headers: {
-            "Content-Type": "multipart/form-data"
+                "Content-Type": "multipart/form-data"
             }
         });
     }
@@ -259,7 +269,7 @@ function SellByOwner() {
     }else{
         return(
             <>
-            <ItemAdd maxCount="6" type="Main" createItem={createItem} />
+            <ItemAdd maxCount="6" type="Sell" key="1" createItem={createItem} />
             <Footer/>
             </>
         )

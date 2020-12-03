@@ -41,7 +41,7 @@ function RentProvider({children}) {
                 console.log(e);
             }
        }
-    },[types, bed, bath, parking, minRate, maxRate, flooring, minSize, maxSize])
+    },[types, bed, bath, parking, minRate, maxRate, flooring, minSize, maxSize,year])
 
 
     function find_result(input){
@@ -97,33 +97,34 @@ function RentProvider({children}) {
         if(rentHouses){
             // console.log(types, bath, bed, minRate, maxRate, minSize, maxSize, parking, flooring, available, year);
             let tempHouses = [...rentHouses];
-            // console.log("before filter",tempHouses);
+            console.log("before filter",tempHouses);
             if(types !== "all"){
                 tempHouses = tempHouses.filter(house => house.property_type === types);
             }
-            // console.log("after types",tempHouses);
+            console.log("after types",tempHouses);
             if(bed !== "any+"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bed);
             }
-            // console.log("after bed",tempHouses);
+            console.log("after bed",tempHouses);
             if(bath !== "any+"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
+            console.log("after bath",tempHouses);
             if(flooring !== "all"){
                 tempHouses = tempHouses.filter(house=>house.bedroom >= bath);
             }
-            // console.log("after bath",tempHouses);
+            console.log("after flooring",tempHouses);
             if(year !== "all"){
                 tempHouses = tempHouses.filter(house=>house.year_built >= year);
             }
-            // console.log("after bath",year);
+            console.log("after year",year);
             console.log(minRate, maxRate)
             tempHouses = tempHouses.filter(house=>house.rate <= maxRate && house.rate >= minRate)
-            // console.log("after prices",tempHouses);
+            console.log("after rate",tempHouses);
             tempHouses = tempHouses.filter(house=>house.area <= maxSize && house.area >= minSize)
-            // console.log("after size",tempHouses);
+            console.log("after size",tempHouses);
             tempHouses = tempHouses.filter(house => house.parking === parking);
-            // console.log("after parking", tempHouses);
+            console.log("after parking", tempHouses);
             // tempHouses = tempHouses.filter(house => house.available_date >= available);
             // console.log("after available",tempHouses);
             setSearch(tempHouses);
