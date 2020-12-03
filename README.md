@@ -12,83 +12,110 @@
 # A summary of areas of contributions (for each team member)
     An Bo: 
         Designs:
-        -Website UI design
-        -Website css
-        -Responsive UI for whole website
-        -Coding Format
-        -Front end folder structure
-        -Buy(Sale) and Rent Page
-        -Buy(Sale) and Rent Detail Page
-        -Main search
-        -Save Search Page
-        -Save Favorite Home Page
-        -Account Setting page
-        -Sale Lisitng Page
-        -Signin Page
-        -Signup Page
-        -Forms(Application,Update, Open house)
-        
-       Frontend Functions:
-        -PageRoutes
-        -Login
-        -Signin
-        -Update Listing
-        -Delete Listing
-        -Update open house
-        -Add favorite search/house
-        -Remove favorite search/house
-        -Submit buy application
-       Others:
-        -Fix bugs/help others fix bug or issues
-        -Fix UI issues
-        -Solve github conflicts
+            - Website UI design
+            - Website css
+            - Responsive UI for whole website
+            - Coding Format
+            - Front end folder structure
+            - Buy(Sale) and Rent Page
+            - Buy(Sale) and Rent Detail Page
+            - Main search
+            - Save Search Page
+            - Save Favorite Home Page
+            - Account Setting page
+            - Sale Lisitng Page
+            - Signin Page
+            - Signup Page
+            - Forms(Application,Update, Open house)
+
+        Frontend Functions:
+            - PageRoutes
+            - Login
+            - Signin
+            - Update Listing
+            - Delete Listing
+            - Update open house
+            - Add favorite search/house
+            - Remove favorite search/house
+            - Submit buy application
+            
+        Others:
+            - Fix bugs/help others fix bug or issues
+            - Fix UI issues
+            - Solve github conflicts
         
     Ruichun Chen:
-        Sell Page
-        Rent Page, 
-        Rent Application Page, 
-        Rent Visit Page, 
-        Rent Listing Page, 
-        Rent Filter Bar, 
-        Sale Filter Bar,
-        Sale Listing Page,
-        Save Search,
-        Manage Rentals Page, 
-        Realtor Page, 
-        Realtor Detail Page, 
-        Search Realtor Page, 
-        Admin Page, 
+        Designs:
+            - Admin opearation page design
+            - Manage Rentals page
+            - Search section design
+            - Agent Finder page design
+            - Realtor detail page design
+            - Signup form for realtor page
+            - Rent/Sale detail page modification
+            - Houses upload form page
+            - UI for the pages above
+            
+        Frontend Functions:
+            - Add rent Application 
+            - Add visit form
+            - Upload image to formData
+            - Upload houses information with image to databse
+            - Rent houses filter section implementation
+            - Sale houses filter section implementation
+            - Save search with filter condition
+            - Disaply all realtor page
+            - Show realtor detail information 
+            - List all houses relate to realtor
+            - List all rent houses within manage rental
+            - List all application for rent in manage rental
+            - Add contact/reject to application
+            - Update information for rent lisiting
+            - Admin approve/reject for user
+            
+        Others:
+            - Fix bugs within the pages above
+            - Implement Bootstap API to project
+            - Draw UI wireframe diagram
+            - Manage the github project wihin the github project management system
+            - Testing
+        
     Dongmei Yin:
-    -	Backend design & coding with Express js
-    -   System architecture diagram
-        o	Login function
-        o	Buy/Rent page data retrieval
-        o	Approve/Reject/Remove users for admin
-        o	Sell/RentOut home listing insertion
-        o	Buy/Rent application insertion & notification email to owner/realtor
-        o	Retrieve/delete/update properties for sale
-        o	Schedule open house
-        o	Retrieve/delete/update properties for rent
-        o	Schedule visit
-        o	Retrieve/approve/reject Buy/Rent applications & send notification email to applicant
-    -	Database design and implementation
-    -	Testing
-    -	Code Deployment onto AWS
+        Backend design & coding with Express js
+        
+        System architecture diagram:
+            - Login function
+            - Buy/Rent page data retrieval
+            - Approve/Reject/Remove users for admin
+            - Sell/RentOut home listing insertion
+            - Buy/Rent application insertion & notification email to owner/realtor
+            - Retrieve/delete/update properties for sale
+            - Schedule open house
+            - Retrieve/delete/update properties for rent
+            - Schedule visit
+            - Retrieve/approve/reject Buy/Rent applications & send notification email to applicant
+            
+        Database design and implementation
+        
+        Testing
+        
+        Code Deployment onto AWS
 
     Weichao Liang:
-    - sign up function
-    - check username & email address duplication 
-    - sign up as realtor function
-    - main page search (no userid needed)
-    - search from buy/rent page
-    - save house as favorite
-    - show favorite list
-    - delete from favorite list 
-    - save the favorite search information from filter bar
-    - show the favorite search list && delete the list
-    - find all agent from the agent table
-    - find agent by zipcode/name
-    - fix mini bugs in database
+        Backend coding with Express js:
+            - sign up function
+            - check username & email address duplication 
+            - sign up as realtor function
+            - main page search (no userid needed)
+            - search from buy/rent page
+            - save house as favorite
+            - show favorite list
+            - delete from favorite list 
+            - save the favorite search information from filter bar
+            - show the favorite search list && delete the list
+            - find all agent from the agent table
+            - find agent by zipcode/name
+            - fix mini bugs in database
     
 # Link to your team's Google Sprint Task Sheet
     Link: https://docs.google.com/spreadsheets/d/10t7nQZ7mw0GsuoKvn8TLyeAO8zWAKiNflflNgLXNAtk/edit#gid=1730128268
