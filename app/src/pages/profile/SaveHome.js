@@ -18,7 +18,7 @@ function SaveHome(prop) {
         const IMAGE_LINK = `${type ==="S"?ROUTES.BUY:ROUTES.RENT}/${type ==="S"?obj.S_ID:obj.R_ID}`
         const icon = <Housecard.Favorite removeFavorite ={conditional_Remove_Favorite_Function} house = {obj} type = {type}/> 
         return (
-            <Housecard.Base key = {obj.S_ID} >  
+            <Housecard.Base key = {type ==="S"?obj.S_ID:obj.R_ID} >  
                 <Housecard.ImageContainer> 
                     {icon}
                     </Housecard.ImageContainer> 
