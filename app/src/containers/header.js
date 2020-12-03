@@ -42,7 +42,7 @@ function HeaderContainer(props){
             </Header.Profile>
         </Header.Group>)
         const conditionalAdmin = (user!==null && user.role ==="A") ? <Header.Link to = {ROUTES.HELP}>Admin</Header.Link> : null;
-        const conditionallogo = user!==null ? <Header.ConditionLogoText to = {ROUTES.HOME}>Zillow</Header.ConditionLogoText>:<Header.Logo to = {ROUTES.HOME}>Zillow</Header.Logo>
+        const conditionallogo = user!==null ? <Header.ConditionLogoText to = {ROUTES.HOME}>SweetHome</Header.ConditionLogoText>:<Header.Logo to = {ROUTES.HOME}>SweetHome</Header.Logo>
     const [Menu, setMenuDisplay] = useState("none")
     function toggleMenu(){
         if(Menu === "none"){

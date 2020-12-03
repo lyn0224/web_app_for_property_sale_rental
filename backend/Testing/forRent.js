@@ -37,7 +37,7 @@ class forRentRouter{
                     }
                     //console.log(pic_array);
                     data[i].pic_dir = pic_array;
-                    data[i].main_dir = pic_folder + "/outside.PNG";
+                    data[i].main_dir = pic_folder + "/outside.png";
        
                 }
                 console.log(data);

@@ -7,7 +7,7 @@ import {Houseinfo} from '../components/export'
 import { Application } from '../components/export';
 import LoadingContainer from '../containers/LoadingContainer'
 import {Row, Col} from 'react-bootstrap'
-// import {DB} from '../constants/DB'
+import {DB} from '../constants/DB'
 
 function RentHouseDetail(props){
     const {rentHouses} = useContext(RentContext);
@@ -68,7 +68,7 @@ function RentHouseDetail(props){
         <Houseinfo.img key = {Math.random() } src = {image}/>
     )): "null";
     
-    const Visit_URL = "http://localhost:9000/visit"
+    const Visit_URL = `${DB}/visit`
 
     async function handleVisit(event){
         event.preventDefault();
@@ -103,7 +103,7 @@ function RentHouseDetail(props){
             }
     }
 
-    const Applicaiton_URL = "http://localhost:9000/rentRequest"
+    const Applicaiton_URL = `${DB}/rentRequest`
     async function handleApplication (event){
         
         event.preventDefault();

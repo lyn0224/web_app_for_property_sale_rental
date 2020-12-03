@@ -8,6 +8,7 @@ const uploadFiles = async (req, res) => {
 
     if(req.body.list_type === 'sell'){
       file_path =  'http://localhost:9000/forSale_pic/';
+      
       sql = 'SELECT MAX(S_ID) AS ID FROM FOR_SALE';
     } else{
       file_path = 'http://localhost:9000/forRent_pic/';

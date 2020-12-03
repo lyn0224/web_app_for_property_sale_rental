@@ -46,7 +46,7 @@ class individualUser{
                         }
                         console.log(pic_array);
                         data[i].pic_dir = pic_array;
-                        data[i].main_dir = pic_folder + "/outside.PNG";
+                        data[i].main_dir = pic_folder + "/outside.png";
                         //console.log("test");
 
                         for(k = 0; k < openHouse.length; k++){
@@ -206,7 +206,7 @@ class individualUser{
                         }
                         console.log(pic_array);
                         data[i].pic_dir = pic_array;
-                        data[i].main_dir = pic_folder + "/outside.PNG";
+                        data[i].main_dir = pic_folder + "/outside.png";
                         //console.log("test");
                         for(k = 0; k < visit.length; k++){
                             if(visit[k].property_ID === data[i].R_ID){
