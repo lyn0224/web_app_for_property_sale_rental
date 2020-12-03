@@ -288,9 +288,9 @@ function Listing() {
                             </Application.Select>
               
                            <Application.InputField>
-                                <Application.Text>Apart number</Application.Text>
+                                <Application.Text>Number</Application.Text>
                                 <Application.Input
-                                     placeholder="Apt #"
+                                     placeholder="number"
                                     defaultValue ={apart_number}
                                     onChange={({ target }) => setApart_number(target.value)}
                                     pattern="^[0-9]*$"/>

@@ -70,7 +70,7 @@ class searchRouter {
       });
       
       if (!isExpired) {
-        console.log('用户token已经过期')
+        console.log('token expired')
         return;
       }
       const {id} = tokenInfo;

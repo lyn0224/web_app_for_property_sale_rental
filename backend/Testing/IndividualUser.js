@@ -7,8 +7,9 @@ class individualUser{
         forSaleListing(db, req, res) {
             let sql = '';
             let cols = [];
+            console.log("req",req.body.ID);
             if(req.body.role === 'R'){
-                sql = "SELECT * from FOR_SALE WHERE (Owner_ID = ? OR Realtor_ID = ?) AND sale_status = 'A'";
+                sql = "SELECT * from FOR_SALE WHERE Owner_ID = ? AND sale_status = 'A' UNION ALL SELECT * from FOR_SALE WHERE Realtor_ID = ? AND sale_status = 'A' ";
                 cols = [req.body.ID, req.body.ID];
             } else {
                 sql = "SELECT * from FOR_SALE WHERE Owner_ID = ? AND sale_status = 'A'";
@@ -167,7 +168,7 @@ class individualUser{
             let sql = '';
             let cols = [];
             if(req.body.role === 'R'){
-                sql = "SELECT * from FOR_RENT WHERE (Owner_ID = ? OR Realtor_ID = ?) AND status = 'A'";
+                sql = "SELECT * from FOR_RENT WHERE Owner_ID = ? AND status = 'A' UNION ALL SELECT * from FOR_RENT WHERE Realtor_ID = ? AND status = 'A'";
                 cols = [req.body.ID, req.body.ID];
             } else {
                 sql = "SELECT * from FOR_RENT WHERE Owner_ID = ? AND status = 'A'";
