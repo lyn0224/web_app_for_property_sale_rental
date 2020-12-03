@@ -1,20 +1,45 @@
 # fa20-cmpe-202-sec-03-team-project-202-team
 
+# Your Team Name
+    HomerFiner Developer
+    
+# The names of each team member
+    An Bo
+    Ruichun Chen
+    Dongmei Yin
+    Weichao Liang
+    
+# A summary of areas of contributions (for each team member)
+    An Bo:
+    Ruichun Chen:
+    Dongmei Yin:
+    Weichao Liang:
+    
+# Link to your team's Google Sprint Task Sheet
+    Link: https://docs.google.com/spreadsheets/d/10t7nQZ7mw0GsuoKvn8TLyeAO8zWAKiNflflNgLXNAtk/edit#gid=1730128268
+<p>
+    <img src="./app/src/img/sprint_task_sheet.png" width="100%" height="100%" />
+</p>
+
+<p>
+    <img src="./app/src/img/sprint_task_sheet.png" width="100%" height="100%" />
+</p>
+
 # some npm install command:
-backend:\
-    npm i bcrypt\
-    npm i body-parser\
-    npm i jsonwebtoken\
-    npm i nodemon\
-    npm i multer --save\
-    npm i nodemailer --save\
-frontend:\
-    npm install react-icons --save\
-    npm i google-maps-react\
-    npm install react-bootstrap bootstrap\
-    npm i contentful\
-clean git log:\
-    git reset --hard
+    backend:\
+        npm i bcrypt\
+        npm i body-parser\
+        npm i jsonwebtoken\
+        npm i nodemon\
+        npm i multer --save\
+        npm i nodemailer --save\
+    frontend:\
+        npm install react-icons --save\
+        npm i google-maps-react\
+        npm install react-bootstrap bootstrap\
+        npm i contentful\
+    clean git log:\
+        git reset --hard
 
 ## How to start the project
     Two terminal are needed for the frontend and backend;
@@ -186,3 +211,4 @@ Agile board => 	Issue board
 <p>
     <img src="https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/blob/master/DatabaseSchema.png" width="100%" height="100%" />
 </p>
+
