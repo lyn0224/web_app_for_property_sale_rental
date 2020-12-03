@@ -2,7 +2,7 @@ class realtorRouter {
 
     // execute sql 
     async execSQL(db, sql) {
-      console.log('sql :', sql);
+      //console.log('sql :', sql);
       return new Promise((resolve, reject) => {
         db.query(sql, (err, rows, fields) => {
           if (err) {
@@ -29,7 +29,7 @@ class realtorRouter {
      * @memberof realtorRouter
      */
     async searchByName(db, keyword = '') {
-      console.log("keyword", keyword)
+      //console.log("keyword", keyword)
       const sql = `select * from REALTOR t where t.Fname like '%${keyword}%' or t.Lname like '%${keyword}%' `;
       const list = await this.execSQL(db, sql);
       return { list }
@@ -44,10 +44,10 @@ class realtorRouter {
      * @memberof realtorRouter
      */
     async searchByZip(db, keyword) {
-      console.log("keyword", keyword)
+      //console.log("keyword", keyword)
       const sql = `select * from REALTOR t where t.zipcode like '%${keyword}%' `;
       const list = await this.execSQL(db, sql);
-      console.log("list", list)
+     // console.log("list", list)
       return { list }
     }
   }

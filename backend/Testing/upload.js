@@ -15,6 +15,8 @@ var storage = multer.diskStorage({
       f_path = '';
       sql = '';
       console.log("req.body.list_type", req.body.list_type);
+      console.log("req.body.owner", req.body.owner);
+      console.log("req.body", req.body);
       if(req.body.list_type == 'sell'){
         f_path =  'public/forSale/';
         sql = 'SELECT MAX(S_ID) AS ID FROM FOR_SALE';
