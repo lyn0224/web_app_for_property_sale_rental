@@ -4,10 +4,11 @@
     202 team
     
 # The names of each team member
-    An Bo
-    Ruichun Chen
-    Dongmei Yin
-    Weichao Liang
+    An Bo : 010695035
+    Ruichun Chen : 015269462
+    Dongmei Yin : 014629498
+    Weichao Liang : 014641510
+
     
 # A summary of areas of contributions (for each team member)
     An Bo: 
@@ -112,11 +113,18 @@
             - show favorite list
             - delete from favorite list 
             - save the favorite search information from filter bar
-            - show the favorite search list && delete the list
             - find all agent from the agent table
             - find agent by zipcode/name
             - fix mini bugs in database
+# Link to your team's GitHub Repo
+    Link: https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team
     
+# Link to your team's Project Board (on GitHub)
+    Link: https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/projects?query=is%3Aclosed
+    
+# Link to your team's Project Journal (on GitHub)
+    Link: https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-202-team/tree/master/Journal
+
 # Link to your team's Google Sprint Task Sheet
     Link: https://docs.google.com/spreadsheets/d/10t7nQZ7mw0GsuoKvn8TLyeAO8zWAKiNflflNgLXNAtk/edit#gid=1730128268
 <p>
