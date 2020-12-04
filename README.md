@@ -1,7 +1,7 @@
 # fa20-cmpe-202-sec-03-team-project-202-team
 
 # Your Team Name
-    HomerFiner Developer
+    202 team
     
 # The names of each team member
     An Bo
